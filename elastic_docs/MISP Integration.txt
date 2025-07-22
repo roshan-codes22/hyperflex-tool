@@ -1,0 +1,1457 @@
+Loading
+Elastic Docs
+/
+…
+/
+Elastic integrations
+/
+Threat intelligence
+/
+MISP Integration
+Version
+1.38.0 (
+View all
+)
+Compatible Kibana version(s)
+8.13.0 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+Level of support
+What's this?
+Elastic
+The MISP integration uses the
+REST API from the running MISP instance
+to retrieve indicators and Threat Intelligence.
+Logs
+Threat
+The MISP integration configuration allows to set the polling interval, how far back it
+should look initially, and optionally any filters used to filter the results.
+The filters themselves are based on the
+MISP API documentation
+and should support all documented fields.
+Exported fields
+Field
+Description
+Type
+@timestamp
+Event timestamp.
+date
+cloud.image.id
+Image ID for the cloud instance.
+keyword
+data_stream.dataset
+Data stream dataset name.
+constant_keyword
+data_stream.namespace
+Data stream namespace.
+constant_keyword
+data_stream.type
+Data stream type.
+constant_keyword
+event.dataset
+Event dataset
+constant_keyword
+event.module
+Event module
+constant_keyword
+host.containerized
+If the host is a container.
+boolean
+host.os.build
+OS build information.
+keyword
+host.os.codename
+OS codename, if any.
+keyword
+input.type
+Type of Filebeat input.
+keyword
+log.flags
+Flags for the log file.
+keyword
+log.offset
+Offset of the entry in the log file.
+long
+misp.attribute.category
+The category of the attribute related to the event object. For example "Network Activity".
+keyword
+misp.attribute.comment
+Comments made to the attribute itself.
+keyword
+misp.attribute.deleted
+If the attribute has been removed from the event object.
+boolean
+misp.attribute.disable_correlation
+If correlation has been enabled on the attribute related to the event object.
+boolean
+misp.attribute.distribution
+How the attribute has been distributed, represented by integer numbers.
+long
+misp.attribute.event_id
+The local event ID of the attribute related to the event.
+keyword
+misp.attribute.id
+The ID of the attribute related to the event object.
+keyword
+misp.attribute.object_id
+The ID of the Object in which the attribute is attached.
+keyword
+misp.attribute.object_relation
+The type of relation the attribute has with the event object itself.
+keyword
+misp.attribute.sharing_group_id
+The group ID of the sharing group related to the specific attribute.
+keyword
+misp.attribute.timestamp
+The timestamp in which the attribute was attached to the event object.
+date
+misp.attribute.to_ids
+If the attribute should be automatically synced with an IDS.
+boolean
+misp.attribute.type
+The type of the attribute related to the event object. For example email, ipv4, sha1 and such.
+keyword
+misp.attribute.uuid
+The UUID of the attribute related to the event.
+keyword
+misp.attribute.value
+The value of the attribute, depending on the type like "url, sha1, email-src".
+keyword
+misp.context.attribute.category
+The category of the secondary attribute related to the event object. For example "Network Activity".
+keyword
+misp.context.attribute.comment
+Comments made to the secondary attribute itself.
+keyword
+misp.context.attribute.deleted
+If the secondary attribute has been removed from the event object.
+boolean
+misp.context.attribute.disable_correlation
+If correlation has been enabled on the secondary attribute related to the event object.
+boolean
+misp.context.attribute.distribution
+How the secondary attribute has been distributed, represented by integer numbers.
+long
+misp.context.attribute.event_id
+The local event ID of the secondary attribute related to the event.
+keyword
+misp.context.attribute.first_seen
+The first time the indicator was seen.
+keyword
+misp.context.attribute.id
+The ID of the secondary attribute related to the event object.
+keyword
+misp.context.attribute.last_seen
+The last time the indicator was seen.
+keyword
+misp.context.attribute.object_id
+The ID of the Object in which the secondary attribute is attached.
+keyword
+misp.context.attribute.object_relation
+The type of relation the secondary attribute has with the event object itself.
+keyword
+misp.context.attribute.sharing_group_id
+The group ID of the sharing group related to the specific secondary attribute.
+keyword
+misp.context.attribute.timestamp
+The timestamp in which the secondary attribute was attached to the event object.
+date
+misp.context.attribute.to_ids
+If the secondary attribute should be automatically synced with an IDS.
+boolean
+misp.context.attribute.type
+The type of the secondary attribute related to the event object. For example email, ipv4, sha1 and such.
+keyword
+misp.context.attribute.uuid
+The UUID of the secondary attribute related to the event.
+keyword
+misp.context.attribute.value
+The value of the attribute, depending on the type like "url, sha1, email-src".
+keyword
+misp.event.attribute_count
+How many attributes are included in a single event object.
+long
+misp.event.date
+The date of when the event object was created.
+date
+misp.event.disable_correlation
+If correlation is disabled on the MISP event object.
+boolean
+misp.event.distribution
+Distribution type related to MISP.
+long
+misp.event.extends_uuid
+The UUID of the event object it might extend.
+keyword
+misp.event.id
+Attribute ID.
+keyword
+misp.event.info
+Additional text or information related to the event.
+keyword
+misp.event.locked
+If the current MISP event object is locked or not.
+boolean
+misp.event.org_id
+Organization ID of the event.
+keyword
+misp.event.orgc_id
+Organization Community ID of the event.
+keyword
+misp.event.proposal_email_lock
+Settings configured on MISP for email lock on this event object.
+boolean
+misp.event.publish_timestamp
+At what time the event object was published
+date
+misp.event.published
+When the event was published.
+boolean
+misp.event.sharing_group_id
+The ID of the grouped events or sources of the event.
+keyword
+misp.event.threat_level_id
+Threat level from 5 to 1, where 1 is the most critical.
+long
+misp.event.timestamp
+The timestamp of when the event object was created.
+date
+misp.event.uuid
+The UUID of the event object.
+keyword
+misp.object.attribute
+List of attributes of the object in which the attribute is attached.
+flattened
+misp.object.comment
+Comments made to the object in which the attribute is attached.
+keyword
+misp.object.deleted
+If the object in which the attribute is attached has been removed.
+boolean
+misp.object.description
+The description of the object in which the attribute is attached.
+keyword
+misp.object.distribution
+The distribution of the object indicating who can see the object.
+long
+misp.object.event_id
+The event ID of the object in which the attribute is attached.
+keyword
+misp.object.first_seen
+The first time the indicator of the object was seen.
+keyword
+misp.object.id
+The ID of the object in which the attribute is attached.
+keyword
+misp.object.last_seen
+The last time the indicator of the object was seen.
+keyword
+misp.object.meta_category
+The meta-category of the object in which the attribute is attached.
+keyword
+misp.object.name
+The name of the object in which the attribute is attached.
+keyword
+misp.object.sharing_group_id
+The ID of the Sharing Group the object is shared with.
+keyword
+misp.object.template_uuid
+The UUID of attribute object's template.
+keyword
+misp.object.template_version
+The version of attribute object's template.
+keyword
+misp.object.timestamp
+The timestamp when the object was created.
+date
+misp.object.uuid
+The UUID of the object in which the attribute is attached.
+keyword
+misp.org.id
+The organization ID related to the event object.
+keyword
+misp.org.local
+If the event object is local or from a remote source.
+boolean
+misp.org.name
+The organization name related to the event object.
+keyword
+misp.org.uuid
+The UUID of the organization related to the event object.
+keyword
+misp.orgc.id
+The Organization Community ID in which the event object was reported from.
+keyword
+misp.orgc.local
+If the Organization Community was local or synced from a remote source.
+boolean
+misp.orgc.name
+The Organization Community name in which the event object was reported from.
+keyword
+misp.orgc.uuid
+The Organization Community UUID in which the event object was reported from.
+keyword
+threat.feed.dashboard_id
+Dashboard ID used for Kibana CTI UI
+constant_keyword
+threat.feed.name
+Display friendly feed name.
+constant_keyword
+threat.indicator.first_seen
+The date and time when intelligence source first reported sighting this indicator.
+date
+threat.indicator.last_seen
+The date and time when intelligence source last reported sighting this indicator.
+date
+threat.indicator.modified_at
+The date and time when intelligence source last modified information for this indicator.
+date
+Example
+{
+"@timestamp"
+:
+"2014-10-06T07:12:57.000Z"
+,
+"agent"
+:
+{
+"ephemeral_id"
+:
+"24754055-2625-498c-8778-8566dbc8a368"
+,
+"id"
+:
+"5607d6f4-6e45-4c33-a087-2e07de5f0082"
+,
+"name"
+:
+"docker-fleet-agent"
+,
+"type"
+:
+"filebeat"
+,
+"version"
+:
+"8.9.1"
+}
+,
+"data_stream"
+:
+{
+"dataset"
+:
+"ti_misp.threat"
+,
+"namespace"
+:
+"ep"
+,
+"type"
+:
+"logs"
+}
+,
+"ecs"
+:
+{
+"version"
+:
+"8.11.0"
+}
+,
+"elastic_agent"
+:
+{
+"id"
+:
+"5607d6f4-6e45-4c33-a087-2e07de5f0082"
+,
+"snapshot"
+:
+false
+,
+"version"
+:
+"8.9.1"
+}
+,
+"event"
+:
+{
+"agent_id_status"
+:
+"verified"
+,
+"category"
+:
+[
+"threat"
+]
+,
+"created"
+:
+"2023-08-28T15:43:07.992Z"
+,
+"dataset"
+:
+"ti_misp.threat"
+,
+"ingested"
+:
+"2023-08-28T15:43:09Z"
+,
+"kind"
+:
+"enrichment"
+,
+"original"
+:
+"{\"Event\":{\"Attribute\":{\"Galaxy\":[],\"ShadowAttribute\":[],\"category\":\"Network activity\",\"comment\":\"\",\"deleted\":false,\"disable_correlation\":false,\"distribution\":\"5\",\"event_id\":\"22\",\"first_seen\":null,\"id\":\"12394\",\"last_seen\":null,\"object_id\":\"0\",\"object_relation\":null,\"sharing_group_id\":\"0\",\"timestamp\":\"1462454963\",\"to_ids\":false,\"type\":\"domain\",\"uuid\":\"572b4ab3-1af0-4d91-9cd5-07a1c0a8ab16\",\"value\":\"whatsapp.com\"},\"EventReport\":[],\"Galaxy\":[],\"Object\":[],\"Org\":{\"id\":\"1\",\"local\":true,\"name\":\"ORGNAME\",\"uuid\":\"5877549f-ea76-4b91-91fb-c72ad682b4a5\"},\"Orgc\":{\"id\":\"2\",\"local\":false,\"name\":\"CthulhuSPRL.be\",\"uuid\":\"55f6ea5f-fd34-43b8-ac1d-40cb950d210f\"},\"RelatedEvent\":[],\"ShadowAttribute\":[],\"Tag\":[{\"colour\":\"#004646\",\"exportable\":true,\"hide_tag\":false,\"id\":\"1\",\"is_custom_galaxy\":false,\"is_galaxy\":false,\"local\":0,\"name\":\"type:OSINT\",\"numerical_value\":null,\"user_id\":\"0\"},{\"colour\":\"#339900\",\"exportable\":true,\"hide_tag\":false,\"id\":\"2\",\"is_custom_galaxy\":false,\"is_galaxy\":false,\"local\":0,\"name\":\"tlp:green\",\"numerical_value\":null,\"user_id\":\"0\"}],\"analysis\":\"2\",\"attribute_count\":\"29\",\"date\":\"2014-10-03\",\"disable_correlation\":false,\"distribution\":\"3\",\"extends_uuid\":\"\",\"id\":\"2\",\"info\":\"OSINT New Indicators of Compromise for APT Group Nitro Uncovered blog post by Palo Alto Networks\",\"locked\":false,\"org_id\":\"1\",\"orgc_id\":\"2\",\"proposal_email_lock\":false,\"publish_timestamp\":\"1610622316\",\"published\":true,\"sharing_group_id\":\"0\",\"threat_level_id\":\"2\",\"timestamp\":\"1412579577\",\"uuid\":\"54323f2c-e50c-4268-896c-4867950d210b\"}}"
+,
+"type"
+:
+[
+"indicator"
+]
+}
+,
+"input"
+:
+{
+"type"
+:
+"httpjson"
+}
+,
+"misp"
+:
+{
+"attribute"
+:
+{
+"category"
+:
+"Network activity"
+,
+"comment"
+:
+""
+,
+"deleted"
+:
+false
+,
+"disable_correlation"
+:
+false
+,
+"distribution"
+:
+5
+,
+"event_id"
+:
+"22"
+,
+"id"
+:
+"12394"
+,
+"object_id"
+:
+"0"
+,
+"sharing_group_id"
+:
+"0"
+,
+"timestamp"
+:
+"2016-05-05T13:29:23.000Z"
+,
+"to_ids"
+:
+false
+,
+"type"
+:
+"domain"
+,
+"uuid"
+:
+"572b4ab3-1af0-4d91-9cd5-07a1c0a8ab16"
+}
+,
+"event"
+:
+{
+"attribute_count"
+:
+29
+,
+"date"
+:
+"2014-10-03"
+,
+"disable_correlation"
+:
+false
+,
+"distribution"
+:
+3
+,
+"extends_uuid"
+:
+""
+,
+"id"
+:
+"2"
+,
+"info"
+:
+"OSINT New Indicators of Compromise for APT Group Nitro Uncovered blog post by Palo Alto Networks"
+,
+"locked"
+:
+false
+,
+"org_id"
+:
+"1"
+,
+"orgc_id"
+:
+"2"
+,
+"proposal_email_lock"
+:
+false
+,
+"publish_timestamp"
+:
+"2021-01-14T11:05:16.000Z"
+,
+"published"
+:
+true
+,
+"sharing_group_id"
+:
+"0"
+,
+"threat_level_id"
+:
+2
+,
+"uuid"
+:
+"54323f2c-e50c-4268-896c-4867950d210b"
+}
+,
+"orgc"
+:
+{
+"id"
+:
+"2"
+,
+"local"
+:
+false
+,
+"name"
+:
+"CthulhuSPRL.be"
+,
+"uuid"
+:
+"55f6ea5f-fd34-43b8-ac1d-40cb950d210f"
+}
+}
+,
+"tags"
+:
+[
+"preserve_original_event"
+,
+"forwarded"
+,
+"misp-threat"
+,
+"type:OSINT"
+,
+"tlp:green"
+]
+,
+"threat"
+:
+{
+"feed"
+:
+{
+"name"
+:
+"MISP"
+}
+,
+"indicator"
+:
+{
+"marking"
+:
+{
+"tlp"
+:
+[
+"GREEN"
+]
+}
+,
+"provider"
+:
+"misp"
+,
+"scanner_stats"
+:
+2
+,
+"type"
+:
+"domain-name"
+,
+"url"
+:
+{
+"domain"
+:
+"whatsapp.com"
+}
+}
+}
+}
+Threat Attributes
+The MISP integration configuration allows to set the polling interval, how far back it should look initially, and optionally any filters used to filter the results. This datastream supports expiration of indicators of compromise (IOC).
+This data stream uses the
+/attributes/restSearch
+API endpoint which returns more granular information regarding MISP attributes and additional information such as
+decay_score
+. Using
+decay_score
+, the integration makes the attribute as decayed/expired if
+>= 50%
+of the decaying models consider the attribute to be decayed. Inside the document, the field
+decayed
+is set to
+true
+if the attribute is considered decayed. More information on decaying models can be found
+here
+.
+Expiration of Indicators of Compromise (IOCs)
+The ingested IOCs expire after certain duration which is indicated by the
+decayed
+field. An
+Elastic Transform
+is created to faciliate only active IOCs be available to the end users. This transform creates destination indices named
+logs-ti_misp_latest.dest_threat_attributes-*
+which only contains active and unexpired IOCs. The latest destination index also has an alias named
+logs-ti_misp_latest.threat_attributes
+. When querying for active indicators or setting up indicator match rules, only use the latest destination indices or the alias to avoid false positives from expired IOCs. Dashboards for
+Threat Attributes
+datastream are also pointing to the latest destination indices containing active IoCs. Please read
+ILM Policy
+below which is added to avoid unbounded growth on source datastream
+.ds-logs-ti_misp.threat_attributes-*
+indices.
+Handling Orphaned IOCs
+Some IOCs may never get decayed/expired and will continue to stay in the latest destination indices
+logs-ti_misp_latest.dest_threat_attributes-*
+. To avoid any false positives from such orphaned IOCs, users are allowed to configure
+IOC Expiration Duration
+parameter while setting up the integration. This parameter deletes all data inside the destination indices
+logs-ti_misp_latest.dest_threat_attributes-*
+after this specified duration is reached, defaults to
+90d
+after attribute's
+max(last_seen, timestamp)
+. Note that
+IOC Expiration Duration
+parameter only exists to add a fail-safe default expiration in case IOCs never expire.
+ILM Policy
+To facilitate IOC expiration, source datastream-backed indices
+.ds-logs-ti_misp.threat_attributes-*
+are allowed to contain duplicates from each polling interval. ILM policy is added to these source indices so it doesn't lead to unbounded growth. This means data in these source indices will be deleted after
+5 days
+from ingested date.
+Exported fields
+Field
+Description
+Type
+@timestamp
+Event timestamp.
+date
+cloud.image.id
+Image ID for the cloud instance.
+keyword
+data_stream.dataset
+Data stream dataset name.
+constant_keyword
+data_stream.namespace
+Data stream namespace.
+constant_keyword
+data_stream.type
+Data stream type.
+constant_keyword
+event.dataset
+Event dataset
+constant_keyword
+event.module
+Event module
+constant_keyword
+host.containerized
+If the host is a container.
+boolean
+host.os.build
+OS build information.
+keyword
+host.os.codename
+OS codename, if any.
+keyword
+input.type
+Type of Filebeat input.
+keyword
+labels.is_ioc_transform_source
+Indicates whether an IOC is in the raw source data stream, or the in latest destination index.
+constant_keyword
+log.flags
+Flags for the log file.
+keyword
+log.offset
+Offset of the entry in the log file.
+long
+misp.attribute.category
+The category of the attribute. For example "Network Activity".
+keyword
+misp.attribute.comment
+Comments made to the attribute itself.
+keyword
+misp.attribute.data
+The data of the attribute
+keyword
+misp.attribute.decay_score
+Group of fields describing decay score of the attribute
+flattened
+misp.attribute.decayed
+Whether atleast one decay model indicates the attribute is decayed.
+boolean
+misp.attribute.decayed_at
+Timestamp when the document is decayed. Not sent by the API. This is calculated inside the ingest pipeline.
+date
+misp.attribute.deleted
+If the attribute has been removed.
+boolean
+misp.attribute.disable_correlation
+If correlation has been enabled on the attribute.
+boolean
+misp.attribute.distribution
+How the attribute has been distributed, represented by integer numbers.
+long
+misp.attribute.event_id
+The local event ID of the attribute.
+keyword
+misp.attribute.event_uuid
+The local event UUID of the attribute.
+keyword
+misp.attribute.first_seen
+The first time the attribute was seen.
+keyword
+misp.attribute.id
+The ID of the attribute.
+keyword
+misp.attribute.last_seen
+The last time the attribute was seen.
+keyword
+misp.attribute.object_id
+The ID of the Object in which the attribute is attached.
+keyword
+misp.attribute.object_relation
+The type of relation the attribute has with the attribute object itself.
+keyword
+misp.attribute.sharing_group_id
+The group ID of the sharing group related to the specific attribute.
+keyword
+misp.attribute.to_ids
+If the attribute should be automatically synced with an IDS.
+boolean
+misp.attribute.type
+The type of the attribute. For example email, ipv4, sha1 and such.
+keyword
+misp.attribute.uuid
+The UUID of the attribute.
+keyword
+misp.attribute.value
+The value of the attribute, depending on the type like "url, sha1, email-src".
+keyword
+misp.event.attribute_count
+How many attributes are included in a single event object.
+long
+misp.event.date
+The date of when the event object was created.
+date
+misp.event.disable_correlation
+If correlation is disabled on the MISP event object.
+boolean
+misp.event.distribution
+Distribution type related to MISP.
+long
+misp.event.extends_uuid
+The UUID of the event object it might extend.
+keyword
+misp.event.id
+The local event ID of the attribute related to the event.
+keyword
+misp.event.info
+Additional text or information related to the event.
+keyword
+misp.event.locked
+If the current MISP event object is locked or not.
+boolean
+misp.event.org_id
+Organization ID of the event.
+keyword
+misp.event.orgc_id
+Organization Community ID of the event.
+keyword
+misp.event.proposal_email_lock
+Settings configured on MISP for email lock on this event object.
+boolean
+misp.event.publish_timestamp
+At what time the event object was published
+date
+misp.event.published
+When the event was published.
+boolean
+misp.event.sharing_group_id
+The ID of the grouped events or sources of the event.
+keyword
+misp.event.sighting_timestamp
+At what time the event object was sighted
+date
+misp.event.threat_level_id
+Threat level from 5 to 1, where 1 is the most critical.
+long
+misp.event.timestamp
+The timestamp of when the event object was created.
+date
+misp.event.uuid
+The UUID of the event object.
+keyword
+misp.object.attribute
+List of attributes of the object in which the attribute is attached.
+flattened
+misp.object.comment
+Comments made to the object in which the attribute is attached.
+keyword
+misp.object.deleted
+If the object in which the attribute is attached has been removed.
+boolean
+misp.object.description
+The description of the object in which the attribute is attached.
+keyword
+misp.object.distribution
+The distribution of the object indicating who can see the object.
+long
+misp.object.event_id
+The event ID of the object in which the attribute is attached.
+keyword
+misp.object.first_seen
+The first time the indicator of the object was seen.
+keyword
+misp.object.id
+The ID of the object in which the attribute is attached.
+keyword
+misp.object.last_seen
+The last time the indicator of the object was seen.
+keyword
+misp.object.meta_category
+The meta-category of the object in which the attribute is attached.
+keyword
+misp.object.name
+The name of the object in which the attribute is attached.
+keyword
+misp.object.sharing_group_id
+The ID of the Sharing Group the object is shared with.
+keyword
+misp.object.template_uuid
+The UUID of attribute object's template.
+keyword
+misp.object.template_version
+The version of attribute object's template.
+keyword
+misp.object.timestamp
+The timestamp when the object was created.
+date
+misp.object.uuid
+The UUID of the object in which the attribute is attached.
+keyword
+threat.feed.dashboard_id
+Dashboard ID used for Kibana CTI UI
+constant_keyword
+threat.feed.name
+Display friendly feed name
+constant_keyword
+threat.indicator.email.subject
+keyword
+threat.indicator.first_seen
+The date and time when intelligence source first reported sighting this indicator.
+date
+threat.indicator.last_seen
+The date and time when intelligence source last reported sighting this indicator.
+date
+threat.indicator.modified_at
+The date and time when intelligence source last modified information for this indicator.
+date
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+1.38.0
+Enhancement
+(
+View pull request
+)
+Update Kibana constraint to support 9.0.0.
+8.13.0 or higher
+9.0.0 or higher
+1.37.1
+Bug fix
+(
+View pull request
+)
+Updated SSL description to be uniform and to include links to documentation.
+8.13.0 or higher
+1.37.0
+Enhancement
+(
+View pull request
+)
+Do not remove
+event.original
+in main ingest pipeline.
+8.13.0 or higher
+1.36.0
+Enhancement
+(
+View pull request
+)
+Add "preserve_original_event" tag to documents with
+event.kind
+set to "pipeline_error".
+8.13.0 or higher
+1.35.8
+Bug fix
+(
+View pull request
+)
+Fix the handling of duplicated events with fingerprint processors.
+8.13.0 or higher
+1.35.7
+Bug fix
+(
+View pull request
+)
+Set request rate limits.
+8.13.0 or higher
+1.35.6
+Bug fix
+(
+View pull request
+)
+Fix the processing of ISO8601 dates.
+8.13.0 or higher
+1.35.5
+Bug fix
+(
+View pull request
+)
+Use triple-brace Mustache templating when referencing variables in ingest pipelines.
+8.13.0 or higher
+1.35.4
+Bug fix
+(
+View pull request
+)
+Use triple-brace Mustache templating when referencing variables in ingest pipelines.
+8.13.0 or higher
+1.35.3
+Bug fix
+(
+View pull request
+)
+Fix labels.is_ioc_transform_source values
+8.13.0 or higher
+1.35.2
+Bug fix
+(
+View pull request
+)
+Add missing fields in transform
+8.13.0 or higher
+1.35.1
+Bug fix
+(
+View pull request
+)
+Fix ECS date mapping on threat fields.
+8.13.0 or higher
+1.35.0
+Enhancement
+(
+View pull request
+)
+Update the kibana constraint to ^8.13.0. Modified the field definitions to remove ECS fields made redundant by the ecs@mappings component template.
+8.13.0 or higher
+1.34.0
+Enhancement
+(
+View pull request
+)
+Allow user configuration of event limit in threat data stream.
+8.12.0 or higher
+1.33.1
+Bug fix
+(
+View pull request
+)
+Adjust field mappings for transform destination index.
+8.12.0 or higher
+1.33.0
+Enhancement
+(
+View pull request
+)
+Improve handling of empty responses.
+8.12.0 or higher
+1.32.0
+Enhancement
+(
+View pull request
+)
+Set sensitive values as secret.
+8.12.0 or higher
+1.31.0
+Enhancement
+(
+View pull request
+)
+Pagination fixes
+8.11.0 or higher
+1.30.1
+Enhancement
+(
+View pull request
+)
+Add recent new field to latest_ioc transform dest
+8.11.0 or higher
+1.30.0
+Enhancement
+(
+View pull request
+)
+Added attribute limit option to the UI
+8.11.0 or higher
+1.29.1
+Enhancement
+(
+View pull request
+)
+Changed owners
+8.11.0 or higher
+1.29.0
+Enhancement
+(
+View pull request
+)
+Add email subject threat indicator
+8.11.0 or higher
+1.28.0
+Enhancement
+(
+View pull request
+)
+Add support for IoC expiration
+8.11.0 or higher
+1.27.1
+Bug fix
+(
+View pull request
+)
+Parse URIs for URI type threats.
+8.7.1 or higher
+1.27.0
+Enhancement
+(
+View pull request
+)
+Limit request tracer log count to five.
+8.7.1 or higher
+1.26.0
+Enhancement
+(
+View pull request
+)
+Adds support to filter on EnforceWarningList
+8.7.1 or higher
+1.25.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.11.0.
+8.7.1 or higher
+1.24.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.10.0.
+8.7.1 or higher
+1.23.0
+Enhancement
+(
+View pull request
+)
+The format_version in the package manifest changed from 2.11.0 to 3.0.0. Removed dotted YAML keys from package manifest. Added 'owner.type: elastic' to package manifest.
+8.7.1 or higher
+1.22.0
+Enhancement
+(
+View pull request
+)
+Add tags.yml file so that integration's dashboards and saved searches are tagged with "Security Solution" and displayed in the Security Solution UI.
+8.7.1 or higher
+1.21.0
+Enhancement
+(
+View pull request
+)
+Update package-spec to 2.10.0.
+8.7.1 or higher
+1.20.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.9.0.
+8.7.1 or higher
+1.19.0
+Enhancement
+(
+View pull request
+)
+Document duration units.
+8.7.1 or higher
+1.18.2
+Bug fix
+(
+View pull request
+)
+Remove confusing error message tag prefix.
+8.7.1 or higher
+1.18.1
+Bug fix
+(
+View pull request
+)
+Remove renaming the original
+message
+field to
+event.original
+8.7.1 or higher
+1.18.0
+Enhancement
+(
+View pull request
+)
+Retain email subjects in misp.attributes.
+8.7.1 or higher
+1.17.0
+Enhancement
+(
+View pull request
+)
+Document valid duration units.
+8.7.1 or higher
+1.16.2
+Bug fix
+(
+View pull request
+)
+Fix the fingerprint processor in the Attributes Pipeline.
+8.7.1 or higher
+1.16.1
+Bug fix
+(
+View pull request
+)
+Keep the same timestamp for later pages in a pagination sequence.
+8.7.1 or higher
+1.16.0
+Enhancement
+(
+View pull request
+)
+Ensure event.kind is correctly set for pipeline errors.
+8.7.1 or higher
+1.15.4
+Bug fix
+(
+View pull request
+)
+Fix parsing of threat event publish_timestamp.
+8.7.1 or higher
+1.15.3
+Bug fix
+(
+View pull request
+)
+Fix bug where the threat_attributes data stream would not stop paginating after an empty response.
+8.7.1 or higher
+1.15.2
+Bug fix
+(
+View pull request
+)
+Prevent duplicate requests for the first page while paginating.
+8.7.1 or higher
+1.15.1
+Bug fix
+(
+View pull request
+)
+Fix timestamp format sent in query.
+8.7.1 or higher
+1.15.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.8.0.
+8.7.1 or higher
+1.14.1
+Bug fix
+(
+View pull request
+)
+Fix
+tags
+processing that was removing original tags if misp tags were present.
+Bug fix
+(
+View pull request
+)
+Add missing
+event.original
+cleanup step for
+threat_attributes
+data stream.
+8.7.1 or higher
+1.14.0
+Enhancement
+(
+View pull request
+)
+Add a new flag to enable request tracing
+8.7.1 or higher
+1.13.1
+Bug fix
+(
+View pull request
+)
+Harmonise object fields in data streams.
+8.5.0 or higher
+1.13.0
+Bug fix
+(
+View pull request
+)
+Add toggle to enable request tracing.
+8.5.0 or higher
+1.12.1
+Bug fix
+(
+View pull request
+)
+Harmonise distribution fields to type long.
+8.0.0 or higher
+1.12.0
+Enhancement
+(
+View pull request
+)
+Add Attributes datastream
+8.0.0 or higher
+1.11.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.7.0.
+8.0.0 or higher
+1.10.1
+Bug fix
+(
+View pull request
+)
+Drop empty event sets.
+8.0.0 or higher
+1.10.0
+Enhancement
+(
+View pull request
+)
+Honor
+preserve_original_event
+tag.
+8.0.0 or higher
+1.9.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.6.0.
+8.0.0 or higher
+1.8.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.5.0.
+8.0.0 or higher
+1.7.1
+Bug fix
+(
+View pull request
+)
+Remove duplicate field.
+8.0.0 or higher
+1.7.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.4.0
+8.0.0 or higher
+1.6.1
+Bug fix
+(
+View pull request
+)
+Fix proxy URL documentation rendering.
+8.0.0 or higher
+1.6.0
+Enhancement
+(
+View pull request
+)
+Update categories to include
+threat_intel
+.
+8.0.0 or higher
+1.5.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.3.0.
+8.0.0 or higher
+1.4.1
+Enhancement
+(
+View pull request
+)
+update readme to include link to MISP documentation
+8.0.0 or higher
+1.4.0
+Enhancement
+(
+View pull request
+)
+Fix pagination looping forever
+8.0.0 or higher
+1.3.1
+Enhancement
+(
+View pull request
+)
+Update package descriptions
+8.0.0 or higher
+1.3.0
+Enhancement
+(
+View pull request
+)
+Update to ECS 8.2
+8.0.0 or higher
+1.2.2
+Enhancement
+(
+View pull request
+)
+Add mapping for event.created
+8.0.0 or higher
+1.2.1
+Enhancement
+(
+View pull request
+)
+Add documentation for multi-fields
+8.0.0 or higher
+1.2.0
+Enhancement
+(
+View pull request
+)
+Update to ECS 8.0
+8.0.0 or higher
+1.1.0
+Enhancement
+(
+View pull request
+)
+Adds dashboards and threat.feed ECS fields
+8.0.0 or higher
+1.0.2
+Bug fix
+(
+View pull request
+)
+Change test public IPs to the supported subset
+8.0.0 or higher
+1.0.1
+Enhancement
+(
+View pull request
+)
+Bump minimum version
+8.0.0 or higher
+1.0.0
+Enhancement
+(
+View pull request
+)
+Initial release
+—
+Previous
+Mandiant Advantage
+Next
+OpenCTI

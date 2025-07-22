@@ -1,0 +1,168 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Custom Logs (Filestream) Package
+Version
+1.1.5 (
+View all
+)
+Compatible Kibana version(s)
+8.15.0 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+Level of support
+What's this?
+Elastic
+Warning
+Migrating from the "Custom Logs (Deprecated)" to "Custom Logs
+(Filestream)" will cause files to be re-ingested because the state is not migrated.
+Important
+The Filestream integration will only start ingesting files
+when they are 1024 bytes in size or larger
+. This can be adjusted by
+setting "Fingerprint length", however it will influence how files are
+identified. Refer to the
+fingerprint
+documentation for more details.
+In future releases it's expected to have an automated way to migrate the state. However, this is not possible at the moment.
+The current best option for minimizing the data duplication while migrating to "Custom Logs (Filestream)" is to use the 'Ignore Older' or 'Exclude Files' options.
+The
+filestream
+custom input is used to read lines from active log files. It is the
+new, improved alternative to the
+log
+input. It comes with various improvements
+to the existing input:
+Checking of
+close_*
+options happens out of band. Thus, if an output is blocked,
+Elastic Agent can close the reader and avoid keeping too many files open.
+The order of
+parsers
+is configurable. So it is possible to parse JSON lines and then
+aggregate the contents into a multiline event.
+Some position updates and metadata changes no longer depend on the publishing pipeline.
+If the pipeline is blocked some changes are still applied to the registry.
+Only the most recent updates are serialized to the registry. In contrast, the
+log
+input
+has to serialize the complete registry on each ACK from the outputs. This makes the registry updates
+much quicker with this input.
+The input ensures that only offsets updates are written to the registry append only log.
+The
+log
+writes the complete file state.
+Stale entries can be removed from the registry, even if there is no active input.
+The fingerprint file identity is used by default.
+More information can be found on the
+Filestream documentation page
+As Filestream configures a new input, configuring it to collect data
+from a file that was previously collected by Custom Logs integration
+will result in duplicate data. You may wish to configure
+ignore_older
+or temporarily set
+ignore_inactive: since_first_start
+to limit the amount of duplicate data collected.
+If the Custom Logs integration is removed and the Custom Filestream
+Logs is added in the same policy change, there risk of data being
+missed between the last entry ingested by the Custom Logs and the
+first one ingested by the Custom Filestream Logs.
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+1.1.5
+Bug fix
+(
+View pull request
+)
+Fix file identity options not getting applied correctly
+8.15.0 or higher
+9.0.0 or higher
+1.1.4
+Enhancement
+(
+View pull request
+)
+Add warning about only ingesting files >= 1024 bytes
+8.15.0 or higher
+9.0.0 or higher
+1.1.3
+Enhancement
+(
+View pull request
+)
+Correct the readme
+8.15.0 or higher
+9.0.0 or higher
+1.1.2
+Enhancement
+(
+View pull request
+)
+Add warning about migration from "Custom Logs (Legacy)" to
+"Custom Logs (Filestream"
+8.15.0 or higher
+9.0.0 or higher
+1.1.1
+Enhancement
+(
+View pull request
+)
+Rename the package
+8.15.0 or higher
+9.0.0 or higher
+1.1.0
+Enhancement
+(
+View pull request
+)
+Add support for defining Conditions
+8.15.0 or higher
+9.0.0 or higher
+1.0.1
+Bug fix
+(
+View pull request
+)
+Resolving conflicts with past integration versions.
+8.15.0 or higher
+9.0.0 or higher
+1.0.0
+Enhancement
+(
+View pull request
+)
+Make it GA
+—
+0.1.0
+Enhancement
+(
+View pull request
+)
+Make it available in 9.0
+—
+0.0.1
+Enhancement
+(
+View pull request
+)
+Initial Release
+—
+Previous
+File Integrity Monitoring
+Next
+FireEye Network Security

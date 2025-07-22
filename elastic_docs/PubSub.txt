@@ -1,0 +1,1473 @@
+Loading
+Elastic Docs
+/
+…
+/
+Elastic integrations
+/
+Google Cloud
+/
+PubSub
+Version
+2.42.1 (
+View all
+)
+Compatible Kibana version(s)
+8.13.0 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+Metrics
+The
+pubsub
+dataset fetches metrics from
+PubSub
+in Google Cloud Platform. It contains all metrics exported from the
+GCP PubSub Monitoring API
+.
+You can specify a single region to fetch metrics like
+us-central1
+. Be aware that GCP PubSub does not use zones so
+us-central1-a
+will return nothing. If no region is specified, it will return metrics from all buckets.
+Sample Event
+Example
+{
+"@timestamp"
+:
+"2017-10-12T08:05:34.853Z"
+,
+"cloud"
+:
+{
+"account"
+:
+{
+"id"
+:
+"elastic-obs-integrations-dev"
+,
+"name"
+:
+"elastic-obs-integrations-dev"
+}
+,
+"instance"
+:
+{
+"id"
+:
+"4751091017865185079"
+,
+"name"
+:
+"gke-cluster-1-default-pool-6617a8aa-5clh"
+}
+,
+"machine"
+:
+{
+"type"
+:
+"e2-medium"
+}
+,
+"provider"
+:
+"gcp"
+,
+"availability_zone"
+:
+"us-central1-c"
+,
+"region"
+:
+"us-central1"
+}
+,
+"event"
+:
+{
+"dataset"
+:
+"gcp.pubsub"
+,
+"duration"
+:
+115000
+,
+"module"
+:
+"gcp"
+}
+,
+"gcp"
+:
+{
+"pubsub"
+:
+{
+"subscription"
+:
+{
+"backlog"
+:
+{
+"bytes"
+:
+0
+}
+}
+}
+,
+"labels"
+:
+{
+"user"
+:
+{
+"goog-gke-node"
+:
+""
+}
+}
+}
+,
+"host"
+:
+{
+"id"
+:
+"4751091017865185079"
+,
+"name"
+:
+"gke-cluster-1-default-pool-6617a8aa-5clh"
+}
+,
+"metricset"
+:
+{
+"name"
+:
+"pubsub"
+,
+"period"
+:
+10000
+}
+,
+"service"
+:
+{
+"type"
+:
+"gcp"
+}
+}
+Exported fields
+ECS Field Reference
+Please refer to the following
+document
+for detailed information on ECS fields.
+Exported fields
+Field
+Description
+Type
+Metric Type
+@timestamp
+Event timestamp.
+date
+agent.id
+Unique identifier of this agent (if one exists). Example: For Beats this would be beat.id.
+keyword
+cloud.account.id
+The cloud account or organization id used to identify different entities in a multi-tenant environment. Examples: AWS account id, Google Cloud ORG Id, or other unique identifier.
+keyword
+cloud.image.id
+Image ID for the cloud instance.
+keyword
+data_stream.dataset
+Data stream dataset.
+constant_keyword
+data_stream.namespace
+Data stream namespace.
+constant_keyword
+data_stream.type
+Data stream type.
+constant_keyword
+event.dataset
+Event dataset
+constant_keyword
+event.module
+Event module
+constant_keyword
+gcp.labels.metadata.*
+object
+gcp.labels.metrics.*
+object
+gcp.labels.resource.*
+object
+gcp.labels.system.*
+object
+gcp.labels.user.*
+object
+gcp.labels_fingerprint
+Hashed value of the labels field.
+keyword
+gcp.metrics.*.*.*.*
+Metrics that returned from Google Cloud API query.
+object
+gcp.pubsub.snapshot.backlog.bytes
+Total byte size of the messages retained in a snapshot.
+long
+gauge
+gcp.pubsub.snapshot.backlog_bytes_by_region.bytes
+Total byte size of the messages retained in a snapshot, broken down by Cloud region.
+long
+gauge
+gcp.pubsub.snapshot.config_updates.count
+Delta of the cumulative count of configuration changes, grouped by operation type and result.
+long
+gauge
+gcp.pubsub.snapshot.num_messages.value
+Number of messages retained in a snapshot.
+long
+gauge
+gcp.pubsub.snapshot.num_messages_by_region.value
+Number of messages retained in a snapshot, broken down by Cloud region.
+long
+gauge
+gcp.pubsub.snapshot.oldest_message_age.sec
+Age (in seconds) of the oldest message retained in a snapshot.
+long
+gauge
+gcp.pubsub.snapshot.oldest_message_age_by_region.sec
+Age (in seconds) of the oldest message retained in a snapshot, broken down by Cloud region.
+long
+gauge
+gcp.pubsub.subscription.ack_latencies.value
+Distribution of ack latencies in milliseconds. The ack latency is the time between when Cloud Pub/Sub sends a message to a subscriber client and when Cloud Pub/Sub receives an Acknowledge request for that message.
+object
+gcp.pubsub.subscription.ack_message.count
+Delta of the cumulative count of messages acknowledged by Acknowledge requests, grouped by delivery type.
+long
+gauge
+gcp.pubsub.subscription.backlog.bytes
+Total byte size of the unacknowledged messages (a.k.a. backlog messages) in a subscription.
+long
+gauge
+gcp.pubsub.subscription.byte_cost.bytes
+Delta of the cumulative cost of operations, measured in bytes. This is used to measure quota utilization.
+long
+gauge
+gcp.pubsub.subscription.config_updates.count
+Delta of the cumulative count of configuration changes for each subscription, grouped by operation type and result.
+long
+gauge
+gcp.pubsub.subscription.dead_letter_message.count
+Delta of the cumulative count of messages published to dead letter topic, grouped by result.
+long
+gauge
+gcp.pubsub.subscription.mod_ack_deadline_message.count
+Delta of the cumulative count of messages whose deadline was updated by ModifyAckDeadline requests, grouped by delivery type.
+long
+gauge
+gcp.pubsub.subscription.mod_ack_deadline_message_operation.count
+Delta of the cumulative count of ModifyAckDeadline message operations, grouped by result.
+long
+gauge
+gcp.pubsub.subscription.mod_ack_deadline_request.count
+Delta of the cumulative count of ModifyAckDeadline requests, grouped by result.
+long
+gauge
+gcp.pubsub.subscription.num_outstanding_messages.value
+Number of messages delivered to a subscription's push endpoint, but not yet acknowledged.
+long
+gauge
+gcp.pubsub.subscription.num_undelivered_messages.value
+Number of unacknowledged messages (a.k.a. backlog messages) in a subscription.
+long
+gauge
+gcp.pubsub.subscription.oldest_retained_acked_message_age.sec
+Age (in seconds) of the oldest acknowledged message retained in a subscription.
+long
+gauge
+gcp.pubsub.subscription.oldest_retained_acked_message_age_by_region.value
+Age (in seconds) of the oldest acknowledged message retained in a subscription, broken down by Cloud region.
+long
+gauge
+gcp.pubsub.subscription.oldest_unacked_message_age.sec
+Age (in seconds) of the oldest unacknowledged message (a.k.a. backlog message) in a subscription.
+long
+gauge
+gcp.pubsub.subscription.oldest_unacked_message_age_by_region.value
+Age (in seconds) of the oldest unacknowledged message in a subscription, broken down by Cloud region.
+long
+gauge
+gcp.pubsub.subscription.pull_ack_message_operation.count
+Delta of the cumulative count of acknowledge message operations, grouped by result. For a definition of message operations, see Cloud Pub/Sub metric subscription/mod_ack_deadline_message_operation_count.
+long
+gauge
+gcp.pubsub.subscription.pull_ack_request.count
+Delta of the cumulative count of acknowledge requests, grouped by result.
+long
+gauge
+gcp.pubsub.subscription.pull_message_operation.count
+Delta of the cumulative count of pull message operations, grouped by result. For a definition of message operations, see Cloud Pub/Sub metric subscription/mod_ack_deadline_message_operation_count.
+long
+gauge
+gcp.pubsub.subscription.pull_request.count
+Delta of the cumulative count of pull requests, grouped by result.
+long
+gauge
+gcp.pubsub.subscription.push_request.count
+Delta of the cumulative count of push attempts, grouped by result. Unlike pulls, the push server implementation does not batch user messages. So each request only contains one user message. The push server retries on errors, so a given user message can appear multiple times.
+long
+gauge
+gcp.pubsub.subscription.push_request_latencies.value
+Distribution of push request latencies (in microseconds), grouped by result.
+object
+gcp.pubsub.subscription.retained_acked.bytes
+Total byte size of the acknowledged messages retained in a subscription.
+long
+gauge
+gcp.pubsub.subscription.retained_acked_bytes_by_region.bytes
+Total byte size of the acknowledged messages retained in a subscription, broken down by Cloud region.
+long
+gauge
+gcp.pubsub.subscription.seek_request.count
+Delta of the cumulative count of seek attempts, grouped by result.
+long
+gauge
+gcp.pubsub.subscription.sent_message.count
+Delta of the cumulative count of messages sent by Cloud Pub/Sub to subscriber clients, grouped by delivery type.
+long
+gauge
+gcp.pubsub.subscription.streaming_pull_ack_message_operation.count
+Delta of the cumulative count of StreamingPull acknowledge message operations, grouped by result. For a definition of message operations, see Cloud Pub/Sub metric subscription/mod_ack_deadline_message_operation_count.
+long
+gauge
+gcp.pubsub.subscription.streaming_pull_ack_request.count
+Delta of the cumulative count of streaming pull requests with non-empty acknowledge ids, grouped by result.
+long
+gauge
+gcp.pubsub.subscription.streaming_pull_message_operation.count
+Delta of the cumulative count of streaming pull message operations, grouped by result. For a definition of message operations, see Cloud Pub/Sub metric <code>subscription/mod_ack_deadline_message_operation_count
+long
+gauge
+gcp.pubsub.subscription.streaming_pull_mod_ack_deadline_message_operation.count
+Delta of the cumulative count of StreamingPull ModifyAckDeadline operations, grouped by result.
+long
+gauge
+gcp.pubsub.subscription.streaming_pull_mod_ack_deadline_request.count
+Delta of the cumulative count of streaming pull requests with non-empty ModifyAckDeadline fields, grouped by result.
+long
+gauge
+gcp.pubsub.subscription.streaming_pull_response.count
+Delta of the cumulative count of streaming pull responses, grouped by result.
+long
+gauge
+gcp.pubsub.subscription.unacked_bytes_by_region.bytes
+Total byte size of the unacknowledged messages in a subscription, broken down by Cloud region.
+long
+gauge
+gcp.pubsub.topic.byte_cost.bytes
+Delta of the cost of operations, measured in bytes. This is used to measure utilization for quotas.
+long
+gauge
+gcp.pubsub.topic.config_updates.count
+Delta of the cumulative count of configuration changes, grouped by operation type and result.
+long
+gauge
+gcp.pubsub.topic.message_sizes.bytes
+Distribution of publish message sizes (in bytes)
+object
+gcp.pubsub.topic.oldest_retained_acked_message_age_by_region.value
+Age (in seconds) of the oldest acknowledged message retained in a topic, broken down by Cloud region.
+long
+gauge
+gcp.pubsub.topic.oldest_unacked_message_age_by_region.value
+Age (in seconds) of the oldest unacknowledged message in a topic, broken down by Cloud region.
+long
+gauge
+gcp.pubsub.topic.retained_acked_bytes_by_region.bytes
+Total byte size of the acknowledged messages retained in a topic, broken down by Cloud region.
+long
+gauge
+gcp.pubsub.topic.send_message_operation.count
+Delta of the cumulative count of publish message operations, grouped by result. For a definition of message operations, see Cloud Pub/Sub metric subscription/mod_ack_deadline_message_operation_count.
+long
+gauge
+gcp.pubsub.topic.send_request.count
+Delta of the cumulative count of publish requests, grouped by result.
+long
+gauge
+gcp.pubsub.topic.streaming_pull_response.count
+Delta of the cumulative count of streaming pull responses, grouped by result.
+long
+gauge
+gcp.pubsub.topic.unacked_bytes_by_region.bytes
+Total byte size of the unacknowledged messages in a topic, broken down by Cloud region.
+long
+gauge
+host.containerized
+If the host is a container.
+boolean
+host.os.build
+OS build information.
+keyword
+host.os.codename
+OS codename, if any.
+keyword
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+2.42.1
+Bug fix
+(
+View pull request
+)
+Remove redundant audit violation field renames.
+8.13.0 or higher
+9.0.0 or higher
+2.42.0
+Enhancement
+(
+View pull request
+)
+Allow @custom pipeline access to event.original without setting preserve_original_event.
+8.13.0 or higher
+9.0.0 or higher
+2.41.1
+Bug fix
+(
+View pull request
+)
+Preserve original value of resource name.
+8.13.0 or higher
+9.0.0 or higher
+2.41.0
+Enhancement
+(
+View pull request
+)
+Add support for Kibana
+9.0.0
+.
+8.13.0 or higher
+9.0.0 or higher
+2.40.1
+Enhancement
+(
+View pull request
+)
+Add missing category.
+8.13.0 or higher
+2.40.0
+Enhancement
+(
+View pull request
+)
+Add
+actor.entity.id
+and
+target.entity.id
+fields to audit logs.
+8.13.0 or higher
+2.39.0
+Enhancement
+(
+View pull request
+)
+Add
+related.entity
+field to audit logs.
+8.13.0 or higher
+2.38.0
+Enhancement
+(
+View pull request
+)
+Add
+policy_violation_info
+,
+metadata
+and
+related
+fields to audit logs.
+Bug fix
+(
+View pull request
+)
+Update GCP audit log dashboard to use correct
+email
+field.
+8.13.0 or higher
+2.37.2
+Bug fix
+(
+View pull request
+)
+Fix definition of subfields of nested objects
+8.13.0 or higher
+2.37.1
+Enhancement
+(
+View pull request
+)
+Improve GCP Billing documentation.
+8.13.0 or higher
+2.37.0
+Enhancement
+(
+View pull request
+)
+Retain
+authenticationInfo.serviceAccountKeyName
+data.
+8.13.0 or higher
+2.36.0
+Enhancement
+(
+View pull request
+)
+Add global dataset filter for dashboards to improve performance.
+8.13.0 or higher
+2.35.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.11.0. Update the kibana constraint to ^8.13.0. Modified the field definitions to remove ECS fields made redundant by the ecs@mappings component template.
+8.13.0 or higher
+2.34.1
+Bug fix
+(
+View pull request
+)
+Fix Redis metric type for 'persistence.rdb.bgsave_in_progress'. Metric type should be boolean instead of long.
+8.12.0 or higher
+2.34.0
+Enhancement
+(
+View pull request
+)
+Add tags and processors to GCP Compute, Firestore, PostgreSQL.
+8.12.0 or higher
+2.33.2
+Enhancement
+(
+View pull request
+)
+Add tags and processors to GCP Storage
+8.12.0 or higher
+2.33.1
+Enhancement
+(
+View pull request
+)
+Update Legacy metric visualization to new metric in GCP Billing overview dashboard.
+8.12.0 or higher
+2.33.0
+Enhancement
+(
+View pull request
+)
+Enable time series data for metrics data streams. This dramatically reduces storage for metrics and is expected to progressively improve query
+performance
+. For more details, see https://www.elastic.co/guide/en/elasticsearch/reference/current/tsds.html.
+8.12.0 or higher
+2.32.1
+Enhancement
+(
+View pull request
+)
+Add dimensions mappings and the metrics_fingerprint field across all metrics data streams.
+8.12.0 or higher
+2.32.0
+Enhancement
+(
+View pull request
+)
+Add new billing data stream fields.
+8.12.0 or higher
+2.31.2
+Bug fix
+(
+View pull request
+)
+Fix pipeline error parsing DNS logs with empty rdata field.
+8.7.1 or higher
+2.31.1
+Enhancement
+(
+View pull request
+)
+Add Cloud Run docs and fix policy template name to allow adding Cloud Run logs to the policy.
+8.7.1 or higher
+2.31.0
+Enhancement
+(
+View pull request
+)
+Allow users to retain otherwised discarded fields.
+8.7.1 or higher
+2.30.1
+Bug fix
+(
+View pull request
+)
+Fix mappings of group fields
+8.7.1 or higher
+2.30.0
+Enhancement
+(
+View pull request
+)
+Add tags.yml file so that integration's dashboards and saved searches are tagged with "Security Solution" and displayed in the Security Solution UI.
+Enhancement
+(
+View pull request
+)
+Upgrade package spec to 3.0.0.
+Bug fix
+(
+View pull request
+)
+Fix orphan dashboard references.
+Bug fix
+(
+View pull request
+)
+Add missing dashboard filters.
+8.7.1 or higher
+2.29.1
+Bug fix
+(
+View pull request
+)
+Add null checks and ignore_missing checks to the rename processor
+8.7.1 or higher
+2.29.0
+Bug fix
+(
+View pull request
+)
+Remove GCP CloudSQL deprecated, alpha or beta metrics and fix field types.
+8.7.1 or higher
+2.28.5
+Enhancement
+(
+View pull request
+)
+Set metric type for GKE, Load Balancing, PubSub, Redis and Storage data streams.
+8.7.1 or higher
+2.28.4
+Enhancement
+(
+View pull request
+)
+Migrate GCP Load Balancing HTTPS Overview dashboard to lens.
+8.7.1 or higher
+2.28.3
+Enhancement
+(
+View pull request
+)
+Set metric type for Cloud Run, Compute, Dataproc and Firestore data streams.
+8.7.1 or higher
+2.28.2
+Enhancement
+(
+View pull request
+)
+Migrate GCP Load Balancing TCP SSL Proxy Overview dashboard to lens.
+8.7.1 or higher
+2.28.1
+Enhancement
+(
+View pull request
+)
+Set metric type for CloudSQL data streams.
+8.7.1 or higher
+2.28.0
+Enhancement
+(
+View pull request
+)
+Migrate GCP Load Balancing L3 Overview dashboard to lens.
+8.7.1 or higher
+2.27.0
+Enhancement
+(
+View pull request
+)
+Add GCP CloudSQL MySQL, SQL Server and PostgreSQL dashboards.
+8.7.1 or higher
+2.26.0
+Bug fix
+(
+View pull request
+)
+Fix GCP loadbalancing_metrics fields prefix.
+8.7.1 or higher
+2.25.1
+Bug fix
+(
+View pull request
+)
+Fix check on gcp.audit.authorization_info[].granted.
+8.7.1 or higher
+2.25.0
+Enhancement
+(
+View pull request
+)
+Migrate GCP Billing input control to new control panel.
+8.7.1 or higher
+2.24.0
+Enhancement
+(
+View pull request
+)
+Add GCP CloudSQL MySQL, Postgres, SQLServer data streams
+8.7.1 or higher
+2.23.0
+Enhancement
+(
+View pull request
+)
+Convert security dashboards to lens.
+8.7.1 or higher
+2.22.1
+Enhancement
+(
+View pull request
+)
+Change ownership in manifest.
+8.6.0 or higher
+2.22.0
+Enhancement
+(
+View pull request
+)
+Ensure event.kind is correctly set for pipeline errors.
+8.6.0 or higher
+2.21.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.8.0.
+8.6.0 or higher
+2.20.1
+Bug fix
+(
+View pull request
+)
+Fix invalid TSDS metric type for persistence.rdb.bgsave_in_progress field
+8.6.0 or higher
+2.20.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.7.0.
+8.6.0 or higher
+2.19.1
+Enhancement
+(
+View pull request
+)
+Migrate compute dashboard to lens and add datastream filter.
+8.6.0 or higher
+2.19.0
+Enhancement
+(
+View pull request
+)
+Add Cloud Run metrics datastream.
+8.6.0 or higher
+2.18.0
+Enhancement
+(
+View pull request
+)
+Support
+subscription_num_goroutines
+and
+subscription_max_outstanding_messages
+for GCP PubSub input
+8.6.0 or higher
+2.17.2
+Bug fix
+(
+View pull request
+)
+Fix IP Convert processor in Audit ingest pipeline.
+8.6.0 or higher
+2.17.1
+Enhancement
+(
+View pull request
+)
+Added categories and/or subcategories.
+8.6.0 or higher
+2.17.0
+Enhancement
+(
+View pull request
+)
+Add Audit Log Overview dashboard
+Enhancement
+(
+View pull request
+)
+Add GKE Overview dashboard
+Enhancement
+(
+View pull request
+)
+Add PubSub Overview dashboard
+Enhancement
+(
+View pull request
+)
+Add Storage Overview dashboard
+8.6.0 or higher
+2.16.2
+Bug fix
+(
+View pull request
+)
+Add logic to handle scalar request.policy values on audit
+8.5.0 or higher
+2.16.1
+Bug fix
+(
+View pull request
+)
+Replace missing input control panel with new-style control.
+8.5.0 or higher
+2.16.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.6.0.
+8.5.0 or higher
+2.15.2
+Enhancement
+(
+View pull request
+)
+Update documentation.
+8.5.0 or higher
+2.15.1
+Enhancement
+(
+View pull request
+)
+Add GCP Compute pipeline test.
+8.5.0 or higher
+2.15.0
+Enhancement
+(
+View pull request
+)
+Remove support for Kibana 7.17.x
+Enhancement
+(
+View pull request
+)
+Support multiple regions for metrics data streams
+8.5.0 or higher
+2.14.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.5.0.
+8.3.0 or higher
+2.13.0
+Enhancement
+(
+View pull request
+)
+Migrate dashboard by values
+8.3.0 or higher
+2.12.1
+Bug fix
+(
+View pull request
+)
+Remove duplicate fields.
+7.17.6 or higher
+8.3.0 or higher
+2.12.0
+Enhancement
+(
+View pull request
+)
+Add GCP Redis
+7.17.6 or higher
+8.3.0 or higher
+2.11.12
+Bug fix
+(
+View pull request
+)
+Add GKE ingest pipeline.
+7.17.6 or higher
+8.3.0 or higher
+2.11.11
+Bug fix
+(
+View pull request
+)
+Fix type of dns.answers.ttl.
+7.17.6 or higher
+8.3.0 or higher
+2.11.10
+Enhancement
+(
+View pull request
+)
+Add ingest pipeline for dataproc.
+Enhancement
+(
+View pull request
+)
+Add GCP loadbalancing ingest pipeline
+Enhancement
+(
+View pull request
+)
+Add GCP PubSub ingest pipeline
+Enhancement
+(
+View pull request
+)
+Add GCP Storage ingest pipeline
+Enhancement
+(
+View pull request
+)
+Add GCP Firestore ingest pipeline
+Enhancement
+(
+View pull request
+)
+Add GCP Compute ingest pipeline
+7.17.6 or higher
+8.3.0 or higher
+2.11.10-beta.6
+Enhancement
+(
+View pull request
+)
+Add ingest pipeline for dataproc.
+—
+2.11.10-beta.5
+Enhancement
+(
+View pull request
+)
+Add GCP loadbalancing ingest pipeline
+—
+2.11.10-beta.4
+Enhancement
+(
+View pull request
+)
+Add GCP PubSub ingest pipeline
+—
+2.11.10-beta.3
+Enhancement
+(
+View pull request
+)
+Add GCP Storage ingest pipeline
+—
+2.11.10-beta.2
+Enhancement
+(
+View pull request
+)
+Add GCP Firestore ingest pipeline
+—
+2.11.10-beta.1
+Enhancement
+(
+View pull request
+)
+Add GCP Compute ingest pipeline
+—
+2.11.9
+Bug fix
+(
+View pull request
+)
+Fix GKE kubernetes.io indentation.
+7.17.6 or higher
+8.3.0 or higher
+2.11.8
+Enhancement
+(
+View pull request
+)
+Remove duplicate fields.
+7.17.6 or higher
+8.3.0 or higher
+2.11.7
+Enhancement
+(
+View pull request
+)
+Move Dataproc lightweight module config into integration
+7.17.6 or higher
+8.3.0 or higher
+2.11.6
+Enhancement
+(
+View pull request
+)
+Move LoadBalancing lightweight module config into integration
+7.17.6 or higher
+8.3.0 or higher
+2.11.5
+Enhancement
+(
+View pull request
+)
+Move Storage lightweight module config into integration
+7.17.6 or higher
+8.3.0 or higher
+2.11.4
+Enhancement
+(
+View pull request
+)
+Move PubSub lightweight module config into integration
+7.17.6 or higher
+8.3.0 or higher
+2.11.3
+Enhancement
+(
+View pull request
+)
+Move GKE lightweight module config into integration
+7.17.6 or higher
+8.3.0 or higher
+2.11.2
+Enhancement
+(
+View pull request
+)
+Move Firestore lightweight module config into integration
+7.17.6 or higher
+8.3.0 or higher
+2.11.1
+Enhancement
+(
+View pull request
+)
+Use ECS geo.location definition.
+7.17.6 or higher
+8.3.0 or higher
+2.11.0
+Enhancement
+(
+View pull request
+)
+Move Compute lightweight module config into integration
+7.17.6 or higher
+8.3.0 or higher
+2.10.0
+Enhancement
+(
+View pull request
+)
+Add GCP PubSub Data stream
+7.17.6 or higher
+8.3.0 or higher
+2.9.0
+Enhancement
+(
+View pull request
+)
+Add GCP Dataproc Data stream
+7.17.6 or higher
+8.3.0 or higher
+2.8.0
+Enhancement
+(
+View pull request
+)
+Add GCP GKE Data Stream
+7.17.6 or higher
+8.3.0 or higher
+2.7.0
+Enhancement
+(
+View pull request
+)
+Add GCP Storage Data Stream
+7.17.6 or higher
+8.3.0 or higher
+2.6.0
+Enhancement
+(
+View pull request
+)
+Add Load Balancing logs datastream
+7.17.6 or higher
+8.3.0 or higher
+2.5.0
+Enhancement
+(
+View pull request
+)
+Add GCP Load Balancing Metricset
+Bug fix
+(
+View pull request
+)
+Fix credentials_json escaping in loadbalancing_metrics
+Bug fix
+(
+View pull request
+)
+Update loadbalancing_metrics default period to 60s
+Bug fix
+(
+View pull request
+)
+Fix event.dataset for loadbalancing_metrics
+Enhancement
+(
+View pull request
+)
+Add loadbalancing_metrics distribution fields
+7.17.6 or higher
+8.3.0 or higher
+2.4.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.4.0
+7.17.6 or higher
+8.3.0 or higher
+2.3.0
+Enhancement
+(
+View pull request
+)
+Add additional parsing for DNS Public Zone Query Logs
+7.17.6 or higher
+8.3.0 or higher
+2.2.1
+Enhancement
+(
+View pull request
+)
+Fix Billing policy template title and default period for gcp.compute
+7.17.6 or higher
+8.3.0 or higher
+2.2.0
+Enhancement
+(
+View pull request
+)
+Remove fields duplicated in ECS fields
+7.17.6 or higher
+8.3.0 or higher
+2.1.0
+Enhancement
+restore compatibility with 7.17 release track
+7.17.6 or higher
+8.3.0 or higher
+2.0.0
+Breaking change
+(
+View pull request
+)
+Move configurations to support metrics. This change is breaking, as it moves
+some configuration from the top level variables to data stream variables.
+This change involves
+project_id
+,
+credentials_file
+and
+credentials_json
+variables that are moved from input level configuration to package level
+configuration (as those variables are reused across all inputs/data streams).
+Users with GCP integration enabled will need to input values for these
+variables again when upgrading the policies to this version.
+Enhancement
+(
+View pull request
+)
+Add GCP Billing Data Stream
+Enhancement
+(
+View pull request
+)
+Add GCP Compute Data Stream
+Enhancement
+(
+View pull request
+)
+Add GCP Firestore Data stream
+8.3.0 or higher
+1.10.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.3.0.
+7.17.0 or higher
+8.0.0 or higher
+1.9.2
+Bug fix
+(
+View pull request
+)
+Fix GCP auditlog parsing issue on response status
+7.17.0 or higher
+8.0.0 or higher
+1.9.1
+Enhancement
+(
+View pull request
+)
+Update readme
+7.17.0 or higher
+8.0.0 or higher
+1.9.0
+Enhancement
+(
+View pull request
+)
+Preserve request and response in flattened fields.
+7.17.0 or higher
+8.0.0 or higher
+1.8.0
+Enhancement
+(
+View pull request
+)
+Add missing
+cloud.provider
+field.
+7.17.0 or higher
+8.0.0 or higher
+1.7.0
+Enhancement
+(
+View pull request
+)
+Add dashboards for firewall and vpc flow logs.
+Bug fix
+(
+View pull request
+)
+Add missing mappings for several
+event.*
+fields.
+—
+1.6.1
+Enhancement
+(
+View pull request
+)
+Clarify the GCP privileges required by the Pub/Sub input.
+7.16.3 or higher
+8.0.0 or higher
+1.6.0
+Enhancement
+(
+View pull request
+)
+Update to ECS 8.2
+—
+1.5.1
+Enhancement
+(
+View pull request
+)
+Add documentation for multi-fields
+7.16.3 or higher
+8.0.0 or higher
+1.5.0
+Enhancement
+(
+View pull request
+)
+Improve Google Cloud Platform docs.
+7.16.3 or higher
+8.0.0 or higher
+1.4.2
+Bug fix
+(
+View pull request
+)
+Remove emtpy values, names with only dots, and invalid client IPs.
+7.16.3 or higher
+8.0.0 or higher
+1.4.1
+Bug fix
+(
+View pull request
+)
+Fix quoting of the credentials_json value in policy templates.
+7.16.3 or higher
+8.0.0 or higher
+1.4.0
+Enhancement
+(
+View pull request
+)
+Add gcp.dns integration
+—
+1.3.1
+Bug fix
+(
+View pull request
+)
+Add Ingest Pipeline script to map IANA Protocol Numbers
+7.15.0 or higher
+8.0.0 or higher
+1.3.0
+Enhancement
+(
+View pull request
+)
+Update to ECS 8.0
+7.15.0 or higher
+8.0.0 or higher
+1.2.2
+Bug fix
+(
+View pull request
+)
+Regenerate test files using the new GeoIP database
+7.15.0 or higher
+8.0.0 or higher
+1.2.1
+Bug fix
+(
+View pull request
+)
+Change test public IPs to the supported subset
+—
+1.2.0
+Enhancement
+(
+View pull request
+)
+Add 8.0.0 version constraint
+7.15.0 or higher
+8.0.0 or higher
+1.1.2
+Enhancement
+(
+View pull request
+)
+Update Title and Description.
+7.15.0 or higher
+1.1.1
+Bug fix
+(
+View pull request
+)
+Fix logic that checks for the 'forwarded' tag
+—
+1.1.0
+Enhancement
+(
+View pull request
+)
+Update to ECS 1.12.0
+7.15.0 or higher
+1.0.0
+Enhancement
+(
+View pull request
+)
+Move from experimental to GA
+Enhancement
+(
+View pull request
+)
+remove experimental from data_sets
+—
+0.3.3
+Enhancement
+(
+View pull request
+)
+Convert to generated ECS fields
+—
+0.3.2
+Enhancement
+(
+View pull request
+)
+update to ECS 1.11.0
+—
+0.3.1
+Enhancement
+(
+View pull request
+)
+Escape special characters in docs
+—
+0.3.0
+Enhancement
+(
+View pull request
+)
+Update integration description
+—
+0.2.0
+Enhancement
+(
+View pull request
+)
+Set "event.module" and "event.dataset"
+—
+0.1.0
+Enhancement
+(
+View pull request
+)
+update to ECS 1.10.0 and adding event.original options
+—
+0.0.2
+Enhancement
+(
+View pull request
+)
+update to ECS 1.9.0
+—
+0.0.1
+Enhancement
+(
+View pull request
+)
+initial release
+—
+Previous
+GCP PubSub logs (custom)
+Next
+GCP Redis metrics

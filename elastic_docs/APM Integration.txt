@@ -1,0 +1,841 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+APM Integration
+Version
+9.0.0-preview-1738343125 beta:[] (
+View all
+)
+Compatible Kibana version(s)
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Observability
+Subscription level
+What's this?
+Basic
+Level of support
+What's this?
+Elastic
+Elastic APM is an application performance monitoring system built on the Elastic Stack. It allows you to monitor software services and applications in real-time, by collecting detailed performance information on response time for incoming requests, database queries, calls to caches, external HTTP requests, and more.
+The APM integration enables central management of APM Server with Fleet.
+To learn more, see
+Fleet-managed APM Server
+.
+Quick start
+Ready to jump in? Read the
+APM quick start
+.
+Data Streams
+APM events are indexed into data streams.
+See
+APM data streams
+for more information.
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+9.0.0-preview-1738343125
+Breaking change
+(
+View pull request
+)
+Change default sampling.tail.storage_limit config to 0GB
+—
+8.15.0-preview-1716438434
+Enhancement
+(
+View pull request
+)
+Remove data streams from integration package
+—
+8.13.1-preview-1708411360
+Enhancement
+(
+View pull request
+)
+Remove version check
+—
+8.13.0
+Enhancement
+(
+View pull request
+)
+Add a new field transaction.profiler_stack_trace_ids to traces-apm
+Enhancement
+(
+View pull request
+)
+Migrate to package-spec v3
+Enhancement
+(
+View pull request
+)
+Add span.code.stacktrace
+—
+8.12.2
+Bug fix
+(
+View pull request
+)
+Define value for all constant_keyword fields; Use ecs for sampled_traces
+—
+8.12.0
+Enhancement
+(
+View pull request
+)
+Add missing mappings for various fields
+Enhancement
+(
+View pull request
+)
+Remove unsupported 7.x data stream migration pipeline
+—
+8.11.0
+Enhancement
+(
+View pull request
+)
+Add geoip processing to add client.geo.* fields for app_logs
+Enhancement
+(
+View pull request
+)
+Define data retentions to support DLM
+Enhancement
+(
+View pull request
+)
+Remove unused
+processor.name
+field
+Enhancement
+(
+View pull request
+)
+Added jvm.memory.non_heap.pool.* and jvm.fd.* metrics
+Enhancement
+(
+View pull request
+)
+Remove unused
+processor.event
+field from logs data streams
+Enhancement
+(
+View pull request
+)
+Explicitly set
+event.ingested
+in traces-apm.sampled
+Enhancement
+(
+View pull request
+)
+Remove
+ecs.version
+from all data streams
+Enhancement
+(
+View pull request
+)
+always set {span,transaction}.duration in traces-*
+—
+8.10.0
+Enhancement
+(
+View pull request
+)
+Add permissions to reroute to dedicated datasets for logs, metrics and traces
+Enhancement
+(
+View pull request
+)
+Add permissions to reroute to dedicated namespaces for every data stream.
+Enhancement
+(
+View pull request
+)
+set processor.* fields in mappings and ingest pipeline
+—
+8.9.0
+Enhancement
+(
+View pull request
+)
+Handle
+metricset.samples
+from apm-server
+Enhancement
+(
+View pull request
+)
+Increase default minimum TLS version to 1.2
+Enhancement
+(
+View pull request
+)
+Add
+service.language.name
+to service destination metrics
+Enhancement
+(
+View pull request
+)
+Remove
+timeseries.instance
+in ingest pipeline for pre-8.6 compatibility
+Enhancement
+(
+View pull request
+)
+Use "dynamic runtime" instead of strict mapping for internal, TBS, and aggregation indices
+—
+8.8.0
+Enhancement
+(
+View pull request
+)
+Store app logs into service-specific data streams
+Enhancement
+(
+View pull request
+)
+Add
+host
+and
+service.version
+to span events
+Bug fix
+(
+View pull request
+)
+Fix ILM policy name mismatch in rollup interval index templates
+—
+8.7.1
+Bug fix
+(
+View pull request
+)
+Add missing
+agent.activation_method
+mapping to
+logs-apm.app
+,
+metrics-apm.app
+,
+logs-apm.error
+and
+metrics-apm.internal
+—
+8.7.0
+Enhancement
+(
+View pull request
+)
+Introduce
+metrics-apm.service-${interval}
+data stream for service metrics (
+1m
+,
+10m
+and
+60m
+).
+Enhancement
+(
+View pull request
+)
+Introduce
+metrics-apm.service_destination-${interval}
+data stream for service_destination metrics (
+1m
+,
+10m
+and
+60m
+).
+Enhancement
+(
+View pull request
+)
+Introduce
+metrics-apm.transaction-${interval}
+data stream for transaction metrics (
+1m
+,
+10m
+and
+60m
+).
+Enhancement
+(
+View pull request
+)
+Enable synthetic source for metrics data streams
+Enhancement
+(
+View pull request
+)
+Remove
+transaction.failure_count
+and change
+transaction.success_count
+type to aggregate_metric_double
+Enhancement
+(
+View pull request
+)
+Added agent health metrics
+Enhancement
+(
+View pull request
+)
+Add
+agent.activation_method
+field
+Enhancement
+(
+View pull request
+)
+Add
+event.success_count
+for transaction events and transaction metrics. Rename
+transaction.success_count
+to
+event.success_count
+for service metrics.
+Bug fix
+(
+View pull request
+)
+Cast event.duration to long in event_duration pipeline
+Enhancement
+(
+View pull request
+)
+Add transaction and service overflow metrics
+Enhancement
+(
+View pull request
+)
+Map
+transaction.duration.summary
+to aggregate_metric_double for transaction metrics
+Enhancement
+(
+View pull request
+)
+Introduce
+metrics-apm.service_summary-${interval}
+data stream for service summary metrics (
+1m
+,
+10m
+and
+60m
+).
+Enhancement
+(
+View pull request
+)
+Add service destination overflow metrics
+Enhancement
+(
+View pull request
+)
+Add service summary overflow metrics
+Enhancement
+(
+View pull request
+)
+Add event categorization fields
+Enhancement
+(
+View pull request
+)
+Set data streams with non-default rollup intervals as hidden
+Enhancement
+(
+View pull request
+)
+Rename
+metrics-apm.service-${interval}
+to
+metrics-apm.service_transaction-${interval}
+and its overflow count field name
+Enhancement
+(
+View pull request
+)
+Add
+service.language.name
+to service transaction metrics and service summary metrics
+Enhancement
+(
+View pull request
+)
+Remove policy input var
+service_metrics_enabled
+Enhancement
+(
+View pull request
+)
+Add
+event.{labels,numeric_labels}
+to service destination metrics
+Enhancement
+(
+View pull request
+)
+Update 10m,60m metrics delete phase to 180d, 390d
+—
+8.6.0
+Enhancement
+(
+View pull request
+)
+Change
+ecs.version
+to a
+constant_keyword
+field
+Enhancement
+(
+View pull request
+)
+Add mappings for RUM
+http.response.*_size
+fields
+Enhancement
+(
+View pull request
+)
+Remove
+observer.id
+and
+observer.ephemeral_id
+fields
+Enhancement
+(
+View pull request
+)
+Add mappings for
+transaction.representative_count
+and
+span.representative_count
+Enhancement
+(
+View pull request
+)
+Remove
+timeseries.instance
+field
+Enhancement
+(
+View pull request
+)
+Add
+error.stack_trace
+,
+event.dataset
+,
+log.logger
+,
+log.origin.*
+,
+process.thread.name
+fields to app_logs
+Enhancement
+(
+View pull request
+)
+Add mapping for
+http.request.id
+for traces data streams
+—
+8.5.0
+Enhancement
+(
+View pull request
+)
+Add package settings to enable the experimental collection of service metrics
+Enhancement
+(
+View pull request
+)
+Added faas fields for app logs datastream
+Bug fix
+(
+View pull request
+)
+Added observer/ppid translation to data stream migration pipeline
+—
+8.4.0
+Enhancement
+(
+View pull request
+)
+Added support for dynamically mapping summary metrics
+Enhancement
+(
+View pull request
+)
+Added
+span.name
+to internal_metrics data stream, for service_destination metrics
+Enhancement
+(
+View pull request
+)
+Added field mappings for Lambda metrics to internal metrics data stream
+8.4.0 or higher
+8.3.3
+Bug fix
+(
+View pull request
+)
+Support TLSv1.3 and remove TLSv1.0 in the default TLS supported protocols
+Bug fix
+(
+View pull request
+)
+Update APM integration description
+Enhancement
+(
+View pull request
+)
+Update APM integration screenshots
+8.3.0 or higher
+8.3.0
+Enhancement
+(
+View pull request
+)
+Field mapping for
+target.name
+and
+target.type
+added to traces data stream
+Enhancement
+(
+View pull request
+)
+Remove the release tag
+Enhancement
+(
+View pull request
+)
+Added config option for
+pprof_enabled
+Enhancement
+(
+View pull request
+)
+Added field mappings for system, process, and runtime metrics to internal metrics data stream
+Bug fix
+(
+View pull request
+)
+Added tags field mapping to internal_metrics data stream
+8.3.0 or higher
+8.2.0
+Enhancement
+(
+View pull request
+)
+Field mapping for
+source.nat.ip
+and
+source.nat.port
+added to data streams
+Enhancement
+(
+View pull request
+)
+updated traces and rum_traces ingest pipelines to translate
+event.duration
+to
+<event>.duration.us
+Enhancement
+(
+View pull request
+)
+added
+span.links
+fields to traces and rum_traces data streams
+Enhancement
+(
+View pull request
+)
+Added field mapping for
+faas.name
+and
+faas.version
+to internal_metrics data stream
+Enhancement
+(
+View pull request
+)
+removed
+observer.version_major
+field
+Bug fix
+(
+View pull request
+)
+added field mapping for
+url.original
+to traces, rum_traces, app_logs, and error_logs
+Enhancement
+(
+View pull request
+)
+added field mapping for
+error.stack_trace
+to error_logs
+8.2.0 or higher
+8.1.0
+Enhancement
+(
+View pull request
+)
+Added field mapping for
+faas.coldstart
+and
+faas.trigger.type
+Enhancement
+(
+View pull request
+)
+Added field
+tail_sampling_enabled
+Bug fix
+(
+View pull request
+)
+added
+error.id
+field to
+error_logs
+data stream
+Enhancement
+(
+View pull request
+)
+Added field mapping for
+faas.id
+to internal_metrics data stream
+8.1.0 or higher
+8.0.0
+Enhancement
+(
+View pull request
+)
+support setting
+download-agent-version
+Bug fix
+(
+View pull request
+)
+java attacher config uses
+discovery-rules
+, not
+discovery_rules
+Enhancement
+(
+View pull request
+)
+add java_attacher support
+Enhancement
+(
+View pull request
+)
+the
+auth.anonymous.rate_limit.{event_limit,ip_limit}
+defaults are now the same as in the default rate_limit struct.
+Enhancement
+(
+View pull request
+)
+Updated fields
+@timestamp
+,
+data_stream.*
+, and
+labels
+to reference ecs
+Enhancement
+(
+View pull request
+)
+Ingested labels are now stored as
+event.{labels,numeric_labels}
+Enhancement
+(
+View pull request
+)
+added new traces-apm.rum and individual ILM policies per data stream
+Bug fix
+(
+View pull request
+)
+fixed the
+sampled_traces
+data stream's ILM policy name
+Enhancement
+(
+View pull request
+)
+added app_logs data stream
+Enhancement
+(
+View pull request
+)
+updated ingest pipelines to reject events from apm-servers newer than installed integration
+Enhancement
+(
+View pull request
+)
+added
+event.{outcome,severity}
+and
+log.level
+to app_logs data stream
+8.0.0 or higher
+7.16.1
+Bug fix
+(
+View pull request
+)
+Added
+agent_config_applied
+mapping to
+metrics-apm.internal
+data stream.
+7.16.1 or higher
+7.16.0
+Enhancement
+(
+View pull request
+)
+updated package version to align with stack version
+Bug fix
+(
+View pull request
+)
+added
+client.geo
+fields to internal_metrics
+Enhancement
+(
+View pull request
+)
+removed unused fields
+Enhancement
+(
+View pull request
+)
+changed
+processor.{name,event}
+to constant_keyword where possible
+Enhancement
+(
+View pull request
+)
+changed to data-stream specific ingest pipelines
+Enhancement
+(
+View pull request
+)
+added cluster privilege to package for stack monitoring
+7.16.0 or higher
+0.5.0
+Enhancement
+(
+View pull request
+)
+added index sorting for internal metrics
+Enhancement
+(
+View pull request
+)
+added histogram dynamic_template to app metrics data stream
+Enhancement
+(
+View pull request
+)
+removed warm phase from ILM policies
+Enhancement
+(
+View pull request
+)
+added privileges to tail-sampled traces data stream
+Enhancement
+(
+View pull request
+)
+added tail-sampling config vars
+—
+0.4.0
+Breaking change
+(
+View pull request
+)
+added anonymous auth config, replace some RUM config
+Breaking change
+(
+View pull request
+)
+updated to use new
+apm-server.auth
+config
+—
+0.3.0
+Enhancement
+(
+View pull request
+)
+added
+apm-server.url
+config
+Enhancement
+(
+View pull request
+)
+removed
+apm-server.kibana.api_key
+config
+—
+0.2.0
+Enhancement
+(
+View pull request
+)
+added support for
+apm-server.rum.allow_service_names
+Enhancement
+(
+View pull request
+)
+added support a configurable default service environment
+—
+0.1.0
+Enhancement
+(
+View pull request
+)
+initial release
+—
+Previous
+DomainTools Real Time Unified Feeds
+Next
+Elastic Fleet Server

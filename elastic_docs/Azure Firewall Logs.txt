@@ -1,0 +1,1550 @@
+Loading
+Elastic Docs
+/
+…
+/
+Elastic integrations
+/
+Azure
+/
+Azure Firewall Logs
+Version
+1.27.1 (
+View all
+)
+Compatible Kibana version(s)
+8.15.1 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+Azure Firewall Logs are records of events such as network and application rules that occur within your Azure Firewalls. They provide visibility and can be used to troubleshoot issues related to access, conectivity or performance.
+Supported log categories:
+Log Category
+Description
+Destination Table
+AzureFirewallApplicationRule
+These logs capture information about the traffic that is allowed or denied by application rules configured in Azure Firewall.
+Azure diagnostics
+AzureFirewallNetworkRule
+These logs capture information about the traffic that is allowed or denied by network rules configured in Azure Firewall.
+Azure diagnostics
+AzureFirewallDnsProxy
+These logs capture information about DNS requests and responses that are processed by Azure Firewall's DNS proxy.
+Azure diagnostics
+AZFWApplicationRule
+These logs capture resource specific information about the traffic that is allowed or denied by application rules configured in Azure Firewall.
+Resource specific
+AZFWNetworkRule
+These logs capture resource specific information about the traffic that is allowed or denied by network rules configured in Azure Firewall.
+Resource specific
+AZFWNatRule
+These logs capture resource specific information about all DNAT (Destination Network Address Translation) events log data.
+Resource specific
+AZFWDnsQuery
+These logs capture resource specific information about DNS requests and responses that are processed by Azure Firewall's DNS proxy.
+Resource specific
+For detailed information and instructions on how to migrate to Resource-specific mode, please refer to the following Microsoft documentation:
+Azure Monitor Resource Logs
+.
+All Azure services will eventually use the resource-specific mode. As part of this transition, some resources allow you to select a mode in the diagnostic setting. Specify resource-specific mode for any new diagnostic settings because this mode makes the data easier to manage.
+Requirements and setup
+Refer to the
+Azure Logs
+page for more information about setting up and using this integration.
+Settings
+eventhub
+:
+string
+An Event Hub is a fully managed, real-time data ingestion service. Elastic recommends using only letters, numbers, and the hyphen (-) character for Event Hub names to maximize compatibility. You can use existing Event Hubs having underscores (_) in the Event Hub name; in this case, the integration will replace underscores with hyphens (-) when it uses the Event Hub name to create dependent Azure resources behind the scenes (e.g., the storage account container to store Event Hub consumer offsets). Elastic also recommends using a separate event hub for each log type as the field mappings of each log type differ.
+Default value
+insights-operational-logs
+.
+consumer_group
+:
+string
+The publish/subscribe mechanism of Event Hubs is enabled through consumer groups. A consumer group is a view (state, position, or offset) of an entire event hub. Consumer groups enable multiple consuming applications to each have a separate view of the event stream, and to read the stream independently at their own pace and with their own offsets.
+Default value:
+$Default
+connection_string
+:
+string
+The connection string is required to communicate with Event Hubs, see steps
+here
+.
+A Blob Storage account is required in order to store/retrieve/update the offset or state of the eventhub messages. This means that after stopping the Azure logs package it can start back up at the spot that it stopped processing messages.
+storage_account
+:
+string
+The name of the storage account where the state/offsets will be stored and updated.
+storage_account_key
+:
+string
+The storage account key, this key will be used to authorize access to data in your storage account.
+storage_account_container
+:
+string
+The storage account container where the integration stores the checkpoint data for the consumer group. It is an advanced option to use with extreme care. You MUST use a dedicated storage account container for each Azure log type (activity, sign-in, audit logs, and others). DO NOT REUSE the same container name for more than one Azure log type. See
+Container Names
+for details on naming rules from Microsoft. The integration generates a default container name if not specified.
+resource_manager_endpoint
+:
+string
+Optional, by default we are using the azure public environment, to override, users can provide a specific resource manager endpoint in order to use a different azure environment.
+Resource manager endpoints:
+# Azure ChinaCloud
+https://management.chinacloudapi.cn/
+
+# Azure GermanCloud
+https://management.microsoftazure.de/
+
+# Azure PublicCloud
+https://management.azure.com/
+
+# Azure USGovernmentCloud
+https://management.usgovcloudapi.net/
+Logs
+firewall_logs
+The
+firewall_logs
+data stream of the Azure Logs package will collect any firewall log events that have been streamed through an Azure event hub.
+Example
+{
+"@timestamp"
+:
+"2022-06-08T16:54:58.849Z"
+,
+"azure"
+:
+{
+"firewall"
+:
+{
+"action"
+:
+"Deny"
+,
+"category"
+:
+"AzureFirewallNetworkRule"
+,
+"icmp"
+:
+{
+"request"
+:
+{
+"code"
+:
+"8"
+}
+}
+,
+"operation_name"
+:
+"AzureFirewallNetworkRuleLog"
+}
+,
+"resource"
+:
+{
+"group"
+:
+"TEST-FW-RG"
+,
+"id"
+:
+"/SUBSCRIPTIONS/23103928-B2CF-472A-8CDB-0146E2849129/RESOURCEGROUPS/TEST-FW-RG/PROVIDERS/MICROSOFT.NETWORK/AZUREFIREWALLS/TEST-FW01"
+,
+"name"
+:
+"TEST-FW01"
+,
+"provider"
+:
+"MICROSOFT.NETWORK/AZUREFIREWALLS"
+}
+,
+"subscription_id"
+:
+"23103928-B2CF-472A-8CDB-0146E2849129"
+}
+,
+"cloud"
+:
+{
+"account"
+:
+{
+"id"
+:
+"23103928-B2CF-472A-8CDB-0146E2849129"
+}
+,
+"provider"
+:
+"azure"
+}
+,
+"destination"
+:
+{
+"address"
+:
+"89.160.20.156"
+,
+"as"
+:
+{
+"number"
+:
+29518
+,
+"organization"
+:
+{
+"name"
+:
+"Bredband2 AB"
+}
+}
+,
+"geo"
+:
+{
+"city_name"
+:
+"Linköping"
+,
+"continent_name"
+:
+"Europe"
+,
+"country_iso_code"
+:
+"SE"
+,
+"country_name"
+:
+"Sweden"
+,
+"location"
+:
+{
+"lat"
+:
+58.4167
+,
+"lon"
+:
+15.6167
+}
+,
+"region_iso_code"
+:
+"SE-E"
+,
+"region_name"
+:
+"Östergötland County"
+}
+,
+"ip"
+:
+"89.160.20.156"
+}
+,
+"ecs"
+:
+{
+"version"
+:
+"8.11.0"
+}
+,
+"event"
+:
+{
+"category"
+:
+[
+"network"
+]
+,
+"kind"
+:
+"event"
+,
+"original"
+:
+"{\"category\":\"AzureFirewallNetworkRule\",\"operationName\":\"AzureFirewallNetworkRuleLog\",\"properties\":{\"msg\":\"ICMP Type=8 request from 192.168.0.2 to 89.160.20.156. Action: Deny. \"},\"resourceId\":\"/SUBSCRIPTIONS/23103928-B2CF-472A-8CDB-0146E2849129/RESOURCEGROUPS/TEST-FW-RG/PROVIDERS/MICROSOFT.NETWORK/AZUREFIREWALLS/TEST-FW01\",\"time\":\"2022-06-08T16:54:58.8492560Z\"}"
+,
+"type"
+:
+[
+"connection"
+,
+"denied"
+]
+}
+,
+"network"
+:
+{
+"transport"
+:
+"icmp"
+}
+,
+"observer"
+:
+{
+"name"
+:
+"TEST-FW01"
+,
+"product"
+:
+"Network Firewall"
+,
+"type"
+:
+"firewall"
+,
+"vendor"
+:
+"Azure"
+}
+,
+"related"
+:
+{
+"ip"
+:
+[
+"192.168.0.2"
+,
+"89.160.20.156"
+]
+}
+,
+"source"
+:
+{
+"address"
+:
+"192.168.0.2"
+,
+"ip"
+:
+"192.168.0.2"
+}
+,
+"tags"
+:
+[
+"preserve_original_event"
+]
+}
+ECS Field Reference
+Please refer to the following
+document
+for detailed information on ECS fields.
+Exported fields
+Field
+Description
+Type
+@timestamp
+Event timestamp.
+date
+azure.correlation_id
+Correlation ID
+keyword
+azure.firewall.action
+Action taken by the firewall following the match with the network rule.
+keyword
+azure.firewall.action_reason
+Reason for the action performed by the firewall.
+keyword
+azure.firewall.category
+Category
+keyword
+azure.firewall.dnssec_bool_flag
+True if DNS request is using DNSSEC.
+boolean
+azure.firewall.dnssec_buffer_size
+Size of the DNSSEC buffer.
+long
+azure.firewall.dnssec_ok_bit
+A flag indicating that the resolver supports DNSSEC records.
+boolean
+azure.firewall.duration
+Duration of the firewall request.
+keyword
+azure.firewall.edns0_buffer_size
+Client's EDNS0 buffer size. Specifies the maximum packet size allowed in responses in bytes.
+long
+azure.firewall.event_original_uid
+UID assigned to the logged event.
+keyword
+azure.firewall.fqdn
+Request target address in FQDN (Fully qualified Domain Name).
+keyword
+azure.firewall.icmp.request.code
+ICMP request code.
+keyword
+azure.firewall.identity_name
+Identity name.
+keyword
+azure.firewall.is_explicit_proxy_request
+True if the request is received on an explicit proxy port.
+boolean
+azure.firewall.is_tls_inspected
+True if the connection is TLS inspected.
+boolean
+azure.firewall.operation_name
+Operation name.
+keyword
+azure.firewall.policy
+Name of the policy in which the triggered rule resides.
+keyword
+azure.firewall.protocol
+Packet's network protocol. For example: UDP, TCP.
+keyword
+azure.firewall.request_duration_secs
+Duration of the DNS request from the time it arrived to the firewall and until a response was sent to the client.
+double
+azure.firewall.request_size
+The size of the DNS request in bytes.
+long
+azure.firewall.response_code
+DNS reponse code.
+keyword
+azure.firewall.response_flags
+DNS reponse flags, comma separated.
+keyword
+azure.firewall.response_size
+DNS reponse size in bytes.
+long
+azure.firewall.rule
+Name of the triggered rule.
+keyword
+azure.firewall.rule_collection
+Name of the rule collection in which the triggered rule resides.
+keyword
+azure.firewall.rule_collection_group
+Name of the rule collection group in which the triggered rule resides.
+keyword
+azure.firewall.target_url
+Request's target address URL.
+keyword
+azure.firewall.web_category
+Web Category identified for the requested FQDN (Azure Firewall Standard) or URL (Azure Firewall Premium).
+keyword
+azure.resource.authorization_rule
+Authorization rule
+keyword
+azure.resource.group
+Resource group
+keyword
+azure.resource.id
+Resource ID
+keyword
+azure.resource.name
+Name
+keyword
+azure.resource.namespace
+Resource type/namespace
+keyword
+azure.resource.provider
+Resource type/namespace
+keyword
+azure.subscription_id
+Azure subscription ID
+keyword
+azure.tenant_id
+tenant ID
+keyword
+data_stream.dataset
+Data stream dataset.
+constant_keyword
+data_stream.namespace
+Data stream namespace.
+constant_keyword
+data_stream.type
+Data stream type.
+constant_keyword
+dns.header_flags
+Array of 2 letter DNS header flags.
+keyword
+event.dataset
+Event dataset
+constant_keyword
+event.module
+Event module
+constant_keyword
+geo.city_name
+City name.
+keyword
+geo.continent_name
+Name of the continent.
+keyword
+geo.country_iso_code
+Country ISO code.
+keyword
+geo.country_name
+Country name.
+keyword
+geo.location
+Longitude and latitude.
+geo_point
+geo.name
+User-defined description of a location, at the level of granularity they care about. Could be the name of their data centers, the floor number, if this describes a local physical entity, city names. Not typically used in automated geolocation.
+keyword
+geo.region_iso_code
+Region ISO code.
+keyword
+geo.region_name
+Region name.
+keyword
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+1.27.1
+Bug fix
+(
+View pull request
+)
+Add missing pattern for DNAT request messages for
+AzureFirewallNetworkRuleLog
+in firewall_logs data stream.
+8.15.1 or higher
+9.0.0 or higher
+1.27.0
+Enhancement
+(
+View pull request
+)
+Standardize user fields processing across integrations.
+8.15.1 or higher
+9.0.0 or higher
+1.26.1
+Bug fix
+(
+View pull request
+)
+Fix dashboard link.
+8.15.1 or higher
+9.0.0 or higher
+1.26.0
+Enhancement
+(
+View pull request
+)
+Standardize user fields for identity_protection and signinlogs data stream.
+8.15.1 or higher
+9.0.0 or higher
+1.25.0
+Enhancement
+(
+View pull request
+)
+Add Grok processor for
+AzureFirewallThreatIntelLog
+in
+azure.firewall_logs
+.
+8.15.1 or higher
+9.0.0 or higher
+1.24.0
+Enhancement
+(
+View pull request
+)
+Set
+service.id
+,
+device.id
+,
+user.id
+,
+session.id
+, and
+token.id
+in graphactivitylogs dataset.
+8.15.1 or higher
+9.0.0 or higher
+1.23.3
+Enhancement
+(
+View pull request
+)
+Improve Azure logs documentation with more details on log categories routing rules.
+8.15.1 or higher
+9.0.0 or higher
+1.23.2
+Bug fix
+(
+View pull request
+)
+Fix Grok processor error in ingest pipeline for
+AzureFirewallNetworkRuleLog
+in
+azure.firewall_logs
+.
+8.15.1 or higher
+9.0.0 or higher
+1.23.1
+Bug fix
+(
+View pull request
+)
+Map
+azure.signinlogs.properties.location.state
+field to
+geo.region_name
+instead of
+geo.country_name
+.
+8.15.1 or higher
+9.0.0 or higher
+1.23.0
+Enhancement
+(
+View pull request
+)
+Enable Event Hub processor v2.
+8.15.1 or higher
+9.0.0 or higher
+1.22.2
+Bug fix
+(
+View pull request
+)
+Fix Platform Logs pipeline inconsistent casing for subscription_id field.
+8.13.0 or higher
+9.0.0 or higher
+1.22.1
+Bug fix
+(
+View pull request
+)
+Fix the custom storage container description for the Azure Logs integration v2.
+8.13.0 or higher
+9.0.0 or higher
+1.22.0
+Enhancement
+(
+View pull request
+)
+Add support for Kibana
+9.0.0
+8.13.0 or higher
+9.0.0 or higher
+1.21.0
+Enhancement
+(
+View pull request
+)
+Allow the usage of deprecated log input and support for stack 9.0
+8.13.0 or higher
+1.20.3
+Enhancement
+(
+View pull request
+)
+Add missing category.
+8.13.0 or higher
+1.20.2
+Bug fix
+(
+View pull request
+)
+Fix casting & naming issues in Graph Activity Logs related to the
+event.duration
+field.
+8.13.0 or higher
+1.20.1
+Bug fix
+(
+View pull request
+)
+Fix string literals in painless scripts.
+8.13.0 or higher
+1.20.0
+Enhancement
+(
+View pull request
+)
+Add Azure Logs integration v2 (preview)
+8.13.0 or higher
+1.19.4
+Bug fix
+(
+View pull request
+)
+Fix destination.geo.region_name mapping.
+8.13.0 or higher
+1.19.3
+Bug fix
+(
+View pull request
+)
+Rename the
+Identity
+field to
+identity
+for consistency.
+8.13.0 or higher
+1.19.2
+Bug fix
+(
+View pull request
+)
+Rename the
+properties
+field to
+properties.raw
+to avoid parse errors when the
+properties
+field contains a string.
+8.13.0 or higher
+1.19.1
+Bug fix
+(
+View pull request
+)
+Fix an error and clarify the docs about the Storage Account container.
+8.13.0 or higher
+1.18.0
+Enhancement
+(
+View pull request
+)
+Add entity identifiers to
+related.entity
+.
+8.13.0 or higher
+1.17.0
+Enhancement
+(
+View pull request
+)
+Add
+event.reason
+log field for exact data found in requests that matches a firewall rule.
+8.13.0 or higher
+1.16.0
+Enhancement
+(
+View pull request
+)
+Allow @custom pipeline access to event.original without setting preserve_original_event.
+8.13.0 or higher
+1.15.1
+Bug fix
+(
+View pull request
+)
+Fix [client|source].geo.location ECS field mapping
+8.13.0 or higher
+1.15.0
+Enhancement
+(
+View pull request
+)
+Add new section on Azure Functions hosting plans.
+8.13.0 or higher
+1.14.0
+Enhancement
+(
+View pull request
+)
+Add global dataset filter for dashboards to improve performance.
+8.13.0 or higher
+1.13.1
+Enhancement
+(
+View pull request
+)
+Expand docs with more details on the Event Hub partitions configuration.
+8.13.0 or higher
+1.13.0
+Enhancement
+(
+View pull request
+)
+Add structured log categories to Azure Firewall.
+8.13.0 or higher
+1.12.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.11.0. Update the kibana constraint to ^8.13.0. Modified the field definitions to remove ECS fields made redundant by the ecs@mappings component template.
+Breaking change
+(
+View pull request
+)
+Updated "event.outcome" values from "Succeeded" to "success" and "Failed" to "failure".
+8.13.0 or higher
+1.11.4
+Bug fix
+(
+View pull request
+)
+Replace Azure AD with Microsoft Entra ID.
+8.12.0 or higher
+1.11.3
+Bug fix
+(
+View pull request
+)
+Update Azure Audit Logs pipeline with support for initiated_by user fields.
+8.12.0 or higher
+1.11.2
+Bug fix
+(
+View pull request
+)
+Add missing ECS field definitions.
+8.12.0 or higher
+1.11.1
+Enhancement
+(
+View pull request
+)
+Update description for event hub parameter name recommendations.
+8.12.0 or higher
+1.11.0
+Enhancement
+(
+View pull request
+)
+Use ecs definition of the 'event.dataset' field for eventhub
+8.12.0 or higher
+1.10.0
+Enhancement
+(
+View pull request
+)
+Add Microsoft Graph Activity Logs
+8.12.0 or higher
+1.9.2
+Enhancement
+(
+View pull request
+)
+Add docs for running the integration behind a firewall.
+8.12.0 or higher
+1.9.1
+Bug fix
+(
+View pull request
+)
+Set field type to password on secret fields.
+8.12.0 or higher
+1.9.0
+Enhancement
+(
+View pull request
+)
+Add support for integration secrets
+8.12.0 or higher
+1.8.3
+Enhancement
+(
+View pull request
+)
+Add caller_ip_address field in pipeline for Azure sign-in logs.
+8.8.0 or higher
+1.8.2
+Enhancement
+(
+View pull request
+)
+Update Azure logs documentation.
+8.8.0 or higher
+1.8.1
+Enhancement
+(
+View pull request
+)
+Update AD Logs documentation.
+8.8.0 or higher
+1.8.0
+Enhancement
+(
+View pull request
+)
+Allow rerouting of Azure logs events to a different data stream.
+8.8.0 or higher
+1.7.0
+Enhancement
+(
+View pull request
+)
+Rebrand Azure Spring Cloud Logs to Azure Spring Apps
+8.6.0 or higher
+1.6.0
+Enhancement
+(
+View pull request
+)
+Update the package format_version to 3.0.0.
+8.6.0 or higher
+1.5.33
+Bug fix
+(
+View pull request
+)
+Handle
+json.properties.clientIp
+as an alias of
+json.properties.clientIP
+in application gateway logs
+8.6.0 or higher
+1.5.32
+Bug fix
+(
+View pull request
+)
+Fix mappings for
+azure.activitylogs.claims.*
+.
+8.6.0 or higher
+1.5.31
+Enhancement
+(
+View pull request
+)
+Migration of Azure AD Identity Protection dashboard to Lens.
+8.6.0 or higher
+1.5.30
+Enhancement
+(
+View pull request
+)
+Migration of Azure AD Provisioning Logs dashboard to Lens.
+8.6.0 or higher
+1.5.29
+Enhancement
+(
+View pull request
+)
+Fix Azure dashboards descriptions and titles.
+8.6.0 or higher
+1.5.28
+Enhancement
+(
+View pull request
+)
+Migration Alerts Overview dashboard to Lens
+8.6.0 or higher
+1.5.27
+Bug fix
+(
+View pull request
+)
+Fix in Firewall dashboards
+8.6.0 or higher
+1.5.26
+Bug fix
+(
+View pull request
+)
+Handle duplicate user_agent.original field in signinlogs logs
+8.6.0 or higher
+1.5.25
+Bug fix
+(
+View pull request
+)
+Handle duplicate url.path field in application gateway logs
+8.6.0 or higher
+1.5.24
+Bug fix
+(
+View pull request
+)
+Handle firewall events for DNAT'ed requests with attributes
+8.6.0 or higher
+1.5.23
+Enhancement
+(
+View pull request
+)
+Update Azure Logs screenshot
+8.6.0 or higher
+1.5.22
+Enhancement
+(
+View pull request
+)
+Migration of Azure Cloud Overview dashboard to Lens and style changes
+8.6.0 or higher
+1.5.21
+Enhancement
+(
+View pull request
+)
+Migration of User Activity Dashboard to Lens
+8.6.0 or higher
+1.5.20
+Enhancement
+(
+View pull request
+)
+Integration settings UI for sanitization
+8.6.0 or higher
+1.5.17
+Enhancement
+(
+View pull request
+)
+Migration of Spring Cloud Overview dashboard to Lens
+8.6.0 or higher
+1.5.16
+Enhancement
+(
+View pull request
+)
+Migration of Azure Spring Cloud Logs Application Cloud Logs dashboard to Lens
+8.6.0 or higher
+1.5.15
+Enhancement
+(
+View pull request
+)
+Migration of Spring Cloud System Logs dashboard to Lens
+8.6.0 or higher
+1.5.14
+Enhancement
+(
+View pull request
+)
+Enhancement/Improving performance of the dashboards
+8.6.0 or higher
+1.5.13
+Enhancement
+(
+View pull request
+)
+Extend the Storage Account container documentation and add link to requiements and setup instructions
+7.16.0 or higher
+8.0.0 or higher
+1.5.12
+Enhancement
+(
+View pull request
+)
+Added categories and/or subcategories.
+7.16.0 or higher
+8.0.0 or higher
+1.5.11
+Enhancement
+(
+View pull request
+)
+Add a new message format to the AzureFirewallNetworkRule log category
+7.16.0 or higher
+8.0.0 or higher
+1.5.10
+Bug fix
+(
+View pull request
+)
+Check for 'event.original' already existing in Application Gateway and Event Hub ingest pipelines
+7.16.0 or higher
+8.0.0 or higher
+1.5.9
+Bug fix
+(
+View pull request
+)
+Check for 'event.original' already existing in firewall logs ingest pipeline
+7.16.0 or higher
+8.0.0 or higher
+1.5.8
+Bug fix
+(
+View pull request
+)
+Add
+storage_account_container
+option to the Application Gateway integration
+7.16.0 or higher
+8.0.0 or higher
+1.5.7
+Bug fix
+(
+View pull request
+)
+Fix parsing of authentication_processing_details field in signin logs
+7.16.0 or higher
+8.0.0 or higher
+1.5.6
+Bug fix
+(
+View pull request
+)
+Fix parsing error client port is blank and adjust for timeStamp
+7.16.0 or higher
+8.0.0 or higher
+1.5.5
+Bug fix
+(
+View pull request
+)
+Rename identity as identity_name when the value is a string
+7.16.0 or higher
+8.0.0 or higher
+1.5.4
+Enhancement
+(
+View pull request
+)
+Enable Event Hub integration by default and improve documentation
+7.16.0 or higher
+8.0.0 or higher
+1.5.3
+Enhancement
+(
+View pull request
+)
+Data streams start as disabled on new installs
+7.16.0 or higher
+8.0.0 or higher
+1.5.2
+Bug fix
+(
+View pull request
+)
+Fix PR link in changelog
+7.16.0 or higher
+8.0.0 or higher
+1.5.1
+Bug fix
+(
+View pull request
+)
+Fix documentations formatting (remove extra 'Overview' heading)
+7.16.0 or higher
+8.0.0 or higher
+1.5.0
+Enhancement
+(
+View pull request
+)
+Add Azure Application Gatewaty data stream
+7.16.0 or higher
+8.0.0 or higher
+1.4.1
+Enhancement
+(
+View pull request
+)
+Update Azure Logs documentation
+7.16.0 or higher
+8.0.0 or higher
+1.4.0
+Enhancement
+(
+View pull request
+)
+Add two new data streams to the Azure AD logs integration: Azure Identity Protection logs and Provisioning logs
+7.16.0 or higher
+8.0.0 or higher
+1.3.0
+Enhancement
+(
+View pull request
+)
+Add the possibility to override the default generated storage account container
+7.16.0 or higher
+8.0.0 or higher
+1.2.3
+Enhancement
+(
+View pull request
+)
+Update docs with recommended Event Hub configuration
+7.16.0 or higher
+8.0.0 or higher
+1.2.2
+Enhancement
+(
+View pull request
+)
+Update package name and description to align with standard wording
+7.16.0 or higher
+8.0.0 or higher
+1.2.1
+Bug fix
+(
+View pull request
+)
+Fix Azure Sign-in logs ingest pipeline bug
+7.16.0 or higher
+8.0.0 or higher
+1.2.0
+Enhancement
+(
+View pull request
+)
+Support Azure firewall logs
+—
+1.1.11
+Bug fix
+(
+View pull request
+)
+Improve support for event.original field from upstream forwarders.
+—
+1.1.10
+Enhancement
+(
+View pull request
+)
+Update readme with links to Microsoft documentation
+7.16.0 or higher
+8.0.0 or higher
+1.1.9
+Bug fix
+(
+View pull request
+)
+Improve handling of IPv6 IP addresses.
+—
+1.1.8
+Enhancement
+(
+View pull request
+)
+Update docs with details about Event Hub name recommendations
+7.16.0 or higher
+8.0.0 or higher
+1.1.7
+Bug fix
+(
+View pull request
+)
+Add geo.name and result_description fields in platformlogs
+7.16.0 or higher
+8.0.0 or higher
+1.1.6
+Bug fix
+(
+View pull request
+)
+Fix azure.activitylogs.identity with a a concrete value
+Bug fix
+(
+View pull request
+)
+Add identity_name, tenant_id, level and operation_version into activity logs
+7.16.0 or higher
+8.0.0 or higher
+1.1.5
+Enhancement
+(
+View pull request
+)
+Add documentation for multi-fields
+—
+1.1.4
+Bug fix
+(
+View pull request
+)
+Fix
+event.duration
+field mapping conflict in all Azure data streams.
+—
+1.1.3
+Enhancement
+(
+View pull request
+)
+Added the
+forwarded
+tag by default to all log types.
+—
+1.1.2
+Bug fix
+(
+View pull request
+)
+Add device_detail.is_compliant and device_detail.is_managed fields
+Bug fix
+(
+View pull request
+)
+Change authentication_requirement_policies to flattened type
+7.16.0 or higher
+8.0.0 or higher
+1.1.1
+Bug fix
+(
+View pull request
+)
+Fix field mapping conflict in the auditlogs data stream for
+client.ip
+. Changed
+azure-eventhub.offset
+and
+azure-eventhub.sequence_number
+to longs from keyword in the eventhub data stream.
+—
+1.1.0
+Enhancement
+(
+View pull request
+)
+Support new Azure audit logs and signin logs
+—
+1.0.1
+Enhancement
+(
+View pull request
+)
+Remove beta release tag from data streams
+7.16.0 or higher
+8.0.0 or higher
+1.0.0
+Enhancement
+(
+View pull request
+)
+Move azure package to GA
+7.16.0 or higher
+8.0.0 or higher
+0.12.3
+Enhancement
+(
+View pull request
+)
+Update to ECS 8.0
+—
+0.12.2
+Bug fix
+(
+View pull request
+)
+Regenerate test files using the new GeoIP database
+—
+0.12.1
+Bug fix
+(
+View pull request
+)
+Change test public IPs to the supported subset
+—
+0.12.0
+Enhancement
+(
+View pull request
+)
+Release azure package for v8.0.0
+—
+0.11.0
+Enhancement
+(
+View pull request
+)
+Add Azure Event Hub Input
+—
+0.10.1
+Enhancement
+(
+View pull request
+)
+Uniform with guidelines
+—
+0.10.0
+Enhancement
+(
+View pull request
+)
+signinlogs - Add support for ManagedIdentitySignInLogs, NonInteractiveUserSignInLogs, and ServicePrincipalSignInLogs.
+—
+0.9.2
+Bug fix
+(
+View pull request
+)
+Prevent pipeline script error
+—
+0.9.1
+Bug fix
+(
+View pull request
+)
+Fix logic that checks for the 'forwarded' tag
+—
+0.9.0
+Enhancement
+(
+View pull request
+)
+Update to ECS 1.12.0
+—
+0.8.6
+Bug fix
+(
+View pull request
+)
+Add ECS
+client.ip
+mapping
+—
+0.8.5
+Enhancement
+(
+View pull request
+)
+Update docs and logo
+—
+0.8.4
+Enhancement
+(
+View pull request
+)
+Convert to generated ECS fields
+—
+0.8.3
+Enhancement
+(
+View pull request
+)
+Import geo_points from ECS
+—
+0.8.2
+Enhancement
+(
+View pull request
+)
+Update error message
+—
+0.8.1
+Enhancement
+(
+View pull request
+)
+Add support for springcloud logs inside the platformlogs pipeline
+—
+0.8.0
+Enhancement
+(
+View pull request
+)
+Import ECS field definitions
+—
+0.7.0
+Enhancement
+(
+View pull request
+)
+Add spring cloud logs
+—
+0.6.2
+Enhancement
+(
+View pull request
+)
+update to ECS 1.11.0
+—
+0.6.1
+Enhancement
+(
+View pull request
+)
+Escape special characters in docs
+—
+0.6.0
+Enhancement
+(
+View pull request
+)
+Update integration description
+—
+0.5.1
+Enhancement
+(
+View pull request
+)
+Re-add pipeline changes for invalid json
+—
+0.5.0
+Enhancement
+(
+View pull request
+)
+Add input groups
+—
+0.4.0
+Enhancement
+(
+View pull request
+)
+Set "event.module" and "event.dataset"
+—
+0.3.1
+Enhancement
+(
+View pull request
+)
+sync package with module changes
+—
+0.3.0
+Enhancement
+(
+View pull request
+)
+update to ECS 1.10.0 and adding event.original options
+—
+0.2.3
+Enhancement
+(
+View pull request
+)
+update to ECS 1.9.0
+—
+0.2.2
+Bug fix
+(
+View pull request
+)
+Correct sample event file.
+—
+0.2.1
+Bug fix
+(
+View pull request
+)
+Add check for empty configuration options.
+—
+0.2.0
+Enhancement
+(
+View pull request
+)
+Add changes to use ECS 1.8 fields.
+—
+0.0.1
+Enhancement
+(
+View pull request
+)
+initial release
+—
+Previous
+Event Hub input
+Next
+Frontdoor

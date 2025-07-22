@@ -1,0 +1,161 @@
+Loading
+Elastic Docs
+/
+…
+/
+Elastic integrations
+/
+Microsoft
+/
+Microsoft Exchange Server
+Version
+1.4.0 (
+View all
+)
+Compatible Kibana version(s)
+8.11.0 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+Level of support
+What's this?
+Community
+The Microsoft Exchange Server integration allows you to monitor Exchange Server installations.
+Data streams
+The Microsoft Exchange Server integration collects logs of the following streams:
+Exchange HTTPProxy Logs
+Exchange Server IMAP4 POP3 Logs
+Exchange Messagetracking Logs
+Exchange SMTP logs
+Requirements
+You need Elasticsearch for storing and searching your data and Kibana for visualizing and managing it.
+You can use our hosted Elasticsearch Service on Elastic Cloud, which is recommended, or self-manage the Elastic Stack on your own hardware.
+Setup
+For step-by-step instructions on how to set up an integration, see the
+Getting started
+guide.
+Setup Exchange Server
+To collect the SMTP Logs, the logs have to be configured on the exchange Server. To enable it, you can follow this
+guide
+The other logs are enabled by default, and no further configurations are required
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+1.4.0
+Enhancement
+(
+View pull request
+)
+Allow @custom pipeline access to event.original without setting preserve_original_event.
+8.11.0 or higher
+9.0.0 or higher
+1.3.1
+Bug fix
+(
+View pull request
+)
+Handle events where
+networkmessageid
+or
+senderaddress
+are not present.
+8.10.1 or higher
+9.0.0 or higher
+1.3.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.17.0.
+8.10.1 or higher
+9.0.0 or higher
+1.2.1
+Bug fix
+(
+View pull request
+)
+Fix log.offset mapping type
+8.10.1 or higher
+9.0.0 or higher
+1.2.0
+Enhancement
+(
+View pull request
+)
+Add 9.0.0 constraint.
+8.10.1 or higher
+9.0.0 or higher
+1.1.2
+Bug fix
+(
+View pull request
+)
+Update links to getting started docs
+8.10.1 or higher
+1.1.1
+Bug fix
+(
+View pull request
+)
+Fix relatedrecipientaddress mapping type
+8.10.1 or higher
+1.1.0
+Enhancement
+(
+View pull request
+)
+Add conditional override when from address differs from sender address
+8.10.1 or higher
+1.0.2
+Bug fix
+(
+View pull request
+)
+Adjust mapping to include related & error field
+8.10.1 or higher
+1.0.1
+Bug fix
+(
+View pull request
+)
+Adjust mapping to include agent & host field
+8.10.1 or higher
+1.0.0
+Enhancement
+(
+View pull request
+)
+GA of Integration, Add Dashbord Panel Titles & added System Tests
+8.10.1 or higher
+0.1.2
+Bug fix
+(
+View pull request
+)
+Fix Recipientstatus field type, add custom processor support & adjust docs
+—
+0.1.1
+Enhancement
+(
+View pull request
+)
+Fix missing Dashboard references
+—
+0.1.0
+Enhancement
+(
+View pull request
+)
+Initial release of the package
+—
+Previous
+Microsoft Exchange Online Message Trace
+Next
+Microsoft Graph Activity Logs

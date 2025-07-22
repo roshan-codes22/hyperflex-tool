@@ -1,0 +1,439 @@
+Loading
+Elastic Docs
+/
+…
+/
+Elastic integrations
+/
+Osquery
+/
+Osquery Manager integration
+Version
+1.18.0 (
+View all
+)
+Compatible Kibana version(s)
+8.16.0 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Subscription level
+What's this?
+Basic
+Level of support
+What's this?
+Elastic
+With this integration, you can centrally manage
+Osquery
+deployments to Elastic Agents in your Fleet and query host data through distributed SQL.
+This integration adds an Osquery UI in Kibana where you can:
+Run live queries for one or more agents
+View a history of past queries and their results
+Schedule queries to capture OS state changes over time
+Save queries and build a library of queries for specific use cases
+Osquery results are stored in Elasticsearch, so that you can use the power of the stack to search, analyze, and visualize Osquery data.
+Documentation
+For information about using Osquery, see the
+Osquery Kibana documentation
+.
+This includes information about required privileges; how to run, schedule, and save queries; how to map osquery fields to ECS; and other useful information about managing Osquery with this integration.
+Exported Fields
+For a full list of fields that can be returned in osquery results, see the
+Exported Fields reference
+in the Kibana documentation.
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+1.18.0
+Bug fix
+(
+View pull request
+)
+Adjust result mapping to match action responses
+8.16.0 or higher
+9.0.0 or higher
+1.17.0
+Enhancement
+(
+View pull request
+)
+Update schema for osquery 5.15.0
+8.16.0 or higher
+9.0.0 or higher
+1.16.0
+Enhancement
+(
+View pull request
+)
+Add support for Kibana
+9.0.0
+.
+8.16.0 or higher
+9.0.0 or higher
+1.15.0
+Enhancement
+(
+View pull request
+)
+Add mappings for ECS email fields
+8.16.0 or higher
+1.14.0
+Enhancement
+(
+View pull request
+)
+Update schema for osquery 5.13.1
+8.16.0 or higher
+1.13.0
+Enhancement
+(
+View pull request
+)
+Update schema for osquery 5.12.1
+8.16.0 or higher
+1.12.0
+Enhancement
+(
+View pull request
+)
+Add action responses data stream
+8.15.0 or higher
+1.11.0
+Enhancement
+(
+View pull request
+)
+Update schema for osquery 5.10.2
+8.12.0 or higher
+1.10.1
+Bug fix
+(
+View pull request
+)
+Fix mapping of group fields
+8.10.1 or higher
+1.10.0
+Enhancement
+(
+View pull request
+)
+Upgrade osquery_manager for serverless, pick up ECS 8.10.0
+8.10.1 or higher
+1.9.0
+Enhancement
+(
+View pull request
+)
+Update schema for osquery 5.8.2
+8.10.0 or higher
+1.8.4
+Enhancement
+(
+View pull request
+)
+Convert dashboards to Lens
+8.7.1 or higher
+1.7.4
+Enhancement
+(
+View pull request
+)
+Fix elf.sections mapping
+8.7.0 or higher
+1.7.3
+Enhancement
+(
+View pull request
+)
+Resolve mapping conflicts for user.id, user.group.id, group.id
+8.7.0 or higher
+1.7.2
+Enhancement
+(
+View pull request
+)
+Fix mapping conflicts
+8.7.0 or higher
+1.7.1
+Enhancement
+(
+View pull request
+)
+Added categories and/or subcategories.
+8.7.0 or higher
+1.7.0
+Enhancement
+(
+View pull request
+)
+Update schema for osquery 5.7.0
+8.7.0 or higher
+1.6.0
+Enhancement
+(
+View pull request
+)
+Fix osquery_manager data_stream values for 8.6.0 with ingest pipeline
+8.6.0 or higher
+1.5.1
+Enhancement
+(
+View pull request
+)
+Update kibana constraint to ^8.6
+8.6.0 or higher
+1.5.0
+Enhancement
+(
+View pull request
+)
+Update schema for osquery 5.5.1
+—
+1.4.1
+Enhancement
+(
+View pull request
+)
+Add prebuilt DFIR-related saved queries
+8.4.0 or higher
+1.4.0
+Enhancement
+(
+View pull request
+)
+Update schema for osquery 5.4.0
+8.4.0 or higher
+1.3.2
+Bug fix
+(
+View pull request
+)
+Fix field mapping conflicts
+Enhancement
+(
+View pull request
+)
+Update to ECS v8.3.0
+8.3.0 or higher
+1.3.1
+Enhancement
+(
+View pull request
+)
+Update prebuilt saved queries objects
+8.3.0 or higher
+1.3.0
+Enhancement
+(
+View pull request
+)
+Add prebuilt saved queries
+—
+1.2.1
+Enhancement
+(
+View pull request
+)
+Update readme to remove exported fields
+8.2.0 or higher
+1.2.0
+Enhancement
+(
+View pull request
+)
+Add packs and dashboards
+8.2.0 or higher
+1.1.0
+Enhancement
+(
+View pull request
+)
+Upgrade schema and readme to match osquery 5.2.2.
+—
+1.0.0
+Enhancement
+(
+View pull request
+)
+GA
+7.16.0 or higher
+8.0.0 or higher
+0.8.1
+Enhancement
+(
+View pull request
+)
+Add explicit mapping for the text fields
+—
+0.8.0
+Enhancement
+(
+View pull request
+)
+Add 8.0.0 version constraint
+—
+0.7.4
+Enhancement
+(
+View pull request
+)
+Update fields and readme with host_users, host_groups, host_processes tables.
+—
+0.7.3
+Enhancement
+(
+View pull request
+)
+Update team owner.
+—
+0.7.2
+Enhancement
+(
+View pull request
+)
+Update description.
+—
+0.7.1
+Enhancement
+(
+View pull request
+)
+Update ecs.yml to include all
+date
+and
+ip
+ECS 1.12.0 fields types.
+—
+0.7.0
+Enhancement
+(
+View pull request
+)
+Update to ECS 1.12.0
+—
+0.6.1
+Enhancement
+(
+View pull request
+)
+Upgrade schema and readme to match osquery 5.0.1.
+—
+0.6.0
+Enhancement
+(
+View pull request
+)
+Change the package to adopt the native osquery configuration better.
+—
+0.5.3
+Enhancement
+(
+View pull request
+)
+Updates readme and adds link to Kibana docs
+—
+0.5.2
+Enhancement
+(
+View pull request
+)
+Updates host.ip field mapping from keyword to ip data type
+—
+0.5.1
+Enhancement
+(
+View pull request
+)
+Updates mapping and readme for osquery 4.9.0
+—
+0.5.0
+Enhancement
+(
+View pull request
+)
+Update integration description
+—
+0.4.1
+Enhancement
+(
+View pull request
+)
+Update ECS mapping format based on the latest developers feedback
+—
+0.4.0
+Enhancement
+(
+View pull request
+)
+ECS mapping configuration support for queries/streams
+—
+0.3.2
+Enhancement
+(
+View pull request
+)
+Updates Osquery Manager readme for 7.14 Release
+—
+0.3.1
+Enhancement
+(
+View pull request
+)
+Updates Osquery Manager mapping and readme for osquery 4.8.0
+—
+0.3.0
+Enhancement
+(
+View pull request
+)
+Add platform and version fields to the streams configuration
+—
+0.2.4
+Enhancement
+(
+View pull request
+)
+Update schema fields description and README
+—
+0.2.3
+Enhancement
+(
+View pull request
+)
+Update manifest and README
+—
+0.2.2
+Enhancement
+(
+View pull request
+)
+Update docs
+—
+0.2.1
+Enhancement
+(
+View pull request
+)
+change to beta
+—
+0.2.0
+Enhancement
+(
+View pull request
+)
+Explicit mappings
+—
+0.1.0
+Enhancement
+(
+View pull request
+)
+initial release
+—
+Previous
+Osquery Logs
+Next
+Palo Alto

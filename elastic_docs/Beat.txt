@@ -1,0 +1,88 @@
+Loading
+Elastic Docs
+/
+…
+/
+Elastic integrations
+/
+Elastic Stack monitoring
+/
+Beat
+Version
+1.0.1 (
+View all
+)
+Compatible Kibana version(s)
+8.10.2 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+The
+beat
+package provides out of the box dashboards to visualize monitoring data.
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+1.0.1
+Enhancement
+(
+View pull request
+)
+Added 9.0.0 constraint
+8.10.2 or higher
+9.0.0 or higher
+1.0.0-beta1
+Enhancement
+(
+View pull request
+)
+Adding Beats monitoring dashboards
+—
+0.1.3
+Bug fix
+(
+View pull request
+)
+Add missing cgroup memory aliases
+—
+0.1.2
+Bug fix
+(
+View pull request
+)
+Clarify that the metrics collected power the Stack Monitoring application
+—
+0.1.1
+Bug fix
+(
+View pull request
+)
+Update mappings for APM Server aggregation metrics
+—
+0.1.0
+Enhancement
+(
+View pull request
+)
+Add
+ssl
+configuration option for metricsets
+—
+0.0.1
+Enhancement
+(
+View pull request
+)
+initial release
+—
+Previous
+Elastic Stack monitoring
+Next
+Elasticsearch

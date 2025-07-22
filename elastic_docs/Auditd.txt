@@ -1,0 +1,17 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Auditd
+Collect logs from Auditd. Auditd is a user-space component of the Linux Auditing System that records and tracks security-related events for monitoring and analysis purposes.
+Auditd Logs
+Auditd Manager
+Previous
+Atlassian Jira
+Next
+Auditd Logs

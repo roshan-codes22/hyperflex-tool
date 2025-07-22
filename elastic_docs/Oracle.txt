@@ -1,0 +1,17 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Oracle
+Collect logs and metrics from Oracle—a relational database management system.
+Oracle
+Oracle WebLogic
+Previous
+Okta Entity Analytics
+Next
+Oracle

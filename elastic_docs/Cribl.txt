@@ -1,0 +1,183 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Cribl
+Version
+1.0.0 (
+View all
+)
+Compatible Kibana version(s)
+8.13.0 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+Level of support
+What's this?
+Elastic
+The Cribl integration offers users a way to ingest logs from either of Cribl's Elastic outputs into Elastic's Fleet integration data streams. This enables Cribl users to leverage the power of the Elastic Common Schema to unlock predefined dashboards, alerts and more.
+Instructions
+Install the relevant integration assets in Kibana
+In order to make the most of your data, install Fleet integration assets to load index templates, ingest pipelines, and dashboards into Kibana. In Kibana, navigate to
+Management
+>
+Integrations
+in the sidebar.
+Find the relevant integration(s) by searching or browsing the catalog. For example, the Cisco ASA integration.
+Navigate to the
+Settings
+tab and click
+Install Cisco ASA assets
+. Confirm by clicking
+Install Cisco ASA
+in the popup.
+Configuring the Cribl integration
+Add informational field to Cribl Source
+Configure the Cribl Source to specify the source of the data in the
+_dataId
+field.
+See
+Cribl Data Onboarding
+for more information on configuring sources.
+Configure the Cribl integration in Kibana
+Map each
+_dataId
+configured in the step above to the pre-installed Fleet integration's datastream.
+Note
+The Cribl integration does not require Elastic Agent, but a policy must be configured when setting up the Cribl integration.
+Configure an Elastic destination in Cribl
+Cribl offers two options for sending data to Elastic, the Elastic Cloud output for cloud environments, and the Elasticsearch output for self-managed. Consult
+Cribl Elastic Cloud documentation
+or
+Cribl Elasticsearch documentation
+for more details on how to configure.
+Destination settings
+Set
+Cloud Id
+for the Cloud destination or
+Bulk API URLs
+for the Elasticsearch destination to point to your Elastic cluster.
+Set
+Index or Data Stream
+to
+logs-cribl-default
+for log-type events or to
+metrics-cribl-default
+for metric-type events.
+API key
+should be a Base64 encoded Elastic API key, which you can create in Kibana by following the instructions under
+Management
+>
+Stack Management
+>
+Security
+>
+API Keys
+. If you are using an API key with “Restrict privileges”, be sure to review the Indices privileges to provide at least "auto_configure" and "write" permissions for the logs-* index, which you will be using for these Fleet integration data streams.
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+1.0.0
+Enhancement
+(
+View pull request
+)
+Release package as GA.
+Enhancement
+(
+View pull request
+)
+Add overview dashboards for logs and metrics.
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.17.0.
+8.13.0 or higher
+9.0.0 or higher
+0.5.1
+Bug fix
+(
+View pull request
+)
+Fix handling of metric event type.
+—
+0.5.0
+Enhancement
+(
+View pull request
+)
+Update Kibana constraint to support 9.0.0.
+—
+0.4.2
+Bug fix
+(
+View pull request
+)
+Use triple-brace Mustache templating when referencing variables in ingest pipelines.
+—
+0.4.1
+Bug fix
+(
+View pull request
+)
+Update documentation
+—
+0.4.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.11.0. Removed import_mappings. Modified the field definitions to remove ECS fields made redundant by the ecs@mappings component template.
+—
+0.3.0
+Enhancement
+(
+View pull request
+)
+Update manifest format version to v3.0.3.
+—
+0.2.0
+Enhancement
+(
+View pull request
+)
+Adds the second phase of the Cribl package
+—
+0.1.2
+Enhancement
+(
+View pull request
+)
+Changed owners
+—
+0.1.1
+Enhancement
+(
+View pull request
+)
+Update documentation
+—
+0.1.0
+Enhancement
+(
+View pull request
+)
+Adds the first phase of the Cribl package
+—
+Previous
+CouchDB
+Next
+CrowdStrike

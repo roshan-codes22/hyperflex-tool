@@ -1,0 +1,17 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Redis
+Collect logs and metrics from Redis—an open-source in-memory storage, key–value database, cache, and message broker.
+Redis
+Redis Enterprise
+Previous
+Rapid7 Threat Command
+Next
+Redis

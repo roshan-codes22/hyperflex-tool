@@ -1,0 +1,839 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+FireEye Integration
+Version
+1.26.0 (
+View all
+)
+Compatible Kibana version(s)
+8.13.0 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+Level of support
+What's this?
+Community
+This integration periodically fetches logs from
+FireEye Network Security
+devices.
+Compatibility
+The FireEye
+nx
+integration has been developed against FireEye Network Security 9.0.0.916432 but is expected to work with other versions.
+Logs
+NX
+The
+nx
+integration ingests network security logs from FireEye NX through TCP/UDP and file.
+Exported fields
+Field
+Description
+Type
+@timestamp
+Event timestamp.
+date
+cloud.image.id
+Image ID for the cloud instance.
+keyword
+data_stream.dataset
+Data stream dataset.
+constant_keyword
+data_stream.namespace
+Data stream namespace.
+constant_keyword
+data_stream.type
+Data stream type.
+constant_keyword
+event.dataset
+Event dataset
+constant_keyword
+event.module
+Event module
+constant_keyword
+fireeye.nx.fileinfo.filename
+File name.
+keyword
+fireeye.nx.fileinfo.magic
+Fileinfo magic.
+keyword
+fireeye.nx.fileinfo.md5
+File hash.
+keyword
+fireeye.nx.fileinfo.size
+File size.
+long
+fireeye.nx.fileinfo.state
+File state.
+keyword
+fireeye.nx.fileinfo.stored
+File stored or not.
+boolean
+fireeye.nx.flow.age
+Flow age.
+long
+fireeye.nx.flow.alerted
+Flow alerted or not.
+boolean
+fireeye.nx.flow.endtime
+Flow endtime.
+date
+fireeye.nx.flow.reason
+Flow reason.
+keyword
+fireeye.nx.flow.starttime
+Flow start time.
+date
+fireeye.nx.flow.state
+Flow state.
+keyword
+fireeye.nx.flow_id
+Flow ID of the event.
+long
+fireeye.nx.tcp.ack
+TCP acknowledgement.
+boolean
+fireeye.nx.tcp.psh
+TCP PSH.
+boolean
+fireeye.nx.tcp.state
+TCP connectin state.
+keyword
+fireeye.nx.tcp.syn
+TCP SYN.
+boolean
+fireeye.nx.tcp.tcp_flags
+TCP flags.
+keyword
+fireeye.nx.tcp.tcp_flags_tc
+TCP flags.
+keyword
+fireeye.nx.tcp.tcp_flags_ts
+TCP flags.
+keyword
+host.containerized
+If the host is a container.
+boolean
+host.os.build
+OS build information.
+keyword
+host.os.codename
+OS codename, if any.
+keyword
+input.type
+Input type
+keyword
+log.offset
+Log offset
+long
+log.source.address
+Logs Source Raw address.
+keyword
+tls.client.ciphersuites
+TLS cipher suites by client.
+long
+tls.client.fingerprint
+TLS fingerprint.
+keyword
+tls.client.ja3_string
+A hash that identifies clients based on how they perform an SSL/TLS handshake.
+keyword
+tls.client.tls_exts
+TLS extensions set by client.
+long
+tls.public_keylength
+TLS public key length.
+long
+tls.server.ciphersuite
+TLS cipher suites by server.
+long
+tls.server.ja3s_string
+A hash that identifies servers based on how they perform an SSL/TLS handshake.
+keyword
+tls.server.tls_exts
+TLS extensions set by server.
+long
+Example
+{
+"@timestamp"
+:
+"2020-09-22T08:34:44.991Z"
+,
+"agent"
+:
+{
+"ephemeral_id"
+:
+"dff6c436-37c3-4536-bdf9-08aed3ed94bd"
+,
+"id"
+:
+"f25d13cd-18cc-4e73-822c-c4f849322623"
+,
+"name"
+:
+"docker-fleet-agent"
+,
+"type"
+:
+"filebeat"
+,
+"version"
+:
+"8.10.1"
+}
+,
+"data_stream"
+:
+{
+"dataset"
+:
+"fireeye.nx"
+,
+"namespace"
+:
+"ep"
+,
+"type"
+:
+"logs"
+}
+,
+"destination"
+:
+{
+"address"
+:
+"ff02:0000:0000:0000:0000:0000:0000:0001"
+,
+"bytes"
+:
+0
+,
+"ip"
+:
+"ff02:0000:0000:0000:0000:0000:0000:0001"
+,
+"packets"
+:
+0
+,
+"port"
+:
+10001
+}
+,
+"ecs"
+:
+{
+"version"
+:
+"8.11.0"
+}
+,
+"elastic_agent"
+:
+{
+"id"
+:
+"f25d13cd-18cc-4e73-822c-c4f849322623"
+,
+"snapshot"
+:
+false
+,
+"version"
+:
+"8.10.1"
+}
+,
+"event"
+:
+{
+"agent_id_status"
+:
+"verified"
+,
+"category"
+:
+[
+"network"
+]
+,
+"dataset"
+:
+"fireeye.nx"
+,
+"ingested"
+:
+"2023-09-25T20:05:32Z"
+,
+"original"
+:
+"{\"rawmsg\":\"{\\\"timestamp\\\":\\\"2020-09-22T08:34:44.991339+0000\\\",\\\"flow_id\\\":721570461162990,\\\"event_type\\\":\\\"flow\\\",\\\"src_ip\\\":\\\"fe80:0000:0000:0000:feec:daff:fe31:b706\\\",\\\"src_port\\\":45944,\\\"dest_ip\\\":\\\"ff02:0000:0000:0000:0000:0000:0000:0001\\\",\\\"dest_port\\\":10001,\\\"proto\\\":\\\"UDP\\\",\\\"proto_number\\\":17,\\\"ip_tc\\\":0,\\\"app_proto\\\":\\\"failed\\\",\\\"flow\\\":{\\\"pkts_toserver\\\":8,\\\"pkts_toclient\\\":0,\\\"bytes_toserver\\\":1680,\\\"bytes_toclient\\\":0,\\\"start\\\":\\\"2020-09-22T08:34:12.761326+0000\\\",\\\"end\\\":\\\"2020-09-22T08:34:12.761348+0000\\\",\\\"age\\\":0,\\\"state\\\":\\\"new\\\",\\\"reason\\\":\\\"timeout\\\",\\\"alerted\\\":false}}\\n\",\"meta_sip4\":\"192.168.1.99\",\"meta_oml\":520,\"deviceid\":\"860665216674\",\"meta_cbname\":\"fireeye-7e0de1\"}"
+,
+"timezone"
+:
+"+00:00"
+,
+"type"
+:
+[
+"info"
+]
+}
+,
+"fireeye"
+:
+{
+"nx"
+:
+{
+"flow"
+:
+{
+"age"
+:
+0
+,
+"alerted"
+:
+false
+,
+"endtime"
+:
+"2020-09-22T08:34:12.761348+0000"
+,
+"reason"
+:
+"timeout"
+,
+"starttime"
+:
+"2020-09-22T08:34:12.761326+0000"
+,
+"state"
+:
+"new"
+}
+,
+"flow_id"
+:
+721570461162990
+}
+}
+,
+"host"
+:
+{
+"architecture"
+:
+"x86_64"
+,
+"containerized"
+:
+false
+,
+"hostname"
+:
+"docker-fleet-agent"
+,
+"id"
+:
+"28da52b32df94b50aff67dfb8f1be3d6"
+,
+"ip"
+:
+[
+"192.168.80.5"
+]
+,
+"mac"
+:
+[
+"02-42-C0-A8-50-05"
+]
+,
+"name"
+:
+"docker-fleet-agent"
+,
+"os"
+:
+{
+"codename"
+:
+"focal"
+,
+"family"
+:
+"debian"
+,
+"kernel"
+:
+"5.10.104-linuxkit"
+,
+"name"
+:
+"Ubuntu"
+,
+"platform"
+:
+"ubuntu"
+,
+"type"
+:
+"linux"
+,
+"version"
+:
+"20.04.6 LTS (Focal Fossa)"
+}
+}
+,
+"input"
+:
+{
+"type"
+:
+"log"
+}
+,
+"log"
+:
+{
+"file"
+:
+{
+"path"
+:
+"/tmp/service_logs/fireeye-nx.log"
+}
+,
+"offset"
+:
+0
+}
+,
+"network"
+:
+{
+"community_id"
+:
+"1:McNAQcsUcKZYOHHZYm0sD8JiBLc="
+,
+"iana_number"
+:
+"17"
+,
+"protocol"
+:
+"failed"
+,
+"transport"
+:
+"udp"
+}
+,
+"observer"
+:
+{
+"product"
+:
+"NX"
+,
+"vendor"
+:
+"Fireeye"
+}
+,
+"related"
+:
+{
+"ip"
+:
+[
+"fe80:0000:0000:0000:feec:daff:fe31:b706"
+,
+"ff02:0000:0000:0000:0000:0000:0000:0001"
+]
+}
+,
+"source"
+:
+{
+"address"
+:
+"fe80:0000:0000:0000:feec:daff:fe31:b706"
+,
+"bytes"
+:
+1680
+,
+"ip"
+:
+"fe80:0000:0000:0000:feec:daff:fe31:b706"
+,
+"packets"
+:
+8
+,
+"port"
+:
+45944
+}
+,
+"tags"
+:
+[
+"fireeye-nx"
+]
+}
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+1.26.0
+Enhancement
+(
+View pull request
+)
+Add Overview Dashboard.
+8.13.0 or higher
+9.0.0 or higher
+1.25.0
+Enhancement
+(
+View pull request
+)
+Update Kibana constraint to support 9.0.0.
+8.13.0 or higher
+9.0.0 or higher
+1.24.0
+Enhancement
+(
+View pull request
+)
+Add "preserve_original_event" tag to documents with
+event.kind
+set to "pipeline_error".
+8.13.0 or higher
+1.23.1
+Bug fix
+(
+View pull request
+)
+Use triple-brace Mustache templating when referencing variables in ingest pipelines.
+8.13.0 or higher
+1.23.0
+Enhancement
+(
+View pull request
+)
+Update the kibana constraint to ^8.13.0. Modified the field definitions to remove ECS fields made redundant by the ecs@mappings component template.
+8.13.0 or higher
+1.22.0
+Enhancement
+(
+View pull request
+)
+Update manifest format version to v3.0.3.
+7.16.0 or higher
+8.0.0 or higher
+1.21.2
+Enhancement
+(
+View pull request
+)
+Changed owners
+7.16.0 or higher
+8.0.0 or higher
+1.21.1
+Bug fix
+(
+View pull request
+)
+Fix exclude_files pattern.
+7.16.0 or higher
+8.0.0 or higher
+1.21.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.11.0.
+7.16.0 or higher
+8.0.0 or higher
+1.20.0
+Enhancement
+(
+View pull request
+)
+Improve 'event.original' check to avoid errors if set.
+7.16.0 or higher
+8.0.0 or higher
+1.19.0
+Enhancement
+(
+View pull request
+)
+Set 'community' owner type.
+7.16.0 or higher
+8.0.0 or higher
+1.18.0
+Enhancement
+(
+View pull request
+)
+Update the package format_version to 3.0.0.
+7.16.0 or higher
+8.0.0 or higher
+1.17.0
+Bug fix
+(
+View pull request
+)
+Correct invalid ECS field usages at root-level.
+7.16.0 or higher
+8.0.0 or higher
+1.16.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.10.0.
+7.16.0 or higher
+8.0.0 or higher
+1.15.0
+Enhancement
+(
+View pull request
+)
+Add tags.yml file so that integration's dashboards and saved searches are tagged with "Security Solution" and displayed in the Security Solution UI.
+7.16.0 or higher
+8.0.0 or higher
+1.14.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.9.0.
+7.16.0 or higher
+8.0.0 or higher
+1.13.0
+Enhancement
+(
+View pull request
+)
+Ensure event.kind is correctly set for pipeline errors.
+7.16.0 or higher
+8.0.0 or higher
+1.12.0
+Enhancement
+(
+View pull request
+)
+Update package to pkg-spec 2.7.0.
+7.16.0 or higher
+8.0.0 or higher
+1.11.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.8.0.
+7.16.0 or higher
+8.0.0 or higher
+1.10.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.7.0.
+7.16.0 or higher
+8.0.0 or higher
+1.9.1
+Enhancement
+(
+View pull request
+)
+Added categories and/or subcategories.
+7.16.0 or higher
+8.0.0 or higher
+1.9.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.6.0.
+7.16.0 or higher
+8.0.0 or higher
+1.8.0
+Enhancement
+(
+View pull request
+)
+Add
+udp_options
+to the UDP input.
+7.16.0 or higher
+8.0.0 or higher
+1.7.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.5.0.
+7.16.0 or higher
+8.0.0 or higher
+1.6.2
+Bug fix
+(
+View pull request
+)
+Remove duplicate fields.
+7.16.0 or higher
+8.0.0 or higher
+1.6.1
+Enhancement
+(
+View pull request
+)
+Use ECS geo.location definition.
+7.16.0 or higher
+8.0.0 or higher
+1.6.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.4.0
+7.16.0 or higher
+8.0.0 or higher
+1.5.1
+Enhancement
+(
+View pull request
+)
+Update package name and description to align with standard wording
+7.16.0 or higher
+8.0.0 or higher
+1.5.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.3.0.
+7.16.0 or higher
+8.0.0 or higher
+1.4.0
+Enhancement
+(
+View pull request
+)
+Add JA3/JA3S to
+related.hash
+7.16.0 or higher
+8.0.0 or higher
+1.3.1
+Bug fix
+(
+View pull request
+)
+Move invalid field value in sample event file
+7.16.0 or higher
+8.0.0 or higher
+1.3.0
+Enhancement
+(
+View pull request
+)
+Update to ECS 8.2
+7.16.0 or higher
+8.0.0 or higher
+1.2.4
+Bug fix
+(
+View pull request
+)
+Move invalid field values
+—
+1.2.3
+Bug fix
+(
+View pull request
+)
+Fix typo in config template for ignoring host enrichment
+—
+1.2.2
+Enhancement
+(
+View pull request
+)
+Add documentation for multi-fields
+7.16.0 or higher
+8.0.0 or higher
+1.2.1
+Enhancement
+(
+View pull request
+)
+Fix field mappings for
+dns.id
+and
+network.iana_number
+—
+1.2.0
+Enhancement
+(
+View pull request
+)
+Update to ECS 8.0
+7.16.0 or higher
+8.0.0 or higher
+1.1.2
+Bug fix
+(
+View pull request
+)
+Regenerate test files using the new GeoIP database
+7.16.0 or higher
+8.0.0 or higher
+1.1.1
+Bug fix
+(
+View pull request
+)
+Change test public IPs to the supported subset
+—
+1.1.0
+Enhancement
+(
+View pull request
+)
+Add 8.0.0 version constraint
+7.16.0 or higher
+8.0.0 or higher
+1.0.0
+Enhancement
+(
+View pull request
+)
+Initial draft of the package
+7.16.0 or higher
+Previous
+Filestream (custom)
+Next
+First EPSS

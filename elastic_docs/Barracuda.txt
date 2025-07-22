@@ -1,0 +1,17 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Barracuda
+Collect logs from various Barracuda products. Barracuda provides security, networking, and storage products based on network appliances and cloud services.
+Barracuda WAF
+CloudGen Firewall logs
+Previous
+Virtual machines scaleset metrics
+Next
+Barracuda WAF

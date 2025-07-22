@@ -1,0 +1,104 @@
+Loading
+Elastic Docs
+/
+…
+/
+Elastic integrations
+/
+Kubernetes
+/
+Kubernetes OpenTelemetry Assets
+Version
+1.1.0 (
+View all
+)
+Compatible Kibana version(s)
+8.18.0 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+Level of support
+What's this?
+Elastic
+Kubernetes OpenTelemetry Assets must be used with OpenTelemetry data. With this package will be installed assets to monitor
+Kubernetes clusters
+.
+Requirements
+You need Elasticsearch for storing and searching your data and Kibana for visualizing and managing it.
+You can use our hosted Elasticsearch Service on Elastic Cloud, which is recommended, or self-manage the Elastic Stack on your own hardware.
+Setup
+For step-by-step instructions on how to ingest opentelemetry data using the OpenTelemetry Operator, see the
+Elastic Distribution for OTel Collector
+installation guide.
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+1.1.0
+Enhancement
+(
+View pull request
+)
+Add support for Kibana
+9.0.0
+8.18.0 or higher
+9.0.0 or higher
+1.0.0
+Enhancement
+(
+View pull request
+)
+Making package GA
+8.18.0 or higher
+0.0.6
+Enhancement
+(
+View pull request
+)
+Adding events to overview dashboard
+—
+0.0.5
+Enhancement
+(
+View pull request
+)
+Remove events from overview dashboard
+—
+0.0.4
+Enhancement
+(
+View pull request
+)
+Update format_spec to target 3.3.0
+—
+0.0.3
+Enhancement
+(
+View pull request
+)
+Add a link to the onboarding flow, fix the package logo
+—
+0.0.2
+Enhancement
+(
+View pull request
+)
+Change logo and description of the package, fix overview dashboard
+—
+0.0.1
+Enhancement
+(
+View pull request
+)
+Initial draft of the Kubernetes OpenTelemetry Assets package
+—
+Previous
+Kubelet metrics
+Next
+Proxy metrics

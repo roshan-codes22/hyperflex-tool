@@ -1,0 +1,291 @@
+Loading
+Elastic Docs
+/
+…
+/
+Elastic integrations
+/
+Prometheus
+/
+Prometheus Input Package
+Version
+0.7.1 beta:[] (
+View all
+)
+Compatible Kibana version(s)
+8.13.0 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+Level of support
+What's this?
+Elastic
+This input package can collect metrics from
+Prometheus Exporters (Collectors)
+. It gives users the flexibility to add custom mappings and ingest pipelines.
+Metrics
+Scraping from a Prometheus exporter
+To scrape metrics from a Prometheus exporter, configure the
+hosts
+setting to it. The path
+to retrieve the metrics from (
+/metrics
+by default) is appended to the hostname as below:
+Host Configuration Format:
+http[s]://<hostname>:<port>/<metrics_path>
+Example Host Configuration:
+http://localhost:9090/metrics
+Histograms and types
+Use Types
+parameter (default:
+true
+) enables a different layout for metrics storage, leveraging Elasticsearch
+types, including
+histograms
+Rate Counters
+parameter (default:
+true
+) enables calculating a rate out of Prometheus counters. When enabled, integration stores
+the counter increment since the last collection. This metric provides better aggregation.
+This parameter can only be enabled in combination with
+Use Types
+.
+When
+Use Types
+and
+Rate Counters
+are enabled, metrics are stored like this:
+{
+"prometheus"
+:
+{
+"labels"
+:
+{
+"instance"
+:
+"172.27.0.2:9090"
+,
+"job"
+:
+"prometheus"
+}
+,
+"prometheus_target_interval_length_seconds_count"
+:
+{
+"counter"
+:
+1
+,
+"rate"
+:
+0
+}
+,
+"prometheus_target_interval_length_seconds_sum"
+:
+{
+"counter"
+:
+15.000401344
+,
+"rate"
+:
+0
+}
+,
+"prometheus_tsdb_compaction_chunk_range_seconds"
+:
+{
+"histogram"
+:
+{
+"values"
+:
+[
+50
+,
+300
+,
+1000
+,
+4000
+,
+16000
+]
+,
+"counts"
+:
+[
+10
+,
+2
+,
+34
+,
+7
+]
+}
+}
+}
+,
+}
+Filtering metrics
+In order to filter out/in metrics one can make use of
+Metrics Filters Include
+,
+Metrics Filters Exclude
+settings:
+Metrics Filters Include:
+[
+"node_filesystem_*"
+]
+Metrics Filters Exclude:
+[
+"node_filesystem_device_*"
+]
+The configuration above will include only metrics that match
+node_filesystem_*
+pattern and do not match
+node_filesystem_device_*
+.
+To keep only specific metrics, anchor the start and the end of the regexp of each metric:
+the caret ^ matches the beginning of a text
+the dollar $ matches the end of a text
+Metrics Filters Include:
+[
+"^node_network_net_dev_group$"
+,
+"^node_network_up$"
+]
+Datastream Dataset Name
+The users of the Prometheus Input Package have the option of adding their own dataset name, to which the events get added. Prometheus Metrics from different services can be collected by adding multiple instances of Input package. The metrics can be filtered on the basis of dataset name.
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+0.7.1
+Bug fix
+(
+View pull request
+)
+Added description to ssl nodes in package level manifest.yml file to including links to documentation.
+—
+0.7.0
+Enhancement
+(
+View pull request
+)
+Add support for Kibana
+9.0.0
+.
+—
+0.6.1
+Enhancement
+(
+View pull request
+)
+Add observability category.
+—
+0.6.0
+Enhancement
+(
+View pull request
+)
+Add processor support for input data stream.
+—
+0.5.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.11.0. Update the kibana constraint to ^8.13.0. Modified the field definitions to remove ECS fields made redundant by the ecs@mappings component template.
+—
+0.4.0
+Enhancement
+(
+View pull request
+)
+Enable secrets for sensitive fields. For more details, refer https://www.elastic.co/guide/en/fleet/current/agent-policy.html#agent-policy-secret-values
+—
+0.3.1
+Bug fix
+(
+View pull request
+)
+Disable secrets for older stack versions due to errors.
+—
+0.3.0
+Enhancement
+(
+View pull request
+)
+Enable 'secret' for the sensitive fields, supported from 8.12.
+—
+0.2.0
+Enhancement
+(
+View pull request
+)
+Update the package format_version to 3.0.0.
+—
+0.1.4
+Bug fix
+(
+View pull request
+)
+Fix test failure by upgrading the docker image version to the latest.
+—
+0.1.3
+Enhancement
+(
+View pull request
+)
+Add system test cases
+—
+0.1.2
+Bug fix
+(
+View pull request
+)
+Fix the typos in package
+—
+0.1.1
+Bug fix
+(
+View pull request
+)
+Update the url's in README
+—
+0.1.0
+Enhancement
+(
+View pull request
+)
+Rename ownership from obs-service-integrations to obs-infraobs-integrations
+—
+0.0.2
+Enhancement
+(
+View pull request
+)
+Add base fields mappings
+—
+0.0.1
+Enhancement
+(
+View pull request
+)
+Initial draft of the Prometheus Input Package
+—
+Previous
+Prometheus
+Next
+Proofpoint

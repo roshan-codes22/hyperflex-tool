@@ -1,0 +1,17 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Prometheus
+Collect metrics form Prometheus—a free software application used for event monitoring and alerting.
+Prometheus
+Promethues Input
+Previous
+Privileged Access Detection
+Next
+Prometheus

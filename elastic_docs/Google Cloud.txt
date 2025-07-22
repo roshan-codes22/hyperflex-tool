@@ -1,0 +1,36 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Google Cloud
+Collect logs and metrics from various Google Cloud products. Google Cloud is a suite of cloud computing services including computing, data storage, data analytics, and machine learning.
+Custom GCS Input
+GCP
+GCP Audit logs
+GCP Billing metrics
+GCP Cloud Run metrics
+GCP CloudSQL metrics
+GCP Compute metrics
+GCP Dataproc metrics
+GCP DNS logs
+GCP Firestore metrics
+GCP Firewall logs
+GCP GKE metrics
+GCP Load Balancing metrics
+GCP Metrics Input
+GCP PubSub logs (custom)
+GCP PubSub metrics
+GCP Redis metrics
+GCP Security Command Center
+GCP Storage metrics
+GCP VPC Flow logs
+GCP Vertex AI
+Previous
+Google Workspace
+Next
+Custom GCS Input

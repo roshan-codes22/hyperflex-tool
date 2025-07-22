@@ -1,0 +1,3246 @@
+Loading
+Elastic Docs
+/
+…
+/
+Elastic integrations
+/
+AWS
+/
+AWS Health
+Version
+3.8.2 (
+View all
+)
+Compatible Kibana version(s)
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+AWS Health metrics provide insights into the health of your AWS environment by monitoring various aspects such as open issues, scheduled maintenance events, security advisories, compliance status, notification counts, and service disruptions. These metrics help you proactively identify and address issues impacting your AWS resources, ensuring the reliability, security, and compliance of your infrastructure.
+Data streams
+The AWS Health integration collects one type of data: metrics.
+Metrics provide insight into the operational health of your AWS environment, including the status of AWS services, scheduled changes, and notifications about potential issues that could impact your resources. Metrics are gathered with the
+AWS Health API
+See more details in the
+Metrics reference
+.
+Requirements
+You need Elasticsearch for storing and searching your data and Kibana for visualizing and managing it.
+You can use our hosted Elasticsearch Service on Elastic Cloud, which is recommended, or self-manage the Elastic Stack on your own hardware.
+Before using any AWS integration you will need:
+AWS Credentials
+to connect with your AWS account.
+AWS Permissions
+to make sure the user you're using to connect has permission to share the relevant data.
+For more details about these requirements, please take a look at the
+AWS integration documentation
+.
+To collect AWS Health metrics, you would need specific AWS permissions to access the necessary data. Here's a list of permissions required for an IAM user to collect AWS Health metrics:
+health:DescribeAffectedEntities
+health:DescribeEventDetails
+health:DescribeEvents
+Setup
+If you want to collect data from two or more AWS services, consider using the
+AWS
+integration. When you configure the AWS integration, you can collect data from as many AWS services as you'd like.
+For step-by-step instructions on how to set up an integration, see the
+Getting started
+guide.
+Data stream specific configuration notes
+Period
+:: (
+string
+) Reporting interval. Recommended value is
+24h
+.
+Metrics reference
+The
+awshealth
+data stream collects AWS Health metrics from AWS.
+Example
+{
+"@timestamp"
+:
+"2024-06-09T07:26:10.847Z"
+,
+"agent"
+:
+{
+"ephemeral_id"
+:
+"4c4c2973-500d-46d4-b41f-e6e02bb792e4"
+,
+"id"
+:
+"f2c63d7a-e4e0-4646-b76b-b6ba80fb1be8"
+,
+"name"
+:
+"service-integration-dev-idc-1"
+,
+"type"
+:
+"metricbeat"
+,
+"version"
+:
+"8.14.0"
+}
+,
+"aws"
+:
+{
+"awshealth"
+:
+{
+"affected_entities"
+:
+[
+{
+"aws_account_id"
+:
+"00000000000"
+,
+"entity_arn"
+:
+"arn:aws:health:us-west-2:00000000000:entity/g1boW0WfWEdh7qa18fGj5UZaAEFeA_2Ol3YtjyQ1IWcI4=1g"
+,
+"entity_url"
+:
+""
+,
+"entity_value"
+:
+"arn:aws:ecs:us-west-2:00000000000:cluster/EC2BasedCluster"
+,
+"last_updated_time"
+:
+"2024-06-07T01:53:31.728Z"
+}
+,
+{
+"aws_account_id"
+:
+"00000000000"
+,
+"entity_arn"
+:
+"arn:aws:health:us-west-2:00000000000:entity/g1ct5TryWpLSufg8DM-B5Wp_lAicG_0BlW9Zuh1m2YZrg=1g"
+,
+"entity_url"
+:
+""
+,
+"entity_value"
+:
+"arn:aws:ecs:us-west-2:00000000000:cluster/DEMOGO-ECS"
+,
+"last_updated_time"
+:
+"2024-06-07T01:53:31.728Z"
+}
+,
+{
+"aws_account_id"
+:
+"00000000000"
+,
+"entity_arn"
+:
+"arn:aws:health:us-west-2:00000000000:entity/g1mkYYnoO_cHYLqqY-p5H5owH5HTnTTu3ZmqnieDfbf_o=1g"
+,
+"entity_url"
+:
+""
+,
+"entity_value"
+:
+"arn:aws:ecs:us-west-2:00000000000:cluster/elasticAgentCluster"
+,
+"last_updated_time"
+:
+"2024-06-07T01:53:31.728Z"
+}
+]
+,
+"affected_entities_others"
+:
+0
+,
+"affected_entities_pending"
+:
+0
+,
+"affected_entities_resolved"
+:
+0
+,
+"event_arn"
+:
+"arn:aws:health:us-west-2::event/ECS/AWS_ECS_SECURITY_NOTIFICATION/AWS_ECS_SECURITY_NOTIFICATION_de761fb8c443f11306d764547c7efb11ee0a33361f8f172d0ac6f6c4159cf646"
+,
+"event_description"
+:
+"We are following up on a previous notification regarding changes to the Docker version used in the Amazon Elastic Container Service (Amazon ECS) Optimized Amazon Machine Imagines (AMI) based on Amazon Linux 2 (AL2). If you are running the Amazon ECS-Optimized AL2023 AMIs, which are on the latest Docker version, you can disregard this message.\n\nDocker version 20.10.25 reached its end-of-life in December 2023 and will not receive any further security updates. We are changing the default version of Docker in the ECS-Optimized AL2 AMI to 25.0.3 with a staged release. This is a major version bump in Docker and contains backwards incompatible changes. Please make sure to test your application after applying this update.\n\nOn June 12, 2024, as communicated previously, we will disable automatic security updates at instance launch for ECS-Optimized AL2 AMIs. On June 19, 2024, we will release Docker 25.0.3 to the Amazon ECS Extras Repository without being tagged as a security advisory. This will allow customers who update in place, to manually update their instances with the command 'yum update docker' to complete any necessary acceptance testing. On July 11, 2024, we will release a new version of the ECS-Optimized AL2 AMI with Docker 25.0.3. For customers that choose not to update in place, we recommend moving to this AMI to get the update. ECS-Optimized AL2 AMI versions released between June 12, 2024 and July 11, 2024 will not receive the new Docker version and your action will be required to receive security updates to Docker. We recommend you update to an ECS-Optimized AL2 AMI released on July 11, 2024 or later.\n\nOn August 28, 2024, we will tag Docker 25.0.3 as a security update. This will trigger AMIs released prior to June 12, 2024 to automatically update the Docker version to Docker 25.0.3 at instance launch unless you have taken steps to disable this functionality [1].\n\nUpdating in place to Docker 25.0.3 will also update the ecs-init package to the latest available. Docker 25.0.3 is only compatible with ecs-init version 1.81 or later. As a best practice, and to ensure you are receiving the latest package versions and updates, we recommend customers update to the latest Amazon ECS-Optimized AMIs, which are released weekly.\n\nA list of your impacted resources can be found in the 'Affected resources' tab.\n\nIf you have any further questions, please contact AWS Support [2].\n\n[1] https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html\n[2] https://aws.amazon.com/support"
+,
+"event_scope_code"
+:
+"ACCOUNT_SPECIFIC"
+,
+"event_type_category"
+:
+"accountNotification"
+,
+"event_type_code"
+:
+"AWS_ECS_SECURITY_NOTIFICATION"
+,
+"last_updated_time"
+:
+"2024-06-07T05:25:47.913Z"
+,
+"region"
+:
+"us-west-2"
+,
+"service"
+:
+"ECS"
+,
+"start_time"
+:
+"2024-06-06T20:25:00.000Z"
+,
+"status_code"
+:
+"open"
+}
+}
+,
+"cloud"
+:
+{
+"account"
+:
+{
+"id"
+:
+"elastic-obs-integrations-dev"
+}
+,
+"availability_zone"
+:
+"asia-south1-c"
+,
+"instance"
+:
+{
+"id"
+:
+"000000000000000000"
+,
+"name"
+:
+"service-integration-dev-idc-1"
+}
+,
+"machine"
+:
+{
+"type"
+:
+"n1-standard-8"
+}
+,
+"project"
+:
+{
+"id"
+:
+"elastic-obs-integrations-dev"
+}
+,
+"provider"
+:
+"gcp"
+,
+"region"
+:
+"asia-south1"
+,
+"service"
+:
+{
+"name"
+:
+"GCE"
+}
+}
+,
+"cloud.provider"
+:
+"aws"
+,
+"data_stream"
+:
+{
+"dataset"
+:
+"aws.awshealth"
+,
+"namespace"
+:
+"ep"
+,
+"type"
+:
+"metrics"
+}
+,
+"ecs"
+:
+{
+"version"
+:
+"8.0.0"
+}
+,
+"elastic_agent"
+:
+{
+"id"
+:
+"f2c63d7a-e4e0-4646-b76b-b6ba80fb1be8"
+,
+"snapshot"
+:
+false
+,
+"version"
+:
+"8.14.0"
+}
+,
+"event"
+:
+{
+"agent_id_status"
+:
+"verified"
+,
+"dataset"
+:
+"aws.awshealth"
+,
+"duration"
+:
+11035786308
+,
+"ingested"
+:
+"2024-06-09T07:26:31Z"
+,
+"module"
+:
+"aws"
+}
+,
+"host"
+:
+{
+"architecture"
+:
+"x86_64"
+,
+"containerized"
+:
+false
+,
+"hostname"
+:
+"service-integration-dev-idc-1"
+,
+"id"
+:
+"1bfc9b2d8959f75a520a3cb94cf035c8"
+,
+"ip"
+:
+[
+"10.160.0.4"
+,
+"fe80::4001:aff:fea0:4"
+,
+"192.168.0.1"
+,
+"192.168.32.1"
+,
+"fe80::7caf:a6ff:febd:c3a9"
+,
+"172.22.0.1"
+,
+"172.26.0.1"
+,
+"172.20.0.1"
+,
+"172.30.0.1"
+,
+"172.29.0.1"
+,
+"172.17.0.1"
+,
+"fe80::42:a5ff:fe15:d63c"
+,
+"172.1.0.1"
+,
+"172.19.0.1"
+,
+"172.27.0.1"
+,
+"172.31.0.1"
+,
+"192.168.80.1"
+,
+"192.168.224.1"
+,
+"172.23.0.1"
+,
+"192.168.49.1"
+,
+"fe80::42:beff:fe39:f457"
+,
+"fe80::4c7d:f2ff:fece:af8e"
+,
+"fe80::3cbb:3ff:fe9a:20db"
+,
+"fe80::d4d6:36ff:fef2:6468"
+,
+"fe80::cc52:29ff:fe19:ed74"
+,
+"192.168.16.1"
+,
+"fe80::42:2fff:fe16:b2ba"
+,
+"fe80::1c7d:aff:fe87:6f65"
+,
+"fe80::2861:f4ff:fe68:8801"
+,
+"fe80::5c94:eaff:fea6:b831"
+]
+,
+"mac"
+:
+[
+"02-42-0D-A6-43-C0"
+,
+"02-42-23-32-CF-25"
+,
+"02-42-27-90-E6-54"
+,
+"02-42-2F-16-B2-BA"
+,
+"02-42-34-10-CA-62"
+,
+"02-42-4F-1D-94-1B"
+,
+"02-42-50-2E-CB-58"
+,
+"02-42-5D-42-F3-1D"
+,
+"02-42-66-9B-25-B2"
+,
+"02-42-99-B7-1B-26"
+,
+"02-42-A5-15-D6-3C"
+,
+"02-42-A6-68-F8-E9"
+,
+"02-42-BE-39-F4-57"
+,
+"02-42-CE-31-B7-A3"
+,
+"02-42-E8-F3-CF-7A"
+,
+"02-42-F1-35-B0-41"
+,
+"02-42-F4-2F-0F-22"
+,
+"1E-7D-0A-87-6F-65"
+,
+"2A-61-F4-68-88-01"
+,
+"3E-BB-03-9A-20-DB"
+,
+"42-01-0A-A0-00-04"
+,
+"4E-7D-F2-CE-AF-8E"
+,
+"5E-94-EA-A6-B8-31"
+,
+"7E-AF-A6-BD-C3-A9"
+,
+"CE-52-29-19-ED-74"
+,
+"D6-D6-36-F2-64-68"
+]
+,
+"name"
+:
+"service-integration-dev-idc-1"
+,
+"os"
+:
+{
+"codename"
+:
+"bionic"
+,
+"family"
+:
+"debian"
+,
+"kernel"
+:
+"5.4.0-1106-gcp"
+,
+"name"
+:
+"Ubuntu"
+,
+"platform"
+:
+"ubuntu"
+,
+"type"
+:
+"linux"
+,
+"version"
+:
+"18.04.6 LTS (Bionic Beaver)"
+}
+}
+,
+"metricset"
+:
+{
+"name"
+:
+"awshealth"
+,
+"period"
+:
+86400000
+}
+,
+"service"
+:
+{
+"type"
+:
+"aws-health"
+}
+}
+Exported fields
+Field
+Description
+Type
+Metric Type
+@timestamp
+Event timestamp.
+date
+agent.id
+Unique identifier of this agent (if one exists). Example: For Beats this would be beat.id.
+keyword
+aws.awshealth.affected_entities
+The details of the affected entities related to the event.
+object
+aws.awshealth.affected_entities.aws_account_id
+The Amazon Web Services account number that contains the affected entity.
+keyword
+aws.awshealth.affected_entities.entity_arn
+The unique identifier for the affected entities. The entity ARN has the format:
+arn:aws:health:\<entity-region\>:\<aws-account\>:entity/\<entity-id\>
+. For example,
+arn:aws:health:us-east-1:111222333444:entity/AVh5GGT7ul1arKr1sE1K
+.
+keyword
+aws.awshealth.affected_entities.entity_url
+The URL of the affected entity.
+keyword
+aws.awshealth.affected_entities.entity_value
+The ID of the affected entity.
+keyword
+aws.awshealth.affected_entities.last_updated_time
+The last updated time of the affected entity.
+date
+aws.awshealth.affected_entities.status_code
+The most recent status of the entity affected by the event. The possible values include
+IMPAIRED
+,
+UNIMPAIRED
+,
+UNKNOWN
+,
+PENDING
+,
+RESOLVED
+.
+keyword
+aws.awshealth.affected_entities_others
+The number of affected resources related to the event whose status cannot be verified.
+float
+gauge
+aws.awshealth.affected_entities_pending
+The number of affected resources that may require action.
+float
+gauge
+aws.awshealth.affected_entities_resolved
+The number of affected resources that do not require any action.
+float
+gauge
+aws.awshealth.end_time
+The date and time when the event ended. Some events may not have an end date.
+date
+aws.awshealth.event_arn
+The unique identifier for the event. The event ARN has the format
+arn:aws:health:\<event-region\>::event/\<SERVICE\>/\<EVENT_TYPE_CODE\>/\<EVENT_TYPE_PLUS_ID\>
+. For example,
+arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456
+.
+keyword
+aws.awshealth.event_description
+The detailed description of the event.
+text
+aws.awshealth.event_scope_code
+The
+event_scope_code
+parameter specifies whether the Health event is a public Amazon Web Service event or an account-specific event. Allowed values are
+PUBLIC
+,
+ACCOUNT_SPECIFIC
+, or
+NONE
+."
+keyword
+aws.awshealth.event_type_category
+The event type category code. The possible values are
+issue
+,
+accountNotification
+,
+investigation
+or
+scheduledChange
+.
+keyword
+aws.awshealth.event_type_code
+The unique identifier for the event type. The format is
+AWS_\<SERVICE_DESCRIPTION\>
+. For example,
+AWS_EC2_SYSTEM_MAINTENANCE_EVENT
+.
+keyword
+aws.awshealth.last_updated_time
+The most recent date and time when the event was updated.
+date
+aws.awshealth.region
+The Amazon Web Services Region name of the event.
+keyword
+aws.awshealth.service
+The Amazon Web Service affected by the event. For example, EC2 or RDS.
+keyword
+aws.awshealth.start_time
+The date and time when the event began.
+date
+aws.awshealth.status_code
+The most recent status of the event. Possible values are
+open
+,
+closed
+, and
+upcoming
+.
+keyword
+aws.linked_account.id
+ID used to identify linked account.
+keyword
+aws.linked_account.name
+Name or alias used to identify linked account.
+keyword
+aws.tags
+Tag key value pairs from aws resources.
+flattened
+cloud.account.id
+The cloud account or organization id used to identify different entities in a multi-tenant environment. Examples: AWS account id, Google Cloud ORG Id, or other unique identifier.
+keyword
+cloud.region
+Region in which this host, resource, or service is located.
+keyword
+data_stream.dataset
+Data stream dataset.
+constant_keyword
+data_stream.namespace
+Data stream namespace.
+constant_keyword
+data_stream.type
+Data stream type.
+constant_keyword
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+3.8.2
+Bug fix
+(
+View pull request
+)
+Fix null reference in securityhub_findings* data streams when extracting
+host.ip
+.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.8.1
+Bug fix
+(
+View pull request
+)
+Modify the data type of
+event.kind
+from a constant_keyword to a keyword to handle pipeline errors that send
+event.kind
+as
+pipeline_error
+.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.8.0
+Enhancement
+(
+View pull request
+)
+Standardize user fields processing across integrations.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.7.1
+Bug fix
+(
+View pull request
+)
+Add temporary processor to remove the fields added by the Agentless policy.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.7.0
+Enhancement
+(
+View pull request
+)
+Add AWS lambda logs overview dashboard.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.6.0
+Enhancement
+(
+View pull request
+)
+Add AWS lambda logs dataset.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.5.2
+Bug fix
+(
+View pull request
+)
+Add Redshift
+InstanceType
+dimension.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.5.1
+Enhancement
+(
+View pull request
+)
+Change Redshift terraform node type because
+dc2.large
+is deprecated and leads to system tests fails.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.5.0
+Enhancement
+(
+View pull request
+)
+Add the
+external_id
+field to data streams collecting data from S3.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.4.0
+Enhancement
+(
+View pull request
+)
+Add new AWS Config datastream.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.3.3
+Enhancement
+(
+View pull request
+)
+Update README - Document ingested log types of AWS Network Firewall.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.3.2
+Enhancement
+(
+View pull request
+)
+Update README - EC2 Instance IAM Role for AWS Authentication
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.3.1
+Bug fix
+(
+View pull request
+)
+Fix handling of duplicate fields in Network Firewall Logs data stream.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.3.0
+Enhancement
+(
+View pull request
+)
+Remove deprecated httpjson input for cloudtrail data stream.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.2.0
+Enhancement
+(
+View pull request
+)
+Add agentless deployment for AWS Security Hub.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.1.0
+Enhancement
+(
+View pull request
+)
+Enhancements for Guardduty dashboards.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.0.0
+Breaking change
+(
+View pull request
+)
+Add new Security Hub Findings Full Posture data stream. If you rely on Findings > Misconfigurations view, enable this new data stream.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+2.45.2
+Enhancement
+(
+View pull request
+)
+Update grok pattern for AWS S3 access ingest pipeline
+8.16.5 or higher
+9.0.0 or higher
+2.45.1
+Bug fix
+(
+View pull request
+)
+Fix handling of SQS worker count configuration.
+8.16.5 or higher
+9.0.0 or higher
+2.45.0
+Breaking change
+(
+View pull request
+)
+Update default data_stream.dataset to aws.cloudwatch_logs for cloudwatch_logs data stream.
+8.16.5 or higher
+9.0.0 or higher
+2.44.0
+Enhancement
+(
+View pull request
+)
+Add
+actor.entity.id
+and
+target.entity.id
+8.16.5 or higher
+9.0.0 or higher
+2.43.0
+Enhancement
+(
+View pull request
+)
+Set
+event.type
+and
+event.action
+fields in vpcflow logs.
+8.16.5 or higher
+9.0.0 or higher
+2.42.0
+Enhancement
+(
+View pull request
+)
+Add support to configure start_timestamp and ignore_older configurations for AWS S3 backed inputs.
+8.16.5 or higher
+9.0.0 or higher
+2.41.1
+Bug fix
+(
+View pull request
+)
+Updated SSL description to be uniform and to include links to documentation.
+8.16.2 or higher
+9.0.0 or higher
+2.41.0
+Enhancement
+(
+View pull request
+)
+Ignore long
+cloudtrail.request_parameters
+and
+cloudtrail.response_elements
+fields.
+8.16.2 or higher
+9.0.0 or higher
+2.40.0
+Enhancement
+(
+View pull request
+)
+Add support for Kibana
+9.0.0
+8.16.2 or higher
+9.0.0 or higher
+2.39.0
+Enhancement
+(
+View pull request
+)
+Allow the usage of deprecated log input and support for stack 9.0
+8.16.2 or higher
+2.38.2
+Bug fix
+(
+View pull request
+)
+Update links to getting started docs
+8.16.2 or higher
+2.38.1
+Enhancement
+(
+View pull request
+)
+Add missing category.
+8.16.2 or higher
+2.38.0
+Enhancement
+(
+View pull request
+)
+Add support for Access Point ARN when collecting logs via the AWS S3 Bucket.
+8.16.2 or higher
+2.37.0
+Enhancement
+(
+View pull request
+)
+Map aws.dimensions as object instead of flattened in CloudWatch metrics.
+8.16.0 or higher
+2.36.2
+Enhancement
+(
+View pull request
+)
+Include pipeline test examples to accommodate the new Cloudtrail format for the
+CreateGroup
+and
+UpdateGroup
+event types.
+8.16.0 or higher
+2.36.1
+Enhancement
+(
+View pull request
+)
+Add SQS API calls documentation and required S3 permissions.
+8.16.0 or higher
+2.36.0
+Enhancement
+(
+View pull request
+)
+Add ELB connection logs dashboards for application load balancers.
+8.16.0 or higher
+2.35.0
+Enhancement
+(
+View pull request
+)
+Add the support for connection logs for AWS ELB dataset for Application Load Balancers.
+8.16.0 or higher
+2.34.0
+Enhancement
+(
+View pull request
+)
+Add Lambda Event Source Mapping metrics and improve Lambda dashboard to display the new metrics.
+8.16.0 or higher
+2.33.0
+Enhancement
+(
+View pull request
+)
+Add option to check linked accounts when using log group prefixes to derive matching log groups
+8.16.0 or higher
+2.32.0
+Bug fix
+(
+View pull request
+)
+Implemented grok processor based parsing for ipv6 & ipv4 addresses in the AWS CloudFront logs.
+Enhancement
+(
+View pull request
+)
+Auto formatted various text descriptions and newlines across all data streams via elastic-package.
+8.16.0 or higher
+2.31.4
+Bug fix
+(
+View pull request
+)
+Update documentation with required permissions for AWS Inspector.
+8.16.0 or higher
+2.31.3
+Bug fix
+(
+View pull request
+)
+Removed the
+reducedTimeRange
+filter from the AWS Billing Total Estimated Charges lens to ensure value is displayed.
+8.16.0 or higher
+2.31.2
+Bug fix
+(
+View pull request
+)
+Add the support for listeners with ALPN policy extension in ELB dataset for Network Load Balancers.
+8.16.0 or higher
+2.31.1
+Bug fix
+(
+View pull request
+)
+Add
+cloud.provider
+,
+event.kind
+, and
+observer.vendor
+fields to _source as needed by CDR workflows.
+8.16.0 or higher
+2.31.0
+Enhancement
+(
+View pull request
+)
+Improve support for Cloud Detection and Response (CDR) workflows in securityhub_findings data stream.
+8.16.0 or higher
+2.30.3
+Enhancement
+(
+View pull request
+)
+Map aws.dimensions as object instead of flattened in CloudWatch metrics (backported from 2.37.0)
+8.15.2 or higher
+2.30.2
+Bug fix
+(
+View pull request
+)
+Add the support for listeners with ALPN policy extension in ELB dataset for Network Load Balancers.
+8.15.2 or higher
+2.30.1
+Bug fix
+(
+View pull request
+)
+Update the AWS dashboard panels.
+8.15.2 or higher
+2.30.0
+Enhancement
+(
+View pull request
+)
+Support configuring the Owning Account
+8.15.2 or higher
+2.29.0
+Enhancement
+(
+View pull request
+)
+Add mapping for the service.runtimeDetails fields in GuardDuty events.
+8.15.0 or higher
+2.28.0
+Enhancement
+(
+View pull request
+)
+Add reference to AWS API requests and pricing information.
+8.15.0 or higher
+2.27.0
+Enhancement
+(
+View pull request
+)
+Improve ingest pipeline error reporting.
+8.15.0 or higher
+2.26.0
+Enhancement
+(
+View pull request
+)
+Add more data to related.entity field.
+8.15.0 or higher
+2.26.0-preview01
+Enhancement
+(
+View pull request
+)
+Add related.entity field.
+—
+2.25.1
+Bug fix
+(
+View pull request
+)
+Add aws.metrics_names_fingerprint field and mark it as a dimension.
+8.14.0 or higher
+2.25.0
+Enhancement
+(
+View pull request
+)
+Allow @custom pipeline access to event.original without setting preserve_original_event.
+8.14.0 or higher
+2.24.3
+Bug fix
+(
+View pull request
+)
+Fix aws.metrics_names_fingerprint field.
+8.14.0 or higher
+2.24.2
+Bug fix
+(
+View pull request
+)
+Add aws.metrics_names_fingerprint.
+8.14.0 or higher
+2.24.1
+Bug fix
+(
+View pull request
+)
+Fixed and refactored AWS cloudfront log parsing.
+8.14.0 or higher
+2.24.0
+Enhancement
+(
+View pull request
+)
+Add dot_expander processor into metrics ingest pipeline.
+8.14.0 or higher
+2.23.0
+Enhancement
+(
+View pull request
+)
+Split the current AWS ELB dashboard into 3 separate dashboards, each focusing on a specific type of load balancer ELB, ALB, and NLB.
+8.14.0 or higher
+2.22.1
+Bug fix
+(
+View pull request
+)
+Update max_number_of_messages parameter description
+8.14.0 or higher
+2.22.0
+Enhancement
+(
+View pull request
+)
+Add global dataset filter for dashboards to improve performance.
+8.14.0 or higher
+2.21.0
+Enhancement
+(
+View pull request
+)
+Fix route53 public logs grok pattern.
+8.14.0 or higher
+2.20.0
+Enhancement
+(
+View pull request
+)
+Add S3 polling option to data streams use aws-s3 input
+8.14.0 or higher
+2.19.0
+Enhancement
+(
+View pull request
+)
+Add a visualization panel to display the Inbound and Outbound traffic of Application load balancers.
+8.14.0 or higher
+2.18.0
+Enhancement
+(
+View pull request
+)
+Add AWS Health integration.
+8.14.0 or higher
+2.17.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.11.0. Update the kibana constraint to ^8.13.0. Modified the field definitions to remove ECS fields made redundant by the ecs@mappings component template.
+8.13.0 or higher
+2.16.0
+Enhancement
+(
+View pull request
+)
+Add TargetResponseTime metric to ELB Application metrics.
+8.12.0 or higher
+2.15.4
+Bug fix
+(
+View pull request
+)
+Fix AWS Network Firewall title and description.
+8.12.0 or higher
+2.15.3
+Enhancement
+(
+View pull request
+)
+Add endpoint + region variables to all SQS based AWS integrations.
+8.12.0 or higher
+2.15.2
+Bug fix
+(
+View pull request
+)
+Fix AWS Cloudtrail resources field processing.
+8.12.0 or higher
+2.15.1
+Bug fix
+(
+View pull request
+)
+Don't index empty AWS Security Hub responses.
+8.12.0 or higher
+2.15.0
+Enhancement
+(
+View pull request
+)
+Adds async event age and drops metrics, and implements sum aggregation for existing lambda metrics.
+8.12.0 or higher
+2.14.2
+Bug fix
+(
+View pull request
+)
+Update aggregation function for AWS lambda invocation metric.
+8.12.0 or higher
+2.14.1
+Enhancement
+(
+View pull request
+)
+Document billing data stream limitations.
+8.12.0 or higher
+2.14.0
+Enhancement
+(
+View pull request
+)
+Add ability to set processors and leader election on AWS Billing.
+8.12.0 or higher
+2.13.1
+Enhancement
+(
+View pull request
+)
+Update latency parameter description
+8.12.0 or higher
+2.13.0
+Enhancement
+(
+View pull request
+)
+Add Amazon MSK integration
+8.12.0 or higher
+2.12.2
+Bug fix
+(
+View pull request
+)
+Fix an issue were the "_id" field was being used to aggregate data in Severity Over Time dashboard.
+8.12.0 or higher
+2.12.1
+Enhancement
+(
+View pull request
+)
+Add cloudsecurity_cdr sub category label.
+8.12.0 or higher
+2.12.0
+Enhancement
+(
+View pull request
+)
+Enable 'secret' for the sensitive fields.
+8.12.0 or higher
+2.11.3
+Bug fix
+(
+View pull request
+)
+Fix query range calculation for GuardDuty datastream.
+8.10.2 or higher
+2.11.2
+Bug fix
+(
+View pull request
+)
+Remove hardcoded event.dataset field and use ecs instead.
+8.10.2 or higher
+2.11.1
+Enhancement
+(
+View pull request
+)
+Improve wording on milliseconds.
+8.10.2 or higher
+2.11.0
+Enhancement
+(
+View pull request
+)
+Convert Total Estimated Charges panel to new metric visualization.
+8.10.2 or higher
+2.10.2
+Bug fix
+(
+View pull request
+)
+Fix dimensions fingerprint field
+8.10.2 or higher
+2.10.1
+Bug fix
+(
+View pull request
+)
+Fix exclude_files pattern.
+8.10.2 or higher
+2.10.0
+Enhancement
+(
+View pull request
+)
+Convert "AWS Redshift metrics overview" visualizations to new metric.
+8.10.2 or higher
+2.9.1
+Bug fix
+(
+View pull request
+)
+Change SQS metrics statistic method, which includes changing ApproximateAgeOfOldestMessage from average to max, changing NumberOfMessagesDeleted, NumberOfEmptyReceives, NumberOfMessagesReceived and NumberOfMessagesSent from average to sum.
+8.9.0 or higher
+2.9.0
+Enhancement
+(
+View pull request
+)
+Limit request tracer log count to five.
+8.9.0 or higher
+2.8.6
+Bug fix
+(
+View pull request
+)
+Add missing fields from beats input
+8.9.0 or higher
+2.8.5
+Enhancement
+(
+View pull request
+)
+Update donut charts with pie for better representation
+8.9.0 or higher
+2.8.4
+Bug fix
+(
+View pull request
+)
+Remove unused aws.
+.metrics.
+.* and aws.s3.bucket.name
+8.9.0 or higher
+2.8.3
+Bug fix
+(
+View pull request
+)
+Include documentation and mappings for subfields of dns.answers
+Bug fix
+(
+View pull request
+)
+Fix mapping for tags and dynamic metric fields
+8.9.0 or higher
+2.8.2
+Bug fix
+(
+View pull request
+)
+Add null checks and ignore_missing checks to the rename processor
+8.9.0 or higher
+2.8.1
+Bug fix
+(
+View pull request
+)
+Fix incorrect billing metrics displayed under AWS Billing overview dashboard.
+8.9.0 or higher
+2.8.0
+Enhancement
+(
+View pull request
+)
+Allow configuration of TLD for guardduty, inspector, and security hub datastreams.
+8.9.0 or higher
+2.7.0
+Enhancement
+(
+View pull request
+)
+Add tags.yml file so that integration's dashboards and saved searches are tagged with "Security Solution" and displayed in the Security Solution UI.
+Enhancement
+(
+View pull request
+)
+Upgrade package spec to 3.0.0.
+Bug fix
+(
+View pull request
+)
+Fix duplicated and invalid field definitions.
+Bug fix
+(
+View pull request
+)
+Add missing dashboard filters.
+8.9.0 or higher
+2.6.1
+Bug fix
+(
+View pull request
+)
+Fix AWS API Gateway logs dashboard lens
+8.9.0 or higher
+2.6.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.10.0.
+8.9.0 or higher
+2.5.0
+Enhancement
+(
+View pull request
+)
+Update Cloudtrail datastream to support tlsDetails field
+8.9.0 or higher
+2.4.1
+Bug fix
+(
+View pull request
+)
+Fix Security Hub Findings to abide by ECS allowed values.
+8.9.0 or higher
+2.4.0
+Bug fix
+(
+View pull request
+)
+Add AWS API Gateway metrics dashboards for each API type and additional filters which ensure data consistency
+8.9.0 or higher
+2.3.0
+Enhancement
+(
+View pull request
+)
+Change include_linked_accounts default to true
+8.9.0 or higher
+2.2.1
+Bug fix
+(
+View pull request
+)
+Fix GuardDuty API call parameter.
+8.9.0 or higher
+2.2.0
+Enhancement
+(
+View pull request
+)
+Add AWS API Gateway metrics dashboard Stage filter, control groups and clean up
+8.9.0 or higher
+2.1.2
+Bug fix
+(
+View pull request
+)
+Fix AWS API Gateway metrics dashboard
+8.9.0 or higher
+2.1.1
+Enhancement
+(
+View pull request
+)
+Improve AWS API Gateway dashboard
+8.9.0 or higher
+2.1.0
+Enhancement
+(
+View pull request
+)
+Enable TSDB by default for EC2 metrics data stream. This improves storage usage and query performance. For more details, see https://www.elastic.co/guide/en/elasticsearch/reference/current/tsds.html.
+8.9.0 or higher
+2.0.0
+Enhancement
+(
+View pull request
+)
+Remove deprecated option for "Cloudwatch via S3"from the AWS CloudWatch integration. If you are using it take note that logs WON'T BE ingested via this route anymore once you update.
+8.9.0 or higher
+1.53.5
+Enhancement
+(
+View pull request
+)
+Set metric type in EC2 data stream fields.
+8.9.0 or higher
+1.53.4
+Enhancement
+(
+View pull request
+)
+Add dimension fields to EC2 data stream.
+8.9.0 or higher
+1.53.3
+Enhancement
+(
+View pull request
+)
+Add missing fields definition for ec2
+8.9.0 or higher
+1.53.2
+Bug fix
+(
+View pull request
+)
+Remove the remove processor since rename processor removes old field already.
+8.9.0 or higher
+1.53.1
+Enhancement
+(
+View pull request
+)
+Disable TSDB on AWS Billing.
+8.9.0 or higher
+1.53.0
+Enhancement
+(
+View pull request
+)
+Add AWS API Gateway custom acccess logging fields.
+8.9.0 or higher
+1.52.1
+Enhancement
+(
+View pull request
+)
+Use default color for AWS dashboards metric charts.
+8.9.0 or higher
+1.52.0
+Enhancement
+(
+View pull request
+)
+Enable TSDB by default for cloudwatch metrics data stream. This improves storage usage and query performance. For more details, see https://www.elastic.co/guide/en/elasticsearch/reference/current/tsds.html.
+8.9.0 or higher
+1.51.3
+Bug fix
+(
+View pull request
+)
+Remove hardcoded event.dataset field and use ecs instead.
+8.8.1 or higher
+1.51.2
+Enhancement
+(
+View pull request
+)
+Disable TSDB on AWS Billing.
+8.8.1 or higher
+1.51.1
+Enhancement
+(
+View pull request
+)
+Use object metric type for the cloudwatch metrics
+8.8.1 or higher
+1.51.0
+Enhancement
+(
+View pull request
+)
+Add standalone S3 option for vpcflow
+8.8.1 or higher
+1.50.6
+Enhancement
+(
+View pull request
+)
+Add metric_type metadata to the cloudwatch data_stream
+8.8.1 or higher
+1.50.5
+Enhancement
+(
+View pull request
+)
+Migrate AWS Security Hub dashboards to lens.
+8.8.1 or higher
+1.50.4
+Enhancement
+(
+View pull request
+)
+Migrate AWS VPC dashboard visualizations to lens.
+8.8.1 or higher
+1.50.3
+Enhancement
+(
+View pull request
+)
+Add EMR logs dashboard.
+8.8.1 or higher
+1.50.2
+Enhancement
+(
+View pull request
+)
+Migrate AWS Billing dashboard visualizations to lens.
+8.8.1 or higher
+1.50.1
+Enhancement
+(
+View pull request
+)
+Add AWS API Gateway logs dashboard.
+8.8.1 or higher
+1.50.0
+Enhancement
+(
+View pull request
+)
+Add EMR logs data stream.
+8.8.1 or higher
+1.49.0
+Enhancement
+(
+View pull request
+)
+Add API Gateway logs datastream
+8.8.1 or higher
+1.48.0
+Enhancement
+(
+View pull request
+)
+Adding missing fields for the CloudTrail datastream - add option for standalone S3 bucket
+8.8.1 or higher
+1.47.1
+Enhancement
+(
+View pull request
+)
+Migrate AWS Redshift dashboard input controls.
+8.8.1 or higher
+1.47.0
+Enhancement
+(
+View pull request
+)
+Migrate AWS S3 Server Access Log Overview dashboard visualizations to lens.
+8.8.1 or higher
+1.46.9
+Enhancement
+(
+View pull request
+)
+Migrate AWS Network Firewall dashboard input controls.
+8.8.1 or higher
+1.46.8
+Enhancement
+(
+View pull request
+)
+Add dimensions metadata to the cloudwatch data_stream
+8.8.1 or higher
+1.46.7
+Enhancement
+(
+View pull request
+)
+Enable time series data streams for the API Gateway and EMR data streams. This improves storage usage and query performance. For more details, see https://www.elastic.co/guide/en/elasticsearch/reference/current/tsds.html.
+8.8.1 or higher
+1.46.6
+Enhancement
+(
+View pull request
+)
+Update metric type and set dimension fields for AWS EMR data stream.
+8.8.1 or higher
+1.46.5
+Enhancement
+(
+View pull request
+)
+Fix metric type for API Gateway metric fields.
+8.8.1 or higher
+1.46.4
+Enhancement
+(
+View pull request
+)
+Set dimensions fields for API Gateway data stream.
+—
+1.46.3
+Enhancement
+(
+View pull request
+)
+Add missing S3 fields for vpcflow
+8.8.1 or higher
+1.46.2
+Enhancement
+(
+View pull request
+)
+Enable time series data streams for the S3 daily storage and S3 request datasets. This improves storage usage and query performance. For more details, see https://www.elastic.co/guide/en/elasticsearch/reference/current/tsds.html.
+8.8.1 or higher
+1.46.1
+Enhancement
+(
+View pull request
+)
+Enable time series data streams for the Usage dataset. This improves storage usage and query performance. For more details, see https://www.elastic.co/guide/en/elasticsearch/reference/current/tsds.html.
+8.8.1 or higher
+1.46.0
+Enhancement
+(
+View pull request
+)
+Enable time series data streams for the metrics datasets Billing, DynamoDB, EBS, ECS, ELB, Firewall, Kinesis, Lambda, NAT gateway, RDS, Redshift, S3 Storage Lens, SNS, SQS, Transit Gateway and VPN. This improves storage usage and query performance. For more details, see https://www.elastic.co/guide/en/elasticsearch/reference/current/tsds.html.
+8.8.1 or higher
+1.45.9
+Enhancement
+(
+View pull request
+)
+Add new fingerprint dimension to AWS Billing.
+8.8.1 or higher
+1.45.8
+Enhancement
+(
+View pull request
+)
+Add metric_type metadata to s3_daily_storage and s3_request data streams.
+8.8.1 or higher
+1.45.7
+Enhancement
+(
+View pull request
+)
+Add dimension fields metadata to s3_request and s3_data_storage data streams to support TSDB
+8.8.1 or higher
+1.45.6
+Enhancement
+(
+View pull request
+)
+Add metric type to S3 Storage Lens.
+8.8.1 or higher
+1.45.4
+Enhancement
+(
+View pull request
+)
+Set dimension fields for S3 Storage Lens.
+8.8.1 or higher
+1.45.3
+Bug fix
+(
+View pull request
+)
+Remove aws.dimensions.* from package-fields.yml
+8.8.1 or higher
+1.45.2
+Enhancement
+(
+View pull request
+)
+Add AWS EMR metrics dashboard.
+8.8.1 or higher
+1.45.1
+Enhancement
+(
+View pull request
+)
+Add AWS API Gateway dashboard.
+8.8.1 or higher
+1.45.0
+Enhancement
+(
+View pull request
+)
+Add AWS EMR metrics data stream.
+8.8.1 or higher
+1.44.4
+Enhancement
+(
+View pull request
+)
+Migrate AWS Metric Overview dashboard visualizations to lens.
+8.8.1 or higher
+1.44.3
+Enhancement
+(
+View pull request
+)
+Migrate AWS ELB Access Log dashboard visualizations to lens.
+8.8.1 or higher
+1.44.2
+Bug fix
+(
+View pull request
+)
+Fix image link in readme
+8.8.1 or higher
+1.44.1
+Enhancement
+(
+View pull request
+)
+Migrate AWS TransitGateway metrics dashboard to lenses.
+8.8.1 or higher
+1.44.0
+Enhancement
+(
+View pull request
+)
+Add permissions to reroute events to logs-
+-
+for cloudwatch_logs and ec2_logs datastream.
+8.8.1 or higher
+1.43.2
+Enhancement
+(
+View pull request
+)
+Add documentation for latency parameter
+8.8.1 or higher
+1.43.1
+Enhancement
+(
+View pull request
+)
+Add tags_filter and include_linked_accounts config parameter in missing metric data streams.
+8.8.1 or higher
+1.43.0
+Enhancement
+(
+View pull request
+)
+Add include_linked_accounts config parameter for metrics data streams.
+8.8.1 or higher
+1.42.0
+Enhancement
+(
+View pull request
+)
+Add field agent.id to be set as dimension for TSDB migration.
+8.7.1 or higher
+1.41.0
+Enhancement
+(
+View pull request
+)
+Migrate AWS NATGateway metrics dashboard visualizations to lenses.
+8.7.1 or higher
+1.40.9
+Enhancement
+(
+View pull request
+)
+Migrate AWS ELB metrics dashboard visualizations to lenses.
+8.7.1 or higher
+1.40.8
+Enhancement
+(
+View pull request
+)
+Migrate EC2 metrics dashboard visualizations to lenses.
+8.7.1 or higher
+1.40.7
+Enhancement
+(
+View pull request
+)
+Add AWS Firewall metrics dashboard input control groups.
+8.7.1 or higher
+1.40.6
+Enhancement
+(
+View pull request
+)
+Migrate AWS S3 Storage Lens dashboard visualizations to lens.
+8.7.1 or higher
+1.40.5
+Enhancement
+(
+View pull request
+)
+Migrate Usage Overview dashboard to lenses.
+8.7.1 or higher
+1.40.4
+Enhancement
+(
+View pull request
+)
+Migrate AWS CloudTrail dashboard visualizations to lenses.
+8.7.1 or higher
+1.40.3
+Enhancement
+(
+View pull request
+)
+Add fields metric type to usage, dynamoDB and ELB data streams.
+8.7.1 or higher
+1.40.2
+Enhancement
+(
+View pull request
+)
+Replace aws.rds.db_instance.identifier with aws.dimensions.DBInstanceIdentifier in RDS dashboard.
+8.7.1 or higher
+1.40.1
+Enhancement
+(
+View pull request
+)
+Add link to main AWS requirements in all integrations page.
+8.7.1 or higher
+1.40.0
+Enhancement
+(
+View pull request
+)
+Add metric type to SNS, SQS and Billing data streams.
+8.7.1 or higher
+1.39.0
+Enhancement
+(
+View pull request
+)
+Add AWS API Gateway data stream.
+8.7.1 or higher
+1.38.4
+Enhancement
+(
+View pull request
+)
+Add dimension fields to billing, sns and sqs data streams.
+8.7.1 or higher
+1.38.3
+Enhancement
+(
+View pull request
+)
+Add dimension fields to firewall, transit gateway and vpn data streams.
+8.7.1 or higher
+1.38.2
+Enhancement
+(
+View pull request
+)
+Add metric type to vpn, firewall and transit gateway data streams.
+8.7.1 or higher
+1.38.1
+Enhancement
+(
+View pull request
+)
+Add metric type to RDS data stream.
+8.7.1 or higher
+1.38.0
+Enhancement
+(
+View pull request
+)
+Add dimensions to RDS data stream.
+8.7.1 or higher
+1.37.3
+Bug fix
+(
+View pull request
+)
+Fix incorrect fields on multiple visualizations.
+8.7.1 or higher
+1.37.2
+Enhancement
+(
+View pull request
+)
+Migrate AWS RDS metrics dashboard to lenses.
+8.7.1 or higher
+1.37.1
+Enhancement
+(
+View pull request
+)
+Migrate AWS SNS dashboard visualizations to lenses.
+8.7.1 or higher
+1.37.0
+Enhancement
+(
+View pull request
+)
+Migrate AWS SQS metrics dashboard visualizations to lenses.
+8.7.1 or higher
+1.36.9
+Enhancement
+(
+View pull request
+)
+Migrate AWS VPN metrics dashboard to lenses.
+8.7.1 or higher
+1.36.8
+Enhancement
+(
+View pull request
+)
+Add dimension fields to usage, dynamoDB and ELB data streams.
+8.7.1 or higher
+1.36.7
+Enhancement
+(
+View pull request
+)
+Add dimension fields to Lambda data stream for TSDB support.
+8.7.1 or higher
+1.36.6
+Enhancement
+(
+View pull request
+)
+Add metric type to natgateway data stream fields.
+8.7.1 or higher
+1.36.5
+Enhancement
+(
+View pull request
+)
+Add metric type to EBS fields.
+8.7.1 or higher
+1.36.4
+Enhancement
+(
+View pull request
+)
+Add support for TSDB on kinesis data stream (metric type).
+8.7.1 or higher
+1.36.3
+Enhancement
+(
+View pull request
+)
+Add dimensions to Redshift data stream.
+8.7.1 or higher
+1.36.2
+Enhancement
+(
+View pull request
+)
+Add metric type mapping to Redshift data stream.
+8.7.1 or higher
+1.36.1
+Enhancement
+(
+View pull request
+)
+Add dimension fields to natgateway data stream.
+8.7.1 or higher
+1.36.0
+Enhancement
+(
+View pull request
+)
+Add metric type to Lambda fields.
+8.7.1 or higher
+1.35.1
+Bug fix
+(
+View pull request
+)
+Fix typo in field name causing erroneous timestamp detection on the s3access data stream.
+8.7.1 or higher
+1.35.0
+Enhancement
+(
+View pull request
+)
+Add a new flag to enable request tracing on
+httpjson
+based input
+8.7.1 or higher
+1.34.5
+Enhancement
+(
+View pull request
+)
+Migrate AWS Lambda metrics dashboard visualizations to lenses.
+8.6.0 or higher
+1.34.4
+Enhancement
+(
+View pull request
+)
+Migrate AWS DynamoDB metrics dashboard visualizations to lenses.
+8.6.0 or higher
+1.34.3
+Enhancement
+(
+View pull request
+)
+Add field metric type to ECS data stream.
+8.6.0 or higher
+1.34.2
+Enhancement
+(
+View pull request
+)
+Add dimension fields to Kinesis datastream.
+8.6.0 or higher
+1.34.1
+Enhancement
+(
+View pull request
+)
+Add dimension fields to ECS datastream for TSDB support.
+8.6.0 or higher
+1.34.0
+Enhancement
+(
+View pull request
+)
+Add dimensions to EBS data stream.
+8.6.0 or higher
+1.33.3
+Enhancement
+(
+View pull request
+)
+Add number_of_workers and latency to all CloudWatch Logs based integrations.
+8.6.0 or higher
+1.33.2
+Bug fix
+(
+View pull request
+)
+Add missing permissions in the AWS Billing integration documentation.
+8.6.0 or higher
+1.33.1
+Bug fix
+(
+View pull request
+)
+Add missing permissions in the AWS CloudWatch Logs integration documentation.
+8.6.0 or higher
+1.33.0
+Enhancement
+(
+View pull request
+)
+Add latency configuration option on the CloudWatch Logs integration.
+8.6.0 or higher
+1.32.2
+Bug fix
+(
+View pull request
+)
+Fix a minor documentation format issue.
+8.6.0 or higher
+1.32.1
+Enhancement
+(
+View pull request
+)
+Added categories and/or subcategories.
+8.6.0 or higher
+1.32.0
+Enhancement
+(
+View pull request
+)
+Migrate AWS EBS dashboard visualizations to lenses.
+8.6.0 or higher
+1.31.0
+Enhancement
+(
+View pull request
+)
+Add a data stream for Amazon GuardDuty.
+8.6.0 or higher
+1.30.0
+Enhancement
+(
+View pull request
+)
+Add dashboards data streams filters.
+8.6.0 or higher
+1.29.1
+Bug fix
+(
+View pull request
+)
+Drop comments from CloudFront loglines
+8.6.0 or higher
+1.29.0
+Enhancement
+(
+View pull request
+)
+Add data_granularity parameter and rename period title to Collection Period.
+8.6.0 or higher
+1.28.3
+Bug fix
+(
+View pull request
+)
+Remove quotes from VPC flow log message field and move dot_expander processor to top
+8.4.0 or higher
+1.28.2
+Bug fix
+(
+View pull request
+)
+Add dot_expander processor to expand all fields with dot into object fields
+Bug fix
+(
+View pull request
+)
+Support VPC flow log with message field
+8.4.0 or higher
+1.28.1
+Enhancement
+(
+View pull request
+)
+Adjust kinesis integration to kinesis data stream
+8.4.0 or higher
+1.28.0
+Enhancement
+(
+View pull request
+)
+Enhance S3 integration dashboard
+8.4.0 or higher
+1.27.3
+Bug fix
+(
+View pull request
+)
+Support multiple forwarded IPs in cloudfront integration
+8.4.0 or higher
+1.27.2
+Enhancement
+(
+View pull request
+)
+Update the pagination termination condition.
+8.4.0 or higher
+1.27.1
+Enhancement
+(
+View pull request
+)
+Added a Summary Dashboard for AWS Security Hub.
+8.4.0 or higher
+1.27.0
+Enhancement
+(
+View pull request
+)
+Add Inspector data stream.
+8.4.0 or higher
+1.25.3
+Bug fix
+(
+View pull request
+)
+Remove duplicate fields from agent.yml and use ecs.yml for ECS fields
+8.3.0 or higher
+1.25.2
+Bug fix
+(
+View pull request
+)
+Update ec2 fields.yml doc
+8.3.0 or higher
+1.25.1
+Bug fix
+(
+View pull request
+)
+Remove duplicate 'content_type' config that causes errors while configurating the integration.
+8.3.0 or higher
+1.25.0
+Enhancement
+(
+View pull request
+)
+Force content type where json content is expected
+8.3.0 or higher
+1.24.6
+Bug fix
+(
+View pull request
+)
+Enhance Kinesis integration dashboard
+8.3.0 or higher
+1.24.5
+Bug fix
+(
+View pull request
+)
+Allow adding multiple processors in cloudfront logs.
+8.3.0 or higher
+1.24.4
+Bug fix
+(
+View pull request
+)
+Do not rely on dynamodb lightweight module metricset.
+8.3.0 or higher
+1.24.3
+Bug fix
+(
+View pull request
+)
+Fix adding processors in cloudfront logs.
+8.3.0 or higher
+1.24.2
+Bug fix
+(
+View pull request
+)
+Fix billing datastream agent template.
+8.3.0 or higher
+1.24.1
+Bug fix
+(
+View pull request
+)
+Fix aws.cloudtrail.request_id parsing
+8.3.0 or higher
+1.24.0
+Bug fix
+(
+View pull request
+)
+Expose Default Region setting to UI
+8.3.0 or higher
+1.23.4
+Bug fix
+(
+View pull request
+)
+Set default endpoint to empty string
+8.3.0 or higher
+1.23.3
+Bug fix
+(
+View pull request
+)
+Fix Billing Dashboard
+8.3.0 or higher
+1.23.2
+Bug fix
+(
+View pull request
+)
+Fix EC2 dashboard
+8.3.0 or higher
+1.23.1
+Enhancement
+(
+View pull request
+)
+Update all AWS documentation.
+8.1.0 or higher
+1.23.0
+Bug fix
+(
+View pull request
+)
+Fix file.path field in cloudtrail data stream to use json.digestS3Object
+8.1.0 or higher
+1.22.0
+Enhancement
+(
+View pull request
+)
+Update
+cloud.region
+parsing
+8.1.0 or higher
+1.21.0
+Enhancement
+(
+View pull request
+)
+Add Security Hub Findings and Insights data streams
+8.1.0 or higher
+1.20.0
+Enhancement
+(
+View pull request
+)
+Improve dashboards by removing individual visualizations from library
+8.1.0 or higher
+1.19.5
+Enhancement
+(
+View pull request
+)
+Move ebs metrics config from beats to integrations
+7.15.0 or higher
+8.0.0 or higher
+1.19.4
+Bug fix
+(
+View pull request
+)
+Fix proxy URL documentation rendering.
+7.15.0 or higher
+8.0.0 or higher
+1.19.3
+Bug fix
+(
+View pull request
+)
+Update sample_event.json in kinesis data stream
+7.15.0 or higher
+8.0.0 or higher
+1.19.2
+Enhancement
+(
+View pull request
+)
+Move NATGateway metrics config from beats to integrations
+7.15.0 or higher
+8.0.0 or higher
+1.19.1
+Enhancement
+(
+View pull request
+)
+Move Transit Gateway metrics config from beats to integrations
+7.15.0 or higher
+8.0.0 or higher
+1.19.0
+Enhancement
+(
+View pull request
+)
+Add Kinesis metrics datastream
+7.15.0 or higher
+8.0.0 or higher
+1.18.2
+Enhancement
+(
+View pull request
+)
+Move s3_request metrics config from beats to integrations
+Enhancement
+(
+View pull request
+)
+Move s3_daily_storage metrics config from beats to integrations
+Enhancement
+(
+View pull request
+)
+Move SQS metrics config from beats to integrations
+Enhancement
+(
+View pull request
+)
+Move SNS metrics config from beats to integrations
+Enhancement
+(
+View pull request
+)
+Move lambda metrics config from beats to integrations
+7.15.0 or higher
+8.0.0 or higher
+1.18.1
+Enhancement
+(
+View pull request
+)
+Release AWS billing integration as GA
+7.15.0 or higher
+8.0.0 or higher
+1.18.0
+Enhancement
+(
+View pull request
+)
+Add ECS metricset
+Bug fix
+(
+View pull request
+)
+Fix incorrect fields on multiple visualizations
+7.15.0 or higher
+8.0.0 or higher
+1.17.5
+Enhancement
+(
+View pull request
+)
+Release Amazon Redshift integration as GA
+7.15.0 or higher
+8.0.0 or higher
+1.17.4
+Bug fix
+(
+View pull request
+)
+Fix data_stream.dataset indentation on cloudwatch_logs integration
+7.15.0 or higher
+8.0.0 or higher
+1.17.3
+Bug fix
+(
+View pull request
+)
+Add missing endpoint config to metrics datasets.
+Enhancement
+(
+View pull request
+)
+Move usage metrics config from beats to integrations
+Enhancement
+(
+View pull request
+)
+Move dynamodb metrics config from beats to integrations
+7.15.0 or higher
+8.0.0 or higher
+1.17.2
+Bug fix
+(
+View pull request
+)
+Improve support for event.original field from upstream forwarders.
+7.15.0 or higher
+8.0.0 or higher
+1.17.1
+Bug fix
+(
+View pull request
+)
+Fix misspelling of Log Stream Prefix variable in manifest for aws-cloudwatch input
+7.15.0 or higher
+8.0.0 or higher
+1.17.0
+Enhancement
+(
+View pull request
+)
+Added Redshift integration
+7.15.0 or higher
+8.0.0 or higher
+1.16.6
+Enhancement
+(
+View pull request
+)
+Update documentation with additional context for new users.
+7.15.0 or higher
+8.0.0 or higher
+1.16.5
+Enhancement
+(
+View pull request
+)
+Move ELB metrics config from beats to integrations
+—
+1.16.4
+Bug fix
+(
+View pull request
+)
+Fix ELB dataset to parse URLs with spaces
+Enhancement
+(
+View pull request
+)
+Upgrade ECS to 8.2.0
+7.15.0 or higher
+8.0.0 or higher
+1.16.3
+Enhancement
+(
+View pull request
+)
+Move RDS metrics config from beats to integrations
+—
+1.16.2
+Enhancement
+(
+View pull request
+)
+Move EC2 metrics config from beats to integrations
+—
+1.16.1
+Bug fix
+(
+View pull request
+)
+Fix invalid values for ECS fields in vpcflow
+—
+1.16.0
+Enhancement
+(
+View pull request
+)
+Move VPN configuration file into integrations and add tag collection
+7.15.0 or higher
+8.0.0 or higher
+1.15.0
+Enhancement
+(
+View pull request
+)
+Deprecate s3 input in cloudwatch integration
+Enhancement
+(
+View pull request
+)
+Improve description for cloudwatch integration
+—
+1.14.8
+Bug fix
+(
+View pull request
+)
+Fix http.response.status_code to accept 000
+7.15.0 or higher
+8.0.0 or higher
+1.14.7
+Bug fix
+(
+View pull request
+)
+Fix aws.dimensions.* for rds data stream
+Bug fix
+(
+View pull request
+)
+Fix aws.dimensions.* for sns data stream
+Bug fix
+(
+View pull request
+)
+Add aws.dimensions.* for dynamodb data stream
+7.15.0 or higher
+8.0.0 or higher
+1.14.6
+Enhancement
+(
+View pull request
+)
+Improve s3 integration tile title and description
+—
+1.14.5
+Bug fix
+(
+View pull request
+)
+Fix duplicate titles for integrations
+7.15.0 or higher
+8.0.0 or higher
+1.14.4
+Bug fix
+(
+View pull request
+)
+Fix cloudfront integration grok pattern
+—
+1.14.3
+Enhancement
+(
+View pull request
+)
+Add new pattern to VPC Flow logs including all 29 v5 fields
+—
+1.14.2
+Bug fix
+(
+View pull request
+)
+Fix billing dashboard.
+—
+1.14.1
+Enhancement
+(
+View pull request
+)
+Add documentation for multi-fields
+—
+1.14.0
+Enhancement
+(
+View pull request
+)
+Add configuration for max_number_of_messages to the aws.firewall_logs S3 input.
+7.15.0 or higher
+8.0.0 or higher
+1.13.1
+Bug fix
+(
+View pull request
+)
+Fix metricbeat- reference in dashboard
+7.15.0 or higher
+8.0.0 or higher
+1.13.0
+Enhancement
+(
+View pull request
+)
+Compress dashboard screenshots.
+7.15.0 or higher
+8.0.0 or higher
+1.12.1
+Bug fix
+(
+View pull request
+)
+Fix field mapping conflicts in the elb_logs data stream relating to ECS fields (
+trace.id
+,
+source.port
+, and a few others).
+7.15.0 or higher
+8.0.0 or higher
+1.12.0
+Enhancement
+(
+View pull request
+)
+Add CloudFront Logs Datastream
+—
+1.11.4
+Bug fix
+(
+View pull request
+)
+Add Ingest Pipeline script to map IANA Protocol Numbers
+—
+1.11.3
+Bug fix
+(
+View pull request
+)
+Changing missing ecs versions to 8.0.0
+—
+1.11.2
+Bug fix
+(
+View pull request
+)
+Add data_stream.dataset option for custom aws-cloudwatch log input
+—
+1.11.1
+Bug fix
+(
+View pull request
+)
+Update permission list
+—
+1.11.0
+Enhancement
+(
+View pull request
+)
+Update to ECS 8.0
+7.15.0 or higher
+8.0.0 or higher
+1.10.2
+Enhancement
+(
+View pull request
+)
+Change cloudwatch metrics and logs default to false
+7.15.0 or higher
+8.0.0 or higher
+1.10.1
+Enhancement
+(
+View pull request
+)
+Add description of supported vpcflow formats
+—
+1.10.0
+Enhancement
+(
+View pull request
+)
+Add cloudwatch input into AWS package for log collection
+—
+1.9.0
+Enhancement
+(
+View pull request
+)
+Add Route 53 Resolver Logs Datastream
+7.15.0 or higher
+8.0.0 or higher
+1.8.0
+Enhancement
+(
+View pull request
+)
+Add Route 53 Public Zone Logs Datastream
+—
+1.7.1
+Bug fix
+(
+View pull request
+)
+Regenerate test files using the new GeoIP database
+—
+1.7.0
+Enhancement
+(
+View pull request
+)
+Add integration for AWS Network Firewall
+—
+1.6.2
+Bug fix
+(
+View pull request
+)
+Change test public IPs to the supported subset
+—
+1.6.1
+Enhancement
+(
+View pull request
+)
+Fix the value of event.created in CloudTrail data stream.
+7.15.0 or higher
+8.0.0 or higher
+1.6.0
+Enhancement
+(
+View pull request
+)
+Add max_number_of_messages config option to AWS S3 input config.
+—
+1.5.1
+Enhancement
+(
+View pull request
+)
+Add missing sample events
+7.15.0 or higher
+8.0.0 or higher
+1.5.0
+Enhancement
+(
+View pull request
+)
+Support Kibana 8.0
+7.15.0 or higher
+8.0.0 or higher
+1.4.1
+Enhancement
+(
+View pull request
+)
+Add Overview dashboard for AWS S3 Storage Lens
+7.15.0 or higher
+1.4.0
+Enhancement
+(
+View pull request
+)
+Add integration for AWS S3 Storage Lens
+—
+1.3.2
+Enhancement
+(
+View pull request
+)
+Uniform with guidelines
+—
+1.3.1
+Enhancement
+(
+View pull request
+)
+Add config parameter descriptions
+—
+1.3.0
+Enhancement
+(
+View pull request
+)
+Add WAF datastream
+—
+1.2.2
+Bug fix
+(
+View pull request
+)
+Prevent pipeline script error
+—
+1.2.1
+Bug fix
+(
+View pull request
+)
+Fix logic that checks for the 'forwarded' tag
+—
+1.2.0
+Enhancement
+(
+View pull request
+)
+Update to ECS 1.12.0
+—
+1.1.0
+Enhancement
+(
+View pull request
+)
+vpcflow sync with filebeat fileset
+7.14.0 or higher
+1.0.0
+Enhancement
+(
+View pull request
+)
+Release AWS as GA
+7.14.0 or higher
+0.10.7
+Enhancement
+(
+View pull request
+)
+Add proxy config
+—
+0.10.6
+Bug fix
+(
+View pull request
+)
+Fix aws.billing.EstimatedCharges field name
+—
+0.10.5
+Bug fix
+(
+View pull request
+)
+Add event.created field
+—
+0.10.4
+Enhancement
+(
+View pull request
+)
+Improve RDS dashboard
+—
+0.10.3
+Enhancement
+(
+View pull request
+)
+Convert to generated ECS fields
+—
+0.10.2
+Enhancement
+(
+View pull request
+)
+update to ECS 1.11.0
+—
+0.10.1
+Enhancement
+(
+View pull request
+)
+Escape special characters in docs
+—
+0.10.0
+Enhancement
+(
+View pull request
+)
+Update integration description
+—
+0.9.3
+Bug fix
+(
+View pull request
+)
+Fix categories for each policy template
+—
+0.9.2
+Enhancement
+(
+View pull request
+)
+Add linked account information into billing metricset
+—
+0.9.1
+Bug fix
+(
+View pull request
+)
+Fix
+aws.s3access
+pipeline when remote IP is a
+-
+—
+0.9.0
+Enhancement
+(
+View pull request
+)
+Change default credential options to access keys
+—
+0.8.0
+Enhancement
+(
+View pull request
+)
+Set "event.module" and "event.dataset"
+—
+0.7.0
+Enhancement
+(
+View pull request
+)
+Introduce granularity using input_groups
+—
+0.6.4
+Enhancement
+(
+View pull request
+)
+Add support for Splunk authorization tokens
+—
+0.6.3
+Bug fix
+(
+View pull request
+)
+Fix bug in Third Party ingest pipeline
+—
+0.6.2
+Bug fix
+(
+View pull request
+)
+Removed incorrect
+http.request.referrer
+field from elb logs
+—
+0.6.1
+Enhancement
+(
+View pull request
+)
+Add support for CloudTrail Digest & Insight logs
+—
+0.6.0
+Enhancement
+(
+View pull request
+)
+Update ECS version, add event.original and preparing for package GA
+—
+0.5.6
+Bug fix
+(
+View pull request
+)
+Fix stack compatability
+—
+0.5.5
+Enhancement
+(
+View pull request
+)
+Allow role_arn work with access keys for AWS
+—
+0.5.4
+Enhancement
+(
+View pull request
+)
+Rename s3 input to aws-s3.
+—
+0.5.3
+Enhancement
+(
+View pull request
+)
+Add missing "geo" fields
+—
+0.5.2
+Enhancement
+(
+View pull request
+)
+update to ECS 1.9.0
+—
+0.5.1
+Bug fix
+(
+View pull request
+)
+Ignore missing "json" field in ingest pipeline
+—
+0.5.0
+Enhancement
+(
+View pull request
+)
+Moving edge processors to ingest pipeline
+—
+0.4.2
+Enhancement
+(
+View pull request
+)
+Updating package owner
+—
+0.4.1
+Bug fix
+(
+View pull request
+)
+Correct sample event file.
+—
+0.4.0
+Enhancement
+(
+View pull request
+)
+Add changes to use ECS 1.8 fields.
+—
+0.0.3
+Enhancement
+(
+View pull request
+)
+initial release
+—
+Previous
+Amazon GuardDuty
+Next
+Amazon Kinesis Data Firehose

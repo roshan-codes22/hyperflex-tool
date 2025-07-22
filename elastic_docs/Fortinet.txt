@@ -1,0 +1,20 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Fortinet
+Collect logs from various Fortinet products. Fortinet develops security solutions like firewalls, endpoint security, and intrusion detection systems.
+FortiEDR Logs
+FortiGate Firewall Logs
+FortiMail
+FortiManager Logs
+Fortinet FortiProxy
+Previous
+ForgeRock
+Next
+FortiEDR Logs

@@ -1,0 +1,257 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Cloud Asset Discovery
+Version
+0.19.0 beta:[] (
+View all
+)
+Compatible Kibana version(s)
+>=8.18.0
+Supported Serverless project types
+What's this?
+Security
+Subscription level
+What's this?
+Basic
+Level of support
+What's this?
+Elastic
+The Cloud Asset Discovery integration helps you discover and track all the resources in your cloud environment across AWS, Google Cloud Platform (GCP), and Microsoft Azure. Once you connect your cloud accounts, this integration automatically finds and lists your cloud services and assets, such as:
+AWS
+: S3 buckets, EC2 instances, EKS clusters, and more.
+GCP
+: Cloud Storage buckets, Compute Engine instances, Kubernetes clusters, and more.
+Azure
+: Virtual Machines, Blob Storage, Azure Kubernetes Service (AKS), and more.
+⚠️ (BETA) Please note: Multiple cloud providers per policy are not supported. Please select only one.
+View the full list of supported services for discovery
+.
+Why Use Cloud Asset Discovery?
+Automatic Asset Discovery
+: Skip the manual work. Get an up-to-date inventory of all your cloud resources in one place.
+Complete Cloud Visibility
+: View assets across AWS, GCP, and Azure in a unified interface.
+Better Security Oversight
+: Know exactly what resources you have so you can make sure they are secure and properly configured.
+What You Can Do:
+Track All Your Cloud Resources
+: Get a full inventory of your cloud assets, across all accounts and providers, with minimal effort.
+Keep an Eye on Security and Compliance
+: Make sure your resources are set up correctly and follow best practices.
+Additional Cloud Asset Context
+: Gain more context about your cloud assets to help in triaging detected threats effectively.
+How It Works:
+Connect
+: Provide read-only access to your cloud accounts (AWS, GCP, Azure).
+Discover
+: The integration will perform an inventory of all cloud resources every 24 hours.
+View
+: View the discovered assets via our out-of-the-box dashboard.
+Getting Started:
+You can get started by adding this integration and providing the necessary access. You can also follow the step-by-step getting started guide
+here
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+0.19.0
+Bug fix
+(
+View pull request
+)
+Add Cloud Formation templates for AWS agentless deployment
+—
+0.18.0
+Enhancement
+(
+View pull request
+)
+Add entity.source
+—
+0.17.0
+Enhancement
+(
+View pull request
+)
+Add cloud connector support Asset Inventory for AWS
+—
+0.16.0
+Enhancement
+(
+View pull request
+)
+Move object Attributes to flattened entity.raw
+—
+0.15.0
+Enhancement
+(
+View pull request
+)
+Rename type to sub_type and category to type
+—
+0.14.0
+Bug fix
+(
+View pull request
+)
+Fix cloud formation template URL
+—
+0.13.0
+Bug fix
+(
+View pull request
+)
+Remove GCP project and organization ID from validation
+—
+0.12.0
+Bug fix
+(
+View pull request
+)
+Fix the dataview name for the asset inventory data stream
+—
+0.11.0
+Enhancement
+(
+View pull request
+)
+Change name to Cloud Asset Discovery
+—
+0.10.0
+Enhancement
+(
+View pull request
+)
+Add required variables to the integration
+—
+0.9.0
+Bug fix
+(
+View pull request
+)
+Map entity.name as keyword
+—
+0.8.0
+Enhancement
+(
+View pull request
+)
+Default to agentless deployment
+—
+0.7.0
+Enhancement
+(
+View pull request
+)
+Refactor field names to entity and use ECS
+—
+0.6.0
+Enhancement
+(
+View pull request
+)
+Update cloud provider template URLs
+—
+0.5.0
+Enhancement
+(
+View pull request
+)
+Add organization support for AWS and Azure
+—
+0.4.0
+Enhancement
+(
+View pull request
+)
+Improve Asset Inventory UX
+—
+0.3.0
+Enhancement
+(
+View pull request
+)
+Change compatibility to >=8.16
+—
+0.2.3
+Enhancement
+(
+View pull request
+)
+Update README
+—
+0.2.2
+Enhancement
+(
+View pull request
+)
+Enable Agentless deployment.
+—
+0.2.1
+Enhancement
+(
+View pull request
+)
+Add template variables
+—
+0.2.0
+Enhancement
+(
+View pull request
+)
+Restore Azure & GCP Asset Inventory for kibana ^8.16.0
+—
+0.1.9
+Enhancement
+(
+View pull request
+)
+Remove GCP/Azure Asset Inventory for kibana 8.15.0
+—
+0.1.8
+Enhancement
+(
+View pull request
+)
+Add GCP Asset Inventory
+—
+0.1.7
+Enhancement
+(
+View pull request
+)
+Update from related.entities to related.entity
+—
+0.1.6
+Enhancement
+(
+View pull request
+)
+Add related.entities field
+—
+0.1.5
+Enhancement
+(
+View pull request
+)
+Add Azure Asset Inventory
+—
+0.1.4
+Enhancement
+(
+View pull request
+)
+Add Cloud Asset Inventory
+—
+Previous
+Cloudflare Logpush
+Next
+CockroachDB Metrics

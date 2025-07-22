@@ -1,0 +1,19 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Universal Profiling
+Universal Profiling provides fleet-wide, whole-system, continuous profiling with zero instrumentation.
+Get a comprehensive understanding of what lines of code are consuming compute resources throughout your entire fleet by visualizing your data in Kibana using the flamegraph, stacktraces, and top functions views.
+Universal Profiling Agent
+Universal Profiling Collector
+Universal Profiling Symbolizer
+Previous
+UDP Logs (custom)
+Next
+Universal Profiling Agent

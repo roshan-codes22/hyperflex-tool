@@ -1,0 +1,48 @@
+Loading
+Elastic Docs
+/
+Reference
+/
+Ingestion tools
+/
+Elastic integrations
+An Elastic integration is a collection of assets that defines how to observe a specific product or service with the Elastic Stack. Each integration comes pre-packaged with assets that support your needs and allow you to easily collect, store, and visualize any data from any source.
+Elastic offers over 300 turn-key integrations. Choose the integration that best fits your needs:
+Search
+Security
+Observability
+You can also browse through the catalogue of Cloud provider integrations:
+AWS
+Azure
+GCP
+Ingestion methods
+Elastic offers a variety of data ingestion methods:
+Elastic Agent
+recommended for observability and security use cases.
+Agentless integrations
+to ingest data while avoiding orchestration, management, and maintenance.
+Filebeat modules
+to collect logs.
+Metricbeat modules
+to collect metrics.
+Logstash
+to collect and transform your data.
+Web crawler
+to make your website searchable.
+Data connectors
+to sync content from a range of third-party databases and object stores.
+Refer to the
+Ingest tools overview
+for more details about these options.
+Get started
+If you want to quickly get started, follow these steps:
+Spin up an Elastic Stack deployment. You can
+try it out for free
+on AWS, GCP, or Azure.
+Install the Elastic Agent.
+Elastic Agent
+is a single, unified way to add monitoring for logs, metrics, and other types of data to a host.
+Previous
+License
+Next
+Integrations quick reference

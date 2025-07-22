@@ -1,0 +1,26 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Kubernetes
+Collect logs and metrics from Kubernetes—an open-source system for automating deployment, scaling, and management of containerized applications.
+Kubernetes
+API Server metrics
+Audit logs
+Container logs
+Controller Manager metrics
+Event metrics
+Kube-state metrics
+Kubelet metrics
+OpenTelemetry Assets
+Proxy metrics
+Scheduler metrics
+Previous
+Keycloak
+Next
+Kubernetes

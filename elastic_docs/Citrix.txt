@@ -1,0 +1,17 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Citrix
+Collect logs and metrics from various Citrix products. Citrix is trusted by millions of cloud users and thousands of companies across the globe.
+ADC
+Web App Firewall
+Previous
+Cisco Meraki Metrics
+Next
+ADC

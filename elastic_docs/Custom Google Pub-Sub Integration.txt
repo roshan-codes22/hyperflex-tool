@@ -1,0 +1,213 @@
+Loading
+Elastic Docs
+/
+…
+/
+Elastic integrations
+/
+Google Cloud
+/
+Custom Google Pub/Sub Integration
+Version
+2.2.0 (
+View all
+)
+Compatible Kibana version(s)
+8.13.0 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+Level of support
+What's this?
+Elastic
+The custom Google Pub/Sub input package is used to ingest data from a Google Pub/Sub topic subscription that is not covered by our
+GCP Integration
+.
+This integration could, for example, be used to receive Stackdriver logs that have been exported to a Google Pub/Sub topic.
+Multiple Elastic Agent instances can be configured to read from the same subscription to achieve high availability or increased throughput.
+Configuring
+Create a user-managed service account (you can skip this if Elastic Agent is running in a VM with a service account attached).  See:
+Service Accounts
+Create a Pub/Sub topic and subscription.  See:
+Topics and Subscriptions
+Configure this integration to read from the Pub/Sub subscription using the service account credentials.
+Write logs into the Pub/Sub topic yourself or configure a log sink to export GCP logs to the topic. See:
+Managing Sinks
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+2.2.0
+Enhancement
+(
+View pull request
+)
+Update Kibana constraint to support 9.0.0.
+8.13.0 or higher
+9.0.0 or higher
+2.1.1
+Enhancement
+(
+View pull request
+)
+Add missing category.
+8.13.0 or higher
+2.1.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.11.0. Update the kibana constraint to ^8.13.0. Modified the field definitions to remove ECS fields made redundant by the ecs@mappings component template.
+8.13.0 or higher
+2.0.0
+Enhancement
+(
+View pull request
+)
+Converted Google Pub/Sub to input package type.
+8.12.0 or higher
+1.13.0
+Enhancement
+(
+View pull request
+)
+Set sensitive values as secret.
+8.12.0 or higher
+1.12.1
+Enhancement
+(
+View pull request
+)
+Changed owners
+7.16.0 or higher
+8.0.0 or higher
+1.12.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.11.0.
+7.16.0 or higher
+8.0.0 or higher
+1.11.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.10.0.
+7.16.0 or higher
+8.0.0 or higher
+1.10.0
+Enhancement
+(
+View pull request
+)
+The format_version in the package manifest changed from 2.11.0 to 3.0.0. Removed dotted YAML keys from package manifest. Added 'owner.type: elastic' to package manifest.
+7.16.0 or higher
+8.0.0 or higher
+1.9.0
+Enhancement
+(
+View pull request
+)
+Add tags.yml file so that integration's dashboards and saved searches are tagged with "Security Solution" and displayed in the Security Solution UI.
+7.16.0 or higher
+8.0.0 or higher
+1.8.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.9.0.
+7.16.0 or higher
+8.0.0 or higher
+1.7.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.8.0.
+7.16.0 or higher
+8.0.0 or higher
+1.6.0
+Enhancement
+(
+View pull request
+)
+Update package-spec version to 2.7.0.
+7.16.0 or higher
+8.0.0 or higher
+1.5.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.7.0.
+7.16.0 or higher
+8.0.0 or higher
+1.4.1
+Enhancement
+(
+View pull request
+)
+Added categories and/or subcategories.
+7.16.0 or higher
+8.0.0 or higher
+1.4.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.6.0.
+7.16.0 or higher
+8.0.0 or higher
+1.3.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.5.0.
+7.16.0 or higher
+8.0.0 or higher
+1.2.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.4.0
+7.16.0 or higher
+8.0.0 or higher
+1.1.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.3.0.
+7.16.0 or higher
+8.0.0 or higher
+1.0.1
+Enhancement
+(
+View pull request
+)
+update readme
+7.16.0 or higher
+8.0.0 or higher
+1.0.0
+Enhancement
+(
+View pull request
+)
+Initial Release
+7.16.0 or higher
+8.0.0 or higher
+Previous
+GCP Metrics Input
+Next
+GCP PubSub metrics

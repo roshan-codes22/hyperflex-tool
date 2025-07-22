@@ -1,0 +1,143 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Jolokia input
+Version
+0.7.1 beta:[] (
+View all
+)
+Compatible Kibana version(s)
+8.13.0 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+Level of support
+What's this?
+Elastic
+This input package collects metrics from
+Jolokia agents
+running on a target JMX server or dedicated proxy server.
+The metrics are collected by communicating with a Jolokia HTTP/REST endpoint that exposes the JMX metrics over HTTP/REST/JSON.
+The user can use this input for any service that collects metrics through Jolokia endpoint. User has the flexibility to provide custom mappings and custom ingets pipelines through the Kibana UI to get the tailored data.
+Compatibility
+The Jolokia module is tested with Jolokia 1.7.0.
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+0.7.1
+Bug fix
+(
+View pull request
+)
+Added description to ssl nodes to package level manifest.yml file to including links to documentation.
+—
+0.7.0
+Enhancement
+(
+View pull request
+)
+Add support for Kibana
+9.0.0
+.
+—
+0.6.1
+Enhancement
+(
+View pull request
+)
+Add missing category.
+—
+0.6.0
+Enhancement
+(
+View pull request
+)
+Added HTTP Options and http_method parameter (default to GET).
+—
+0.5.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.11.0. Update the kibana constraint to ^8.13.0. Modified the field definitions to remove ECS fields made redundant by the ecs@mappings component template.
+—
+0.4.0
+Enhancement
+(
+View pull request
+)
+Add processors option.
+—
+0.3.0
+Enhancement
+(
+View pull request
+)
+Update the package format_version to 3.0.0.
+—
+0.2.0
+Enhancement
+(
+View pull request
+)
+Update the Kibana Version to 8.8.0
+—
+0.1.0
+Enhancement
+(
+View pull request
+)
+Rename ownership from obs-service-integrations to obs-infraobs-integrations
+—
+0.0.5
+Bug fix
+(
+View pull request
+)
+Added build manifest to indicate the ECS reference.
+—
+0.0.4
+Enhancement
+(
+View pull request
+)
+Added categories and/or subcategories.
+—
+0.0.3
+Bug fix
+(
+View pull request
+)
+Update the Jolokia metrics path
+—
+0.0.2
+Enhancement
+(
+View pull request
+)
+Update the Jolokia logo
+—
+0.0.1
+Enhancement
+(
+View pull request
+)
+Initial draft of the Jolokia Input
+—
+Previous
+Jamf Protect
+Next
+Journald logs (custom)

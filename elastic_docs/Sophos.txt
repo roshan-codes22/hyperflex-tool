@@ -1,0 +1,17 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Sophos
+Collect logs from various Sophos products. Sophos develops products for communication endpoint, encryption, network security, email security, mobile security and unified threat management.
+Sophos
+Sophos Central
+Previous
+SonicWall Firewall
+Next
+Sophos

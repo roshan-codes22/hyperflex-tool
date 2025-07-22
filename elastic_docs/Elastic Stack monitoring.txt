@@ -1,0 +1,22 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Elastic Stack monitoring
+Collect logs and metrics from various Elastic products.
+Monitor Elastic products, like Elastisearch, Kibana, Elastic Agent, and more. Built in dashboards help you visualize the status of your Elastic services, enabling you to troubleshoot problems quickly and effectively.
+Beats
+Elasticsearch
+Elastic Agent
+Elastic Package Registry
+Kibana
+Logstash
+Previous
+Threat intelligence utilities
+Next
+Beats

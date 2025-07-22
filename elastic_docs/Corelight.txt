@@ -1,0 +1,156 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Corelight
+Version
+1.0.0 (
+View all
+)
+Compatible Kibana version(s)
+8.16.0 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+Level of support
+What's this?
+Partner
+Corelight
+provides network detection and response (NDR) solutions that enhance visibility, threat detection, and incident response by leveraging open-source technologies like Zeek. Its platform integrates with existing security tools to deliver high-fidelity network data, helping organizations detect and respond to threats more effectively across both on-premises and cloud environments.
+This integration includes only the Corelight dashboards mentioned below:
+Connections
+Corelight Suricata IDS Alert Overview
+DNS
+Files
+HTTP
+Intel
+IP Interrogation
+Log Hunting
+Name Resolution Insights
+Notices
+RDP Inferences Overview
+Remote Activity Insights
+SSH Inferences Overview
+SSL and x509
+Secure Channel Insights
+Security Posture
+Software
+VPN Insights
+Prerequisites:
+Add ECS Mappings
+: Start by adding the ECS (Elastic Common Schema) mappings from the
+Corelight GitHub organization
+. You can find the required templates here:
+Corelight ECS Templates
+. The script within the repository installs the necessary components, including index settings, index templates, ILM policies, and ingest pipelines etc. These components will ensure that Corelight data is correctly formatted and aligned with Elastic's schema.
+Send Data from Corelight to Elastic
+: Once the ECS mappings are in place, configure Elasticsearch in the web interface under Sensor > Export > Export to Elastic. It will require below parameters:
+Server:
+The HTTP or HTTPS URL (including the port).
+Prefix:
+The Elasticsearch index, alias, and template prefix (e.g. logs-corelight-*).
+Username:
+The Username to authenticate to Elasticsearch.
+Password:
+The Password to authenticate to Elasticsearch.
+Zeek logs to exclude:
+Logs that you don't want to export to Elasticsearch. If blank, sensor will export all log types.
+Elasticsearch log filter:
+Logs to exclude using the Corelight Filtering Language.
+Note
+Use the index prefix name (logs-*) instead of a custom index prefix.
+Setup
+Enabling the integration in Elastic:
+In Kibana navigate to Management > Integrations.
+In "Search for integrations" top bar, search
+Corelight
+.
+Select the "Corelight" integration from the search results.
+Navigate to Settings.
+Select the "Install Corelight assets".
+Navigate to Assets to get list of dashboards.
+Note
+This integration provides dashboards only. We recommend regularly checking and updating assets using the script from the Corelight repository. For any mapping or parsing issues, especially those not related to the dashboards, we recommend contacting Corelight, as they maintain those components.
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+1.0.0
+Enhancement
+(
+View pull request
+)
+Release package as GA.
+8.16.0 or higher
+9.0.0 or higher
+0.8.0
+Enhancement
+(
+View pull request
+)
+Update Kibana constraint to support 9.0.0.
+—
+0.7.0
+Enhancement
+(
+View pull request
+)
+Enable "Paginate table" toggle and display all available columns of table visualization, and add Less Secure TLS version visualization to relevant dashboards.
+—
+0.6.0
+Enhancement
+(
+View pull request
+)
+Update saved search of all dashboards to include only timestamps and summary of parsed logs.
+—
+0.5.0
+Enhancement
+(
+View pull request
+)
+Add data explorer dashboards.
+—
+0.4.0
+Enhancement
+(
+View pull request
+)
+Add security workflows dashboards.
+—
+0.3.0
+Enhancement
+(
+View pull request
+)
+Added an alert insight panel and updated the VPN connections visualization to a line chart in the security posture dashboard.
+—
+0.2.0
+Enhancement
+(
+View pull request
+)
+Update inferences field to ssh.inferences for ssh log type.
+—
+0.1.0
+Enhancement
+(
+View pull request
+)
+Initial release.
+—
+Previous
+CoreDNS
+Next
+Couchbase

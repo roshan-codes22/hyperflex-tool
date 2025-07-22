@@ -1,0 +1,1158 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Snyk Integration
+Version
+2.0.0 (
+View all
+)
+Compatible Kibana version(s)
+8.13.0 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+Level of support
+What's this?
+Elastic
+%
+This integration is for ingesting data from the
+Snyk
+API. The integration allows collection of audit logging information and vulnerability issues via the Snyk
+REST API
+.
+REST API
+issues
+: Collects all found issues for the related organizations and projects.
+audit_logs
+: Collects audit logging from Snyk, this can be actions like users, permissions, groups, api access and more.
+To configure access to the Snyk REST Audit Log API you will have to obtain an API access token from
+your Snyk account dashboard
+as described in the
+Snyk Documentation
+.
+Audit Logs
+Example
+{
+"@timestamp"
+:
+"2024-05-15T16:34:14.144Z"
+,
+"agent"
+:
+{
+"ephemeral_id"
+:
+"6b4b2646-d403-4342-9261-edee5f31db21"
+,
+"id"
+:
+"24936262-0cda-4934-aea3-82bed4844c98"
+,
+"name"
+:
+"docker-fleet-agent"
+,
+"type"
+:
+"filebeat"
+,
+"version"
+:
+"8.13.0"
+}
+,
+"data_stream"
+:
+{
+"dataset"
+:
+"snyk.audit_logs"
+,
+"namespace"
+:
+"ep"
+,
+"type"
+:
+"logs"
+}
+,
+"ecs"
+:
+{
+"version"
+:
+"8.11.0"
+}
+,
+"elastic_agent"
+:
+{
+"id"
+:
+"24936262-0cda-4934-aea3-82bed4844c98"
+,
+"snapshot"
+:
+false
+,
+"version"
+:
+"8.13.0"
+}
+,
+"event"
+:
+{
+"action"
+:
+"org.project.issue.create"
+,
+"agent_id_status"
+:
+"verified"
+,
+"dataset"
+:
+"snyk.audit_logs"
+,
+"ingested"
+:
+"2024-05-23T23:38:58Z"
+,
+"original"
+:
+"{\"content\":{\"action\":\"Returned from analysis\"},\"created\":\"2024-05-15T16:34:14.144Z\",\"event\":\"org.project.issue.create\",\"org_id\":\"0de7b2d6-c1da-46aa-887e-1886f96770d4\",\"project_id\":\"d2bf0629-84a7-4b0b-b435-f49a87f0720c\"}"
+,
+"type"
+:
+[
+"creation"
+]
+}
+,
+"input"
+:
+{
+"type"
+:
+"cel"
+}
+,
+"organization"
+:
+{
+"id"
+:
+"0de7b2d6-c1da-46aa-887e-1886f96770d4"
+}
+,
+"snyk"
+:
+{
+"audit_logs"
+:
+{
+"content"
+:
+{
+"action"
+:
+"Returned from analysis"
+}
+,
+"org_id"
+:
+"0de7b2d6-c1da-46aa-887e-1886f96770d4"
+,
+"project_id"
+:
+"d2bf0629-84a7-4b0b-b435-f49a87f0720c"
+}
+}
+,
+"tags"
+:
+[
+"preserve_original_event"
+,
+"forwarded"
+,
+"snyk-audit-logs"
+]
+}
+Exported fields
+Field
+Description
+Type
+@timestamp
+Event timestamp.
+date
+data_stream.dataset
+Data stream dataset name.
+constant_keyword
+data_stream.namespace
+Data stream namespace.
+constant_keyword
+data_stream.type
+Data stream type.
+constant_keyword
+event.dataset
+Event dataset
+constant_keyword
+event.module
+Event module
+constant_keyword
+host.containerized
+If the host is a container.
+boolean
+host.os.build
+OS build information.
+keyword
+host.os.codename
+OS codename, if any.
+keyword
+input.type
+Type of Filebeat input.
+keyword
+log.flags
+Flags for the log file.
+keyword
+log.offset
+Offset of the entry in the log file.
+long
+snyk.audit_logs.content
+Overview of the content that was changed, both old and new values.
+flattened
+snyk.audit_logs.org_id
+ID of the related Organization related to the event.
+keyword
+snyk.audit_logs.project_id
+ID of the project related to the event.
+keyword
+snyk.audit_logs.user_id
+ID of the user related to the event.
+keyword
+snyk.projects
+Array with all related projects objects.
+flattened
+snyk.related.projects
+Array of all the related project ID's.
+keyword
+Issues
+Example
+{
+"@timestamp"
+:
+"2024-05-15T18:49:24.958Z"
+,
+"agent"
+:
+{
+"ephemeral_id"
+:
+"15edfc41-3c98-4358-b81a-457fe310ca39"
+,
+"id"
+:
+"24936262-0cda-4934-aea3-82bed4844c98"
+,
+"name"
+:
+"docker-fleet-agent"
+,
+"type"
+:
+"filebeat"
+,
+"version"
+:
+"8.13.0"
+}
+,
+"data_stream"
+:
+{
+"dataset"
+:
+"snyk.issues"
+,
+"namespace"
+:
+"ep"
+,
+"type"
+:
+"logs"
+}
+,
+"ecs"
+:
+{
+"version"
+:
+"8.11.0"
+}
+,
+"elastic_agent"
+:
+{
+"id"
+:
+"24936262-0cda-4934-aea3-82bed4844c98"
+,
+"snapshot"
+:
+false
+,
+"version"
+:
+"8.13.0"
+}
+,
+"event"
+:
+{
+"agent_id_status"
+:
+"verified"
+,
+"dataset"
+:
+"snyk.issues"
+,
+"ingested"
+:
+"2024-05-23T23:49:52Z"
+,
+"kind"
+:
+[
+"alert"
+]
+,
+"original"
+:
+"{\"attributes\":{\"coordinates\":[{\"is_fixable_manually\":false,\"is_fixable_snyk\":false,\"is_fixable_upstream\":false,\"is_patchable\":false,\"is_pinnable\":false,\"is_upgradeable\":false,\"reachability\":\"no-info\",\"representations\":[{\"dependency\":{\"package_name\":\"git/git-man\",\"package_version\":\"1:2.30.2-1\"}}]},{\"is_fixable_manually\":false,\"is_fixable_snyk\":false,\"is_fixable_upstream\":false,\"is_patchable\":false,\"is_pinnable\":false,\"is_upgradeable\":false,\"reachability\":\"no-info\",\"representations\":[{\"dependency\":{\"package_name\":\"git\",\"package_version\":\"1:2.30.2-1\"}}]}],\"created_at\":\"2024-05-15T18:49:24.958Z\",\"effective_severity_level\":\"low\",\"ignored\":false,\"key\":\"SNYK-DEBIAN11-GIT-6846207\",\"problems\":[{\"id\":\"SNYK-DEBIAN11-GIT-6846207\",\"source\":\"SNYK\",\"type\":\"vulnerability\",\"updated_at\":\"2024-05-15T18:49:26.454629Z\"},{\"id\":\"CVE-2024-32020\",\"source\":\"NVD\",\"type\":\"vulnerability\",\"updated_at\":\"2024-05-15T18:49:26.454631Z\",\"url\":\"https://nvd.nist.gov/vuln/detail/CVE-2024-32020\"}],\"risk\":{\"factors\":[],\"score\":{\"model\":\"v1\",\"value\":221}},\"status\":\"open\",\"title\":\"CVE-2024-32020\",\"type\":\"package_vulnerability\",\"updated_at\":\"2024-05-15T18:49:24.958Z\"},\"id\":\"bdb0b182-440e-483f-8f42-d4f5477e8349\",\"relationships\":{\"organization\":{\"data\":{\"id\":\"0de7b2d6-c1da-46aa-887e-1886f96770d4\",\"type\":\"organization\"},\"links\":{\"related\":\"/orgs/0de7b2d6-c1da-46aa-887e-1886f96770d4\"}},\"scan_item\":{\"data\":{\"id\":\"068c68be-4f21-4edd-9975-92dd051d16dc\",\"type\":\"project\"},\"links\":{\"related\":\"/orgs/0de7b2d6-c1da-46aa-887e-1886f96770d4/projects/068c68be-4f21-4edd-9975-92dd051d16dc\"}}},\"type\":\"issue\"}"
+,
+"type"
+:
+[
+"info"
+]
+}
+,
+"input"
+:
+{
+"type"
+:
+"cel"
+}
+,
+"organization"
+:
+{
+"id"
+:
+"0de7b2d6-c1da-46aa-887e-1886f96770d4"
+}
+,
+"snyk"
+:
+{
+"issues"
+:
+{
+"attributes"
+:
+{
+"coordinates"
+:
+[
+{
+"is_fixable_manually"
+:
+false
+,
+"is_fixable_snyk"
+:
+false
+,
+"is_fixable_upstream"
+:
+false
+,
+"is_patchable"
+:
+false
+,
+"is_pinnable"
+:
+false
+,
+"is_upgradeable"
+:
+false
+,
+"reachability"
+:
+"no-info"
+,
+"representations"
+:
+[
+{
+"dependency"
+:
+{
+"package_name"
+:
+"git/git-man"
+,
+"package_version"
+:
+"1:2.30.2-1"
+}
+}
+]
+}
+,
+{
+"is_fixable_manually"
+:
+false
+,
+"is_fixable_snyk"
+:
+false
+,
+"is_fixable_upstream"
+:
+false
+,
+"is_patchable"
+:
+false
+,
+"is_pinnable"
+:
+false
+,
+"is_upgradeable"
+:
+false
+,
+"reachability"
+:
+"no-info"
+,
+"representations"
+:
+[
+{
+"dependency"
+:
+{
+"package_name"
+:
+"git"
+,
+"package_version"
+:
+"1:2.30.2-1"
+}
+}
+]
+}
+]
+,
+"created_at"
+:
+"2024-05-15T18:49:24.958Z"
+,
+"effective_severity_level"
+:
+"low"
+,
+"ignored"
+:
+false
+,
+"key"
+:
+"SNYK-DEBIAN11-GIT-6846207"
+,
+"problems"
+:
+[
+{
+"id"
+:
+"SNYK-DEBIAN11-GIT-6846207"
+,
+"source"
+:
+"SNYK"
+,
+"type"
+:
+"vulnerability"
+,
+"updated_at"
+:
+"2024-05-15T18:49:26.454629Z"
+}
+,
+{
+"id"
+:
+"CVE-2024-32020"
+,
+"source"
+:
+"NVD"
+,
+"type"
+:
+"vulnerability"
+,
+"updated_at"
+:
+"2024-05-15T18:49:26.454631Z"
+,
+"url"
+:
+"https://nvd.nist.gov/vuln/detail/CVE-2024-32020"
+}
+]
+,
+"risk"
+:
+{
+"score"
+:
+{
+"model"
+:
+"v1"
+,
+"value"
+:
+221
+}
+}
+,
+"status"
+:
+"open"
+,
+"title"
+:
+"CVE-2024-32020"
+,
+"type"
+:
+"package_vulnerability"
+,
+"updated_at"
+:
+"2024-05-15T18:49:24.958Z"
+}
+,
+"id"
+:
+"bdb0b182-440e-483f-8f42-d4f5477e8349"
+,
+"relationships"
+:
+{
+"organization"
+:
+{
+"data"
+:
+{
+"id"
+:
+"0de7b2d6-c1da-46aa-887e-1886f96770d4"
+,
+"type"
+:
+"organization"
+}
+,
+"links"
+:
+{
+"related"
+:
+"/orgs/0de7b2d6-c1da-46aa-887e-1886f96770d4"
+}
+}
+,
+"scan_item"
+:
+{
+"data"
+:
+{
+"id"
+:
+"068c68be-4f21-4edd-9975-92dd051d16dc"
+,
+"type"
+:
+"project"
+}
+,
+"links"
+:
+{
+"related"
+:
+"/orgs/0de7b2d6-c1da-46aa-887e-1886f96770d4/projects/068c68be-4f21-4edd-9975-92dd051d16dc"
+}
+}
+}
+}
+}
+,
+"tags"
+:
+[
+"preserve_original_event"
+,
+"forwarded"
+,
+"snyk-issues"
+]
+,
+"vulnerability"
+:
+{
+"enumeration"
+:
+[
+"SNYK"
+,
+"NVD"
+]
+,
+"id"
+:
+[
+"SNYK-DEBIAN11-GIT-6846207"
+,
+"CVE-2024-32020"
+]
+,
+"reference"
+:
+[
+"https://nvd.nist.gov/vuln/detail/CVE-2024-32020"
+]
+,
+"scanner"
+:
+{
+"vendor"
+:
+"Snyk"
+}
+,
+"severity"
+:
+"low"
+}
+}
+Exported fields
+Field
+Description
+Type
+@timestamp
+Event timestamp.
+date
+data_stream.dataset
+Data stream dataset name.
+constant_keyword
+data_stream.namespace
+Data stream namespace.
+constant_keyword
+data_stream.type
+Data stream type.
+constant_keyword
+event.dataset
+Event dataset
+constant_keyword
+event.module
+Event module
+constant_keyword
+host.containerized
+If the host is a container.
+boolean
+host.os.build
+OS build information.
+keyword
+host.os.codename
+OS codename, if any.
+keyword
+input.type
+Type of Filebeat input.
+keyword
+log.flags
+Flags for the log file.
+keyword
+log.offset
+Offset of the entry in the log file.
+long
+snyk.issues.attributes.classes.id
+keyword
+snyk.issues.attributes.classes.source
+keyword
+snyk.issues.attributes.classes.type
+keyword
+snyk.issues.attributes.coordinates.cloud_resource
+A resource location to some service, like a cloud resource.
+flattened
+snyk.issues.attributes.coordinates.is_fixable_manually
+boolean
+snyk.issues.attributes.coordinates.is_fixable_snyk
+boolean
+snyk.issues.attributes.coordinates.is_fixable_upstream
+boolean
+snyk.issues.attributes.coordinates.is_patchable
+boolean
+snyk.issues.attributes.coordinates.is_pinnable
+boolean
+snyk.issues.attributes.coordinates.is_upgradeable
+boolean
+snyk.issues.attributes.coordinates.reachability
+keyword
+snyk.issues.attributes.coordinates.representations.dependency.package_name
+keyword
+snyk.issues.attributes.coordinates.representations.dependency.package_version
+keyword
+snyk.issues.attributes.coordinates.resourcePath
+keyword
+snyk.issues.attributes.created_at
+date
+snyk.issues.attributes.effective_severity_level
+The type from enumeration of the issue’s severity level: info, low, medium, high or critical. This is usually set from the issue’s producer, but can be overridden by policies.
+keyword
+snyk.issues.attributes.ignored
+boolean
+snyk.issues.attributes.key
+keyword
+snyk.issues.attributes.problems.disclosed_at
+When this problem was disclosed to the public.
+date
+snyk.issues.attributes.problems.discovered_at
+When this problem was first discovered.
+date
+snyk.issues.attributes.problems.id
+keyword
+snyk.issues.attributes.problems.source
+keyword
+snyk.issues.attributes.problems.type
+The problem type: rule or vulnerability.
+keyword
+snyk.issues.attributes.problems.updated_at
+When this problem was last updated.
+date
+snyk.issues.attributes.problems.url
+keyword
+snyk.issues.attributes.risk.score.model
+Risk scoring model used to calculate the score value.
+keyword
+snyk.issues.attributes.risk.score.updated_at
+date
+snyk.issues.attributes.risk.score.value
+Risk score value, which may be used for overall prioritization.
+long
+snyk.issues.attributes.status
+An issue's status: open or resolved.
+keyword
+snyk.issues.attributes.title
+keyword
+snyk.issues.attributes.type
+keyword
+snyk.issues.attributes.updated_at
+date
+snyk.issues.id
+The issue reference ID.
+keyword
+snyk.issues.relationships.organization.data.id
+keyword
+snyk.issues.relationships.organization.data.type
+keyword
+snyk.issues.relationships.organization.links.related
+keyword
+snyk.issues.relationships.scan_item.data.id
+keyword
+snyk.issues.relationships.scan_item.data.type
+keyword
+snyk.issues.relationships.scan_item.links.related
+keyword
+snyk.projects
+Array with all related projects objects.
+flattened
+snyk.related.projects
+Array of all the related project ID's.
+keyword
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+2.0.0
+Breaking change
+(
+View pull request
+)
+Removed legacy audit and vulnerabilities data streams.
+Enhancement
+(
+View pull request
+)
+Update Kibana constraint to support 9.0.0.
+8.13.0 or higher
+9.0.0 or higher
+1.27.3
+Bug fix
+(
+View pull request
+)
+Fix the parsing of
+created_at
+timestamp when unexpected time format.
+8.13.0 or higher
+1.27.2
+Bug fix
+(
+View pull request
+)
+Prevent empty-keyed fields in
+snyk.audit_logs.content.notSupported
+.
+8.13.0 or higher
+1.27.1
+Bug fix
+(
+View pull request
+)
+Updated SSL description in package manifest.yml to be uniform and to include links to documentation.
+8.13.0 or higher
+1.27.0
+Enhancement
+(
+View pull request
+)
+Do not remove
+event.original
+in main ingest pipeline.
+8.13.0 or higher
+1.26.0
+Enhancement
+(
+View pull request
+)
+Add "preserve_original_event" tag to documents with
+event.kind
+set to "pipeline_error".
+8.13.0 or higher
+1.25.3
+Bug fix
+(
+View pull request
+)
+Fix query parameters definition for issues data stream.
+8.13.0 or higher
+1.25.2
+Bug fix
+(
+View pull request
+)
+Use triple-brace Mustache templating when referencing variables in ingest pipelines.
+8.13.0 or higher
+1.25.1
+Bug fix
+(
+View pull request
+)
+Fix fingerprint in audit_logs.
+8.13.0 or higher
+1.25.0
+Enhancement
+(
+View pull request
+)
+Allow dynamic organization look-up in audit_logs data stream.
+8.13.0 or higher
+1.24.0
+Enhancement
+(
+View pull request
+)
+Improve error reporting for API request failures.
+8.13.0 or higher
+1.23.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.11.0. Update the kibana constraint to ^8.13.0. Modified the field definitions to remove ECS fields made redundant by the ecs@mappings component template.
+8.13.0 or higher
+1.22.1
+Bug fix
+(
+View pull request
+)
+Fix handling of event filter parameter in audit_logs data stream.
+8.12.0 or higher
+1.22.0
+Enhancement
+(
+View pull request
+)
+Improve handling of empty responses.
+8.12.0 or higher
+1.21.0
+Enhancement
+(
+View pull request
+)
+Add support for new Snyk API
+8.12.0 or higher
+1.20.1
+Enhancement
+(
+View pull request
+)
+Add cloudsecurity_cdr sub category label
+8.12.0 or higher
+1.20.0
+Enhancement
+(
+View pull request
+)
+Set sensitive values as secret.
+8.12.0 or higher
+1.19.1
+Enhancement
+(
+View pull request
+)
+Changed owners
+8.7.1 or higher
+1.19.0
+Enhancement
+(
+View pull request
+)
+Limit request tracer log count to five.
+8.7.1 or higher
+1.18.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.11.0.
+8.7.1 or higher
+1.17.0
+Enhancement
+(
+View pull request
+)
+Improve 'event.original' check to avoid errors if set.
+8.7.1 or higher
+1.16.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.10.0.
+8.7.1 or higher
+1.15.0
+Enhancement
+(
+View pull request
+)
+The format_version in the package manifest changed from 2.11.0 to 3.0.0. Removed dotted YAML keys from package manifest. Added 'owner.type: elastic' to package manifest.
+8.7.1 or higher
+1.14.0
+Enhancement
+(
+View pull request
+)
+Add tags.yml file so that integration's dashboards and saved searches are tagged with "Security Solution" and displayed in the Security Solution UI.
+8.7.1 or higher
+1.13.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.9.0.
+8.7.1 or higher
+1.12.0
+Enhancement
+(
+View pull request
+)
+Document duration units.
+8.7.1 or higher
+1.11.0
+Enhancement
+(
+View pull request
+)
+Update package-spec 2.9.0.
+8.7.1 or higher
+1.10.0
+Enhancement
+(
+View pull request
+)
+Ensure event.kind is correctly set for pipeline errors.
+8.7.1 or higher
+1.9.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.8.0.
+8.7.1 or higher
+1.8.0
+Enhancement
+(
+View pull request
+)
+Add a new flag to enable request tracing
+8.7.1 or higher
+1.7.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.7.0.
+7.16.0 or higher
+8.0.0 or higher
+1.6.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.6.0.
+7.16.0 or higher
+8.0.0 or higher
+1.5.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.5.0.
+7.16.0 or higher
+8.0.0 or higher
+1.4.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.4.0
+7.16.0 or higher
+8.0.0 or higher
+1.3.3
+Bug fix
+(
+View pull request
+)
+Fix proxy URL documentation rendering.
+7.16.0 or higher
+8.0.0 or higher
+1.3.2
+Enhancement
+(
+View pull request
+)
+Update package name and description to align with standard wording
+7.16.0 or higher
+8.0.0 or higher
+1.3.1
+Bug fix
+(
+View pull request
+)
+Fixes possible indefinite pagination
+7.16.0 or higher
+8.0.0 or higher
+1.3.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.3.0.
+7.16.0 or higher
+8.0.0 or higher
+1.2.1
+Bug fix
+(
+View pull request
+)
+Add correct field mapping for event.created
+7.16.0 or higher
+8.0.0 or higher
+1.2.0
+Enhancement
+(
+View pull request
+)
+Update to ECS 8.2
+7.16.0 or higher
+8.0.0 or higher
+1.1.2
+Bug fix
+(
+View pull request
+)
+Fix typo in config template for ignoring host enrichment
+7.16.0 or higher
+8.0.0 or higher
+1.1.1
+Enhancement
+(
+View pull request
+)
+Add documentation for multi-fields
+7.16.0 or higher
+8.0.0 or higher
+1.1.0
+Enhancement
+(
+View pull request
+)
+Update to ECS 8.0
+7.16.0 or higher
+8.0.0 or higher
+1.0.0
+Enhancement
+(
+View pull request
+)
+Initial draft of the package
+7.16.0 or higher
+8.0.0 or higher
+Previous
+Snort
+Next
+SonicWall Firewall

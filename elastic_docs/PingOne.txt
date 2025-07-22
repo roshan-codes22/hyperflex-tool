@@ -1,0 +1,924 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+PingOne
+Version
+1.20.0 (
+View all
+)
+Compatible Kibana version(s)
+8.13.0 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+Level of support
+What's this?
+Elastic
+Overview
+The
+PingOne
+integration allows you to monitor audit activity. PingOne is a cloud-based framework for secure identity access management.
+Use the PingOne integration to collect and parse data from the REST APIs or HTTP Endpoint input. Then visualize that data in Kibana.
+For example, you could use the data from this integration to know which action or activity is performed against a defined PingOne resource, and also track the actor or agent who initiated the action.
+Data streams
+The PingOne integration collects logs for one type of event: Audit.
+Audit
+reporting stores incoming audit messages in a cache and provides endpoints for requesting audit events for a specific time period.
+Requirements
+You need Elasticsearch for storing and searching your data and Kibana for visualizing and managing it. You can use our hosted Elasticsearch Service on Elastic Cloud, which is recommended, or self-manage the Elastic Stack on your own hardware.
+This module has been tested against
+PingOne API version 1.0
+.
+Setup
+To collect data from the PingOne REST API, follow the steps below:
+Create a worker application in PingOne and copy the credentials, as follows:
+Go to
+pingidentity.com
+, click
+Sign On
+and carry out
+any necessary authentication steps. You will arrive at the PingIdentity
+console.
+From the navigation sidebar, expand the
+Applications
+section and
+select
+Applications
+.
+Click
++
+to begin creating a new application.
+Enter an
+Application Name
+.
+Select
+Worker
+as the application type.
+Click
+Save
+.
+On the application flyout, ensure that the toggle switch in the header is
+activated, in order to enable the application.
+Select the
+Roles
+tab of the application flyout.
+Click the
+Grant Roles
+button.
+Under
+Available responsibilities
+, in the
+Environment Admin
+,
+section, select the environment(s) to grant access to, then click
+Save
+.
+Select the
+Configuration
+tab of the application flyout.
+Expand the
+URLs
+section and copy the
+Token Endpoint
+.
+From the
+General
+section, copy the
+Client ID
+,
+Client Secret
+and
+Environment ID
+.
+For more information, see the PingOne documentation about
+Adding an application
+.
+In Elastic, navigate to the PingOne integration, then:
+Click
+Add PingOne
+.
+Deactivate the
+Collect PingOne logs via HTTP Endpoint
+input.
+Activate the
+Collect PingOne logs via API
+input.
+Enter the PingOne API URL for your region in the
+URL
+field.
+Enter the credentails copied from the PingOne console into the corresponding
+fields.
+In the
+Audit logs
+data stream section, set an
+Initial Interval
+of
+no more than 2 years.
+Choose an agent policy to add the integration to and click
+Save and Continue
+.
+To collect data from PingOne via HTTP Endpoint, follow below steps:
+In Elastic, navigate to the PingOne integration, then:
+Click
+Add PingOne
+.
+Deactivate the
+Collect PingOne logs via API
+input.
+Activate the
+Collect PingOne logs via HTTP Endpoint
+input.
+Set the
+Listen Address
+, and (from the
+Audit logs
+data stream
+settings) set and copy the
+Listen Port
+and (under
+Advanced options
+)
+the
+URL Path
+.
+In the input settings, enter any
+SSL Configuration
+and
+Secret header
+settings appropriate for the endpoint. Make a note of these details for use
+while configuring the PingOne webhook.
+Note
+: This endpoint will expose a
+port to the Internet, so it is advised to have proper network access
+configured. PingOne webhooks will only work with a
+https://
+destination
+URL.
+Choose an agent policy to add the integration to and click
+Save and Continue
+.
+Create a webhook in PingOne, as follows:
+Go to
+pingidentity.com
+, click
+Sign On
+and carry out
+any necessary authentication steps. You will arrive at the PingIdentity
+console.
+From the navigation sidebar, expand the
+Integrations
+section and
+select
+Webhooks
+.
+Click the
++ Add Webhook
+button to begin creating a new webhook.
+In
+Destination URL
+, enter the full endpoint URL, including the port.
+Example format:
+https://{EXTERNAL_AGENT_LISTEN_ADDRESS}:{AGENT_LISTEN_PORT}/{URL_PATH}
+.
+As
+Format
+select
+Ping Activity Format (JSON)
+.
+In the
+Filters
+section, select all the
+Event Types
+you want to
+collect.
+Enter any
+TLS settings
+and
+Headers
+required for the webhook to
+establish connections with the Agent's HTTP endpoint.
+Click
+Save
+.
+Ensure that the toggle switch for the webhook is activated, so that the
+webhook is enabled.
+For more information, see the PingOne documentation about
+Creating or editing a webhook
+.
+Logs Reference
+audit
+This is the
+audit
+dataset.
+Example
+{
+"@timestamp"
+:
+"2022-08-08T15:31:08.237Z"
+,
+"agent"
+:
+{
+"ephemeral_id"
+:
+"b5c2b3bd-ebac-4fff-8248-b0a38dd9104d"
+,
+"id"
+:
+"402f10c7-7275-4c5e-be32-6b143ff5ee3e"
+,
+"name"
+:
+"elastic-agent-11041"
+,
+"type"
+:
+"filebeat"
+,
+"version"
+:
+"8.18.1"
+}
+,
+"client"
+:
+{
+"user"
+:
+{
+"id"
+:
+"123abc123-12ab-1234-1abc-abc123abc12"
+,
+"name"
+:
+"PingOne Admin Console"
+}
+}
+,
+"data_stream"
+:
+{
+"dataset"
+:
+"ping_one.audit"
+,
+"namespace"
+:
+"79703"
+,
+"type"
+:
+"logs"
+}
+,
+"ecs"
+:
+{
+"version"
+:
+"8.11.0"
+}
+,
+"elastic_agent"
+:
+{
+"id"
+:
+"402f10c7-7275-4c5e-be32-6b143ff5ee3e"
+,
+"snapshot"
+:
+false
+,
+"version"
+:
+"8.18.1"
+}
+,
+"event"
+:
+{
+"action"
+:
+"user.access_allowed"
+,
+"agent_id_status"
+:
+"verified"
+,
+"category"
+:
+[
+"iam"
+,
+"configuration"
+]
+,
+"dataset"
+:
+"ping_one.audit"
+,
+"id"
+:
+"123abc123-12ab-1234-1abc-abc123abc12"
+,
+"ingested"
+:
+"2025-06-03T15:46:56Z"
+,
+"kind"
+:
+"event"
+,
+"original"
+:
+"{\"_embedded\":{},\"action\":{\"type\":\"USER.ACCESS_ALLOWED\"},\"actors\":{\"client\":{\"environment\":{\"id\":\"123abc123-12ab-1234-1abc-abc123abc12\"},\"href\":\"https://api.pingone.asia/v1/environments/123abc123-12ab-1234-1abc-abc123abc12/applications/123abc123-12ab-1234-1abc-abc123abc12\",\"id\":\"123abc123-12ab-1234-1abc-abc123abc12\",\"name\":\"PingOne Admin Console\",\"type\":\"CLIENT\"},\"user\":{\"environment\":{\"id\":\"123abc123-12ab-1234-1abc-abc123abc12\"},\"href\":\"https://api.pingone.asia/v1/environments/123abc123-12ab-1234-1abc-abc123abc12/users/123abc123-12ab-1234-1abc-abc123abc12\",\"id\":\"123abc123-12ab-1234-1abc-abc123abc12\",\"name\":\"example@gmail.com\",\"population\":{\"id\":\"123abc123-12ab-1234-1abc-abc123abc12\"},\"type\":\"USER\"}},\"id\":\"123abc123-12ab-1234-1abc-abc123abc12\",\"recordedAt\":\"2022-08-08T15:31:08.237Z\",\"resources\":[{\"environment\":{\"id\":\"123abc123-12ab-1234-1abc-abc123abc12\"},\"href\":\"https://api.pingone.asia/v1/environments/123abc123-12ab-1234-1abc-abc123abc12/users/123abc123-12ab-1234-1abc-abc123abc12\",\"id\":\"123abc123-12ab-1234-1abc-abc123abc12\",\"name\":\"example@gmail.com\",\"population\":{\"id\":\"123abc123-12ab-1234-1abc-abc123abc12\"},\"type\":\"USER\"}],\"result\":{\"description\":\"Passed role access control\",\"status\":\"SUCCESS\"}}"
+,
+"outcome"
+:
+"success"
+,
+"type"
+:
+[
+"user"
+,
+"info"
+,
+"access"
+]
+}
+,
+"input"
+:
+{
+"type"
+:
+"http_endpoint"
+}
+,
+"ping_one"
+:
+{
+"audit"
+:
+{
+"action"
+:
+{
+"type"
+:
+"USER.ACCESS_ALLOWED"
+}
+,
+"actors"
+:
+{
+"client"
+:
+{
+"environment"
+:
+{
+"id"
+:
+"123abc123-12ab-1234-1abc-abc123abc12"
+}
+,
+"href"
+:
+"https://api.pingone.asia/v1/environments/123abc123-12ab-1234-1abc-abc123abc12/applications/123abc123-12ab-1234-1abc-abc123abc12"
+,
+"id"
+:
+"123abc123-12ab-1234-1abc-abc123abc12"
+,
+"name"
+:
+"PingOne Admin Console"
+,
+"type"
+:
+"CLIENT"
+}
+,
+"user"
+:
+{
+"environment"
+:
+{
+"id"
+:
+"123abc123-12ab-1234-1abc-abc123abc12"
+}
+,
+"href"
+:
+"https://api.pingone.asia/v1/environments/123abc123-12ab-1234-1abc-abc123abc12/users/123abc123-12ab-1234-1abc-abc123abc12"
+,
+"id"
+:
+"123abc123-12ab-1234-1abc-abc123abc12"
+,
+"name"
+:
+"example@gmail.com"
+,
+"population"
+:
+{
+"id"
+:
+"123abc123-12ab-1234-1abc-abc123abc12"
+}
+,
+"type"
+:
+"USER"
+}
+}
+,
+"id"
+:
+"123abc123-12ab-1234-1abc-abc123abc12"
+,
+"recorded_at"
+:
+"2022-08-08T15:31:08.237Z"
+,
+"resources"
+:
+[
+{
+"environment"
+:
+{
+"id"
+:
+"123abc123-12ab-1234-1abc-abc123abc12"
+}
+,
+"href"
+:
+"https://api.pingone.asia/v1/environments/123abc123-12ab-1234-1abc-abc123abc12/users/123abc123-12ab-1234-1abc-abc123abc12"
+,
+"id"
+:
+"123abc123-12ab-1234-1abc-abc123abc12"
+,
+"name"
+:
+"example@gmail.com"
+,
+"population"
+:
+{
+"id"
+:
+"123abc123-12ab-1234-1abc-abc123abc12"
+}
+,
+"type"
+:
+"USER"
+}
+]
+,
+"result"
+:
+{
+"description"
+:
+"Passed role access control"
+,
+"status"
+:
+"SUCCESS"
+}
+}
+}
+,
+"related"
+:
+{
+"user"
+:
+[
+"123abc123-12ab-1234-1abc-abc123abc12"
+,
+"PingOne Admin Console"
+,
+"example"
+,
+"example@gmail.com"
+]
+}
+,
+"tags"
+:
+[
+"preserve_original_event"
+,
+"preserve_duplicate_custom_fields"
+,
+"forwarded"
+,
+"ping_one-audit"
+]
+,
+"url"
+:
+{
+"domain"
+:
+"api.pingone.asia"
+,
+"original"
+:
+"https://api.pingone.asia/v1/environments/123abc123-12ab-1234-1abc-abc123abc12/users/123abc123-12ab-1234-1abc-abc123abc12"
+,
+"path"
+:
+"/v1/environments/123abc123-12ab-1234-1abc-abc123abc12/users/123abc123-12ab-1234-1abc-abc123abc12"
+,
+"scheme"
+:
+"https"
+}
+,
+"user"
+:
+{
+"domain"
+:
+"gmail.com"
+,
+"email"
+:
+"example@gmail.com"
+,
+"id"
+:
+"123abc123-12ab-1234-1abc-abc123abc12"
+,
+"name"
+:
+"example"
+}
+}
+Exported fields
+Field
+Description
+Type
+@timestamp
+Event timestamp.
+date
+cloud.image.id
+Image ID for the cloud instance.
+keyword
+data_stream.dataset
+Data stream dataset.
+constant_keyword
+data_stream.namespace
+Data stream namespace.
+constant_keyword
+data_stream.type
+Data stream type.
+constant_keyword
+event.dataset
+Event dataset.
+constant_keyword
+event.module
+Event module.
+constant_keyword
+host.containerized
+If the host is a container.
+boolean
+host.os.build
+OS build information.
+keyword
+host.os.codename
+OS codename, if any.
+keyword
+input.type
+Input type
+keyword
+log.offset
+Log offset
+long
+ping_one.audit.action.description
+A string that specifies the description of the action performed.
+text
+ping_one.audit.action.type
+A string that specifies the type of action performed (such as authentication or password reset).
+keyword
+ping_one.audit.actors.client.environment.id
+A string that specifies the ID of the environment resource associated with the client.
+keyword
+ping_one.audit.actors.client.href
+A string that specifies the URL for the specified client resource.
+keyword
+ping_one.audit.actors.client.id
+A string that specifies the ID of the client.
+keyword
+ping_one.audit.actors.client.name
+A string that specifies the name assigned to the client for PingOne sign on.
+keyword
+ping_one.audit.actors.client.type
+A string that specifies the type of actor. Options are USER or CLIENT.
+keyword
+ping_one.audit.actors.user.environment.id
+A string that specifies the ID of the environment resource associated with the user.
+keyword
+ping_one.audit.actors.user.href
+A string that specifies the URL for the specified user resource.
+keyword
+ping_one.audit.actors.user.id
+A string that specifies the ID of the user.
+keyword
+ping_one.audit.actors.user.name
+A string that specifies the name assigned to the user for PingOne sign on.
+keyword
+ping_one.audit.actors.user.population.id
+A string that specifies the ID of the population resource associated with the user.
+keyword
+ping_one.audit.actors.user.type
+A string that specifies the type of actor. Options are USER or CLIENT.
+keyword
+ping_one.audit.correlation.id
+A string that specifies a PingOne identifier for multiple messages in a transaction.
+keyword
+ping_one.audit.created_at
+The date and time at which the event was created (ISO 8601 format).
+date
+ping_one.audit.embedded
+flattened
+ping_one.audit.id
+A string that specifies the ID of the audit activity event.
+keyword
+ping_one.audit.recorded_at
+The date and time at which the event was recorded (ISO 8601 format).
+date
+ping_one.audit.resources.environment.id
+The UUID assigned as the key for the environment resource.
+keyword
+ping_one.audit.resources.href
+A string that specifies the URL for the specified resource.
+keyword
+ping_one.audit.resources.id
+A string that specifies the ID assigned as the key for the identifier resource (such as the environment, population or event message).
+keyword
+ping_one.audit.resources.name
+A string that can be either the user name or the name of the environment, based on the resource type.
+keyword
+ping_one.audit.resources.population.id
+The UUID assigned as the key for the population resource.
+keyword
+ping_one.audit.resources.type
+A string that specifies the type of resource associated with the event. Options are USER, ORGANIZATION, or ENVIRONMENT.
+keyword
+ping_one.audit.result.description
+A string that specifies the description of the result of the operation.
+text
+ping_one.audit.result.id
+A string that specifies the ID for the result of the operation.
+keyword
+ping_one.audit.result.status
+A string that specifies the result of the operation. Options are succeeded or failed.
+keyword
+ping_one.audit.tags
+A string identifying the activity as the action of an administrator on other administrators.
+keyword
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+1.20.0
+Enhancement
+(
+View pull request
+)
+Standardize user fields processing across integrations.
+8.13.0 or higher
+9.0.0 or higher
+1.19.0
+Enhancement
+(
+View pull request
+)
+Update Kibana constraint to support 9.0.0.
+8.13.0 or higher
+9.0.0 or higher
+1.18.1
+Bug fix
+(
+View pull request
+)
+Updated SSL description in package manifest.yml to be uniform and to include links to documentation.
+8.13.0 or higher
+1.18.0
+Enhancement
+(
+View pull request
+)
+Do not remove
+event.original
+in main ingest pipeline.
+8.13.0 or higher
+1.17.0
+Enhancement
+(
+View pull request
+)
+Add "preserve_original_event" tag to documents with
+event.kind
+set to "pipeline_error".
+8.13.0 or higher
+1.16.0
+Enhancement
+(
+View pull request
+)
+Update the kibana constraint to ^8.13.0. Modified the field definitions to remove ECS fields made redundant by the ecs@mappings component template.
+8.13.0 or higher
+1.15.0
+Enhancement
+(
+View pull request
+)
+Improve handling of empty responses.
+8.12.0 or higher
+1.14.1
+Bug fix
+(
+View pull request
+)
+Update setup documentation.
+8.12.0 or higher
+1.14.0
+Enhancement
+(
+View pull request
+)
+Set sensitive values as secret.
+8.12.0 or higher
+1.13.2
+Bug fix
+(
+View pull request
+)
+Fix ingest pipeline conditional field handling.
+8.7.1 or higher
+1.13.1
+Enhancement
+(
+View pull request
+)
+Changed owners
+8.7.1 or higher
+1.13.0
+Enhancement
+(
+View pull request
+)
+Limit request tracer log count to five.
+8.7.1 or higher
+1.12.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.11.0.
+8.7.1 or higher
+1.11.0
+Enhancement
+(
+View pull request
+)
+Improve 'event.original' check to avoid errors if set.
+8.7.1 or higher
+1.10.0
+Enhancement
+(
+View pull request
+)
+Update the package format_version to 3.0.0.
+8.7.1 or higher
+1.9.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.10.0 and align ECS categorization fields.
+8.7.1 or higher
+1.8.0
+Enhancement
+(
+View pull request
+)
+Add tags.yml file so that integration's dashboards and saved searches are tagged with "Security Solution" and displayed in the Security Solution UI.
+8.7.1 or higher
+1.7.0
+Enhancement
+(
+View pull request
+)
+Update package-spec to 2.9.0.
+8.7.1 or higher
+1.6.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.9.0.
+8.7.1 or higher
+1.5.0
+Enhancement
+(
+View pull request
+)
+Document duration units.
+8.7.1 or higher
+1.4.0
+Enhancement
+(
+View pull request
+)
+Ensure event.kind is correctly set for pipeline errors.
+8.7.1 or higher
+1.3.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.8.0.
+8.7.1 or higher
+1.2.0
+Enhancement
+(
+View pull request
+)
+Add a new flag to enable request tracing
+8.7.1 or higher
+1.1.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.7.0.
+7.17.0 or higher
+8.0.0 or higher
+1.0.0
+Enhancement
+(
+View pull request
+)
+Release PingOne as GA.
+7.17.0 or higher
+8.0.0 or higher
+0.3.1
+Enhancement
+(
+View pull request
+)
+Added categories and/or subcategories.
+—
+0.3.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.6.0.
+—
+0.2.0
+Enhancement
+(
+View pull request
+)
+Update package to ECS 8.5.0.
+—
+0.1.0
+Enhancement
+(
+View pull request
+)
+Initial Release.
+—
+Previous
+PHP-FPM
+Next
+PingFederate

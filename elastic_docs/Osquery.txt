@@ -1,0 +1,17 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Osquery
+Deploy Osquery with Elastic Agent, then run and schedule queries in Kibana. Osquery is an open-source tool that enables querying and monitoring of operating systems using SQL-like queries, aiding in security investigations and real-time system analysis.
+Osquery Logs
+Osquery Manager
+Previous
+OpenCanary
+Next
+Osquery Logs

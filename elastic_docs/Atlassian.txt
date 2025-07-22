@@ -1,0 +1,18 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Atlassian
+Collect logs from various Atlassian products. Atlassian develops collaboration and project management tools for software development teams.
+Atlassian Bitbucket
+Atlassian Confluence
+Atlassian Jira
+Previous
+Armis
+Next
+Atlassian Bitbucket

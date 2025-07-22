@@ -1,0 +1,18 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Windows
+Collect logs and metrics from Windows operating system and services.
+Windows
+Custom Windows ETW logs
+Windows Event Logs (custom)
+Previous
+WebSphere Application Server
+Next
+Windows

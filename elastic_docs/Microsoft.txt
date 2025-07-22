@@ -1,0 +1,28 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Microsoft
+Collect logs and metrics from various Microsoft products. Microsoft is known for its operating systems, productivity software, security solutions, cloud computing services, and a wide range of products aimed at consumers, businesses, and developers.
+Microsoft 365
+Microsoft Defender for Cloud
+Microsoft Defender for Endpoint
+Microsoft DHCP
+Microsoft DNS Server
+Microsoft Entra ID Entity Analytics
+Microsoft Exchange Online Message Trace
+Microsoft Exchange Server
+Microsoft Graph Activity Logs
+Microsoft M365 Defender
+Microsoft Office 365 Metrics Integration
+Microsoft Sentinel
+Microsoft SQL Server
+Previous
+Menlo Security
+Next
+Microsoft 365

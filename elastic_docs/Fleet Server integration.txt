@@ -1,0 +1,179 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Fleet Server integration
+Version
+1.6.0 (
+View all
+)
+Compatible Kibana version(s)
+8.12.0 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+Level of support
+What's this?
+Elastic
+Fleet Server is a component of the Elastic Stack used to centrally manage Elastic Agents. It’s launched as part of an Elastic Agent on a host intended to act as a server. One Fleet Server process can support many Elastic Agent connections. It is responsible for updating agent policies, collecting status information, and coordinating actions across Elastic Agents.
+To add this integration to an Elastic Agent, just add it to an agent policy. The Elastic Agents enrolled into that policy must run with additional credentials such as a service token. Learn how to add a Fleet Server our
+documentation
+.
+Compatibility
+Fleet Server is compatible with the Elastic Stack and Elastic Agents version 7.13 or higher. The version of Elastic Agents running Fleet Server must be greater than or equal to the version of the Elastic Agents that enroll in them.
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+1.6.0
+Bug fix
+(
+View pull request
+)
+Support for stack 9.0
+8.12.0 or higher
+9.0.0 or higher
+1.5.0
+Enhancement
+(
+View pull request
+)
+Added new output health data stream
+8.12.0 or higher
+1.4.0
+Enhancement
+(
+View pull request
+)
+Added new metrics data streams
+8.12.0 or higher
+1.3.1
+Bug fix
+(
+View pull request
+)
+Fix agent template to avoid server:null that caused an invalid policy
+8.8.0 or higher
+1.3.0
+Enhancement
+(
+View pull request
+)
+Remove host and port
+8.8.0 or higher
+1.2.0
+Enhancement
+(
+View pull request
+)
+Added max agents field, deprecated max connections
+7.16.0 or higher
+8.0.0 or higher
+1.1.1
+Enhancement
+(
+View pull request
+)
+Uniform with guidelines
+7.16.0 or higher
+8.0.0 or higher
+1.1.0
+Enhancement
+(
+View pull request
+)
+Update compatibility to be compatible with 8.0
+7.16.0 or higher
+8.0.0 or higher
+1.0.1
+Enhancement
+(
+View pull request
+)
+Add Fleet Icon
+7.14.0 or higher
+1.0.0
+Enhancement
+(
+View pull request
+)
+Make integration GA.
+7.14.0 or higher
+0.10.0
+Enhancement
+(
+View pull request
+)
+Update integration description
+—
+0.9.1
+Enhancement
+(
+View pull request
+)
+Updating the README.
+—
+0.9.0
+Enhancement
+(
+View pull request
+)
+Move fleet_server package to beta release.
+—
+0.2.4
+Bug fix
+(
+View pull request
+)
+Fix max_connection config which was not working becase limits prefix was missing.
+—
+0.2.3
+Enhancement
+(
+View pull request
+)
+Add yaml block for configuration
+—
+0.2.1
+Enhancement
+(
+View pull request
+)
+Remove fleet indices mappings that are supported by ES system indices plugin
+—
+0.2.0
+Bug fix
+(
+View pull request
+)
+Add missing template for agent and max_connections variable
+—
+0.1.7
+Enhancement
+(
+View pull request
+)
+increment package version and manifest link to 7.13
+—
+0.1.0
+Enhancement
+(
+View pull request
+)
+initial release
+—
+Previous
+Elastic APM
+Next
+Elastic Security

@@ -1,0 +1,1283 @@
+Loading
+Elastic Docs
+/
+…
+/
+Elastic integrations
+/
+Kubernetes
+/
+Kubernetes integration
+Version
+1.80.2 (
+View all
+)
+Compatible Kibana version(s)
+8.15.0 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+Level of support
+What's this?
+Elastic
+This integration is used to collect logs and metrics from
+Kubernetes clusters
+. Time series
+index mode
+enabled for metrics data streams.
+This integration requires kube-state-metrics, which is not included with Kubernetes by default. For dashboards to properly populate, the
+kube-state-metrics service must be deployed to your Kubernetes cluster
+As one of the main pieces provided for Kubernetes monitoring, this integration is capable of fetching metrics from several components:
+kubelet
+kube-state-metrics
+apiserver
+controller-manager
+scheduler
+proxy
+Some of the previous components are running on each of the Kubernetes nodes (like
+kubelet
+or
+proxy
+) while others provide
+a single cluster-wide endpoint. This is important to determine the optimal configuration and running strategy
+for the different datasets included in the integration.
+Kubernetes endpoints and metricsets
+Kubernetes module is a bit complex as its internal datasets require access to a wide variety of endpoints.
+This section highlights and introduces some groups of datasets with similar endpoint access needs.
+For more details on the datasets see
+configuration example
+and the
+datasets
+sections below.
+node / system / pod / container / module / volume
+The datasets
+container
+,
+node
+,
+pod
+,
+system
+and
+volume
+require access to the
+kubelet endpoint
+in each of
+the Kubernetes nodes, hence it's recommended to include them as part
+of an
+Agent DaemonSet
+or standalone Agents running on the hosts.
+Depending on the version and configuration of Kubernetes nodes,
+kubelet
+might provide a read only http port (typically 10255),
+which is used in some configuration examples. But in general, and lately, this endpoint requires SSL (
+https
+) access
+(to port 10250 by default) and token based authentication.
+state_* and event
+State_* datasets are enabled by default.
+All datasets with the
+state_
+prefix require
+hosts
+field pointing to
+kube-state-metrics
+service within the cluster. As the service provides cluster-wide metrics, there's no need to fetch them per node,
+hence the recommendation is to run these datasets as part of an
+Agent Deployment
+with one only replica.
+Generally
+kube-state-metrics
+runs a
+Deployment
+and is accessible via a service called
+kube-state-metrics
+on
+kube-system
+namespace, which will be the service to use in our configuration.
+apiserver
+The apiserver dataset requires access to the Kubernetes API, which should be easily available in all Kubernetes
+environments. Depending on the Kubernetes configuration, the API access might require SSL (
+https
+) and token
+based authentication.
+proxy
+The proxy dataset requires access to the proxy endpoint in each of Kubernetes nodes, hence it's recommended
+to configure it as a part of an
+Agent DaemonSet
+.
+scheduler and controllermanager
+These datasets require access to the Kubernetes
+controller-manager
+and
+scheduler
+endpoints. By default, these pods
+run only on master nodes, and they are not exposed via a Service, but there are different strategies
+available for its configuration:
+Create
+Kubernetes Services
+to make
+kube-controller-manager
+and
+kube-scheduler
+available and configure
+the datasets to point to these services as part of an
+Agent Deployment
+.
+Run these datasets as part an
+Agent Daemonset
+(with HostNetwork setting) with a
+nodeSelector
+to only run on Master nodes.
+These datasets are not enabled by default.
+Note
+In some "As a Service" Kubernetes implementations, like
+GKE
+, the master nodes or even the pods running on
+the masters won't be visible. In these cases it won't be possible to use
+scheduler
+and
+controllermanager
+metricsets.
+container-logs
+The container-logs dataset requires access to the log files in each Kubernetes node where the container logs are stored.
+This defaults to
+/var/log/containers/*${kubernetes.container.id}.log
+.
+It uses the
+Filestream input
+and defines it's ID as:
+id: kubernetes-container-logs-${kubernetes.pod.name}-${kubernetes.container.id}
+. For every
+container the Elastic-Agent will generate an instance of the Filestream input harvesting the
+paths
+defined in the
+configuration. So make sure the paths are unique per container.
+For more details about how those variables are resolved and the input
+configuration rendered, refer to:
+Elastic-Agent providers
+Kubernetes autodiscovery with Elastic Agent
+Conditions based autodiscover
+Routing
+The container-logs data stream allows routing logs to a different
+dataset
+or
+namespace
+using pod annotations.
+For example, suppose you are running Nginx on your Kubernetes cluster, and you want to drive the Nginx container logs into a dedicated dataset or namespace. By annotating the pod with
+elastic.co/namespace: nginx
+, the integration will send all the container logs to the
+nginx
+namespace.
+To learn more about routing container-logs, see
+https://docs.elastic.co/integrations/kubernetes/container-logs
+.
+Preserve original event
+The agent can be configured to set the tag
+preserve_original_event
+on container-logs using pod annotation.
+For example, suppose you are routing your Nginx container logs into a dedicated dataset or namespace as described above to make use of the Nginx fleet integration. Enabling preserve_original_event on the Nginx integration will have no effect
+since the logs were shipped via kubernetes integration and not Nginx. As well, you may not want to have all original events from all Nginx pods preserved as well.
+By annotating the pod with
+elastic.co/preserve_original_event: 'true'
+, the integration will add the tag
+preserve_original_event
+as it would be done by the
+nginx
+integration otherwise.
+audit-logs
+The audit-logs dataset requires access to the log files on each Kubernetes node where the audit logs are stored.
+This defaults to
+/var/log/kubernetes/kube-apiserver-audit.log
+.
+Compatibility
+The Kubernetes package is tested with Kubernetes [1.28.x - 1.31.x] versions
+Dashboard
+Kubernetes integration is shipped including default dashboards for
+apiserver
+,
+controllermanager
+,
+overview
+,
+proxy
+and
+scheduler
+.
+If you are using HA for those components, be aware that when gathering data from all instances the dashboard will usually show the average of the metrics. For those scenarios filtering by hosts or service address is possible.
+Cluster selector in
+overview
+dashboard helps in distinguishing and filtering metrics collected from multiple clusters. If you want to focus on a subset of the Kubernetes clusters for monitoring a specific scenario, this cluster selector could be a handy tool. Note that this selector gets populated from the
+orchestrator.cluster.name
+field that may not always be available. This field gets its value from sources like
+kube_config
+,
+kubeadm-config
+configMap, and Google Cloud's meta API for GKE. If the sources mentioned above don't provide this value, metricbeat will not report it. However, you can always use
+processors
+to set this field and utilize it in the
+cluster overview
+dashboard.
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+1.80.2
+Bug fix
+(
+View pull request
+)
+Fixed typos in ssl node descriptions in manifest.yml files.
+8.15.0 or higher
+9.0.0 or higher
+1.80.1
+Bug fix
+(
+View pull request
+)
+Added description to ssl.certificate_authorities and ssl.verification_mode, including links to documentation.
+8.15.0 or higher
+9.0.0 or higher
+1.80.0
+Enhancement
+(
+View pull request
+)
+Add support for Kibana
+9.0.0
+8.15.0 or higher
+9.0.0 or higher
+1.70.2
+Enhancement
+(
+View pull request
+)
+Update the container logs documentation
+8.15.0 or higher
+1.70.1
+Bug fix
+(
+View pull request
+)
+Fix kubernetes.pod.cpu.usage.nanocores unit
+8.15.0 or higher
+1.70.0
+Enhancement
+(
+View pull request
+)
+Make fingerprint configurable
+8.15.0 or higher
+1.69.0
+Enhancement
+(
+View pull request
+)
+Added datatype for audit log field annotations.pod-security_kubernetes_io/audit-violation
+8.15.0 or higher
+1.68.1
+Bug fix
+(
+View pull request
+)
+Fix Overview dashboard Kibana id
+8.15.0 or higher
+1.68.0
+Enhancement
+(
+View pull request
+)
+Use filestream fingerprint mode by default for container_logs datastream
+8.15.0 or higher
+1.67.0
+Enhancement
+(
+View pull request
+)
+Add both pod.{cpu,memory}.usage.node.pct and pod.{cpu,memory}.usage.limit.pct metrics to the Overview dashboard
+8.15.0 or higher
+1.66.4
+Bug fix
+(
+View pull request
+)
+Updating Cluster Overview Dashboard to use container.id as filter and replaced median functions from visualisations
+8.15.0 or higher
+1.66.3
+Enhancement
+(
+View pull request
+)
+Updating mapping of the field groups to keyword in kubernetes.audit_logs
+8.15.0 or higher
+1.66.2
+Bug fix
+(
+View pull request
+)
+Fixing missing processor block in kubernetes.audit_logs
+8.15.0 or higher
+1.66.1
+Bug fix
+(
+View pull request
+)
+Fixing Title in Volumes Dashboard
+8.15.0 or higher
+1.66.0
+Enhancement
+(
+View pull request
+)
+Adding Volume Usage per pod in Kubernetes Volume Dashboard
+8.15.0 or higher
+1.65.0
+Enhancement
+(
+View pull request
+)
+Add last_terminated_timestamp metric to the kubernetes.state_container datastream
+8.15.0 or higher
+1.64.0
+Enhancement
+(
+View pull request
+)
+Move namespace filter to the group level configuration
+8.15.0 or higher
+1.63.1
+Bug fix
+(
+View pull request
+)
+Fix typo in kubernetes.audit ingest pipeline
+8.15.0 or higher
+1.63.0
+Enhancement
+(
+View pull request
+)
+Add pod.status_reason and pod.status.ready_time fields to the state_pod datastream
+8.15.0 or higher
+1.62.1
+Bug fix
+(
+View pull request
+)
+Fix kubernetes.audit ingest pipeline
+8.14.0 or higher
+1.62.0
+Enhancement
+(
+View pull request
+)
+Add new mappings to the kubernetes.audit datastream
+8.14.0 or higher
+1.61.1
+Bug fix
+(
+View pull request
+)
+Remove percent unit for pod memory metrics
+8.14.0 or higher
+1.61.0
+Enhancement
+(
+View pull request
+)
+Remove deprecated fields and add missing status.last_terminated_reason metric
+8.14.0 or higher
+1.60.0
+Bug fix
+(
+View pull request
+)
+Updating
+Memory used vs total memory
+and
+Cores used vs total cores
+visualisations in Cluster Overview Dashboard
+8.14.0 or higher
+1.59.0
+Enhancement
+(
+View pull request
+)
+Add metadata fields to state_namespace data stream.
+8.14.0 or higher
+1.58.0
+Enhancement
+(
+View pull request
+)
+Migrate to format_version v3.
+8.12.0 or higher
+1.57.0
+Enhancement
+(
+View pull request
+)
+Container logs preserve original content based on pod annotations.
+8.12.0 or higher
+1.56.0
+Enhancement
+(
+View pull request
+)
+Add new fields to API server, state_node and persistent volume claim data streams.
+8.12.0 or higher
+1.55.1
+Enhancement
+(
+View pull request
+)
+Modify the field definitions to reference ECS.
+8.11.0 or higher
+1.55.0
+Enhancement
+(
+View pull request
+)
+Remove extra base fields from state data streams.
+8.11.0 or higher
+1.54.0
+Enhancement
+(
+View pull request
+)
+Expand condition support to remaining inputs
+8.11.0 or higher
+1.53.0
+Enhancement
+(
+View pull request
+)
+Update size of the metric visualizations
+8.11.0 or higher
+1.52.0
+Enhancement
+(
+View pull request
+)
+Add new data stream state_namespace.
+8.11.0 or higher
+1.51.0
+Enhancement
+(
+View pull request
+)
+Migrate
+Deployments
+dashboard visualizations to lens.
+8.10.2 or higher
+1.50.0
+Enhancement
+(
+View pull request
+)
+Migrate
+Cronjobs
+dashboard visualizations to lens
+8.10.2 or higher
+1.49.0
+Enhancement
+(
+View pull request
+)
+Migrate
+DaemonSets
+dashboard visualizations to lens.
+8.10.2 or higher
+1.48.0
+Enhancement
+(
+View pull request
+)
+Migrate
+StatefulSets
+dashboard visualizations to lens.
+8.10.2 or higher
+1.47.0
+Enhancement
+(
+View pull request
+)
+Migrate
+Jobs
+dashboard visualizations to lens.
+8.10.2 or higher
+1.46.0
+Enhancement
+(
+View pull request
+)
+Adapt fields for changes in file system info
+8.10.1 or higher
+1.45.0
+Enhancement
+(
+View pull request
+)
+Reroute container logs based on pod annotations.
+8.10.0 or higher
+1.44.0
+Enhancement
+(
+View pull request
+)
+Introducing kubernetes.deployment.status.* metrics
+8.10.0 or higher
+1.43.1
+Enhancement
+(
+View pull request
+)
+Updating index pattern for adHocDataviews for CCS use case
+8.8.0 or higher
+1.43.0
+Enhancement
+(
+View pull request
+)
+Expand index pattern for adHocDataviews for CCS use case
+8.8.0 or higher
+1.42.0
+Enhancement
+(
+View pull request
+)
+Add permissions to reroute events to logs-
+-
+for container_logs datastream
+8.8.0 or higher
+1.41.0
+Enhancement
+(
+View pull request
+)
+Enable time series data streams for the metrics datasets. This improves storage usage and query performance. For more details, see https://www.elastic.co/guide/en/elasticsearch/reference/current/tsds.html
+8.8.0 or higher
+1.40.0
+Bug fix
+(
+View pull request
+)
+Fix system tests for kubernetes integration for k8s v1.27.0
+8.8.0 or higher
+1.40.0-beta.2
+Bug fix
+(
+View pull request
+)
+Fix volume dashboard.
+—
+1.40.0-beta.1
+Bug fix
+(
+View pull request
+)
+Fix proxy and scheduler visualization with missing sort field.
+—
+1.40.0-beta
+Enhancement
+(
+View pull request
+)
+Enable TSDS for metrics data_streams, except events for beta testing
+—
+1.39.0
+Enhancement
+(
+View pull request
+)
+Remove container.name as a dimension.
+8.6.1 or higher
+1.38.1
+Enhancement
+(
+View pull request
+)
+Switch max to last value on counter formulas and add missing sort field to proxy, controller manager and scheduler dashboard.
+8.6.1 or higher
+1.38.0
+Enhancement
+(
+View pull request
+)
+Fix Pod dashboard and remove some visualisations from Api Server dashboard to support TSDB migration
+8.6.1 or higher
+1.37.0
+Enhancement
+(
+View pull request
+)
+Update proxy, controller manager and scheduler dashboard to support TSDB.
+8.6.1 or higher
+1.36.0
+Enhancement
+(
+View pull request
+)
+Add container.name dimension to container data stream
+8.6.1 or higher
+1.35.0
+Enhancement
+(
+View pull request
+)
+Add NetworkUnavailable condition to state node
+8.6.1 or higher
+1.34.1
+Enhancement
+(
+View pull request
+)
+Add support for TSDB on all metric data streams except the state ones
+8.6.1 or higher
+1.34.0
+Enhancement
+(
+View pull request
+)
+Add support for TSDB on all state metric data streams
+8.6.1 or higher
+1.33.0
+Enhancement
+(
+View pull request
+)
+Add
+data_stream.dataset
+setting and custom yaml input.
+8.6.1 or higher
+1.32.2
+Enhancement
+(
+View pull request
+)
+Added link to docs for condition filter
+8.6.1 or higher
+1.32.1
+Enhancement
+(
+View pull request
+)
+Added categories and/or subcategories.
+8.6.1 or higher
+1.32.0
+Enhancement
+(
+View pull request
+)
+Add documentation for how to install alerts
+8.6.1 or higher
+1.31.2
+Enhancement
+(
+View pull request
+)
+Add system testing for state service datastream
+8.6.1 or higher
+1.31.1
+Enhancement
+(
+View pull request
+)
+Update controller manager, proxy and scheduler metrics and dashboards
+8.6.1 or higher
+1.31.0
+Enhancement
+(
+View pull request
+)
+Use datas_tream.dataset as pre filters for dashboards and remove tags
+8.6.0 or higher
+1.30.0
+Enhancement
+(
+View pull request
+)
+Add missing namespace_uid and namespace_labels fields
+8.6.0 or higher
+1.29.2
+Bug fix
+(
+View pull request
+)
+Fix function for memory node usage
+8.5.0 or higher
+1.29.1
+Bug fix
+(
+View pull request
+)
+Fix removed condition setting for container_logs
+8.5.0 or higher
+1.29.0
+Bug fix
+(
+View pull request
+)
+Remove "Control Plane" column from Node Information table
+8.5.0 or higher
+1.28.2
+Bug fix
+(
+View pull request
+)
+Fix Pod Memory usage panel title
+8.5.0 or higher
+1.28.1
+Enhancement
+(
+View pull request
+)
+Delete statefulset, job and cronjob visualizations from Cluster Overview dashboard
+8.5.0 or higher
+1.28.0
+Enhancement
+(
+View pull request
+)
+Adding banner for Kube-state metrics
+8.5.0 or higher
+1.27.1
+Enhancement
+(
+View pull request
+)
+Fix typo in cluster overview dashboard
+8.5.0 or higher
+1.27.0
+Enhancement
+(
+View pull request
+)
+New cluster overview dashboard
+8.5.0 or higher
+1.26.0
+Enhancement
+(
+View pull request
+)
+Add
+processors
+configuration option for Kubernetes data_streams
+8.4.0 or higher
+1.25.0
+Enhancement
+(
+View pull request
+)
+Add
+condition
+configuration option to container logs data stream
+8.4.0 or higher
+1.24.0
+Enhancement
+(
+View pull request
+)
+Add fields to audit logs data stream
+8.4.0 or higher
+1.23.1
+Enhancement
+(
+View pull request
+)
+Add missing dimension fields
+8.4.0 or higher
+1.23.0
+Enhancement
+(
+View pull request
+)
+Add fields to audit logs data stream
+8.4.0 or higher
+1.22.1
+Enhancement
+(
+View pull request
+)
+Fix overlapping fields in state_job data stream
+8.4.0 or higher
+1.22.0
+Enhancement
+(
+View pull request
+)
+Update apiserver and controllermanaged deprecated fields and dashboards
+8.4.0 or higher
+1.21.2
+Bug fix
+(
+View pull request
+)
+add container ID and pod name as part of Kubernetes Cotainer Logs filestream input
+8.3.0 or higher
+1.21.1
+Enhancement
+(
+View pull request
+)
+improved the wording of the link to Kubernetes documentation
+8.3.0 or higher
+1.21.0
+Enhancement
+(
+View pull request
+)
+Add new dashboards
+8.3.0 or higher
+1.20.0
+Enhancement
+(
+View pull request
+)
+Change fields type for audit_logs data_stream to use
+requestObject
+and
+responseObject
+fields of audit events. Disable dynamic mapping for audit_logs data_stream. Drop
+kubernetes.audit.responseObject.metadata
+and
+kubernetes.audit.requestObject.metadata
+8.2.0 or higher
+1.19.1
+Enhancement
+(
+View pull request
+)
+Add documentation for volume field
+8.2.0 or higher
+1.19.0
+Enhancement
+(
+View pull request
+)
+Add missed ecs fields
+8.2.0 or higher
+1.18.1
+Enhancement
+(
+View pull request
+)
+Add documentation for multi-fields
+8.2.0 or higher
+1.18.0
+Enhancement
+(
+View pull request
+)
+Fix k8s overview dashboard
+8.2.0 or higher
+1.17.3
+Bug fix
+(
+View pull request
+)
+Remove incorrectly tagged boolean dimension
+7.16.0 or higher
+8.0.0 or higher
+1.17.2
+Bug fix
+(
+View pull request
+)
+Add missing metadata fields
+7.16.0 or higher
+8.0.0 or higher
+1.17.1
+Enhancement
+(
+View pull request
+)
+Improve default ndjson parser configuration
+—
+1.17.0
+Enhancement
+(
+View pull request
+)
+Disable audit logs collection by default
+—
+1.16.0
+Enhancement
+(
+View pull request
+)
+Documentation improvements
+—
+1.15.0
+Enhancement
+(
+View pull request
+)
+Add ssl.certificate_authorities configuration
+—
+1.14.3
+Bug fix
+(
+View pull request
+)
+Add missing job.name and cronjob.name fields to state_container datastream
+—
+1.14.2
+Bug fix
+(
+View pull request
+)
+Add missing job.name and cronjob.name fields to container related datastreams
+—
+1.14.1
+Bug fix
+(
+View pull request
+)
+Add missing job.name and cronjob.name fields added by metadata generators
+—
+1.14.0
+Enhancement
+(
+View pull request
+)
+Tune state_metrics settings
+—
+1.13.0
+Enhancement
+(
+View pull request
+)
+Update to ECS 8.0
+—
+1.12.0
+Enhancement
+(
+View pull request
+)
+Expose add_recourse_metadata configuration option
+—
+1.11.0
+Enhancement
+(
+View pull request
+)
+Add memory.working_set.limit.pct for pod and container data streams
+—
+1.10.0
+Enhancement
+(
+View pull request
+)
+Add leader election in state_job data stream
+—
+1.9.0
+Enhancement
+(
+View pull request
+)
+Add missing fields
+7.16.0 or higher
+8.0.0 or higher
+1.8.1
+Bug fix
+(
+View pull request
+)
+Set kubernetes.volume.fs.used.pct to scaled_float
+7.16.0 or higher
+8.0.0 or higher
+1.8.0
+Enhancement
+(
+View pull request
+)
+Support json logs parsing
+7.16.0 or higher
+8.0.0 or higher
+1.7.0
+Enhancement
+(
+View pull request
+)
+Add new audit logs data stream in kubernetes integration
+7.16.0 or higher
+8.0.0 or higher
+1.6.0
+Enhancement
+(
+View pull request
+)
+Add skip_older option for event datastream
+7.16.0 or higher
+8.0.0 or higher
+1.5.0
+Enhancement
+(
+View pull request
+)
+Revert Kubernetes namespace field breaking change
+7.16.0 or higher
+8.0.0 or higher
+1.4.2
+Enhancement
+(
+View pull request
+)
+Add dimension fields
+—
+1.4.1
+Enhancement
+(
+View pull request
+)
+Remove overriding of index pattern on the Kubernetes overview dashboard
+8.0.0 or higher
+1.4.0
+Enhancement
+(
+View pull request
+)
+Use filestream input for container_logs data stream
+—
+1.3.3
+Bug fix
+(
+View pull request
+)
+Fix conditions of data_streams that are based on k8s labels & add condition in pipelines
+—
+1.3.2
+Enhancement
+(
+View pull request
+)
+Set default host for proxy to localhost
+—
+1.3.1
+Enhancement
+(
+View pull request
+)
+Uniform with guidelines
+—
+1.3.0
+Enhancement
+(
+View pull request
+)
+Add container_logs ecs fields
+—
+1.2.1
+Bug fix
+(
+View pull request
+)
+Update Kubernetes cluster_ip field type
+—
+1.2.0
+Enhancement
+(
+View pull request
+)
+Update Kubernetes namespace field
+—
+1.1.1
+Bug fix
+(
+View pull request
+)
+Update Kubernetes integration Readme
+—
+1.1.0
+Enhancement
+(
+View pull request
+)
+Update to ECS 1.12.0
+7.15.0 or higher
+1.0.0
+Enhancement
+(
+View pull request
+)
+Release Kubernetes as GA
+—
+0.14.1
+Enhancement
+(
+View pull request
+)
+Update default host in kubernetes proxy data stream in kubernetes integration
+—
+0.14.0
+Enhancement
+(
+View pull request
+)
+Add new container logs data stream in kubernetes integration
+—
+0.13.0
+Enhancement
+(
+View pull request
+)
+Leverage dynamic kubernetes provider for controller and scheduler datastream
+—
+0.12.2
+Bug fix
+(
+View pull request
+)
+Add missing field "kubernetes.daemonset.name" field for pod and container data streams
+—
+0.12.1
+Bug fix
+(
+View pull request
+)
+Add missing cluster filter for "orchestrator.cluster.name" field in [Metrics Kubernetes] Overview dashboard and Dashboard section in the integration overview page
+—
+0.12.0
+Enhancement
+(
+View pull request
+)
+Update kubernetes package ecs fields with orchestrator.cluster.url and orchestrator.cluster.name
+—
+0.11.1
+Enhancement
+(
+View pull request
+)
+Escape special characters in docs
+—
+0.11.0
+Enhancement
+(
+View pull request
+)
+Update documentation to fit mdx spec
+—
+0.10.0
+Enhancement
+(
+View pull request
+)
+Update integration description
+—
+0.9.1
+Bug fix
+(
+View pull request
+)
+Add missing field "kubernetes.daemonset.name" field for state_pod and state_container
+—
+0.9.0
+Enhancement
+(
+View pull request
+)
+Enhance kubernetes package with state_job data stream
+—
+0.8.0
+Enhancement
+(
+View pull request
+)
+Leverage leader election in kubernetes integration
+—
+0.7.0
+Enhancement
+(
+View pull request
+)
+Add _meta information to Kubernetes fields
+—
+0.6.0
+Enhancement
+(
+View pull request
+)
+Introduce kubernetes package granularity using input_groups
+—
+0.5.3
+Enhancement
+(
+View pull request
+)
+Add missing field "kubernetes.statefulset.replicas.ready"
+—
+0.5.2
+Bug fix
+(
+View pull request
+)
+Fix stack compatability
+—
+0.5.1
+Bug fix
+(
+View pull request
+)
+Fix references to env variables
+—
+0.5.0
+Enhancement
+(
+View pull request
+)
+Add missing field "kubernetes.selectors.*" and extra https settings for controllermanager and scheduler datastreams
+—
+0.4.5
+Enhancement
+(
+View pull request
+)
+Add missing field "kubernetes.pod.ip"
+—
+0.4.4
+Enhancement
+(
+View pull request
+)
+Updating package owner
+—
+0.4.3
+Bug fix
+(
+View pull request
+)
+Correct sample event file.
+—
+0.4.2
+Bug fix
+(
+View pull request
+)
+Change kibana.version constraint to be more conservative.
+—
+0.4.1
+Enhancement
+(
+View pull request
+)
+Add missing fields
+—
+0.1.0
+Enhancement
+(
+View pull request
+)
+initial release
+—
+Previous
+Kubernetes
+Next
+API Server metrics

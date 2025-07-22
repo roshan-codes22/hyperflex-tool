@@ -1,0 +1,18 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Proofpoint
+Collect logs from Proofpoint.
+Proofpoint TAP
+Proofpoint On Demand
+Proofpoint Insider Threat Management (ITM)
+Previous
+Promethues Input
+Next
+Proofpoint TAP

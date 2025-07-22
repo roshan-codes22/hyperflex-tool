@@ -1,0 +1,17 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Okta
+Collect logs and user data from Okta. Okta is a cloud-based identity management and security platform that helps businesses manage user identities, access, and authentication for various applications and services.
+Okta
+Okta Entity Analytics
+Previous
+Nvidia GPU Monitoring
+Next
+Okta

@@ -1,0 +1,20 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Palo Alto
+Collect logs from various Palo Alto products. Palo Alto offers a range of products and services, including firewalls, threat detection and prevention tools, cloud security, network security, and more.
+Cortex XDR
+Networks Metrics
+Next-Gen Firewall
+Prisma Cloud
+Prisma Access
+Previous
+Osquery Manager
+Next
+Cortex XDR

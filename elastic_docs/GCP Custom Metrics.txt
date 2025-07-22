@@ -1,0 +1,92 @@
+Loading
+Elastic Docs
+/
+…
+/
+Elastic integrations
+/
+Google Cloud
+/
+GCP Custom Metrics
+Version
+0.3.0 beta:[] (
+View all
+)
+Compatible Kibana version(s)
+8.15.0 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+Level of support
+What's this?
+Elastic
+The GCP Custom Metrics input package can collect custom metrics for any GCP service.
+A list of metrics and services that are available, can be found in the
+GCP Cloud Monitoring API
+official documentation.
+The
+metrics
+configuration should be configured as the
+metrics
+fields of the
+GCP
+metrics
+metricset
+This package does not contain any ingest pipeline, so no pre-ingest data processing is applied out of the box. Custom ingest pipelines can be added through the Kibana UI, to get the data in the desired format.
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+0.3.0
+Enhancement
+(
+View pull request
+)
+Add support for Kibana
+9.0.0
+—
+0.2.1
+Enhancement
+(
+View pull request
+)
+Add missing category.
+—
+0.2.0
+Enhancement
+(
+View pull request
+)
+Set kibana restriction to 8.15.0, where was reduced scope of the ecs_geo_point
+—
+0.1.0
+Enhancement
+(
+View pull request
+)
+Update the package format_version to 3.0.0.
+—
+0.0.2
+Enhancement
+(
+View pull request
+)
+Add base fields mappings
+—
+0.0.1
+Enhancement
+(
+View pull request
+)
+Initial draft of the package
+—
+Previous
+GCP Load Balancing metrics
+Next
+GCP PubSub logs (custom)

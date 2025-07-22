@@ -1,0 +1,643 @@
+Loading
+Elastic Docs
+/
+…
+/
+Elastic integrations
+/
+Threat intelligence
+/
+EclecticIQ Integration
+Version
+1.4.1 (
+View all
+)
+Compatible Kibana version(s)
+8.13.0 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+Level of support
+What's this?
+Partner
+The EclecticIQ integration
+allows you to ingest threat intelligence
+observables
+from an outgoing feeds on your
+EclecticIQ Intelligence Center
+instance.
+Observables ingested from an EclecticIQ Intelligence Center outgoing feed
+can be monitored and explored on
+Intelligence → Indicators
+in Kibana.
+Data streams
+The EclecticIQ integration
+collects one type of data streams: logs.
+Logs
+collected from this integration
+are collections of threat intelligence observables
+ingested from the connected EclecticIQ Intelligence Center outgoing feed.
+Requirements
+You need Elasticsearch for storing and searching your data and Kibana for visualizing and managing it.
+You can use our hosted Elasticsearch Service on Elastic Cloud, which is recommended, or self-manage the Elastic Stack on your own hardware.
+You must also set up your EclecticIQ Intelligence Center
+for Elasticsearch to connect to it. See
+Set up EclecticIQ Intelligence Center
+.
+Setup
+For step-by-step instructions on how to set up an integration, see the
+Getting started
+guide.
+You must create one integration instance per
+EclecticIQ Intelligence Center outgoing feed
+you want to retrieve intelligence from.
+Set up EclecticIQ Intelligence Center
+Before using the integration, you must:
+Set up outgoing feeds on EclecticIQ Intelligence Center.
+Connect the integration to the EclectiCIQ Intelligence Center instance.
+Set up outgoing feeds on EclecticIQ Intelligence Center
+Set up an outgoing feed on EclecticIQ Intelligence Center:
+Create and configure outgoing feeds
+.
+These outgoing feeds must have these properties:
+Transport type:
+HTTP download
+Content type:
+EclecticIQ Observables CSV
+Update strategy:
+Append
+,
+Diff
+or
+Replace
+.
+This must match the update strategy set for the integration instance.
+See
+Update strategies
+.
+Authorized groups:
+Must set one or more groups. Feed must be authenticated.
+See
+EclecticIQ Intelligence Center permissions
+.
+Only observables packed by this outgoing feed are fetched.
+To find the ID of an EclecticIQ Intelligence Center outgoing feed:
+Log in to EclecticIQ Intelligence Center.
+Navigate to
+Data configuration > Outgoing feeds
+.
+Select an outgoing feed to open it.
+Inspect the address bar of your browser.
+The ID of this outgoing feed is the
+value of the
+?detail=
+query parameter.
+For example: For an outgoing feed that displays
+https://ic-playground.eclecticiq.com/main/configuration/outgoing-feeds?detail=6
+in the address bar, its ID is
+6
+.
+Index name
+This integration retrieves and makes available the latest version of the
+threat intelligence retrieved from EclecticIQ Intelligence Center
+in the following index:
+logs-ti_eclecticiq_latest.observables-1
+When threat intelligence is deleted from datasets used by the configured
+outgoing feed, these are removed from that index.
+In the Intelligence dashboard, to see only the latest
+threat intelligence from EclecticIQ Intelligence Center,
+filter results with:
+_index
+:
+logs-ti_eclecticiq_latest.observables-
+1
+and
+threat.indicator.type
+:
+*
+Or
+NOT
+labels.is_ioc_transform_source
+:
+*
+AND
+and
+threat.feed.name
+:
+"EclecticIQ"
+Update strategies
+You must set the
+same
+Update strategy
+for
+both the EclecticIQ Integration instance
+and the EclecticIQ Intelligence Center outgoing feed it retrieves data from.
+Update strategies are how a feed decides to pack data from
+its configured datasets when it runs:
+(Recommended)
+Diff
+only packs data that has been deleted from or added to the feed's datasets
+since the last run.
+Append
+only packs data that has been added to the feed's datasets
+since the last run.
+(Not recommended)
+Replace
+packs
+all
+the data currently in the feed's datasets
+each time it runs. Records that already exist on Elasticsearch are
+de-duplicated, but records that are outdated or removed from the feeds' datasets
+will not be correspondingly removed from Elasticsearch.
+Known issue with
+Replace
+:
+Replace
+usually removes
+all
+the data
+from a given destination before replacing it
+with all the data packed from a given feed's datasets.
+Currently, this is not supported by the integration.
+Supported EclecticIQ observables
+The following is a list of EclecticIQ observables supported by this integration.
+For information about how these observables are mapped, see
+Exported fields
+.
+asn
+domain
+email
+file
+file-size
+hash-md5
+hash-md5
+hash-sha1
+hash-sha256
+hash-sha384
+hash-sha512
+hash-ssdeep
+ipv4
+ipv4-cidr
+ipv6
+ipv6-cidr
+mac-48
+mutex
+port
+process
+process-name
+uri
+winregistry
+certificate-serial-number
+malware
+rule
+user-agent
+organization
+email-subject
+host
+cve
+Known issues
+Certain threat intelligence observables in the
+Elastic Indicator Intelligence dashboard are
+displayed with a
+-
+.
+That data is not displayed, but retained in the JSON
+body of the event.
+Example
+Example
+{
+"@timestamp"
+:
+"2023-01-01T00:00:00.000Z"
+,
+"agent"
+:
+{
+"ephemeral_id"
+:
+"cf201e4c-c043-4a07-baa4-2227c8fbb4c3"
+,
+"id"
+:
+"8299ae35-ee0e-4107-9acb-1b6acfdda1fb"
+,
+"name"
+:
+"docker-fleet-agent"
+,
+"type"
+:
+"filebeat"
+,
+"version"
+:
+"8.13.0"
+}
+,
+"data_stream"
+:
+{
+"dataset"
+:
+"ti_eclecticiq.threat"
+,
+"namespace"
+:
+"14085"
+,
+"type"
+:
+"logs"
+}
+,
+"eclecticiq"
+:
+{
+"threat"
+:
+{
+"observable_id"
+:
+"OwWGOybxVeL+USaXvDQSNonD5eU="
+}
+}
+,
+"ecs"
+:
+{
+"version"
+:
+"8.11.0"
+}
+,
+"elastic_agent"
+:
+{
+"id"
+:
+"8299ae35-ee0e-4107-9acb-1b6acfdda1fb"
+,
+"snapshot"
+:
+false
+,
+"version"
+:
+"8.13.0"
+}
+,
+"event"
+:
+{
+"agent_id_status"
+:
+"verified"
+,
+"category"
+:
+[
+"threat"
+]
+,
+"created"
+:
+"2023-06-08T12:00:30.028Z"
+,
+"dataset"
+:
+"ti_eclecticiq.threat"
+,
+"id"
+:
+"ZgAq/IXlrjc2J5AdLsDMWhENshI="
+,
+"ingested"
+:
+"2024-08-02T04:24:34Z"
+,
+"kind"
+:
+"enrichment"
+,
+"provider"
+:
+"Test"
+,
+"start"
+:
+"2021-12-19T00:27:19.108Z"
+,
+"type"
+:
+[
+"indicator"
+]
+,
+"url"
+:
+"https://www.test.com/"
+}
+,
+"host"
+:
+{
+"architecture"
+:
+"aarch64"
+,
+"containerized"
+:
+false
+,
+"hostname"
+:
+"docker-fleet-agent"
+,
+"id"
+:
+"8269eab9370b4429947d2a16c3058fcb"
+,
+"ip"
+:
+[
+"172.29.0.7"
+]
+,
+"mac"
+:
+[
+"02-42-AC-1D-00-07"
+]
+,
+"name"
+:
+"docker-fleet-agent"
+,
+"os"
+:
+{
+"codename"
+:
+"focal"
+,
+"family"
+:
+"debian"
+,
+"kernel"
+:
+"6.4.16-linuxkit"
+,
+"name"
+:
+"Ubuntu"
+,
+"platform"
+:
+"ubuntu"
+,
+"type"
+:
+"linux"
+,
+"version"
+:
+"20.04.6 LTS (Focal Fossa)"
+}
+}
+,
+"input"
+:
+{
+"type"
+:
+"cel"
+}
+,
+"threat"
+:
+{
+"indicator"
+:
+{
+"first_seen"
+:
+"2021-12-19T00:27:19.108Z"
+,
+"marking"
+:
+{
+"tlp"
+:
+"GREEN"
+}
+,
+"name"
+:
+"example.com"
+,
+"type"
+:
+"domain-name"
+,
+"url"
+:
+{
+"domain"
+:
+"example.com"
+}
+}
+}
+}
+Exported fields
+Exported fields
+Field
+Description
+Type
+@timestamp
+Event timestamp.
+date
+data_stream.dataset
+Data stream dataset.
+constant_keyword
+data_stream.namespace
+Data stream namespace.
+constant_keyword
+data_stream.type
+Data stream type.
+constant_keyword
+eclecticiq.threat.deleted_at
+Date when observable was removed from dataset
+date
+eclecticiq.threat.observable_id
+The ID of the observable, based on kind and value.
+keyword
+event.dataset
+Event dataset
+constant_keyword
+event.module
+Event module
+constant_keyword
+input.type
+Input type
+keyword
+labels.is_ioc_transform_source
+Indicates whether an IOC is in the raw source data stream, or the in latest destination index.
+constant_keyword
+threat.feed.name
+Display friendly feed name
+constant_keyword
+threat.indicator.first_seen
+The date and time when intelligence source first reported sighting this indicator.
+date
+threat.indicator.last_seen
+The date and time when intelligence source last reported sighting this indicator.
+date
+threat.indicator.modified_at
+The date and time when intelligence source last modified information for this indicator.
+date
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+1.4.1
+Bug fix
+(
+View pull request
+)
+Update
+error.message
+field mapping as per ECS inside transform destination indices.
+8.13.0 or higher
+9.0.0 or higher
+1.4.0
+Enhancement
+(
+View pull request
+)
+Update Kibana constraint to support 9.0.0.
+8.13.0 or higher
+9.0.0 or higher
+1.3.2
+Bug fix
+(
+View pull request
+)
+Updated SSL description in package manifest.yml to be uniform and to include links to documentation.
+8.13.0 or higher
+1.3.1
+Bug fix
+(
+View pull request
+)
+Update links to getting started docs
+8.13.0 or higher
+1.3.0
+Enhancement
+(
+View pull request
+)
+Add "preserve_original_event" tag to documents with
+event.kind
+set to "pipeline_error".
+8.13.0 or higher
+1.2.4
+Bug fix
+(
+View pull request
+)
+Use triple-brace Mustache templating when referencing variables in ingest pipelines.
+8.13.0 or higher
+1.2.3
+Bug fix
+(
+View pull request
+)
+Fix labels.is_ioc_transform_source values
+8.13.0 or higher
+1.2.2
+Bug fix
+(
+View pull request
+)
+Add missing fields in transform
+8.13.0 or higher
+1.2.1
+Bug fix
+(
+View pull request
+)
+Fix ECS date mapping on threat fields.
+8.13.0 or higher
+1.2.0
+Enhancement
+(
+View pull request
+)
+Increase CEL resource.tracer.maxsize to prevent loss of trace responses.
+8.13.0 or higher
+1.1.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.11.0. Update the kibana constraint to ^8.13.0. Modified the field definitions to remove ECS fields made redundant by the ecs@mappings component template.
+8.13.0 or higher
+1.0.1
+Bug fix
+(
+View pull request
+)
+Adjust field mappings for transform destination index.
+8.12.0 or higher
+1.0.0
+Enhancement
+(
+View pull request
+)
+Release package as GA.
+8.12.0 or higher
+0.3.0
+Enhancement
+(
+View pull request
+)
+Set sensitive values as secret, upgrade to package spec 3.0.3.
+—
+0.2.0
+Enhancement
+(
+View pull request
+)
+Enable SSL configuration for requests
+Bug fix
+(
+View pull request
+)
+Fix parsing incoming data from "Poll Outgoing feed" stream
+—
+0.1.1
+Enhancement
+(
+View pull request
+)
+Changed owners
+—
+0.1.0
+Enhancement
+(
+View pull request
+)
+Initial version of the package
+—
+Previous
+Cybersixgill
+Next
+Maltiverse

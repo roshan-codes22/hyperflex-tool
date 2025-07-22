@@ -1,0 +1,17 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+MySQL
+Collect logs and metrics from MySQL—an open-source relational database management system.
+MySQL
+MySQL Enterprise
+Previous
+MongoDB Atlas
+Next
+MySQL

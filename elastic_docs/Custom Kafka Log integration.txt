@@ -1,0 +1,148 @@
+Loading
+Elastic Docs
+/
+…
+/
+Elastic integrations
+/
+Kafka
+/
+Custom Kafka Log integration
+Version
+1.8.1 (
+View all
+)
+Compatible Kibana version(s)
+8.13.0 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+Level of support
+What's this?
+Elastic
+The custom Kafka log integration is used to read from topics in a Kafka cluster.
+To configure this integration, specify a list of one or more hosts in the cluster to bootstrap the connection with, a list of topics to track, and a group_id for the connection.
+Compatibility
+This Integration works with all Kafka versions in between 0.11 and 2.8.0. Older versions might work as well, but are not supported.
+Ingest Pipelines
+Custom ingest pipelines may be added by adding the name to the pipeline configuration option, creating custom ingest pipelines can be done either through the API or the
+Ingest Node Pipeline UI
+(use the
+global search field
+to search for "ingest pipelines").
+ECS Field Reference
+Please refer to the following
+document
+for detailed information on ECS fields.
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+1.8.1
+Bug fix
+(
+View pull request
+)
+Updated SSL description to be uniform and to include links to documentation.
+8.13.0 or higher
+9.0.0 or higher
+1.8.0
+Enhancement
+(
+View pull request
+)
+Add support for Kibana
+9.0.0
+.
+8.13.0 or higher
+9.0.0 or higher
+1.7.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.11.0. Update the kibana constraint to ^8.13.0. Modified the field definitions to remove ECS fields made redundant by the ecs@mappings component template.
+8.13.0 or higher
+1.6.0
+Enhancement
+(
+View pull request
+)
+Enable secrets for sensitive fields. For more details, refer https://www.elastic.co/guide/en/fleet/current/agent-policy.html#agent-policy-secret-values
+8.12.0 or higher
+1.5.1
+Bug fix
+(
+View pull request
+)
+Disable secrets for older stack versions due to errors.
+7.16.0 or higher
+8.0.0 or higher
+1.5.0
+Enhancement
+(
+View pull request
+)
+Enable 'secret' for the sensitive fields, supported from 8.12.
+7.16.0 or higher
+8.0.0 or higher
+1.4.0
+Enhancement
+(
+View pull request
+)
+Update the package format_version to 3.0.0.
+7.16.0 or higher
+8.0.0 or higher
+1.3.0
+Enhancement
+(
+View pull request
+)
+Add permissions to reroute events to logs-
+-
+for generic datastream
+7.16.0 or higher
+8.0.0 or higher
+1.2.0
+Enhancement
+(
+View pull request
+)
+Rename ownership from obs-service-integrations to obs-infraobs-integrations
+7.16.0 or higher
+8.0.0 or higher
+1.1.1
+Enhancement
+(
+View pull request
+)
+Added categories and/or subcategories.
+7.16.0 or higher
+8.0.0 or higher
+1.1.0
+Enhancement
+(
+View pull request
+)
+Update ECS version to 8.5.1
+7.16.0 or higher
+8.0.0 or higher
+1.0.0
+Enhancement
+(
+View pull request
+)
+Initial Release
+7.16.0 or higher
+8.0.0 or higher
+Previous
+Kafka
+Next
+Keycloak

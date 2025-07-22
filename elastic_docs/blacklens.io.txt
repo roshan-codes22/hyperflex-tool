@@ -1,0 +1,252 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+blacklens.io
+Version
+0.4.1 beta:[] (
+View all
+)
+Compatible Kibana version(s)
+8.15.2 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+Level of support
+What's this?
+Community
+The
+blacklens.io
+integration allows you to monitor alerts. blacklens.io is a comprehensive Attack Surface Management platform that helps businesses understand and secure their external attack surface. By combining automated security analysis, continuous monitoring, and penetration testing, it identifies and addresses vulnerabilities early. With features like Darknet Monitoring, Vulnerability Scanning, and XDR Response, blacklens.io provides a proactive defense strategy to protect companies from cyber threats while offering a clear view of their security posture at all times.
+Use the blacklens.io integration to fetch all related alerts about your Attack Surface. Then visualize that data in Kibana and create further alerts or enrich the data with other security solutions.
+Data streams
+The blacklens.io integration collects one type of data streams: logs
+Alerts
+returns a list of blacklens.io alerts (The API Docs are referenced within the portal)
+Requirements
+You need Elasticsearch for storing and searching your data and Kibana for visualizing and managing it.
+You can use our hosted Elasticsearch Service on Elastic Cloud, which is recommended, or self-manage the Elastic Stack on your own hardware.
+You will require the
+alerts:read
+permission in order to fetch the Alerts via the API.
+You need an active blacklens.io subscription and a user with the
+alerts:read
+permission to retrieve alerts via the API.
+Setup
+Copy blacklens.io required configuration properties
+Login to your blacklens.io Portal (This URL will be used for the Instance URL: '
+https://portal-(ID).blacklens.io
+')
+Go to
+Profile → Generate API Key
+and copy it.
+Go to
+Settings → Company
+.
+Copy
+ws_id
+and
+tenant_id
+.
+Enable the blacklens.io Integration in Elastic
+In Kibana go to Management > Integrations.
+In "Search for integrations" search bar, type blacklens.io.
+Click on the "blacklens.io" integration from the search results.
+Click on the "Add blacklens.io" button to add the integration.
+Configure all required integration parameters.
+Alert data requires following parameters:
+URL
+Tenant ID (tenant_id)
+Workspace ID (ws_id)
+API Key
+Save the integration.
+For detailed setup instructions, please refer to the blacklens.io Knowledge Base (The link is referenced within the portal).
+Logs reference
+alerts
+This is the
+alerts
+dataset
+Example
+Example
+{
+    "input": {
+        "type": "httpjson"
+    },
+    "agent": {
+        "name": "example-agent",
+        "id": "example-agent-id-12345",
+        "type": "filebeat",
+        "ephemeral_id": "ephemeral-id-12345",
+        "version": "8.15.2"
+    },
+    "@timestamp": "2024-11-07T08:09:22.094Z",
+    "ecs": {
+        "version": "8.11.0"
+    },
+    "data_stream": {
+        "namespace": "default",
+        "type": "logs",
+        "dataset": "blacklens.alerts"
+    },
+    "elastic_agent": {
+        "id": "example-agent-id-12345",
+        "version": "8.15.2",
+        "snapshot": false
+    },
+    "host": {
+        "name": "example-host"
+    },
+    "blacklens": {
+        "alert": {
+            "severity": "info",
+            "type_id": 1001,
+            "details": [],
+            "updated_date": "2024-08-14T15:06:13.151Z",
+            "id": 12345,
+            "type": "Example Threat System (ETS)",
+            "title": "Example Threat Scan Notification",
+            "outcome": "undefined",
+            "status": "resolved"
+        }
+    },
+    "message": "{\"affected_entities\":null,\"alert_outcome\":\"undefined\",\"alert_payload\":[],\"reference\":\"https://example.com/reference123\"}],\"alert_status\":\"resolved\",\"created_date\":\"2024-11-07T08:09:22.094028Z\",\"customer_state\":\"open\",\"details\":{\"engine\":\"Example Threat System (ETS)\",\"id\":1001,\"title\":\"Example Threat Scan Notification\"},\"id\":12345,\"severity\":\"info\",\"type_id\":1001,\"updated_date\":\"2024-08-14T15:06:13.151728Z\"}",
+    "event": {
+        "id": 12345,
+        "agent_id_status": "verified",
+        "ingested": "2024-11-07T09:45:30Z",
+        "created": "2024-11-07T09:45:29.354Z",
+        "kind": "alert",
+        "category": [
+            "threat"
+        ],
+        "type": [
+            "indicator"
+        ],
+        "dataset": "blacklens.alerts"
+    },
+    "tags": [
+        "forwarded",
+        "example-alert"
+    ]
+}
+Exported fields
+Field
+Description
+Type
+@timestamp
+Event timestamp.
+date
+blacklens.alert.details
+Alert Details
+nested
+blacklens.alert.id
+Unique Alert ID
+integer
+blacklens.alert.outcome
+Determines whether the current alert triggers further events
+keyword
+blacklens.alert.severity
+Alert Severity
+keyword
+blacklens.alert.status
+Current Status of the Alert
+keyword
+blacklens.alert.title
+Title/Description of the given Alert
+keyword
+blacklens.alert.type
+Alert Type (Engine)
+keyword
+blacklens.alert.type_id
+Alert Type ID (Engine)
+integer
+blacklens.alert.updated_date
+Activity last updated time (UTC).
+date
+data_stream.dataset
+Data stream dataset.
+constant_keyword
+data_stream.namespace
+Data stream namespace.
+constant_keyword
+data_stream.type
+Data stream type.
+constant_keyword
+event.dataset
+Event dataset.
+constant_keyword
+event.kind
+constant_keyword
+event.module
+Event module.
+constant_keyword
+input.type
+Type of filebeat input.
+keyword
+observer.product
+constant_keyword
+observer.vendor
+constant_keyword
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+0.4.1
+Bug fix
+(
+View pull request
+)
+Fix default request trace enabled behavior.
+—
+0.4.0
+Enhancement
+(
+View pull request
+)
+Enable request trace log removal.
+—
+0.3.0
+Enhancement
+(
+View pull request
+)
+Update Kibana constraint to support 9.0.0.
+—
+0.2.1
+Bug fix
+(
+View pull request
+)
+Updated SSL description in package manifest.yml to be uniform and to include links to documentation.
+—
+0.2.0
+Enhancement
+(
+View pull request
+)
+Add "preserve_original_event" tag to documents with
+event.kind
+set to "pipeline_error".
+—
+0.1.0
+Enhancement
+(
+View pull request
+)
+Initial draft of the package
+—
+Previous
+Bitwarden
+Next
+BBOT (Bighuge BLS OSINT Tool)

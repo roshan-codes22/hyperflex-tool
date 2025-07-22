@@ -1,0 +1,4219 @@
+Loading
+Elastic Docs
+/
+…
+/
+Elastic integrations
+/
+AWS
+/
+GuardDuty
+Version
+3.8.2 (
+View all
+)
+Compatible Kibana version(s)
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Supported Serverless project types
+What's this?
+Security
+Observability
+Subscription level
+What's this?
+Basic
+Overview
+The
+Amazon GuardDuty
+integration collects and parses data from Amazon GuardDuty
+Findings
+REST APIs.
+The Amazon GuardDuty integration can be used in three different modes to collect data:
+HTTP REST API - Amazon GuardDuty pushes logs directly to an HTTP REST API.
+AWS S3 polling - Amazon GuardDuty writes data to S3 and Elastic Agent polls the S3 bucket by listing its contents and reading new files.
+AWS S3 SQS - Amazon GuardDuty writes data to S3, S3 pushes a new object notification to SQS, Elastic Agent receives the notification from SQS, and then reads the S3 object. Multiple Agents can be used in this mode.
+Requirements
+You need Elasticsearch for storing and searching your data and Kibana for visualizing and managing it. You can use our hosted Elasticsearch Service on Elastic Cloud, which is recommended, or self-manage the Elastic Stack on your own hardware.
+Note
+It is recommended to use AWS SQS for Amazon GuardDuty.
+Compatibility
+The minimum compatible version of this module is
+Elastic Agent 8.6.0
+.
+Following GuardDuty Resource types have been supported in the current integration version:
+Sr. No.
+Resource types
+1
+accessKeyDetails
+2
+containerDetails
+3
+ebsVolumeDetails
+4
+ecsClusterDetails
+5
+eksClusterDetails
+6
+instanceDetails
+7
+kubernetesDetails
+8
+s3BucketDetails
+9
+rdsDbInstanceDetails
+10
+rdsDbUserDetails
+Following GuardDuty Service action types have been supported in the current integration version:
+Sr. No.
+Service action types
+1
+awsApiCallAction
+2
+dnsRequestAction
+3
+kubernetesApiCallAction
+4
+networkConnectionAction
+5
+portProbeAction
+6
+rdsLoginAttemptAction
+Setup
+To collect data from AWS S3 Bucket, follow the steps below:
+Configure the
+Data Forwarder
+to ingest data into an AWS S3 bucket. However, the user can set the parameter "Bucket List Prefix" according to the requirement.
+To collect data from AWS SQS, follow the steps below:
+If data forwarding to an AWS S3 bucket hasn't been configured, then first setup an AWS S3 bucket as mentioned in the documentation above.
+To setup an SQS queue, follow "Step 1: Create an Amazon SQS queue" mentioned in the
+Documentation
+.
+While creating an SQS queue, please provide the same bucket ARN that has been generated after creating the AWS S3 bucket.
+Setup event notification for an S3 bucket. Follow this
+guide
+.
+The user has to perform Step 3 for the guardduty data-stream, and the prefix parameter should be set the same as the S3 Bucket List Prefix as created earlier. For example,
+logs/
+for guardduty data stream.
+For all the event notifications that have been created, select the event type as s3:ObjectCreated:*, select the destination type SQS Queue, and select the queue that has been created in Step 2.
+Note
+:
+Credentials for the above AWS S3 and SQS input types should be configured according to the
+input configuration guide
+.
+Data collection via AWS S3 Bucket and AWS SQS are mutually exclusive in this case.
+To collect data from Amazon GuardDuty API, users must have an Access Key and a Secret Key. To create an API token follow the steps below:
+Login to
+https://console.aws.amazon.com/
+.
+Go to
+https://console.aws.amazon.com/iam/
+to access the IAM console.
+On the navigation menu, choose Users.
+Choose your IAM user name.
+Select Create access key from the Security Credentials tab.
+To see the new access key, choose Show.
+Note
+The Secret Access Key and Access Key ID are required for the current integration package.
+Logs
+GuardDuty
+This is the
+GuardDuty
+data stream.
+Example
+{
+"@timestamp"
+:
+"2022-11-22T12:22:20.938Z"
+,
+"agent"
+:
+{
+"ephemeral_id"
+:
+"7b37f535-5ec4-4b95-a393-f3852061d4ac"
+,
+"id"
+:
+"9e5875f3-d206-43b3-b24e-5a5096e50846"
+,
+"name"
+:
+"docker-fleet-agent"
+,
+"type"
+:
+"filebeat"
+,
+"version"
+:
+"8.11.0"
+}
+,
+"aws"
+:
+{
+"guardduty"
+:
+{
+"account_id"
+:
+"123412341234"
+,
+"arn"
+:
+"arn:aws:guardduty:us-east-1:123412341234:detector/12341234e19ce5461eabcd1234abcd1234/finding/43b6abcdeabcdeabcde1234562176924"
+,
+"created_at"
+:
+"2022-11-17T09:33:19.228Z"
+,
+"description"
+:
+"Kubernetes API commonly used in Discovery tactics was invoked on cluster GeneratedFindingEKSClusterName from Tor exit node IP address 175.16.199.1."
+,
+"id"
+:
+"e0c22973b012f3af67ac593443e920ff"
+,
+"partition"
+:
+"aws"
+,
+"region"
+:
+"us-east-1"
+,
+"resource"
+:
+{
+"access_key_details"
+:
+{
+"accesskey_id"
+:
+"GeneratedFindingAccessKeyId"
+,
+"principal_id"
+:
+"GeneratedFindingPrincipalId"
+,
+"user"
+:
+{
+"name"
+:
+"GeneratedFindingUserName"
+,
+"type"
+:
+"Role"
+}
+}
+,
+"eks_cluster_details"
+:
+{
+"arn"
+:
+"GeneratedFindingEKSClusterArn"
+,
+"created_at"
+:
+"2021-11-03T18:00:10.342Z"
+,
+"name"
+:
+"GeneratedFindingEKSClusterName"
+,
+"status"
+:
+"ACTIVE"
+,
+"tags"
+:
+[
+{
+"key"
+:
+"GeneratedFindingEKSClusterTag1"
+,
+"value"
+:
+"GeneratedFindingEKSClusterTagValue1"
+}
+,
+{
+"key"
+:
+"GeneratedFindingEKSClusterTag2"
+,
+"value"
+:
+"GeneratedFindingEKSClusterTagValue2"
+}
+,
+{
+"key"
+:
+"GeneratedFindingEKSClusterTag3"
+,
+"value"
+:
+"GeneratedFindingEKSClusterTagValue3"
+}
+]
+,
+"vpcid"
+:
+"GeneratedFindingEKSClusterVpcId"
+}
+,
+"kubernetes_details"
+:
+{
+"kubernetes_user_details"
+:
+{
+"groups"
+:
+[
+"GeneratedFindingUserGroup"
+]
+,
+"uid"
+:
+"GeneratedFindingUID"
+,
+"user_name"
+:
+"GeneratedFindingUserName"
+}
+}
+,
+"type"
+:
+"EKSCluster"
+}
+,
+"schema_version"
+:
+"2.0"
+,
+"service"
+:
+{
+"action"
+:
+{
+"kubernetes_api_call_action"
+:
+{
+"remote_ip_details"
+:
+{
+"city"
+:
+{
+"name"
+:
+"GeneratedFindingCityName"
+}
+,
+"country"
+:
+{
+"name"
+:
+"GeneratedFindingCountryName"
+}
+,
+"geo_location"
+:
+{
+"lat"
+:
+0
+,
+"lon"
+:
+0
+}
+,
+"ip_address_v4"
+:
+"175.16.199.1"
+,
+"organization"
+:
+{
+"asn"
+:
+"0"
+,
+"asnorg"
+:
+"GeneratedFindingASNOrg"
+,
+"isp"
+:
+"GeneratedFindingISP"
+,
+"org"
+:
+"GeneratedFindingORG"
+}
+}
+,
+"request_uri"
+:
+"GeneratedFindingRequestURI"
+,
+"source_ips"
+:
+[
+"175.16.199.1"
+]
+,
+"status_code"
+:
+200
+,
+"verb"
+:
+"list"
+}
+,
+"type"
+:
+"KUBERNETES_API_CALL"
+}
+,
+"additional_info"
+:
+{
+"sample"
+:
+true
+,
+"threatListName"
+:
+"GeneratedFindingThreatListName"
+,
+"threatName"
+:
+"GeneratedFindingThreatName"
+,
+"type"
+:
+"default"
+,
+"value"
+:
+"{\"threatName\":\"GeneratedFindingThreatName\",\"threatListName\":\"GeneratedFindingThreatListName\",\"sample\":true}"
+}
+,
+"archived"
+:
+false
+,
+"count"
+:
+2
+,
+"detector_id"
+:
+"12341234e19ce5461eabcd1234abcd1234"
+,
+"event"
+:
+{
+"first_seen"
+:
+"2022-11-17T09:33:19.000Z"
+,
+"last_seen"
+:
+"2022-11-22T12:22:20.000Z"
+}
+,
+"evidence"
+:
+{
+"threat_intelligence_details"
+:
+[
+{
+"threat"
+:
+{
+"list_name"
+:
+"GeneratedFindingThreatListName"
+,
+"names"
+:
+[
+"GeneratedFindingThreatName"
+]
+}
+}
+]
+}
+,
+"resource_role"
+:
+"TARGET"
+,
+"service_name"
+:
+"guardduty"
+}
+,
+"severity"
+:
+{
+"code"
+:
+5
+,
+"value"
+:
+"Medium"
+}
+,
+"title"
+:
+"Kubernetes API commonly used in Discovery tactics invoked from a Tor exit node IP address."
+,
+"type"
+:
+"Discovery:Kubernetes/TorIPCaller"
+,
+"updated_at"
+:
+"2022-11-22T12:22:20.938Z"
+}
+}
+,
+"cloud"
+:
+{
+"account"
+:
+{
+"id"
+:
+"123412341234"
+}
+,
+"provider"
+:
+"aws"
+,
+"region"
+:
+"us-east-1"
+,
+"service"
+:
+{
+"name"
+:
+"guardduty"
+}
+}
+,
+"data_stream"
+:
+{
+"dataset"
+:
+"aws.guardduty"
+,
+"namespace"
+:
+"ep"
+,
+"type"
+:
+"logs"
+}
+,
+"ecs"
+:
+{
+"version"
+:
+"8.11.0"
+}
+,
+"elastic_agent"
+:
+{
+"id"
+:
+"9e5875f3-d206-43b3-b24e-5a5096e50846"
+,
+"snapshot"
+:
+false
+,
+"version"
+:
+"8.11.0"
+}
+,
+"event"
+:
+{
+"action"
+:
+"KUBERNETES_API_CALL"
+,
+"agent_id_status"
+:
+"verified"
+,
+"created"
+:
+"2022-11-17T09:33:19.228Z"
+,
+"dataset"
+:
+"aws.guardduty"
+,
+"end"
+:
+"2022-11-22T12:22:20.000Z"
+,
+"id"
+:
+"e0c22973b012f3af67ac593443e920ff"
+,
+"ingested"
+:
+"2023-12-14T11:38:35Z"
+,
+"kind"
+:
+[
+"event"
+]
+,
+"original"
+:
+"{\"accountId\":\"123412341234\",\"arn\":\"arn:aws:guardduty:us-east-1:123412341234:detector/12341234e19ce5461eabcd1234abcd1234/finding/43b6abcdeabcdeabcde1234562176924\",\"createdAt\":\"2022-11-17T09:33:19.228Z\",\"description\":\"Kubernetes API commonly used in Discovery tactics was invoked on cluster GeneratedFindingEKSClusterName from Tor exit node IP address 175.16.199.1.\",\"id\":\"e0c22973b012f3af67ac593443e920ff\",\"partition\":\"aws\",\"region\":\"us-east-1\",\"resource\":{\"accessKeyDetails\":{\"accessKeyId\":\"GeneratedFindingAccessKeyId\",\"principalId\":\"GeneratedFindingPrincipalId\",\"userName\":\"GeneratedFindingUserName\",\"userType\":\"Role\"},\"eksClusterDetails\":{\"arn\":\"GeneratedFindingEKSClusterArn\",\"createdAt\":1635962410.342,\"name\":\"GeneratedFindingEKSClusterName\",\"status\":\"ACTIVE\",\"tags\":[{\"key\":\"GeneratedFindingEKSClusterTag1\",\"value\":\"GeneratedFindingEKSClusterTagValue1\"},{\"key\":\"GeneratedFindingEKSClusterTag2\",\"value\":\"GeneratedFindingEKSClusterTagValue2\"},{\"key\":\"GeneratedFindingEKSClusterTag3\",\"value\":\"GeneratedFindingEKSClusterTagValue3\"}],\"vpcId\":\"GeneratedFindingEKSClusterVpcId\"},\"kubernetesDetails\":{\"kubernetesUserDetails\":{\"groups\":[\"GeneratedFindingUserGroup\"],\"uid\":\"GeneratedFindingUID\",\"username\":\"GeneratedFindingUserName\"},\"kubernetesWorkloadDetails\":null},\"resourceType\":\"EKSCluster\"},\"schemaVersion\":\"2.0\",\"service\":{\"action\":{\"actionType\":\"KUBERNETES_API_CALL\",\"kubernetesApiCallAction\":{\"remoteIpDetails\":{\"city\":{\"cityName\":\"GeneratedFindingCityName\"},\"country\":{\"countryName\":\"GeneratedFindingCountryName\"},\"geoLocation\":{\"lat\":0,\"lon\":0},\"ipAddressV4\":\"175.16.199.1\",\"organization\":{\"asn\":\"0\",\"asnOrg\":\"GeneratedFindingASNOrg\",\"isp\":\"GeneratedFindingISP\",\"org\":\"GeneratedFindingORG\"}},\"requestUri\":\"GeneratedFindingRequestURI\",\"sourceIPs\":[\"175.16.199.1\"],\"statusCode\":200,\"userAgent\":\"\",\"verb\":\"list\"}},\"additionalInfo\":{\"sample\":true,\"threatListName\":\"GeneratedFindingThreatListName\",\"threatName\":\"GeneratedFindingThreatName\",\"type\":\"default\",\"value\":\"{\\\"threatName\\\":\\\"GeneratedFindingThreatName\\\",\\\"threatListName\\\":\\\"GeneratedFindingThreatListName\\\",\\\"sample\\\":true}\"},\"archived\":false,\"count\":2,\"detectorId\":\"12341234e19ce5461eabcd1234abcd1234\",\"eventFirstSeen\":\"2022-11-17T09:33:19.000Z\",\"eventLastSeen\":\"2022-11-22T12:22:20.000Z\",\"evidence\":{\"threatIntelligenceDetails\":[{\"threatListName\":\"GeneratedFindingThreatListName\",\"threatNames\":[\"GeneratedFindingThreatName\"]}]},\"resourceRole\":\"TARGET\",\"serviceName\":\"guardduty\"},\"severity\":5,\"title\":\"Kubernetes API commonly used in Discovery tactics invoked from a Tor exit node IP address.\",\"type\":\"Discovery:Kubernetes/TorIPCaller\",\"updatedAt\":\"2022-11-22T12:22:20.938Z\"}"
+,
+"severity"
+:
+5
+,
+"start"
+:
+"2022-11-17T09:33:19.000Z"
+,
+"type"
+:
+[
+"info"
+]
+}
+,
+"input"
+:
+{
+"type"
+:
+"httpjson"
+}
+,
+"message"
+:
+"Kubernetes API commonly used in Discovery tactics was invoked on cluster GeneratedFindingEKSClusterName from Tor exit node IP address 175.16.199.1."
+,
+"related"
+:
+{
+"ip"
+:
+[
+"175.16.199.1"
+]
+,
+"user"
+:
+[
+"GeneratedFindingPrincipalId"
+,
+"GeneratedFindingUserName"
+,
+"GeneratedFindingUID"
+]
+}
+,
+"rule"
+:
+{
+"category"
+:
+"Discovery"
+,
+"name"
+:
+"Discovery:Kubernetes/TorIPCaller"
+,
+"ruleset"
+:
+"Discovery:Kubernetes"
+}
+,
+"source"
+:
+{
+"address"
+:
+[
+"175.16.199.1"
+]
+,
+"as"
+:
+{
+"number"
+:
+[
+0
+]
+,
+"organization"
+:
+{
+"name"
+:
+[
+"GeneratedFindingASNOrg"
+]
+}
+}
+,
+"geo"
+:
+{
+"city_name"
+:
+[
+"GeneratedFindingCityName"
+]
+,
+"country_name"
+:
+[
+"GeneratedFindingCountryName"
+]
+,
+"location"
+:
+[
+{
+"lat"
+:
+0
+,
+"lon"
+:
+0
+}
+]
+}
+,
+"ip"
+:
+[
+"175.16.199.1"
+]
+}
+,
+"tags"
+:
+[
+"preserve_original_event"
+,
+"preserve_duplicate_custom_fields"
+,
+"forwarded"
+,
+"aws-guardduty"
+]
+,
+"user"
+:
+{
+"id"
+:
+[
+"GeneratedFindingPrincipalId"
+,
+"GeneratedFindingUID"
+]
+,
+"name"
+:
+[
+"GeneratedFindingUserName"
+]
+,
+"roles"
+:
+[
+"GeneratedFindingUserGroup"
+]
+}
+}
+ECS Field Reference
+Please refer to the following
+document
+for detailed information on ECS fields.
+Exported fields
+Field
+Description
+Type
+@timestamp
+Event timestamp.
+date
+aws.guardduty.account_id
+The ID of the account in which the finding was generated.
+keyword
+aws.guardduty.arn
+The ARN of the finding.
+keyword
+aws.guardduty.confidence
+The confidence score for the finding.
+double
+aws.guardduty.created_at
+The time and date when the finding was created.
+date
+aws.guardduty.description
+The description of the finding.
+text
+aws.guardduty.id
+The ID of the finding.
+keyword
+aws.guardduty.partition
+The partition associated with the finding.
+keyword
+aws.guardduty.region
+The Region where the finding was generated.
+keyword
+aws.guardduty.resource.access_key_details.accesskey_id
+The access key ID of the user.
+keyword
+aws.guardduty.resource.access_key_details.principal_id
+The principal ID of the user.
+keyword
+aws.guardduty.resource.access_key_details.user.name
+The name of the user.
+keyword
+aws.guardduty.resource.access_key_details.user.type
+The type of the user.
+keyword
+aws.guardduty.resource.container_details.container_runtime
+The container runtime (such as, Docker or containerd) used to run the container.
+keyword
+aws.guardduty.resource.container_details.id
+Container ID.
+keyword
+aws.guardduty.resource.container_details.image.prefix
+Part of the image name before the last slash. For example, imagePrefix for public.ecr.aws/amazonlinux/amazonlinux:latest would be public.ecr.aws/amazonlinux. If the image name is relative and does not have a slash, this field is empty.
+keyword
+aws.guardduty.resource.container_details.image.value
+Container image.
+keyword
+aws.guardduty.resource.container_details.name
+Container name.
+keyword
+aws.guardduty.resource.container_details.security_context.privileged
+Whether the container is privileged.
+boolean
+aws.guardduty.resource.container_details.volume_mounts.mount_path
+Volume mount path.
+keyword
+aws.guardduty.resource.container_details.volume_mounts.name
+Volume mount name.
+keyword
+aws.guardduty.resource.ebs_volume_details.scanned_volume_details.device_name
+The device name for the EBS volume.
+keyword
+aws.guardduty.resource.ebs_volume_details.scanned_volume_details.encryption_type
+EBS volume encryption type.
+keyword
+aws.guardduty.resource.ebs_volume_details.scanned_volume_details.kmskey_arn
+KMS key Arn used to encrypt the EBS volume.
+keyword
+aws.guardduty.resource.ebs_volume_details.scanned_volume_details.snapshot_arn
+Snapshot Arn of the EBS volume.
+keyword
+aws.guardduty.resource.ebs_volume_details.scanned_volume_details.volume.arn
+EBS volume Arn information.
+keyword
+aws.guardduty.resource.ebs_volume_details.scanned_volume_details.volume.size_in_gb
+EBS volume size in GB.
+long
+aws.guardduty.resource.ebs_volume_details.scanned_volume_details.volume.type
+The EBS volume type.
+keyword
+aws.guardduty.resource.ebs_volume_details.skipped_volume_details.device_name
+The device name for the EBS volume.
+keyword
+aws.guardduty.resource.ebs_volume_details.skipped_volume_details.encryption_type
+EBS volume encryption type.
+keyword
+aws.guardduty.resource.ebs_volume_details.skipped_volume_details.kmskey_arn
+KMS key Arn used to encrypt the EBS volume.
+keyword
+aws.guardduty.resource.ebs_volume_details.skipped_volume_details.snapshot_arn
+Snapshot Arn of the EBS volume.
+keyword
+aws.guardduty.resource.ebs_volume_details.skipped_volume_details.volume.arn
+EBS volume Arn information.
+keyword
+aws.guardduty.resource.ebs_volume_details.skipped_volume_details.volume.size_in_gb
+EBS volume size in GB.
+long
+aws.guardduty.resource.ebs_volume_details.skipped_volume_details.volume.type
+The EBS volume type.
+keyword
+aws.guardduty.resource.ecs_cluster_details.active_services_count
+The number of services that are running on the cluster in an ACTIVE state.
+long
+aws.guardduty.resource.ecs_cluster_details.arn
+The Amazon Resource Name (ARN) that identifies the cluster.
+keyword
+aws.guardduty.resource.ecs_cluster_details.name
+The name of the ECS Cluster.
+keyword
+aws.guardduty.resource.ecs_cluster_details.registered_container_instances_count
+The number of container instances registered into the cluster.
+long
+aws.guardduty.resource.ecs_cluster_details.running_tasks_count
+The number of tasks in the cluster that are in the RUNNING state.
+long
+aws.guardduty.resource.ecs_cluster_details.status
+The status of the ECS cluster.
+keyword
+aws.guardduty.resource.ecs_cluster_details.tags.key
+The EC2 instance tag key.
+keyword
+aws.guardduty.resource.ecs_cluster_details.tags.value
+The EC2 instance tag value.
+keyword
+aws.guardduty.resource.ecs_cluster_details.task_details.arn
+The Amazon Resource Name (ARN) of the task.
+keyword
+aws.guardduty.resource.ecs_cluster_details.task_details.containers.container_runtime
+The container runtime (such as, Docker or containerd) used to run the container.
+keyword
+aws.guardduty.resource.ecs_cluster_details.task_details.containers.id
+Container ID.
+keyword
+aws.guardduty.resource.ecs_cluster_details.task_details.containers.image.prefix
+Part of the image name before the last slash. For example, imagePrefix for public.ecr.aws/amazonlinux/amazonlinux:latest would be public.ecr.aws/amazonlinux. If the image name is relative and does not have a slash, this field is empty.
+keyword
+aws.guardduty.resource.ecs_cluster_details.task_details.containers.image.value
+Container image.
+keyword
+aws.guardduty.resource.ecs_cluster_details.task_details.containers.name
+Container name.
+keyword
+aws.guardduty.resource.ecs_cluster_details.task_details.containers.security_context.privileged
+Whether the container is privileged.
+boolean
+aws.guardduty.resource.ecs_cluster_details.task_details.containers.volume_mounts.mount_path
+Volume mount path.
+keyword
+aws.guardduty.resource.ecs_cluster_details.task_details.containers.volume_mounts.name
+Volume mount name.
+keyword
+aws.guardduty.resource.ecs_cluster_details.task_details.created_at
+The Unix timestamp for the time when the task was created.
+date
+aws.guardduty.resource.ecs_cluster_details.task_details.definitionarn
+The ARN of the task definition that creates the task.
+keyword
+aws.guardduty.resource.ecs_cluster_details.task_details.group
+The name of the task group that's associated with the task.
+keyword
+aws.guardduty.resource.ecs_cluster_details.task_details.started_at
+The Unix timestamp for the time when the task started.
+date
+aws.guardduty.resource.ecs_cluster_details.task_details.started_by
+Contains the tag specified when a task is started.
+keyword
+aws.guardduty.resource.ecs_cluster_details.task_details.tags.key
+The EC2 instance tag key.
+keyword
+aws.guardduty.resource.ecs_cluster_details.task_details.tags.value
+The EC2 instance tag value.
+keyword
+aws.guardduty.resource.ecs_cluster_details.task_details.version
+The version counter for the task.
+keyword
+aws.guardduty.resource.ecs_cluster_details.task_details.volumes.host_path.path
+Path of the file or directory on the host that the volume maps to.
+keyword
+aws.guardduty.resource.ecs_cluster_details.task_details.volumes.name
+Volume name.
+keyword
+aws.guardduty.resource.eks_cluster_details.arn
+EKS cluster ARN.
+keyword
+aws.guardduty.resource.eks_cluster_details.created_at
+The timestamp when the EKS cluster was created.
+date
+aws.guardduty.resource.eks_cluster_details.name
+EKS cluster name.
+keyword
+aws.guardduty.resource.eks_cluster_details.status
+The EKS cluster status.
+keyword
+aws.guardduty.resource.eks_cluster_details.tags.key
+The EC2 instance tag key.
+keyword
+aws.guardduty.resource.eks_cluster_details.tags.value
+The EC2 instance tag value.
+keyword
+aws.guardduty.resource.eks_cluster_details.vpcid
+The VPC ID to which the EKS cluster is attached.
+keyword
+aws.guardduty.resource.instance_details.availability_zone
+The Availability Zone of the EC2 instance.
+keyword
+aws.guardduty.resource.instance_details.iaminstance_profile.arn
+The profile ARN of the EC2 instance.
+keyword
+aws.guardduty.resource.instance_details.iaminstance_profile.id
+The profile ID of the EC2 instance.
+keyword
+aws.guardduty.resource.instance_details.image.description
+The image description of the EC2 instance.
+keyword
+aws.guardduty.resource.instance_details.image.id
+The image ID of the EC2 instance.
+keyword
+aws.guardduty.resource.instance_details.instance.id
+The ID of the EC2 instance.
+keyword
+aws.guardduty.resource.instance_details.instance.state
+The state of the EC2 instance.
+keyword
+aws.guardduty.resource.instance_details.instance.type
+The type of the EC2 instance.
+keyword
+aws.guardduty.resource.instance_details.launch_time
+The launch time of the EC2 instance.
+date
+aws.guardduty.resource.instance_details.network_interfaces.ipv6_addresses
+A list of IPv6 addresses for the EC2 instance.
+ip
+aws.guardduty.resource.instance_details.network_interfaces.network_interface_id
+The ID of the network interface.
+keyword
+aws.guardduty.resource.instance_details.network_interfaces.private.dns_name
+The private DNS name of the EC2 instance.
+keyword
+aws.guardduty.resource.instance_details.network_interfaces.private.ip_address
+The private IP address of the EC2 instance.
+ip
+aws.guardduty.resource.instance_details.network_interfaces.private.ip_addresses.private.dns_name
+The private DNS name of the EC2 instance.
+keyword
+aws.guardduty.resource.instance_details.network_interfaces.private.ip_addresses.private.ip_address
+The private IP address of the EC2 instance.
+ip
+aws.guardduty.resource.instance_details.network_interfaces.public.dns_name
+The public DNS name of the EC2 instance.
+keyword
+aws.guardduty.resource.instance_details.network_interfaces.public.ip
+The public IP address of the EC2 instance.
+ip
+aws.guardduty.resource.instance_details.network_interfaces.security_groups.group.id
+The security group ID of the EC2 instance.
+keyword
+aws.guardduty.resource.instance_details.network_interfaces.security_groups.group.name
+The security group name of the EC2 instance.
+keyword
+aws.guardduty.resource.instance_details.network_interfaces.subnet_id
+The subnet ID of the EC2 instance.
+keyword
+aws.guardduty.resource.instance_details.network_interfaces.vpc_id
+The VPC ID of the EC2 instance.
+keyword
+aws.guardduty.resource.instance_details.outpost_arn
+The Amazon Resource Name (ARN) of the AWS Outpost. Only applicable to AWS Outposts instances.
+keyword
+aws.guardduty.resource.instance_details.platform
+The platform of the EC2 instance.
+keyword
+aws.guardduty.resource.instance_details.product_codes.product_code.id
+The product code information.
+keyword
+aws.guardduty.resource.instance_details.product_codes.product_code.type
+The product code type.
+keyword
+aws.guardduty.resource.instance_details.tags.key
+The EC2 instance tag key.
+keyword
+aws.guardduty.resource.instance_details.tags.value
+The EC2 instance tag value.
+keyword
+aws.guardduty.resource.kubernetes_details.kubernetes_user_details.groups
+The groups that include the user who called the Kubernetes API.
+keyword
+aws.guardduty.resource.kubernetes_details.kubernetes_user_details.uid
+The user ID of the user who called the Kubernetes API.
+keyword
+aws.guardduty.resource.kubernetes_details.kubernetes_user_details.user_name
+The username of the user who called the Kubernetes API.
+keyword
+aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.containers.container_runtime
+The container runtime (such as, Docker or containerd) used to run the container.
+keyword
+aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.containers.id
+Container ID.
+keyword
+aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.containers.image.prefix
+Part of the image name before the last slash. For example, imagePrefix for public.ecr.aws/amazonlinux/amazonlinux:latest would be public.ecr.aws/amazonlinux. If the image name is relative and does not have a slash, this field is empty.
+keyword
+aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.containers.image.value
+Container image.
+keyword
+aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.containers.name
+Container name.
+keyword
+aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.containers.security_context.privileged
+Whether the container is privileged.
+boolean
+aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.containers.volume_mounts.mount_path
+Volume mount path.
+keyword
+aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.containers.volume_mounts.name
+Volume mount name.
+keyword
+aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.host_network
+Whether the hostNetwork flag is enabled for the pods included in the workload.
+boolean
+aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.name
+Kubernetes workload name.
+keyword
+aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.name_space
+Kubernetes namespace that the workload is part of.
+keyword
+aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.type
+Kubernetes workload type (e.g. Pod, Deployment, etc.).
+keyword
+aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.uid
+Kubernetes workload ID.
+keyword
+aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.volumes.host_path.path
+Path of the file or directory on the host that the volume maps to.
+keyword
+aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.volumes.name
+Volume name.
+keyword
+aws.guardduty.resource.rdsdb_instance_details.cluster_identifier
+keyword
+aws.guardduty.resource.rdsdb_instance_details.engine
+keyword
+aws.guardduty.resource.rdsdb_instance_details.engine_version
+keyword
+aws.guardduty.resource.rdsdb_instance_details.instance_arn
+keyword
+aws.guardduty.resource.rdsdb_instance_details.instance_identifier
+keyword
+aws.guardduty.resource.rdsdb_user_details.application
+keyword
+aws.guardduty.resource.rdsdb_user_details.auth_method
+keyword
+aws.guardduty.resource.rdsdb_user_details.database
+keyword
+aws.guardduty.resource.rdsdb_user_details.ssl
+keyword
+aws.guardduty.resource.rdsdb_user_details.user
+keyword
+aws.guardduty.resource.s3_bucket_details.arn
+The Amazon Resource Name (ARN) of the S3 bucket.
+keyword
+aws.guardduty.resource.s3_bucket_details.created_at
+The date and time the bucket was created at.
+date
+aws.guardduty.resource.s3_bucket_details.default_server_side_encryption.encryption_type
+The type of encryption used for objects within the S3 bucket.
+keyword
+aws.guardduty.resource.s3_bucket_details.default_server_side_encryption.kms_masterkey_arn
+The Amazon Resource Name (ARN) of the KMS encryption key. Only available if the bucket EncryptionType is aws:kms.
+keyword
+aws.guardduty.resource.s3_bucket_details.name
+The name of the S3 bucket.
+keyword
+aws.guardduty.resource.s3_bucket_details.owner.id
+The canonical user ID of the bucket owner. For information about locating your canonical user ID see Finding Your Account Canonical User ID.
+keyword
+aws.guardduty.resource.s3_bucket_details.public_access
+Describes the public access policies that apply to the S3 bucket.
+flattened
+aws.guardduty.resource.s3_bucket_details.tags.key
+The EC2 instance tag key.
+keyword
+aws.guardduty.resource.s3_bucket_details.tags.value
+The EC2 instance tag value.
+keyword
+aws.guardduty.resource.s3_bucket_details.type
+Describes whether the bucket is a source or destination bucket.
+keyword
+aws.guardduty.resource.type
+The type of AWS resource.
+keyword
+aws.guardduty.schema_version
+The version of the schema used for the finding.
+keyword
+aws.guardduty.service.action.aws_api_call_action.affected_resources
+The details of the AWS account that made the API call. This field identifies the resources that were affected by this API call.
+flattened
+aws.guardduty.service.action.aws_api_call_action.api
+The AWS API name.
+keyword
+aws.guardduty.service.action.aws_api_call_action.caller_type
+The AWS API caller type.
+keyword
+aws.guardduty.service.action.aws_api_call_action.domain_details.domain
+The domain information for the AWS API call.
+keyword
+aws.guardduty.service.action.aws_api_call_action.error_code
+The error code of the failed AWS API action.
+keyword
+aws.guardduty.service.action.aws_api_call_action.remote_account_details.account_id
+The AWS account ID of the remote API caller.
+keyword
+aws.guardduty.service.action.aws_api_call_action.remote_account_details.affiliated
+Details on whether the AWS account of the remote API caller is related to your GuardDuty environment. If this value is True the API caller is affiliated to your account in some way. If it is False the API caller is from outside your environment.
+boolean
+aws.guardduty.service.action.aws_api_call_action.remote_ip_details.city.name
+The city name of the remote IP address.
+keyword
+aws.guardduty.service.action.aws_api_call_action.remote_ip_details.country.code
+The country code of the remote IP address.
+keyword
+aws.guardduty.service.action.aws_api_call_action.remote_ip_details.country.name
+The country name of the remote IP address.
+keyword
+aws.guardduty.service.action.aws_api_call_action.remote_ip_details.geo_location
+The location information of the remote IP address.
+geo_point
+aws.guardduty.service.action.aws_api_call_action.remote_ip_details.ip_address_v4
+The IPv4 remote address of the connection.
+ip
+aws.guardduty.service.action.aws_api_call_action.remote_ip_details.organization.asn
+The Autonomous System Number (ASN) of the internet provider of the remote IP address.
+keyword
+aws.guardduty.service.action.aws_api_call_action.remote_ip_details.organization.asnorg
+The organization that registered this ASN.
+keyword
+aws.guardduty.service.action.aws_api_call_action.remote_ip_details.organization.isp
+The ISP information for the internet provider.
+keyword
+aws.guardduty.service.action.aws_api_call_action.remote_ip_details.organization.org
+The name of the internet provider.
+keyword
+aws.guardduty.service.action.aws_api_call_action.service_name
+The name of the AWS service (GuardDuty) that generated a finding.
+keyword
+aws.guardduty.service.action.aws_api_call_action.user_agent
+The agent through which the API request was made.
+keyword
+aws.guardduty.service.action.dns_request_action.blocked
+Indicates whether the targeted port is blocked.
+boolean
+aws.guardduty.service.action.dns_request_action.domain
+The domain information for the API request.
+keyword
+aws.guardduty.service.action.dns_request_action.protocol
+The network connection protocol observed in the activity that prompted GuardDuty to generate the finding.
+keyword
+aws.guardduty.service.action.kubernetes_api_call_action.parameters
+Parameters related to the Kubernetes API call action.
+keyword
+aws.guardduty.service.action.kubernetes_api_call_action.remote_ip_details.city.name
+The city name of the remote IP address.
+keyword
+aws.guardduty.service.action.kubernetes_api_call_action.remote_ip_details.country.code
+The country code of the remote IP address.
+keyword
+aws.guardduty.service.action.kubernetes_api_call_action.remote_ip_details.country.name
+The country name of the remote IP address.
+keyword
+aws.guardduty.service.action.kubernetes_api_call_action.remote_ip_details.geo_location
+The location information of the remote IP address.
+geo_point
+aws.guardduty.service.action.kubernetes_api_call_action.remote_ip_details.ip_address_v4
+The IPv4 remote address of the connection.
+ip
+aws.guardduty.service.action.kubernetes_api_call_action.remote_ip_details.organization.asn
+The Autonomous System Number (ASN) of the internet provider of the remote IP address.
+keyword
+aws.guardduty.service.action.kubernetes_api_call_action.remote_ip_details.organization.asnorg
+The organization that registered this ASN.
+keyword
+aws.guardduty.service.action.kubernetes_api_call_action.remote_ip_details.organization.isp
+The ISP information for the internet provider.
+keyword
+aws.guardduty.service.action.kubernetes_api_call_action.remote_ip_details.organization.org
+The name of the internet provider.
+keyword
+aws.guardduty.service.action.kubernetes_api_call_action.request_uri
+The Kubernetes API request URI.
+keyword
+aws.guardduty.service.action.kubernetes_api_call_action.source_ips
+The IP of the Kubernetes API caller and the IPs of any proxies or load balancers between the caller and the API endpoint.
+ip
+aws.guardduty.service.action.kubernetes_api_call_action.status_code
+The resulting HTTP response code of the Kubernetes API call action.
+long
+aws.guardduty.service.action.kubernetes_api_call_action.user_agent
+The user agent of the caller of the Kubernetes API.
+keyword
+aws.guardduty.service.action.kubernetes_api_call_action.verb
+The Kubernetes API request HTTP verb.
+keyword
+aws.guardduty.service.action.network_connection_action.blocked
+Indicates whether EC2 blocked the network connection to your instance.
+boolean
+aws.guardduty.service.action.network_connection_action.connection_direction
+The network connection direction.
+keyword
+aws.guardduty.service.action.network_connection_action.local_ip_details.ip_address_v4
+The IPv4 local address of the connection.
+keyword
+aws.guardduty.service.action.network_connection_action.local_port_details.port.name
+The port name of the local connection.
+keyword
+aws.guardduty.service.action.network_connection_action.local_port_details.port.value
+The port number of the local connection.
+long
+aws.guardduty.service.action.network_connection_action.remote_ip_details.city.name
+The city name of the remote IP address.
+keyword
+aws.guardduty.service.action.network_connection_action.remote_ip_details.country.code
+The country code of the remote IP address.
+keyword
+aws.guardduty.service.action.network_connection_action.remote_ip_details.country.name
+The country name of the remote IP address.
+keyword
+aws.guardduty.service.action.network_connection_action.remote_ip_details.geo_location
+The location information of the remote IP address.
+geo_point
+aws.guardduty.service.action.network_connection_action.remote_ip_details.ip_address_v4
+The IPv4 remote address of the connection.
+ip
+aws.guardduty.service.action.network_connection_action.remote_ip_details.organization.asn
+The Autonomous System Number (ASN) of the internet provider of the remote IP address.
+keyword
+aws.guardduty.service.action.network_connection_action.remote_ip_details.organization.asnorg
+The organization that registered this ASN.
+keyword
+aws.guardduty.service.action.network_connection_action.remote_ip_details.organization.isp
+The ISP information for the internet provider.
+keyword
+aws.guardduty.service.action.network_connection_action.remote_ip_details.organization.org
+The name of the internet provider.
+keyword
+aws.guardduty.service.action.network_connection_action.remote_port_details.port.name
+The port name of the remote connection.
+keyword
+aws.guardduty.service.action.network_connection_action.remote_port_details.port.value
+The port number of the remote connection.
+long
+aws.guardduty.service.action.network_connection_action.transport
+The network connection protocol.
+keyword
+aws.guardduty.service.action.port_probe_action.blocked
+Indicates whether EC2 blocked the port probe to the instance, such as with an ACL.
+boolean
+aws.guardduty.service.action.port_probe_action.port_probe_details.local_ip_details.ip_address_v4
+The IPv4 local address of the connection.
+keyword
+aws.guardduty.service.action.port_probe_action.port_probe_details.local_port_details.port.name
+The port name of the local connection.
+keyword
+aws.guardduty.service.action.port_probe_action.port_probe_details.local_port_details.port.value
+The port number of the local connection.
+long
+aws.guardduty.service.action.port_probe_action.port_probe_details.remote_ip_details.city.name
+The city name of the remote IP address.
+keyword
+aws.guardduty.service.action.port_probe_action.port_probe_details.remote_ip_details.country.code
+The country code of the remote IP address.
+keyword
+aws.guardduty.service.action.port_probe_action.port_probe_details.remote_ip_details.country.name
+The country name of the remote IP address.
+keyword
+aws.guardduty.service.action.port_probe_action.port_probe_details.remote_ip_details.geo_location
+The location information of the remote IP address.
+geo_point
+aws.guardduty.service.action.port_probe_action.port_probe_details.remote_ip_details.ip_address_v4
+The IPv4 remote address of the connection.
+ip
+aws.guardduty.service.action.port_probe_action.port_probe_details.remote_ip_details.organization.asn
+The Autonomous System Number (ASN) of the internet provider of the remote IP address.
+keyword
+aws.guardduty.service.action.port_probe_action.port_probe_details.remote_ip_details.organization.asnorg
+The organization that registered this ASN.
+keyword
+aws.guardduty.service.action.port_probe_action.port_probe_details.remote_ip_details.organization.isp
+The ISP information for the internet provider.
+keyword
+aws.guardduty.service.action.port_probe_action.port_probe_details.remote_ip_details.organization.org
+The name of the internet provider.
+keyword
+aws.guardduty.service.action.rds_login_attempt_action.remote_ip_details.city.name
+The city name of the remote IP address.
+keyword
+aws.guardduty.service.action.rds_login_attempt_action.remote_ip_details.country.code
+The country code of the remote IP address.
+keyword
+aws.guardduty.service.action.rds_login_attempt_action.remote_ip_details.country.name
+The country name of the remote IP address.
+keyword
+aws.guardduty.service.action.rds_login_attempt_action.remote_ip_details.geo_location
+The location information of the remote IP address.
+geo_point
+aws.guardduty.service.action.rds_login_attempt_action.remote_ip_details.ip_address_v4
+The IPv4 remote address of the connection.
+ip
+aws.guardduty.service.action.rds_login_attempt_action.remote_ip_details.organization.asn
+The Autonomous System Number (ASN) of the internet provider of the remote IP address.
+keyword
+aws.guardduty.service.action.rds_login_attempt_action.remote_ip_details.organization.asnorg
+The organization that registered this ASN.
+keyword
+aws.guardduty.service.action.rds_login_attempt_action.remote_ip_details.organization.isp
+The ISP information for the internet provider.
+keyword
+aws.guardduty.service.action.rds_login_attempt_action.remote_ip_details.organization.org
+The name of the internet provider.
+keyword
+aws.guardduty.service.action.type
+The GuardDuty finding activity type.
+keyword
+aws.guardduty.service.additional_info
+Contains additional information about the generated finding.
+flattened
+aws.guardduty.service.archived
+Indicates whether this finding is archived.
+boolean
+aws.guardduty.service.count
+The total count of the occurrences of this finding type.
+long
+aws.guardduty.service.detector_id
+The detector ID for the GuardDuty service.
+keyword
+aws.guardduty.service.ebs_volume_scan_details.scan.completed_at
+Returns the completion date and time of the malware scan.
+date
+aws.guardduty.service.ebs_volume_scan_details.scan.detections.highest_severity_threat_details.count
+Total number of infected files with the highest severity threat detected.
+long
+aws.guardduty.service.ebs_volume_scan_details.scan.detections.highest_severity_threat_details.severity
+Severity level of the highest severity threat detected.
+keyword
+aws.guardduty.service.ebs_volume_scan_details.scan.detections.highest_severity_threat_details.threat_name
+Threat name of the highest severity threat detected as part of the malware scan.
+keyword
+aws.guardduty.service.ebs_volume_scan_details.scan.detections.scanned_item_count.files
+Number of files scanned.
+long
+aws.guardduty.service.ebs_volume_scan_details.scan.detections.scanned_item_count.total_gb
+Total GB of files scanned for malware.
+long
+aws.guardduty.service.ebs_volume_scan_details.scan.detections.scanned_item_count.volumes
+Total number of scanned volumes.
+long
+aws.guardduty.service.ebs_volume_scan_details.scan.detections.threat_detected_by_name.item_count
+Total number of infected files identified.
+long
+aws.guardduty.service.ebs_volume_scan_details.scan.detections.threat_detected_by_name.shortened
+Flag to determine if the finding contains every single infected file-path and/or every threat.
+boolean
+aws.guardduty.service.ebs_volume_scan_details.scan.detections.threat_detected_by_name.threat_names.file_paths.file.name
+File name of the infected file.
+keyword
+aws.guardduty.service.ebs_volume_scan_details.scan.detections.threat_detected_by_name.threat_names.file_paths.file.path
+The file path of the infected file.
+keyword
+aws.guardduty.service.ebs_volume_scan_details.scan.detections.threat_detected_by_name.threat_names.file_paths.hash
+The hash value of the infected file.
+keyword
+aws.guardduty.service.ebs_volume_scan_details.scan.detections.threat_detected_by_name.threat_names.file_paths.volume_arn
+EBS volume Arn details of the infected file.
+keyword
+aws.guardduty.service.ebs_volume_scan_details.scan.detections.threat_detected_by_name.threat_names.item_count
+Total number of files infected with given threat.
+long
+aws.guardduty.service.ebs_volume_scan_details.scan.detections.threat_detected_by_name.threat_names.name
+The name of the identified threat.
+keyword
+aws.guardduty.service.ebs_volume_scan_details.scan.detections.threat_detected_by_name.threat_names.severity
+Severity of threat identified as part of the malware scan.
+keyword
+aws.guardduty.service.ebs_volume_scan_details.scan.detections.threat_detected_by_name.unique_threat_name_count
+Total number of unique threats by name identified, as part of the malware scan.
+long
+aws.guardduty.service.ebs_volume_scan_details.scan.detections.threats_detected_item_count.files
+Total number of infected files.
+long
+aws.guardduty.service.ebs_volume_scan_details.scan.id
+Unique Id of the malware scan that generated the finding.
+keyword
+aws.guardduty.service.ebs_volume_scan_details.scan.started_at
+Returns the start date and time of the malware scan.
+date
+aws.guardduty.service.ebs_volume_scan_details.sources
+Contains list of threat intelligence sources used to detect threats.
+keyword
+aws.guardduty.service.ebs_volume_scan_details.trigger_finding_id
+GuardDuty finding ID that triggered a malware scan.
+keyword
+aws.guardduty.service.event.first_seen
+The first-seen timestamp of the activity that prompted GuardDuty to generate this finding.
+date
+aws.guardduty.service.event.last_seen
+The last-seen timestamp of the activity that prompted GuardDuty to generate this finding.
+date
+aws.guardduty.service.evidence.threat_intelligence_details.threat.list_name
+The name of the threat intelligence list that triggered the finding.
+keyword
+aws.guardduty.service.evidence.threat_intelligence_details.threat.names
+A list of names of the threats in the threat intelligence list that triggered the finding.
+keyword
+aws.guardduty.service.feature_name
+The name of the feature that generated a finding.
+keyword
+aws.guardduty.service.resource_role
+The resource role information for this finding.
+keyword
+aws.guardduty.service.runtime_details.context.address_family
+Represents the communication protocol associated with the address. For example, the address family AF_INET is used for IP version of 4 protocol.
+keyword
+aws.guardduty.service.runtime_details.context.command_line_example
+Example of the command line involved in the suspicious activity.
+keyword
+aws.guardduty.service.runtime_details.context.file_system_type
+Represents the type of mounted fileSystem.
+keyword
+aws.guardduty.service.runtime_details.context.flags
+Represents options that control the behavior of a runtime operation or action. For example, a filesystem mount operation may contain a read-only flag.
+keyword
+aws.guardduty.service.runtime_details.context.iana_protocol_number
+Specifies a particular protocol within the address family. Usually there is a single protocol in address families. For example, the address family AF_INET only has the IP protocol.
+keyword
+aws.guardduty.service.runtime_details.context.ld_preload
+The value of the LD_PRELOAD environment variable.
+keyword
+aws.guardduty.service.runtime_details.context.library_path
+The path to the new library that was loaded.
+keyword
+aws.guardduty.service.runtime_details.context.memory_regions
+Specifies the Region of a process's address space such as stack and heap.
+keyword
+aws.guardduty.service.runtime_details.context.modified_at
+The timestamp at which the process modified the current process. The timestamp is in UTC date string format.
+date
+aws.guardduty.service.runtime_details.context.modifying_process
+Information about the process that modified the current process. This is available for multiple finding types.
+flattened
+aws.guardduty.service.runtime_details.context.module_file_path
+The path to the module loaded into the kernel.
+keyword
+aws.guardduty.service.runtime_details.context.module_name
+The name of the module loaded into the kernel.
+keyword
+aws.guardduty.service.runtime_details.context.module_sha256
+The SHA256 hash of the module.
+keyword
+aws.guardduty.service.runtime_details.context.mount_source
+The path on the host that is mounted by the container.
+keyword
+aws.guardduty.service.runtime_details.context.mount_target
+The path in the container that is mapped to the host directory.
+keyword
+aws.guardduty.service.runtime_details.context.release_agent_path
+The path in the container that modified the release agent file.
+keyword
+aws.guardduty.service.runtime_details.context.runc_binary_path
+The path to the leveraged runc implementation.
+keyword
+aws.guardduty.service.runtime_details.context.script_path
+The path to the script that was executed.
+keyword
+aws.guardduty.service.runtime_details.context.service_name
+Name of the security service that has been potentially disabled.
+keyword
+aws.guardduty.service.runtime_details.context.shell_history_file_path
+The path to the modified shell history file.
+keyword
+aws.guardduty.service.runtime_details.context.socket_path
+The path to the socket that was accessed.
+keyword
+aws.guardduty.service.runtime_details.context.target_process
+Information about the process that had its memory overwritten by the current process.
+flattened
+aws.guardduty.service.runtime_details.context.threat_file_path
+The suspicious file path for which the threat intelligence details were found.
+keyword
+aws.guardduty.service.runtime_details.context.tool_category
+Category that the tool belongs to. Some of the examples are Backdoor Tool, Pentest Tool, Network Scanner, and Network Sniffer.
+keyword
+aws.guardduty.service.runtime_details.context.tool_name
+Name of the potentially suspicious tool.
+keyword
+aws.guardduty.service.runtime_details.process.euid
+The effective user ID of the user that executed the process.
+long
+aws.guardduty.service.runtime_details.process.executable_path
+The absolute path of the process executable file.
+keyword
+aws.guardduty.service.runtime_details.process.executable_sha256
+The SHA256 hash of the process executable.
+keyword
+aws.guardduty.service.runtime_details.process.lineage
+Information about the process's lineage.
+flattened
+aws.guardduty.service.runtime_details.process.name
+The name of the process.
+keyword
+aws.guardduty.service.runtime_details.process.namespace_pid
+The ID of the child process.
+long
+aws.guardduty.service.runtime_details.process.parent_uuid
+The unique ID of the parent process. This ID is assigned to the parent process by GuardDuty.
+keyword
+aws.guardduty.service.runtime_details.process.pid
+The ID of the process.
+long
+aws.guardduty.service.runtime_details.process.pwd
+The present working directory of the process.
+keyword
+aws.guardduty.service.runtime_details.process.start_time
+The time when the process started. This is in UTC format.
+date
+aws.guardduty.service.runtime_details.process.user
+The user that executed the process.
+keyword
+aws.guardduty.service.runtime_details.process.user_id
+The unique ID of the user that executed the process.
+long
+aws.guardduty.service.runtime_details.process.uuid
+The unique ID assigned to the process by GuardDuty.
+keyword
+aws.guardduty.service.service_name
+The AWS service name whose API was invoked.
+keyword
+aws.guardduty.service.user_feedback
+Feedback that was submitted about the finding.
+keyword
+aws.guardduty.severity.code
+The severity of the finding in double.
+double
+aws.guardduty.severity.value
+The severity of the finding.
+keyword
+aws.guardduty.title
+The title of the finding.
+keyword
+aws.guardduty.type
+The type of finding.
+keyword
+aws.guardduty.updated_at
+The time and date when the finding was last updated.
+date
+cloud.image.id
+Image ID for the cloud instance.
+keyword
+data_stream.dataset
+Data stream dataset.
+constant_keyword
+data_stream.namespace
+Data stream namespace.
+constant_keyword
+data_stream.type
+Data stream type.
+constant_keyword
+event.module
+Event module.
+constant_keyword
+host.containerized
+If the host is a container.
+boolean
+host.os.build
+OS build information.
+keyword
+host.os.codename
+OS codename, if any.
+keyword
+input.type
+Input type
+keyword
+log.offset
+Log offset
+long
+Changelog
+Changelog
+Version
+Details
+Kibana version(s)
+3.8.2
+Bug fix
+(
+View pull request
+)
+Fix null reference in securityhub_findings* data streams when extracting
+host.ip
+.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.8.1
+Bug fix
+(
+View pull request
+)
+Modify the data type of
+event.kind
+from a constant_keyword to a keyword to handle pipeline errors that send
+event.kind
+as
+pipeline_error
+.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.8.0
+Enhancement
+(
+View pull request
+)
+Standardize user fields processing across integrations.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.7.1
+Bug fix
+(
+View pull request
+)
+Add temporary processor to remove the fields added by the Agentless policy.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.7.0
+Enhancement
+(
+View pull request
+)
+Add AWS lambda logs overview dashboard.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.6.0
+Enhancement
+(
+View pull request
+)
+Add AWS lambda logs dataset.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.5.2
+Bug fix
+(
+View pull request
+)
+Add Redshift
+InstanceType
+dimension.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.5.1
+Enhancement
+(
+View pull request
+)
+Change Redshift terraform node type because
+dc2.large
+is deprecated and leads to system tests fails.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.5.0
+Enhancement
+(
+View pull request
+)
+Add the
+external_id
+field to data streams collecting data from S3.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.4.0
+Enhancement
+(
+View pull request
+)
+Add new AWS Config datastream.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.3.3
+Enhancement
+(
+View pull request
+)
+Update README - Document ingested log types of AWS Network Firewall.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.3.2
+Enhancement
+(
+View pull request
+)
+Update README - EC2 Instance IAM Role for AWS Authentication
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.3.1
+Bug fix
+(
+View pull request
+)
+Fix handling of duplicate fields in Network Firewall Logs data stream.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.3.0
+Enhancement
+(
+View pull request
+)
+Remove deprecated httpjson input for cloudtrail data stream.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.2.0
+Enhancement
+(
+View pull request
+)
+Add agentless deployment for AWS Security Hub.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.1.0
+Enhancement
+(
+View pull request
+)
+Enhancements for Guardduty dashboards.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+3.0.0
+Breaking change
+(
+View pull request
+)
+Add new Security Hub Findings Full Posture data stream. If you rely on Findings > Misconfigurations view, enable this new data stream.
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+2.45.2
+Enhancement
+(
+View pull request
+)
+Update grok pattern for AWS S3 access ingest pipeline
+8.16.5 or higher
+9.0.0 or higher
+2.45.1
+Bug fix
+(
+View pull request
+)
+Fix handling of SQS worker count configuration.
+8.16.5 or higher
+9.0.0 or higher
+2.45.0
+Breaking change
+(
+View pull request
+)
+Update default data_stream.dataset to aws.cloudwatch_logs for cloudwatch_logs data stream.
+8.16.5 or higher
+9.0.0 or higher
+2.44.0
+Enhancement
+(
+View pull request
+)
+Add
+actor.entity.id
+and
+target.entity.id
+8.16.5 or higher
+9.0.0 or higher
+2.43.0
+Enhancement
+(
+View pull request
+)
+Set
+event.type
+and
+event.action
+fields in vpcflow logs.
+8.16.5 or higher
+9.0.0 or higher
+2.42.0
+Enhancement
+(
+View pull request
+)
+Add support to configure start_timestamp and ignore_older configurations for AWS S3 backed inputs.
+8.16.5 or higher
+9.0.0 or higher
+2.41.1
+Bug fix
+(
+View pull request
+)
+Updated SSL description to be uniform and to include links to documentation.
+8.16.2 or higher
+9.0.0 or higher
+2.41.0
+Enhancement
+(
+View pull request
+)
+Ignore long
+cloudtrail.request_parameters
+and
+cloudtrail.response_elements
+fields.
+8.16.2 or higher
+9.0.0 or higher
+2.40.0
+Enhancement
+(
+View pull request
+)
+Add support for Kibana
+9.0.0
+8.16.2 or higher
+9.0.0 or higher
+2.39.0
+Enhancement
+(
+View pull request
+)
+Allow the usage of deprecated log input and support for stack 9.0
+8.16.2 or higher
+2.38.2
+Bug fix
+(
+View pull request
+)
+Update links to getting started docs
+8.16.2 or higher
+2.38.1
+Enhancement
+(
+View pull request
+)
+Add missing category.
+8.16.2 or higher
+2.38.0
+Enhancement
+(
+View pull request
+)
+Add support for Access Point ARN when collecting logs via the AWS S3 Bucket.
+8.16.2 or higher
+2.37.0
+Enhancement
+(
+View pull request
+)
+Map aws.dimensions as object instead of flattened in CloudWatch metrics.
+8.16.0 or higher
+2.36.2
+Enhancement
+(
+View pull request
+)
+Include pipeline test examples to accommodate the new Cloudtrail format for the
+CreateGroup
+and
+UpdateGroup
+event types.
+8.16.0 or higher
+2.36.1
+Enhancement
+(
+View pull request
+)
+Add SQS API calls documentation and required S3 permissions.
+8.16.0 or higher
+2.36.0
+Enhancement
+(
+View pull request
+)
+Add ELB connection logs dashboards for application load balancers.
+8.16.0 or higher
+2.35.0
+Enhancement
+(
+View pull request
+)
+Add the support for connection logs for AWS ELB dataset for Application Load Balancers.
+8.16.0 or higher
+2.34.0
+Enhancement
+(
+View pull request
+)
+Add Lambda Event Source Mapping metrics and improve Lambda dashboard to display the new metrics.
+8.16.0 or higher
+2.33.0
+Enhancement
+(
+View pull request
+)
+Add option to check linked accounts when using log group prefixes to derive matching log groups
+8.16.0 or higher
+2.32.0
+Bug fix
+(
+View pull request
+)
+Implemented grok processor based parsing for ipv6 & ipv4 addresses in the AWS CloudFront logs.
+Enhancement
+(
+View pull request
+)
+Auto formatted various text descriptions and newlines across all data streams via elastic-package.
+8.16.0 or higher
+2.31.4
+Bug fix
+(
+View pull request
+)
+Update documentation with required permissions for AWS Inspector.
+8.16.0 or higher
+2.31.3
+Bug fix
+(
+View pull request
+)
+Removed the
+reducedTimeRange
+filter from the AWS Billing Total Estimated Charges lens to ensure value is displayed.
+8.16.0 or higher
+2.31.2
+Bug fix
+(
+View pull request
+)
+Add the support for listeners with ALPN policy extension in ELB dataset for Network Load Balancers.
+8.16.0 or higher
+2.31.1
+Bug fix
+(
+View pull request
+)
+Add
+cloud.provider
+,
+event.kind
+, and
+observer.vendor
+fields to _source as needed by CDR workflows.
+8.16.0 or higher
+2.31.0
+Enhancement
+(
+View pull request
+)
+Improve support for Cloud Detection and Response (CDR) workflows in securityhub_findings data stream.
+8.16.0 or higher
+2.30.3
+Enhancement
+(
+View pull request
+)
+Map aws.dimensions as object instead of flattened in CloudWatch metrics (backported from 2.37.0)
+8.15.2 or higher
+2.30.2
+Bug fix
+(
+View pull request
+)
+Add the support for listeners with ALPN policy extension in ELB dataset for Network Load Balancers.
+8.15.2 or higher
+2.30.1
+Bug fix
+(
+View pull request
+)
+Update the AWS dashboard panels.
+8.15.2 or higher
+2.30.0
+Enhancement
+(
+View pull request
+)
+Support configuring the Owning Account
+8.15.2 or higher
+2.29.0
+Enhancement
+(
+View pull request
+)
+Add mapping for the service.runtimeDetails fields in GuardDuty events.
+8.15.0 or higher
+2.28.0
+Enhancement
+(
+View pull request
+)
+Add reference to AWS API requests and pricing information.
+8.15.0 or higher
+2.27.0
+Enhancement
+(
+View pull request
+)
+Improve ingest pipeline error reporting.
+8.15.0 or higher
+2.26.0
+Enhancement
+(
+View pull request
+)
+Add more data to related.entity field.
+8.15.0 or higher
+2.26.0-preview01
+Enhancement
+(
+View pull request
+)
+Add related.entity field.
+—
+2.25.1
+Bug fix
+(
+View pull request
+)
+Add aws.metrics_names_fingerprint field and mark it as a dimension.
+8.14.0 or higher
+2.25.0
+Enhancement
+(
+View pull request
+)
+Allow @custom pipeline access to event.original without setting preserve_original_event.
+8.14.0 or higher
+2.24.3
+Bug fix
+(
+View pull request
+)
+Fix aws.metrics_names_fingerprint field.
+8.14.0 or higher
+2.24.2
+Bug fix
+(
+View pull request
+)
+Add aws.metrics_names_fingerprint.
+8.14.0 or higher
+2.24.1
+Bug fix
+(
+View pull request
+)
+Fixed and refactored AWS cloudfront log parsing.
+8.14.0 or higher
+2.24.0
+Enhancement
+(
+View pull request
+)
+Add dot_expander processor into metrics ingest pipeline.
+8.14.0 or higher
+2.23.0
+Enhancement
+(
+View pull request
+)
+Split the current AWS ELB dashboard into 3 separate dashboards, each focusing on a specific type of load balancer ELB, ALB, and NLB.
+8.14.0 or higher
+2.22.1
+Bug fix
+(
+View pull request
+)
+Update max_number_of_messages parameter description
+8.14.0 or higher
+2.22.0
+Enhancement
+(
+View pull request
+)
+Add global dataset filter for dashboards to improve performance.
+8.14.0 or higher
+2.21.0
+Enhancement
+(
+View pull request
+)
+Fix route53 public logs grok pattern.
+8.14.0 or higher
+2.20.0
+Enhancement
+(
+View pull request
+)
+Add S3 polling option to data streams use aws-s3 input
+8.14.0 or higher
+2.19.0
+Enhancement
+(
+View pull request
+)
+Add a visualization panel to display the Inbound and Outbound traffic of Application load balancers.
+8.14.0 or higher
+2.18.0
+Enhancement
+(
+View pull request
+)
+Add AWS Health integration.
+8.14.0 or higher
+2.17.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.11.0. Update the kibana constraint to ^8.13.0. Modified the field definitions to remove ECS fields made redundant by the ecs@mappings component template.
+8.13.0 or higher
+2.16.0
+Enhancement
+(
+View pull request
+)
+Add TargetResponseTime metric to ELB Application metrics.
+8.12.0 or higher
+2.15.4
+Bug fix
+(
+View pull request
+)
+Fix AWS Network Firewall title and description.
+8.12.0 or higher
+2.15.3
+Enhancement
+(
+View pull request
+)
+Add endpoint + region variables to all SQS based AWS integrations.
+8.12.0 or higher
+2.15.2
+Bug fix
+(
+View pull request
+)
+Fix AWS Cloudtrail resources field processing.
+8.12.0 or higher
+2.15.1
+Bug fix
+(
+View pull request
+)
+Don't index empty AWS Security Hub responses.
+8.12.0 or higher
+2.15.0
+Enhancement
+(
+View pull request
+)
+Adds async event age and drops metrics, and implements sum aggregation for existing lambda metrics.
+8.12.0 or higher
+2.14.2
+Bug fix
+(
+View pull request
+)
+Update aggregation function for AWS lambda invocation metric.
+8.12.0 or higher
+2.14.1
+Enhancement
+(
+View pull request
+)
+Document billing data stream limitations.
+8.12.0 or higher
+2.14.0
+Enhancement
+(
+View pull request
+)
+Add ability to set processors and leader election on AWS Billing.
+8.12.0 or higher
+2.13.1
+Enhancement
+(
+View pull request
+)
+Update latency parameter description
+8.12.0 or higher
+2.13.0
+Enhancement
+(
+View pull request
+)
+Add Amazon MSK integration
+8.12.0 or higher
+2.12.2
+Bug fix
+(
+View pull request
+)
+Fix an issue were the "_id" field was being used to aggregate data in Severity Over Time dashboard.
+8.12.0 or higher
+2.12.1
+Enhancement
+(
+View pull request
+)
+Add cloudsecurity_cdr sub category label.
+8.12.0 or higher
+2.12.0
+Enhancement
+(
+View pull request
+)
+Enable 'secret' for the sensitive fields.
+8.12.0 or higher
+2.11.3
+Bug fix
+(
+View pull request
+)
+Fix query range calculation for GuardDuty datastream.
+8.10.2 or higher
+2.11.2
+Bug fix
+(
+View pull request
+)
+Remove hardcoded event.dataset field and use ecs instead.
+8.10.2 or higher
+2.11.1
+Enhancement
+(
+View pull request
+)
+Improve wording on milliseconds.
+8.10.2 or higher
+2.11.0
+Enhancement
+(
+View pull request
+)
+Convert Total Estimated Charges panel to new metric visualization.
+8.10.2 or higher
+2.10.2
+Bug fix
+(
+View pull request
+)
+Fix dimensions fingerprint field
+8.10.2 or higher
+2.10.1
+Bug fix
+(
+View pull request
+)
+Fix exclude_files pattern.
+8.10.2 or higher
+2.10.0
+Enhancement
+(
+View pull request
+)
+Convert "AWS Redshift metrics overview" visualizations to new metric.
+8.10.2 or higher
+2.9.1
+Bug fix
+(
+View pull request
+)
+Change SQS metrics statistic method, which includes changing ApproximateAgeOfOldestMessage from average to max, changing NumberOfMessagesDeleted, NumberOfEmptyReceives, NumberOfMessagesReceived and NumberOfMessagesSent from average to sum.
+8.9.0 or higher
+2.9.0
+Enhancement
+(
+View pull request
+)
+Limit request tracer log count to five.
+8.9.0 or higher
+2.8.6
+Bug fix
+(
+View pull request
+)
+Add missing fields from beats input
+8.9.0 or higher
+2.8.5
+Enhancement
+(
+View pull request
+)
+Update donut charts with pie for better representation
+8.9.0 or higher
+2.8.4
+Bug fix
+(
+View pull request
+)
+Remove unused aws.
+.metrics.
+.* and aws.s3.bucket.name
+8.9.0 or higher
+2.8.3
+Bug fix
+(
+View pull request
+)
+Include documentation and mappings for subfields of dns.answers
+Bug fix
+(
+View pull request
+)
+Fix mapping for tags and dynamic metric fields
+8.9.0 or higher
+2.8.2
+Bug fix
+(
+View pull request
+)
+Add null checks and ignore_missing checks to the rename processor
+8.9.0 or higher
+2.8.1
+Bug fix
+(
+View pull request
+)
+Fix incorrect billing metrics displayed under AWS Billing overview dashboard.
+8.9.0 or higher
+2.8.0
+Enhancement
+(
+View pull request
+)
+Allow configuration of TLD for guardduty, inspector, and security hub datastreams.
+8.9.0 or higher
+2.7.0
+Enhancement
+(
+View pull request
+)
+Add tags.yml file so that integration's dashboards and saved searches are tagged with "Security Solution" and displayed in the Security Solution UI.
+Enhancement
+(
+View pull request
+)
+Upgrade package spec to 3.0.0.
+Bug fix
+(
+View pull request
+)
+Fix duplicated and invalid field definitions.
+Bug fix
+(
+View pull request
+)
+Add missing dashboard filters.
+8.9.0 or higher
+2.6.1
+Bug fix
+(
+View pull request
+)
+Fix AWS API Gateway logs dashboard lens
+8.9.0 or higher
+2.6.0
+Enhancement
+(
+View pull request
+)
+ECS version updated to 8.10.0.
+8.9.0 or higher
+2.5.0
+Enhancement
+(
+View pull request
+)
+Update Cloudtrail datastream to support tlsDetails field
+8.9.0 or higher
+2.4.1
+Bug fix
+(
+View pull request
+)
+Fix Security Hub Findings to abide by ECS allowed values.
+8.9.0 or higher
+2.4.0
+Bug fix
+(
+View pull request
+)
+Add AWS API Gateway metrics dashboards for each API type and additional filters which ensure data consistency
+8.9.0 or higher
+2.3.0
+Enhancement
+(
+View pull request
+)
+Change include_linked_accounts default to true
+8.9.0 or higher
+2.2.1
+Bug fix
+(
+View pull request
+)
+Fix GuardDuty API call parameter.
+8.9.0 or higher
+2.2.0
+Enhancement
+(
+View pull request
+)
+Add AWS API Gateway metrics dashboard Stage filter, control groups and clean up
+8.9.0 or higher
+2.1.2
+Bug fix
+(
+View pull request
+)
+Fix AWS API Gateway metrics dashboard
+8.9.0 or higher
+2.1.1
+Enhancement
+(
+View pull request
+)
+Improve AWS API Gateway dashboard
+8.9.0 or higher
+2.1.0
+Enhancement
+(
+View pull request
+)
+Enable TSDB by default for EC2 metrics data stream. This improves storage usage and query performance. For more details, see https://www.elastic.co/guide/en/elasticsearch/reference/current/tsds.html.
+8.9.0 or higher
+2.0.0
+Enhancement
+(
+View pull request
+)
+Remove deprecated option for "Cloudwatch via S3"from the AWS CloudWatch integration. If you are using it take note that logs WON'T BE ingested via this route anymore once you update.
+8.9.0 or higher
+1.53.5
+Enhancement
+(
+View pull request
+)
+Set metric type in EC2 data stream fields.
+8.9.0 or higher
+1.53.4
+Enhancement
+(
+View pull request
+)
+Add dimension fields to EC2 data stream.
+8.9.0 or higher
+1.53.3
+Enhancement
+(
+View pull request
+)
+Add missing fields definition for ec2
+8.9.0 or higher
+1.53.2
+Bug fix
+(
+View pull request
+)
+Remove the remove processor since rename processor removes old field already.
+8.9.0 or higher
+1.53.1
+Enhancement
+(
+View pull request
+)
+Disable TSDB on AWS Billing.
+8.9.0 or higher
+1.53.0
+Enhancement
+(
+View pull request
+)
+Add AWS API Gateway custom acccess logging fields.
+8.9.0 or higher
+1.52.1
+Enhancement
+(
+View pull request
+)
+Use default color for AWS dashboards metric charts.
+8.9.0 or higher
+1.52.0
+Enhancement
+(
+View pull request
+)
+Enable TSDB by default for cloudwatch metrics data stream. This improves storage usage and query performance. For more details, see https://www.elastic.co/guide/en/elasticsearch/reference/current/tsds.html.
+8.9.0 or higher
+1.51.3
+Bug fix
+(
+View pull request
+)
+Remove hardcoded event.dataset field and use ecs instead.
+8.8.1 or higher
+1.51.2
+Enhancement
+(
+View pull request
+)
+Disable TSDB on AWS Billing.
+8.8.1 or higher
+1.51.1
+Enhancement
+(
+View pull request
+)
+Use object metric type for the cloudwatch metrics
+8.8.1 or higher
+1.51.0
+Enhancement
+(
+View pull request
+)
+Add standalone S3 option for vpcflow
+8.8.1 or higher
+1.50.6
+Enhancement
+(
+View pull request
+)
+Add metric_type metadata to the cloudwatch data_stream
+8.8.1 or higher
+1.50.5
+Enhancement
+(
+View pull request
+)
+Migrate AWS Security Hub dashboards to lens.
+8.8.1 or higher
+1.50.4
+Enhancement
+(
+View pull request
+)
+Migrate AWS VPC dashboard visualizations to lens.
+8.8.1 or higher
+1.50.3
+Enhancement
+(
+View pull request
+)
+Add EMR logs dashboard.
+8.8.1 or higher
+1.50.2
+Enhancement
+(
+View pull request
+)
+Migrate AWS Billing dashboard visualizations to lens.
+8.8.1 or higher
+1.50.1
+Enhancement
+(
+View pull request
+)
+Add AWS API Gateway logs dashboard.
+8.8.1 or higher
+1.50.0
+Enhancement
+(
+View pull request
+)
+Add EMR logs data stream.
+8.8.1 or higher
+1.49.0
+Enhancement
+(
+View pull request
+)
+Add API Gateway logs datastream
+8.8.1 or higher
+1.48.0
+Enhancement
+(
+View pull request
+)
+Adding missing fields for the CloudTrail datastream - add option for standalone S3 bucket
+8.8.1 or higher
+1.47.1
+Enhancement
+(
+View pull request
+)
+Migrate AWS Redshift dashboard input controls.
+8.8.1 or higher
+1.47.0
+Enhancement
+(
+View pull request
+)
+Migrate AWS S3 Server Access Log Overview dashboard visualizations to lens.
+8.8.1 or higher
+1.46.9
+Enhancement
+(
+View pull request
+)
+Migrate AWS Network Firewall dashboard input controls.
+8.8.1 or higher
+1.46.8
+Enhancement
+(
+View pull request
+)
+Add dimensions metadata to the cloudwatch data_stream
+8.8.1 or higher
+1.46.7
+Enhancement
+(
+View pull request
+)
+Enable time series data streams for the API Gateway and EMR data streams. This improves storage usage and query performance. For more details, see https://www.elastic.co/guide/en/elasticsearch/reference/current/tsds.html.
+8.8.1 or higher
+1.46.6
+Enhancement
+(
+View pull request
+)
+Update metric type and set dimension fields for AWS EMR data stream.
+8.8.1 or higher
+1.46.5
+Enhancement
+(
+View pull request
+)
+Fix metric type for API Gateway metric fields.
+8.8.1 or higher
+1.46.4
+Enhancement
+(
+View pull request
+)
+Set dimensions fields for API Gateway data stream.
+—
+1.46.3
+Enhancement
+(
+View pull request
+)
+Add missing S3 fields for vpcflow
+8.8.1 or higher
+1.46.2
+Enhancement
+(
+View pull request
+)
+Enable time series data streams for the S3 daily storage and S3 request datasets. This improves storage usage and query performance. For more details, see https://www.elastic.co/guide/en/elasticsearch/reference/current/tsds.html.
+8.8.1 or higher
+1.46.1
+Enhancement
+(
+View pull request
+)
+Enable time series data streams for the Usage dataset. This improves storage usage and query performance. For more details, see https://www.elastic.co/guide/en/elasticsearch/reference/current/tsds.html.
+8.8.1 or higher
+1.46.0
+Enhancement
+(
+View pull request
+)
+Enable time series data streams for the metrics datasets Billing, DynamoDB, EBS, ECS, ELB, Firewall, Kinesis, Lambda, NAT gateway, RDS, Redshift, S3 Storage Lens, SNS, SQS, Transit Gateway and VPN. This improves storage usage and query performance. For more details, see https://www.elastic.co/guide/en/elasticsearch/reference/current/tsds.html.
+8.8.1 or higher
+1.45.9
+Enhancement
+(
+View pull request
+)
+Add new fingerprint dimension to AWS Billing.
+8.8.1 or higher
+1.45.8
+Enhancement
+(
+View pull request
+)
+Add metric_type metadata to s3_daily_storage and s3_request data streams.
+8.8.1 or higher
+1.45.7
+Enhancement
+(
+View pull request
+)
+Add dimension fields metadata to s3_request and s3_data_storage data streams to support TSDB
+8.8.1 or higher
+1.45.6
+Enhancement
+(
+View pull request
+)
+Add metric type to S3 Storage Lens.
+8.8.1 or higher
+1.45.4
+Enhancement
+(
+View pull request
+)
+Set dimension fields for S3 Storage Lens.
+8.8.1 or higher
+1.45.3
+Bug fix
+(
+View pull request
+)
+Remove aws.dimensions.* from package-fields.yml
+8.8.1 or higher
+1.45.2
+Enhancement
+(
+View pull request
+)
+Add AWS EMR metrics dashboard.
+8.8.1 or higher
+1.45.1
+Enhancement
+(
+View pull request
+)
+Add AWS API Gateway dashboard.
+8.8.1 or higher
+1.45.0
+Enhancement
+(
+View pull request
+)
+Add AWS EMR metrics data stream.
+8.8.1 or higher
+1.44.4
+Enhancement
+(
+View pull request
+)
+Migrate AWS Metric Overview dashboard visualizations to lens.
+8.8.1 or higher
+1.44.3
+Enhancement
+(
+View pull request
+)
+Migrate AWS ELB Access Log dashboard visualizations to lens.
+8.8.1 or higher
+1.44.2
+Bug fix
+(
+View pull request
+)
+Fix image link in readme
+8.8.1 or higher
+1.44.1
+Enhancement
+(
+View pull request
+)
+Migrate AWS TransitGateway metrics dashboard to lenses.
+8.8.1 or higher
+1.44.0
+Enhancement
+(
+View pull request
+)
+Add permissions to reroute events to logs-
+-
+for cloudwatch_logs and ec2_logs datastream.
+8.8.1 or higher
+1.43.2
+Enhancement
+(
+View pull request
+)
+Add documentation for latency parameter
+8.8.1 or higher
+1.43.1
+Enhancement
+(
+View pull request
+)
+Add tags_filter and include_linked_accounts config parameter in missing metric data streams.
+8.8.1 or higher
+1.43.0
+Enhancement
+(
+View pull request
+)
+Add include_linked_accounts config parameter for metrics data streams.
+8.8.1 or higher
+1.42.0
+Enhancement
+(
+View pull request
+)
+Add field agent.id to be set as dimension for TSDB migration.
+8.7.1 or higher
+1.41.0
+Enhancement
+(
+View pull request
+)
+Migrate AWS NATGateway metrics dashboard visualizations to lenses.
+8.7.1 or higher
+1.40.9
+Enhancement
+(
+View pull request
+)
+Migrate AWS ELB metrics dashboard visualizations to lenses.
+8.7.1 or higher
+1.40.8
+Enhancement
+(
+View pull request
+)
+Migrate EC2 metrics dashboard visualizations to lenses.
+8.7.1 or higher
+1.40.7
+Enhancement
+(
+View pull request
+)
+Add AWS Firewall metrics dashboard input control groups.
+8.7.1 or higher
+1.40.6
+Enhancement
+(
+View pull request
+)
+Migrate AWS S3 Storage Lens dashboard visualizations to lens.
+8.7.1 or higher
+1.40.5
+Enhancement
+(
+View pull request
+)
+Migrate Usage Overview dashboard to lenses.
+8.7.1 or higher
+1.40.4
+Enhancement
+(
+View pull request
+)
+Migrate AWS CloudTrail dashboard visualizations to lenses.
+8.7.1 or higher
+1.40.3
+Enhancement
+(
+View pull request
+)
+Add fields metric type to usage, dynamoDB and ELB data streams.
+8.7.1 or higher
+1.40.2
+Enhancement
+(
+View pull request
+)
+Replace aws.rds.db_instance.identifier with aws.dimensions.DBInstanceIdentifier in RDS dashboard.
+8.7.1 or higher
+1.40.1
+Enhancement
+(
+View pull request
+)
+Add link to main AWS requirements in all integrations page.
+8.7.1 or higher
+1.40.0
+Enhancement
+(
+View pull request
+)
+Add metric type to SNS, SQS and Billing data streams.
+8.7.1 or higher
+1.39.0
+Enhancement
+(
+View pull request
+)
+Add AWS API Gateway data stream.
+8.7.1 or higher
+1.38.4
+Enhancement
+(
+View pull request
+)
+Add dimension fields to billing, sns and sqs data streams.
+8.7.1 or higher
+1.38.3
+Enhancement
+(
+View pull request
+)
+Add dimension fields to firewall, transit gateway and vpn data streams.
+8.7.1 or higher
+1.38.2
+Enhancement
+(
+View pull request
+)
+Add metric type to vpn, firewall and transit gateway data streams.
+8.7.1 or higher
+1.38.1
+Enhancement
+(
+View pull request
+)
+Add metric type to RDS data stream.
+8.7.1 or higher
+1.38.0
+Enhancement
+(
+View pull request
+)
+Add dimensions to RDS data stream.
+8.7.1 or higher
+1.37.3
+Bug fix
+(
+View pull request
+)
+Fix incorrect fields on multiple visualizations.
+8.7.1 or higher
+1.37.2
+Enhancement
+(
+View pull request
+)
+Migrate AWS RDS metrics dashboard to lenses.
+8.7.1 or higher
+1.37.1
+Enhancement
+(
+View pull request
+)
+Migrate AWS SNS dashboard visualizations to lenses.
+8.7.1 or higher
+1.37.0
+Enhancement
+(
+View pull request
+)
+Migrate AWS SQS metrics dashboard visualizations to lenses.
+8.7.1 or higher
+1.36.9
+Enhancement
+(
+View pull request
+)
+Migrate AWS VPN metrics dashboard to lenses.
+8.7.1 or higher
+1.36.8
+Enhancement
+(
+View pull request
+)
+Add dimension fields to usage, dynamoDB and ELB data streams.
+8.7.1 or higher
+1.36.7
+Enhancement
+(
+View pull request
+)
+Add dimension fields to Lambda data stream for TSDB support.
+8.7.1 or higher
+1.36.6
+Enhancement
+(
+View pull request
+)
+Add metric type to natgateway data stream fields.
+8.7.1 or higher
+1.36.5
+Enhancement
+(
+View pull request
+)
+Add metric type to EBS fields.
+8.7.1 or higher
+1.36.4
+Enhancement
+(
+View pull request
+)
+Add support for TSDB on kinesis data stream (metric type).
+8.7.1 or higher
+1.36.3
+Enhancement
+(
+View pull request
+)
+Add dimensions to Redshift data stream.
+8.7.1 or higher
+1.36.2
+Enhancement
+(
+View pull request
+)
+Add metric type mapping to Redshift data stream.
+8.7.1 or higher
+1.36.1
+Enhancement
+(
+View pull request
+)
+Add dimension fields to natgateway data stream.
+8.7.1 or higher
+1.36.0
+Enhancement
+(
+View pull request
+)
+Add metric type to Lambda fields.
+8.7.1 or higher
+1.35.1
+Bug fix
+(
+View pull request
+)
+Fix typo in field name causing erroneous timestamp detection on the s3access data stream.
+8.7.1 or higher
+1.35.0
+Enhancement
+(
+View pull request
+)
+Add a new flag to enable request tracing on
+httpjson
+based input
+8.7.1 or higher
+1.34.5
+Enhancement
+(
+View pull request
+)
+Migrate AWS Lambda metrics dashboard visualizations to lenses.
+8.6.0 or higher
+1.34.4
+Enhancement
+(
+View pull request
+)
+Migrate AWS DynamoDB metrics dashboard visualizations to lenses.
+8.6.0 or higher
+1.34.3
+Enhancement
+(
+View pull request
+)
+Add field metric type to ECS data stream.
+8.6.0 or higher
+1.34.2
+Enhancement
+(
+View pull request
+)
+Add dimension fields to Kinesis datastream.
+8.6.0 or higher
+1.34.1
+Enhancement
+(
+View pull request
+)
+Add dimension fields to ECS datastream for TSDB support.
+8.6.0 or higher
+1.34.0
+Enhancement
+(
+View pull request
+)
+Add dimensions to EBS data stream.
+8.6.0 or higher
+1.33.3
+Enhancement
+(
+View pull request
+)
+Add number_of_workers and latency to all CloudWatch Logs based integrations.
+8.6.0 or higher
+1.33.2
+Bug fix
+(
+View pull request
+)
+Add missing permissions in the AWS Billing integration documentation.
+8.6.0 or higher
+1.33.1
+Bug fix
+(
+View pull request
+)
+Add missing permissions in the AWS CloudWatch Logs integration documentation.
+8.6.0 or higher
+1.33.0
+Enhancement
+(
+View pull request
+)
+Add latency configuration option on the CloudWatch Logs integration.
+8.6.0 or higher
+1.32.2
+Bug fix
+(
+View pull request
+)
+Fix a minor documentation format issue.
+8.6.0 or higher
+1.32.1
+Enhancement
+(
+View pull request
+)
+Added categories and/or subcategories.
+8.6.0 or higher
+1.32.0
+Enhancement
+(
+View pull request
+)
+Migrate AWS EBS dashboard visualizations to lenses.
+8.6.0 or higher
+1.31.0
+Enhancement
+(
+View pull request
+)
+Add a data stream for Amazon GuardDuty.
+8.6.0 or higher
+1.30.0
+Enhancement
+(
+View pull request
+)
+Add dashboards data streams filters.
+8.6.0 or higher
+1.29.1
+Bug fix
+(
+View pull request
+)
+Drop comments from CloudFront loglines
+8.6.0 or higher
+1.29.0
+Enhancement
+(
+View pull request
+)
+Add data_granularity parameter and rename period title to Collection Period.
+8.6.0 or higher
+1.28.3
+Bug fix
+(
+View pull request
+)
+Remove quotes from VPC flow log message field and move dot_expander processor to top
+8.4.0 or higher
+1.28.2
+Bug fix
+(
+View pull request
+)
+Add dot_expander processor to expand all fields with dot into object fields
+Bug fix
+(
+View pull request
+)
+Support VPC flow log with message field
+8.4.0 or higher
+1.28.1
+Enhancement
+(
+View pull request
+)
+Adjust kinesis integration to kinesis data stream
+8.4.0 or higher
+1.28.0
+Enhancement
+(
+View pull request
+)
+Enhance S3 integration dashboard
+8.4.0 or higher
+1.27.3
+Bug fix
+(
+View pull request
+)
+Support multiple forwarded IPs in cloudfront integration
+8.4.0 or higher
+1.27.2
+Enhancement
+(
+View pull request
+)
+Update the pagination termination condition.
+8.4.0 or higher
+1.27.1
+Enhancement
+(
+View pull request
+)
+Added a Summary Dashboard for AWS Security Hub.
+8.4.0 or higher
+1.27.0
+Enhancement
+(
+View pull request
+)
+Add Inspector data stream.
+8.4.0 or higher
+1.25.3
+Bug fix
+(
+View pull request
+)
+Remove duplicate fields from agent.yml and use ecs.yml for ECS fields
+8.3.0 or higher
+1.25.2
+Bug fix
+(
+View pull request
+)
+Update ec2 fields.yml doc
+8.3.0 or higher
+1.25.1
+Bug fix
+(
+View pull request
+)
+Remove duplicate 'content_type' config that causes errors while configurating the integration.
+8.3.0 or higher
+1.25.0
+Enhancement
+(
+View pull request
+)
+Force content type where json content is expected
+8.3.0 or higher
+1.24.6
+Bug fix
+(
+View pull request
+)
+Enhance Kinesis integration dashboard
+8.3.0 or higher
+1.24.5
+Bug fix
+(
+View pull request
+)
+Allow adding multiple processors in cloudfront logs.
+8.3.0 or higher
+1.24.4
+Bug fix
+(
+View pull request
+)
+Do not rely on dynamodb lightweight module metricset.
+8.3.0 or higher
+1.24.3
+Bug fix
+(
+View pull request
+)
+Fix adding processors in cloudfront logs.
+8.3.0 or higher
+1.24.2
+Bug fix
+(
+View pull request
+)
+Fix billing datastream agent template.
+8.3.0 or higher
+1.24.1
+Bug fix
+(
+View pull request
+)
+Fix aws.cloudtrail.request_id parsing
+8.3.0 or higher
+1.24.0
+Bug fix
+(
+View pull request
+)
+Expose Default Region setting to UI
+8.3.0 or higher
+1.23.4
+Bug fix
+(
+View pull request
+)
+Set default endpoint to empty string
+8.3.0 or higher
+1.23.3
+Bug fix
+(
+View pull request
+)
+Fix Billing Dashboard
+8.3.0 or higher
+1.23.2
+Bug fix
+(
+View pull request
+)
+Fix EC2 dashboard
+8.3.0 or higher
+1.23.1
+Enhancement
+(
+View pull request
+)
+Update all AWS documentation.
+8.1.0 or higher
+1.23.0
+Bug fix
+(
+View pull request
+)
+Fix file.path field in cloudtrail data stream to use json.digestS3Object
+8.1.0 or higher
+1.22.0
+Enhancement
+(
+View pull request
+)
+Update
+cloud.region
+parsing
+8.1.0 or higher
+1.21.0
+Enhancement
+(
+View pull request
+)
+Add Security Hub Findings and Insights data streams
+8.1.0 or higher
+1.20.0
+Enhancement
+(
+View pull request
+)
+Improve dashboards by removing individual visualizations from library
+8.1.0 or higher
+1.19.5
+Enhancement
+(
+View pull request
+)
+Move ebs metrics config from beats to integrations
+7.15.0 or higher
+8.0.0 or higher
+1.19.4
+Bug fix
+(
+View pull request
+)
+Fix proxy URL documentation rendering.
+7.15.0 or higher
+8.0.0 or higher
+1.19.3
+Bug fix
+(
+View pull request
+)
+Update sample_event.json in kinesis data stream
+7.15.0 or higher
+8.0.0 or higher
+1.19.2
+Enhancement
+(
+View pull request
+)
+Move NATGateway metrics config from beats to integrations
+7.15.0 or higher
+8.0.0 or higher
+1.19.1
+Enhancement
+(
+View pull request
+)
+Move Transit Gateway metrics config from beats to integrations
+7.15.0 or higher
+8.0.0 or higher
+1.19.0
+Enhancement
+(
+View pull request
+)
+Add Kinesis metrics datastream
+7.15.0 or higher
+8.0.0 or higher
+1.18.2
+Enhancement
+(
+View pull request
+)
+Move s3_request metrics config from beats to integrations
+Enhancement
+(
+View pull request
+)
+Move s3_daily_storage metrics config from beats to integrations
+Enhancement
+(
+View pull request
+)
+Move SQS metrics config from beats to integrations
+Enhancement
+(
+View pull request
+)
+Move SNS metrics config from beats to integrations
+Enhancement
+(
+View pull request
+)
+Move lambda metrics config from beats to integrations
+7.15.0 or higher
+8.0.0 or higher
+1.18.1
+Enhancement
+(
+View pull request
+)
+Release AWS billing integration as GA
+7.15.0 or higher
+8.0.0 or higher
+1.18.0
+Enhancement
+(
+View pull request
+)
+Add ECS metricset
+Bug fix
+(
+View pull request
+)
+Fix incorrect fields on multiple visualizations
+7.15.0 or higher
+8.0.0 or higher
+1.17.5
+Enhancement
+(
+View pull request
+)
+Release Amazon Redshift integration as GA
+7.15.0 or higher
+8.0.0 or higher
+1.17.4
+Bug fix
+(
+View pull request
+)
+Fix data_stream.dataset indentation on cloudwatch_logs integration
+7.15.0 or higher
+8.0.0 or higher
+1.17.3
+Bug fix
+(
+View pull request
+)
+Add missing endpoint config to metrics datasets.
+Enhancement
+(
+View pull request
+)
+Move usage metrics config from beats to integrations
+Enhancement
+(
+View pull request
+)
+Move dynamodb metrics config from beats to integrations
+7.15.0 or higher
+8.0.0 or higher
+1.17.2
+Bug fix
+(
+View pull request
+)
+Improve support for event.original field from upstream forwarders.
+7.15.0 or higher
+8.0.0 or higher
+1.17.1
+Bug fix
+(
+View pull request
+)
+Fix misspelling of Log Stream Prefix variable in manifest for aws-cloudwatch input
+7.15.0 or higher
+8.0.0 or higher
+1.17.0
+Enhancement
+(
+View pull request
+)
+Added Redshift integration
+7.15.0 or higher
+8.0.0 or higher
+1.16.6
+Enhancement
+(
+View pull request
+)
+Update documentation with additional context for new users.
+7.15.0 or higher
+8.0.0 or higher
+1.16.5
+Enhancement
+(
+View pull request
+)
+Move ELB metrics config from beats to integrations
+—
+1.16.4
+Bug fix
+(
+View pull request
+)
+Fix ELB dataset to parse URLs with spaces
+Enhancement
+(
+View pull request
+)
+Upgrade ECS to 8.2.0
+7.15.0 or higher
+8.0.0 or higher
+1.16.3
+Enhancement
+(
+View pull request
+)
+Move RDS metrics config from beats to integrations
+—
+1.16.2
+Enhancement
+(
+View pull request
+)
+Move EC2 metrics config from beats to integrations
+—
+1.16.1
+Bug fix
+(
+View pull request
+)
+Fix invalid values for ECS fields in vpcflow
+—
+1.16.0
+Enhancement
+(
+View pull request
+)
+Move VPN configuration file into integrations and add tag collection
+7.15.0 or higher
+8.0.0 or higher
+1.15.0
+Enhancement
+(
+View pull request
+)
+Deprecate s3 input in cloudwatch integration
+Enhancement
+(
+View pull request
+)
+Improve description for cloudwatch integration
+—
+1.14.8
+Bug fix
+(
+View pull request
+)
+Fix http.response.status_code to accept 000
+7.15.0 or higher
+8.0.0 or higher
+1.14.7
+Bug fix
+(
+View pull request
+)
+Fix aws.dimensions.* for rds data stream
+Bug fix
+(
+View pull request
+)
+Fix aws.dimensions.* for sns data stream
+Bug fix
+(
+View pull request
+)
+Add aws.dimensions.* for dynamodb data stream
+7.15.0 or higher
+8.0.0 or higher
+1.14.6
+Enhancement
+(
+View pull request
+)
+Improve s3 integration tile title and description
+—
+1.14.5
+Bug fix
+(
+View pull request
+)
+Fix duplicate titles for integrations
+7.15.0 or higher
+8.0.0 or higher
+1.14.4
+Bug fix
+(
+View pull request
+)
+Fix cloudfront integration grok pattern
+—
+1.14.3
+Enhancement
+(
+View pull request
+)
+Add new pattern to VPC Flow logs including all 29 v5 fields
+—
+1.14.2
+Bug fix
+(
+View pull request
+)
+Fix billing dashboard.
+—
+1.14.1
+Enhancement
+(
+View pull request
+)
+Add documentation for multi-fields
+—
+1.14.0
+Enhancement
+(
+View pull request
+)
+Add configuration for max_number_of_messages to the aws.firewall_logs S3 input.
+7.15.0 or higher
+8.0.0 or higher
+1.13.1
+Bug fix
+(
+View pull request
+)
+Fix metricbeat- reference in dashboard
+7.15.0 or higher
+8.0.0 or higher
+1.13.0
+Enhancement
+(
+View pull request
+)
+Compress dashboard screenshots.
+7.15.0 or higher
+8.0.0 or higher
+1.12.1
+Bug fix
+(
+View pull request
+)
+Fix field mapping conflicts in the elb_logs data stream relating to ECS fields (
+trace.id
+,
+source.port
+, and a few others).
+7.15.0 or higher
+8.0.0 or higher
+1.12.0
+Enhancement
+(
+View pull request
+)
+Add CloudFront Logs Datastream
+—
+1.11.4
+Bug fix
+(
+View pull request
+)
+Add Ingest Pipeline script to map IANA Protocol Numbers
+—
+1.11.3
+Bug fix
+(
+View pull request
+)
+Changing missing ecs versions to 8.0.0
+—
+1.11.2
+Bug fix
+(
+View pull request
+)
+Add data_stream.dataset option for custom aws-cloudwatch log input
+—
+1.11.1
+Bug fix
+(
+View pull request
+)
+Update permission list
+—
+1.11.0
+Enhancement
+(
+View pull request
+)
+Update to ECS 8.0
+7.15.0 or higher
+8.0.0 or higher
+1.10.2
+Enhancement
+(
+View pull request
+)
+Change cloudwatch metrics and logs default to false
+7.15.0 or higher
+8.0.0 or higher
+1.10.1
+Enhancement
+(
+View pull request
+)
+Add description of supported vpcflow formats
+—
+1.10.0
+Enhancement
+(
+View pull request
+)
+Add cloudwatch input into AWS package for log collection
+—
+1.9.0
+Enhancement
+(
+View pull request
+)
+Add Route 53 Resolver Logs Datastream
+7.15.0 or higher
+8.0.0 or higher
+1.8.0
+Enhancement
+(
+View pull request
+)
+Add Route 53 Public Zone Logs Datastream
+—
+1.7.1
+Bug fix
+(
+View pull request
+)
+Regenerate test files using the new GeoIP database
+—
+1.7.0
+Enhancement
+(
+View pull request
+)
+Add integration for AWS Network Firewall
+—
+1.6.2
+Bug fix
+(
+View pull request
+)
+Change test public IPs to the supported subset
+—
+1.6.1
+Enhancement
+(
+View pull request
+)
+Fix the value of event.created in CloudTrail data stream.
+7.15.0 or higher
+8.0.0 or higher
+1.6.0
+Enhancement
+(
+View pull request
+)
+Add max_number_of_messages config option to AWS S3 input config.
+—
+1.5.1
+Enhancement
+(
+View pull request
+)
+Add missing sample events
+7.15.0 or higher
+8.0.0 or higher
+1.5.0
+Enhancement
+(
+View pull request
+)
+Support Kibana 8.0
+7.15.0 or higher
+8.0.0 or higher
+1.4.1
+Enhancement
+(
+View pull request
+)
+Add Overview dashboard for AWS S3 Storage Lens
+7.15.0 or higher
+1.4.0
+Enhancement
+(
+View pull request
+)
+Add integration for AWS S3 Storage Lens
+—
+1.3.2
+Enhancement
+(
+View pull request
+)
+Uniform with guidelines
+—
+1.3.1
+Enhancement
+(
+View pull request
+)
+Add config parameter descriptions
+—
+1.3.0
+Enhancement
+(
+View pull request
+)
+Add WAF datastream
+—
+1.2.2
+Bug fix
+(
+View pull request
+)
+Prevent pipeline script error
+—
+1.2.1
+Bug fix
+(
+View pull request
+)
+Fix logic that checks for the 'forwarded' tag
+—
+1.2.0
+Enhancement
+(
+View pull request
+)
+Update to ECS 1.12.0
+—
+1.1.0
+Enhancement
+(
+View pull request
+)
+vpcflow sync with filebeat fileset
+7.14.0 or higher
+1.0.0
+Enhancement
+(
+View pull request
+)
+Release AWS as GA
+7.14.0 or higher
+0.10.7
+Enhancement
+(
+View pull request
+)
+Add proxy config
+—
+0.10.6
+Bug fix
+(
+View pull request
+)
+Fix aws.billing.EstimatedCharges field name
+—
+0.10.5
+Bug fix
+(
+View pull request
+)
+Add event.created field
+—
+0.10.4
+Enhancement
+(
+View pull request
+)
+Improve RDS dashboard
+—
+0.10.3
+Enhancement
+(
+View pull request
+)
+Convert to generated ECS fields
+—
+0.10.2
+Enhancement
+(
+View pull request
+)
+update to ECS 1.11.0
+—
+0.10.1
+Enhancement
+(
+View pull request
+)
+Escape special characters in docs
+—
+0.10.0
+Enhancement
+(
+View pull request
+)
+Update integration description
+—
+0.9.3
+Bug fix
+(
+View pull request
+)
+Fix categories for each policy template
+—
+0.9.2
+Enhancement
+(
+View pull request
+)
+Add linked account information into billing metricset
+—
+0.9.1
+Bug fix
+(
+View pull request
+)
+Fix
+aws.s3access
+pipeline when remote IP is a
+-
+—
+0.9.0
+Enhancement
+(
+View pull request
+)
+Change default credential options to access keys
+—
+0.8.0
+Enhancement
+(
+View pull request
+)
+Set "event.module" and "event.dataset"
+—
+0.7.0
+Enhancement
+(
+View pull request
+)
+Introduce granularity using input_groups
+—
+0.6.4
+Enhancement
+(
+View pull request
+)
+Add support for Splunk authorization tokens
+—
+0.6.3
+Bug fix
+(
+View pull request
+)
+Fix bug in Third Party ingest pipeline
+—
+0.6.2
+Bug fix
+(
+View pull request
+)
+Removed incorrect
+http.request.referrer
+field from elb logs
+—
+0.6.1
+Enhancement
+(
+View pull request
+)
+Add support for CloudTrail Digest & Insight logs
+—
+0.6.0
+Enhancement
+(
+View pull request
+)
+Update ECS version, add event.original and preparing for package GA
+—
+0.5.6
+Bug fix
+(
+View pull request
+)
+Fix stack compatability
+—
+0.5.5
+Enhancement
+(
+View pull request
+)
+Allow role_arn work with access keys for AWS
+—
+0.5.4
+Enhancement
+(
+View pull request
+)
+Rename s3 input to aws-s3.
+—
+0.5.3
+Enhancement
+(
+View pull request
+)
+Add missing "geo" fields
+—
+0.5.2
+Enhancement
+(
+View pull request
+)
+update to ECS 1.9.0
+—
+0.5.1
+Bug fix
+(
+View pull request
+)
+Ignore missing "json" field in ingest pipeline
+—
+0.5.0
+Enhancement
+(
+View pull request
+)
+Moving edge processors to ingest pipeline
+—
+0.4.2
+Enhancement
+(
+View pull request
+)
+Updating package owner
+—
+0.4.1
+Bug fix
+(
+View pull request
+)
+Correct sample event file.
+—
+0.4.0
+Enhancement
+(
+View pull request
+)
+Add changes to use ECS 1.8 fields.
+—
+0.0.3
+Enhancement
+(
+View pull request
+)
+initial release
+—
+Previous
+AWS Config
+Next
+AWS Health

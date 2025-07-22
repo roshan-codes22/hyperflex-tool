@@ -1,0 +1,2564 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Integrations quick reference
+Kibana
+Description
+Release status
+Version
+Minimum Kibana version
+1Password
+Collect logs from 1Password with Elastic Agent.
+GA
+1.32.0
+8.13.0 or higher
+9.0.0 or higher
+Abnormal Security
+Collect logs from Abnormal Security with Elastic Agent.
+GA
+1.8.1
+8.17.0 or higher
+9.0.0 or higher
+AbuseCH
+Ingest threat intelligence indicators from URL Haus, Malware Bazaar, and Threat Fox feeds with Elastic Agent.
+GA
+2.10.1
+8.18.0 or higher
+9.0.0 or higher
+Active Directory Entity Analytics
+Collect User Identities from Active Directory Entity with Elastic Agent.
+Beta
+0.15.0
+8.16.0 or higher
+9.0.0 or higher
+ActiveMQ
+Collect logs and metrics from ActiveMQ instances with Elastic Agent.
+GA
+1.8.1
+8.13.0 or higher
+9.0.0 or higher
+Admin By Request EPM
+Collect logs from Admin By Request EPM with Elastic Agent.
+GA
+1.0.0
+8.15.3 or higher
+9.0.0 or higher
+Airflow
+Airflow Integration.
+Beta
+0.10.0
+8.13.0 or higher
+9.0.0 or higher
+Akamai
+Collect logs from Akamai with Elastic Agent.
+GA
+2.28.0
+8.13.0 or higher
+9.0.0 or higher
+AlienVault OTX
+Ingest threat intelligence indicators from AlienVault Open Threat Exchange (OTX) with Elastic Agent.
+GA
+1.28.0
+8.13.0 or higher
+9.0.0 or higher
+Amazon Bedrock
+Collect Amazon Bedrock model invocation logs and runtime metrics with Elastic Agent.
+GA
+1.2.2
+8.16.5 or higher
+9.0.0 or higher
+Amazon CloudFront
+Collect Amazon CloudFront logs with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Amazon Data Firehose
+Stream logs and metrics from Amazon Data Firehose into Elastic Cloud.
+GA
+1.7.0
+8.13.0 or higher
+9.0.0 or higher
+Amazon DynamoDB
+Collect Amazon DynamoDB metrics with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Amazon EBS
+Collect Amazon Elastic Block Storage metrics with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Amazon EC2
+Collect logs and metrics for Amazon Elastic Compute Cloud service with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Amazon ECS
+Collect metrics for Amazon Elastic Container Service with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Amazon EMR
+Collect logs and metrics for Amazon EMR service with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Amazon GuardDuty
+Collect Amazon GuardDuty logs with Elastic Agent.
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Amazon Kinesis Data Stream
+Collect Amazon Kinesis Data Stream metrics with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Amazon Managed Streaming for Apache Kafka (MSK)
+Collect Amazon MSK metrics with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Amazon MQ
+Collect Amazon MQ metrics and logs with Elastic Agent
+Beta
+0.9.0
+8.16.5 or higher
+9.0.0 or higher
+Amazon NAT Gateway
+Collect Amazon NAT Gateways metrics with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Amazon RDS
+Collect Amazon Relational Database Service metrics with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Amazon Redshift
+Collect Amazon Redshift metrics with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Amazon S3
+Monitor Amazon S3 buckets by collecting access logs, storage & request metrics with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Amazon S3 Storage Lens
+Collect Amazon S3 Storage Lens metrics with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Amazon Security Lake
+Collect logs from Amazon Security Lake with Elastic Agent.
+GA
+2.5.1
+8.16.5 or higher
+9.0.0 or higher
+Amazon SNS
+Collect Amazon SNS metrics with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Amazon SQS
+Collect Amazon SQS metrics with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Amazon VPC
+Collect Amazon VPC flow logs with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Amazon VPN
+Collect VPN metrics with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Anomali
+Ingest threat intelligence indicators from Anomali with Elastic Agent.
+GA
+2.0.0
+8.13.0 or higher
+9.0.0 or higher
+Apache HTTP Server
+Collect logs and metrics from Apache servers with Elastic Agent.
+GA
+2.0.0
+8.13.0 or higher
+9.0.0 or higher
+Apache Spark
+Collect metrics from Apache Spark with Elastic Agent.
+GA
+1.4.0
+8.13.0 or higher
+9.0.0 or higher
+Apache Tomcat
+Collect and parse logs and metrics from Apache Tomcat servers with Elastic Agent.
+GA
+1.11.0
+8.13.0 or higher
+9.0.0 or higher
+Arista NG Firewall
+Collect logs and metrics from Arista NG Firewall.
+GA
+1.4.0
+8.11.0 or higher
+9.0.0 or higher
+Armis
+Collect logs from Armis with Elastic Agent.
+Beta
+0.1.1
+8.18.0 or higher
+9.0.0 or higher
+Atlassian Bitbucket
+Collect logs from Atlassian Bitbucket with Elastic Agent.
+GA
+2.5.0
+8.13.0 or higher
+9.0.0 or higher
+Atlassian Confluence
+Collect logs from Atlassian Confluence with Elastic Agent.
+GA
+1.29.2
+8.13.0 or higher
+9.0.0 or higher
+Atlassian Jira
+Collect logs from Atlassian Jira with Elastic Agent.
+GA
+1.30.3
+8.13.0 or higher
+9.0.0 or higher
+Auditd Logs
+Collect logs from Linux audit daemon with Elastic Agent.
+GA
+3.22.0
+8.11.0 or higher
+9.0.0 or higher
+Auditd Manager
+The Auditd Manager Integration receives audit events from the Linux Audit Framework that is a part of the Linux kernel.
+GA
+1.19.0
+8.16.0 or higher
+9.0.0 or higher
+Auth0
+Collect logs from Auth0 with Elastic Agent.
+GA
+1.22.0
+8.13.0 or higher
+9.0.0 or higher
+authentik
+Collect logs from authentik with Elastic Agent.
+GA
+1.4.0
+8.13.0 or higher
+9.0.0 or higher
+AWS
+Collect logs and metrics from Amazon Web Services (AWS) with Elastic Agent.
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+AWS API Gateway
+Collect logs and metrics for AWS API Gateway with Elastic Agent.
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+AWS Billing
+Collect billing metrics with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+AWS CloudTrail
+Collect AWS CloudTrail logs with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+AWS CloudWatch
+Use this integration to collect logs and metrics from Amazon CloudWatch with Elastic Agent, where no out of the box integration is available.
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+AWS Config
+Collect AWS Config Logs with Elastic Agent.
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+AWS ELB
+Collect logs and metrics for Amazon Elastic Load Balancing service with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+AWS Fargate (for ECS clusters)
+Collects metrics from containers and tasks running on Amazon ECS clusters with Elastic Agent.
+GA
+1.3.0
+8.13.0 or higher
+9.0.0 or higher
+AWS Health
+Collect AWS Health metrics with Elastic Agent (experimental)
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+AWS Inspector
+Collect AWS Inspector Logs with Elastic Agent.
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+AWS Lambda
+Collect Lambda metrics and logs with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+AWS Network Firewall
+Collect AWS Network Firewall logs and metrics with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+AWS Route 53
+Collect AWS Route53 logs with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+AWS Security Hub
+Collect AWS Security Hub Logs with Elastic Agent.
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+AWS Transit Gateway
+Collect AWS Transit Gateways metrics with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+AWS Usage
+Collect AWS usage metrics with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+AWS WAF
+Collect AWS WAF logs with Elastic Agent
+GA
+3.8.2
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Azure Activity Logs
+Azure Activity Logs integration
+GA
+1.27.1
+8.15.1 or higher
+9.0.0 or higher
+Azure AI Foundry
+Collects Azure AI Foundry Metrics
+Beta
+0.1.0
+9.0.0 or higher
+Azure App Service
+Collect logs from Azure App Service with Elastic Agent.
+Beta
+0.6.0
+8.13.0 or higher
+9.0.0 or higher
+Azure Application Gateway
+Collect Azure Application Gateway logs with Elastic Agent.
+GA
+1.27.1
+8.15.1 or higher
+9.0.0 or higher
+Azure Application Insights Metrics
+Collect application insights metrics from Azure Monitor with Elastic Agent.
+GA
+1.8.0
+8.13.0 or higher
+9.0.0 or higher
+Azure Application Insights Metrics Overview
+Collect application insights metrics from Azure Monitor with Elastic Agent.
+GA
+1.8.0
+8.13.0 or higher
+9.0.0 or higher
+Azure Application State Insights Metrics
+Collect application state related metrics from Azure Monitor with Elastic Agent.
+GA
+1.8.0
+8.13.0 or higher
+9.0.0 or higher
+Azure Billing Metrics
+Collect billing metrics with Elastic Agent.
+GA
+1.8.0
+8.13.0 or higher
+9.0.0 or higher
+Azure Container Instance Metrics
+Collect metrics from Azure Container Instances with Elastic Agent.
+GA
+1.7.0
+8.12.0 or higher
+9.0.0 or higher
+Azure Container Registry Metrics
+Collect metrics from Azure Container Registry with Elastic Agent.
+GA
+1.7.0
+8.12.0 or higher
+9.0.0 or higher
+Azure Container Service Metrics
+Collect metrics from Azure Container Service with Elastic Agent.
+GA
+1.7.0
+8.12.0 or higher
+9.0.0 or higher
+Azure Database Account Metrics
+Collect metrics from Azure Database accounts with Elastic Agent.
+GA
+1.7.0
+8.12.0 or higher
+9.0.0 or higher
+Azure Event Hub Input
+Azure Event Hub input integration
+GA
+1.27.1
+8.15.1 or higher
+9.0.0 or higher
+Azure Firewall logs
+Azure firewall logs integration
+GA
+1.27.1
+8.15.1 or higher
+9.0.0 or higher
+Azure Frontdoor
+This Elastic integration collects logs from Azure Frontdoor.
+GA
+2.2.1
+8.13.0 or higher
+9.0.0 or higher
+Azure Functions
+Get metrics and logs from Azure Functions
+Beta
+0.9.0
+8.13.0 or higher
+9.0.0 or higher
+Azure Logs
+This Elastic integration collects logs from Azure
+GA
+1.27.1
+8.15.1 or higher
+9.0.0 or higher
+Azure Logs (v2 preview)
+Azure Logs (v2 preview) integration
+GA
+1.27.1
+8.15.1 or higher
+9.0.0 or higher
+Azure Monitor Metrics
+Collect metrics from Azure Monitor with Elastic Agent.
+GA
+1.7.0
+8.12.0 or higher
+9.0.0 or higher
+Azure Network Watcher NSG
+Collect logs from Azure Network Watcher NSG with Elastic Agent.
+GA
+1.4.0
+8.13.0 or higher
+9.0.0 or higher
+Azure Network Watcher VNet
+Collect logs from Azure Network Watcher VNet with Elastic Agent.
+GA
+1.5.0
+8.13.0 or higher
+9.0.0 or higher
+Azure OpenAI
+Collects Azure OpenAI Logs and Metrics
+GA
+1.8.0
+8.17.1 or higher
+9.0.0 or higher
+Azure platform logs
+Azure platform logs integration
+GA
+1.27.1
+8.15.1 or higher
+9.0.0 or higher
+Azure Resource Metrics
+Collect metrics from Azure resources with Elastic Agent.
+GA
+1.7.0
+8.12.0 or higher
+9.0.0 or higher
+Azure Spring Apps logs
+Azure Spring Apps logs integration
+GA
+1.27.1
+8.15.1 or higher
+9.0.0 or higher
+Azure Storage Account Metrics
+Collect metrics from Azure Storage accounts with Elastic Agent.
+GA
+1.7.0
+8.12.0 or higher
+9.0.0 or higher
+Azure Virtual Machines Metrics
+Collect metrics from Azure Virtual Machines with Elastic Agent.
+GA
+1.7.0
+8.12.0 or higher
+9.0.0 or higher
+Azure Virtual Machines Scaleset Metrics
+Collect metrics from Azure Virtual Machine Scalesets with Elastic Agent.
+GA
+1.7.0
+8.12.0 or higher
+9.0.0 or higher
+Barracuda CloudGen Firewall Logs
+Collect logs from Barracuda CloudGen Firewall devices with Elastic Agent.
+GA
+1.16.0
+8.13.0 or higher
+9.0.0 or higher
+Barracuda Web Application Firewall
+Collect logs from Barracuda Web Application Firewall with Elastic Agent.
+GA
+1.18.0
+8.13.0 or higher
+9.0.0 or higher
+BBOT (Bighuge BLS OSINT Tool)
+BBOT is a recursive internet scanner inspired by Spiderfoot, but designed to be faster, more reliable, and friendlier to pentesters, bug bounty hunters, and developers.
+GA
+1.4.0
+8.13.0 or higher
+9.0.0 or higher
+Beat
+Beat Integration
+GA
+1.0.1
+8.10.2 or higher
+9.0.0 or higher
+Beelzebub
+Beelzebub is an advanced honeypot framework designed to provide a highly secure environment for detecting and analyzing cyber attacks. It offers a low code approach for easy implementation and uses AI to mimic the behavior of a high-interaction honeypot.
+Beta
+0.3.0
+8.17.1 or higher
+9.0.0 or higher
+BeyondInsight and Password Safe
+Ingest privileged access management (PAM) data from BeyondTrust's BeyondInsight PAM Reporting Platform and Password Safe, using Elastic Agent.
+Beta
+0.5.0
+8.15.3 or higher
+9.0.0 or higher
+BeyondTrust PRA
+Collect logs from BeyondTrust PRA with Elastic Agent.
+Beta
+0.2.1
+8.18.0 or higher
+9.0.0 or higher
+BitDefender
+Ingest BitDefender GravityZone logs and data
+GA
+2.5.0
+8.14.3 or higher
+9.0.0 or higher
+Bitwarden
+Collect logs from Bitwarden with Elastic Agent.
+GA
+1.17.0
+8.13.0 or higher
+9.0.0 or higher
+blacklens.io
+Collect logs from blacklens.io with Elastic Agent
+Beta
+0.4.1
+8.15.2 or higher
+9.0.0 or higher
+Box Events
+Collect logs from Box with Elastic Agent
+GA
+2.14.0
+8.13.0 or higher
+9.0.0 or higher
+Bravura Monitor
+Collect logs from Bravura Security Fabric with Elastic Agent.
+GA
+1.21.0
+8.11.0 or higher
+9.0.0 or higher
+Broadcom ProxySG
+Collect access logs from Broadcom ProxySG with Elastic Agent.
+Beta
+0.6.0
+8.13.0 or higher
+9.0.0 or higher
+Canva
+Collect logs from Canva with Elastic Agent.
+Beta
+0.7.0
+8.16.5 or higher
+9.0.0 or higher
+Cassandra
+This Elastic integration collects logs and metrics from cassandra.
+GA
+1.18.0
+8.13.0 or higher
+9.0.0 or higher
+Ceph
+This Elastic integration collects metrics from Ceph instance.
+GA
+1.8.1
+8.13.0 or higher
+9.0.0 or higher
+Check Point
+Collect logs from Check Point with Elastic Agent.
+GA
+1.41.0
+8.11.0 or higher
+9.0.0 or higher
+Check Point Harmony Email & Collaboration
+Collect logs from Check Point Harmony Email & Collaboration with Elastic Agent.
+GA
+1.0.0
+8.15.0 or higher
+9.0.0 or higher
+Check Point Harmony Endpoint
+Collect logs from Check Point Harmony Endpoint
+GA
+1.0.0
+8.14.0 or higher
+9.0.0 or higher
+Cilium Tetragon
+Collect Cilium Tetragon logs from Kubernetes environments.
+Beta
+0.2.0
+8.13.0 or higher
+9.0.0 or higher
+CISA Known Exploited Vulnerabilities
+This package allows the ingest of known exploited vulnerabilities according to the Cybersecurity and Infrastructure Security Agency of the United States of America. This information could be used to enrich or track exisiting vulnerabilities that are known to be exploited in the wild.
+GA
+1.6.0
+8.13.0 or higher
+9.0.0 or higher
+Cisco Aironet
+Integration for Cisco Aironet WLC Logs
+GA
+1.16.0
+8.11.0 or higher
+9.0.0 or higher
+Cisco ASA
+Collect logs from Cisco ASA with Elastic Agent.
+GA
+2.43.5
+8.11.0 or higher
+9.0.0 or higher
+Cisco Duo
+Collect logs from Cisco Duo with Elastic Agent.
+GA
+2.6.0
+8.13.0 or higher
+9.0.0 or higher
+Cisco FTD
+Collect logs from Cisco FTD with Elastic Agent.
+GA
+3.9.0
+8.11.0 or higher
+9.0.0 or higher
+Cisco IOS
+Collect logs from Cisco IOS with Elastic Agent.
+GA
+1.30.3
+8.11.0 or higher
+9.0.0 or higher
+Cisco ISE
+Collect logs from Cisco ISE with Elastic Agent.
+GA
+1.28.0
+8.11.0 or higher
+9.0.0 or higher
+Cisco Meraki
+Collect logs from Cisco Meraki with Elastic Agent.
+GA
+1.29.1
+8.13.0 or higher
+9.0.0 or higher
+Cisco Meraki Metrics
+Collect metrics from Cisco Meraki with Elastic Agent.
+Beta
+0.4.1
+8.15.2 or higher
+9.0.0 or higher
+Cisco Nexus
+Collect logs from Cisco Nexus with Elastic Agent.
+GA
+1.4.0
+8.11.0 or higher
+9.0.0 or higher
+Cisco Secure Email Gateway
+Collect logs from Cisco Secure Email Gateway with Elastic Agent.
+GA
+1.27.0
+8.11.0 or higher
+9.0.0 or higher
+Cisco Secure Endpoint
+Collect logs from Cisco Secure Endpoint (AMP) with Elastic Agent.
+GA
+2.32.0
+8.15.0 or higher
+9.0.0 or higher
+Cisco Umbrella
+Collect logs from Cisco Umbrella with Elastic Agent.
+GA
+1.30.0
+8.16.5 or higher
+9.0.0 or higher
+Citrix ADC
+This Elastic integration collects logs and metrics from Citrix ADC product.
+GA
+1.16.0
+8.13.0 or higher
+9.0.0 or higher
+Citrix Web App Firewall
+Ingest events from Citrix Systems Web App Firewall.
+GA
+1.18.0
+8.11.0 or higher
+9.0.0 or higher
+Claroty CTD
+Collect logs from Claroty CTD using Elastic Agent.
+GA
+1.0.0
+8.13.0 or higher
+9.0.0 or higher
+Claroty xDome
+Collect logs from Claroty xDome with Elastic Agent.
+Beta
+0.1.1
+8.18.0 or higher
+9.0.0 or higher
+Cloud Asset Discovery
+Discover and Create Cloud Assets Discovery
+Beta
+0.19.0
+>=8.18.0
+Cloud Native Vulnerability Management (CNVM)
+Scan for cloud workload vulnerabilities
+GA
+1.13.1
+8.18.0 or higher
+9.0.0 or higher
+Cloud Security Posture Management (CSPM)
+Identify & remediate configuration risks in the Cloud services you leverage
+GA
+1.13.1
+8.18.0 or higher
+9.0.0 or higher
+Cloudflare
+Collect logs from Cloudflare with Elastic Agent.
+GA
+2.31.0
+8.16.0 or higher
+9.0.0 or higher
+Cloudflare Logpush
+Collect and parse logs from Cloudflare API with Elastic Agent.
+GA
+1.38.3
+8.16.5 or higher
+9.0.0 or higher
+CockroachDB Metrics
+Collect metrics from CockroachDB servers with Elastic Agent.
+GA
+1.13.1
+8.13.0 or higher
+9.0.0 or higher
+Collective Intelligence Framework v3
+Ingest threat indicators from a Collective Intelligence Framework v3 instance with Elastic Agent.
+GA
+1.17.0
+8.13.0 or higher
+9.0.0 or higher
+Common Event Format (CEF)
+Collect logs from CEF Logs with Elastic Agent.
+GA
+2.21.1
+8.15.1 or higher
+9.0.0 or higher
+Containerd
+Collect metrics from containerd containers.
+Beta
+0.5.0
+8.13.0 or higher
+9.0.0 or higher
+CoreDNS
+Collect logs from CoreDNS instances with Elastic Agent.
+Beta
+0.10.0
+8.13.0 or higher
+9.0.0 or higher
+Corelight
+Collect logs from Corelight with Elastic Agent.
+GA
+1.0.0
+8.16.0 or higher
+9.0.0 or higher
+Couchbase
+Collect metrics from Couchbase databases with Elastic Agent.
+GA
+1.9.1
+8.13.0 or higher
+9.0.0 or higher
+CouchDB
+Collect metrics from CouchDB with Elastic Agent.
+GA
+1.5.1
+8.13.0 or higher
+9.0.0 or higher
+Cribl
+Stream logs from Cribl into Elastic.
+GA
+1.0.0
+8.13.0 or higher
+9.0.0 or higher
+CrowdStrike
+Collect logs from Crowdstrike with Elastic Agent.
+GA
+1.75.2
+8.18.0 or higher
+9.0.0 or higher
+CrowdStrike Falcon Intelligence
+Collect logs from CrowdStrike Falcon Intelligence with Elastic Agent.
+GA
+2.5.0
+8.13.0 or higher
+9.0.0 or higher
+Custom API
+Collect custom events from an API endpoint with Elastic agent
+GA
+1.22.0
+8.13.0 or higher
+9.0.0 or higher
+Custom API using Common Expression Language
+Collect custom events from an API with Elastic agent
+GA
+1.16.1
+8.16.0 or higher
+9.0.0 or higher
+Custom AWS Logs
+Collect raw logs from AWS S3 or CloudWatch with Elastic Agent.
+GA
+1.8.0
+8.16.5 or higher
+9.0.0 or higher
+Custom Azure Blob Storage Input
+Collect log data from configured Azure Blob Storage Container with Elastic Agent.
+GA
+2.2.0
+8.13.0 or higher
+9.0.0 or higher
+Custom Azure Logs
+Collect log events from Azure Event Hubs with Elastic Agent
+Beta
+0.3.1
+8.15.1 or higher
+9.0.0 or higher
+Custom GCS (Google Cloud Storage) Input
+Collect JSON data from configured GCS Bucket with Elastic Agent.
+GA
+2.2.0
+8.13.0 or higher
+9.0.0 or higher
+Custom Google Pub/Sub Logs
+Collect Logs from Google Pub/Sub topics
+GA
+2.2.0
+8.13.0 or higher
+9.0.0 or higher
+Custom HTTP Endpoint Logs
+Collect JSON data from listening HTTP port with Elastic Agent.
+GA
+2.5.0
+8.15.0 or higher
+9.0.0 or higher
+Custom Journald logs
+Collect logs from journald with Elastic Agent.
+GA
+1.2.1
+8.8.0 or higher
+9.0.0 or higher
+Custom Kafka Logs
+Collect data from kafka topic with Elastic Agent.
+GA
+1.8.1
+8.13.0 or higher
+9.0.0 or higher
+Custom Logs (Deprecated)
+Collect custom logs with Elastic Agent.
+GA
+2.4.4
+8.8.0 or higher
+9.0.0 or higher
+Custom Logs (Filestream)
+Collect log data using filestream with Elastic Agent.
+GA
+1.1.5
+8.15.0 or higher
+9.0.0 or higher
+Custom macOS Unified Logs
+Collect and parse logs from macOS unified logs with Elastic Agent.
+Beta
+0.4.0
+8.18.0 or higher
+9.0.0 or higher
+Custom TCP Logs
+Collect raw TCP data from listening TCP port with Elastic Agent.
+GA
+2.0.0
+8.13.0 or higher
+9.0.0 or higher
+Custom Threat Intelligence
+Ingest threat intelligence data in STIX 2.1 format with Elastic Agent
+GA
+1.0.0
+8.14.0 or higher
+9.0.0 or higher
+Custom UDP Logs
+Collect raw UDP data from listening UDP port with Elastic Agent.
+GA
+2.2.0
+8.13.0 or higher
+9.0.0 or higher
+Custom Websocket logs
+Collect custom events from a socket server with Elastic agent.
+Beta
+0.3.0
+8.16.3 or higher
+8.17.1 or higher
+9.0.0 or higher
+Custom Windows ETW logs
+Collect and parse logs from any Windows ETW provider with Elastic Agent.
+Beta
+0.3.0
+8.13.0 or higher
+9.0.0 or higher
+Custom Windows Event Logs
+Collect and parse logs from any Windows event log channel with Elastic Agent.
+GA
+2.4.0
+8.10.1 or higher
+9.0.0 or higher
+CyberArk EPM
+Collect logs from CyberArk EPM with Elastic Agent.
+GA
+1.1.0
+8.16.0 or higher
+9.0.0 or higher
+CyberArk Privileged Access Security
+Collect logs from CyberArk Privileged Access Security with Elastic Agent.
+GA
+2.27.0
+8.14.0 or higher
+9.0.0 or higher
+Cyberark Privileged Threat Analytics
+Collect security logs from Cyberark PTA integration.
+GA
+1.13.0
+8.13.0 or higher
+9.0.0 or higher
+Cybereason
+Collect logs from Cybereason with Elastic Agent.
+GA
+1.4.0
+8.13.0 or higher
+9.0.0 or higher
+Cybersixgill
+Ingest threat intelligence indicators from Cybersixgill with Elastic Agent.
+GA
+1.33.0
+8.13.0 or higher
+9.0.0 or higher
+CylanceProtect Logs (Deprecated)
+Collect logs from CylanceProtect devices with Elastic Agent.
+Beta
+0.24.0
+8.13.0 or higher
+9.0.0 or higher
+Darktrace
+Collect logs from Darktrace with Elastic Agent.
+GA
+1.23.0
+8.13.0 or higher
+9.0.0 or higher
+Data Exfiltration Detection
+ML package to detect data exfiltration in your network and file data.
+GA
+2.3.2
+8.10.1 or higher
+9.0.0 or higher
+Defend for Containers (Deprecated)
+Elastic Defend for Containers (BETA) provides cloud-native runtime protections for containerized environments.
+GA
+1.3.0
+8.11.0 or higher
+Digital Guardian
+Collect logs from Digital Guardian with Elastic Agent.
+GA
+1.6.0
+8.13.0 or higher
+9.0.0 or higher
+Docker
+Collect metrics and logs from Docker instances with Elastic Agent.
+GA
+2.14.0
+8.16.2 or higher
+9.0.0 or higher
+Docker OpenTelemetry Assets
+Utilise the pre-built dashboard for OTel-native metrics of docker and its running containers
+Beta
+0.1.0
+8.17.2 or higher
+9.0.0 or higher
+Domain Generation Algorithm Detection
+ML solution package to detect domain generation algorithm (DGA) activity in your network data.
+GA
+2.3.0
+8.9.0 or higher
+9.0.0 or higher
+DomainTools Real Time Unified Feeds
+The DomainTools NOD Feed provides real-time access to newly registered and observed domains, enabling proactive threat detection and defense.
+GA
+1.0.0
+8.15.3 or higher
+9.0.0 or higher
+EclecticIQ
+Ingest threat intelligence from EclecticIQ with Elastic Agent
+GA
+1.4.1
+8.13.0 or higher
+9.0.0 or higher
+Elastic Agent
+Collect logs and metrics from Elastic Agents.
+GA
+2.3.0
+8.11.2 or higher
+9.0.0 or higher
+Elastic APM
+Monitor, detect, and diagnose complex application performance issues.
+Beta
+9.0.0-preview-1738343125
+9.0.0 or higher
+Elastic Defend
+Protect your hosts and cloud workloads with threat prevention, detection, and deep security data visibility.
+GA
+9.0.2
+9.0.0 or higher
+Elastic Package Registry
+Collect metrics from a Elastic Package Registry instance
+Beta
+0.3.1
+8.0.0 or higher
+9.0.0 or higher
+Elasticsearch
+Elasticsearch Integration
+GA
+1.19.0
+8.10.1 or higher
+9.0.0 or higher
+Elasticsearch Service Billing
+Collects billing metrics from Elasticsearch Service billing API
+GA
+1.4.2
+8.15.0 or higher
+9.0.0 or higher
+Endace
+This Endace integration configures Network Packet Capture for flow generation and adds a pivot field to your Endace platform.
+Beta
+0.1.0
+8.13.0 or higher
+9.0.0 or higher
+Envoyproxy
+Envoyproxy Integration
+Beta
+0.4.0
+8.15.0 or higher
+9.0.0 or higher
+ESET PROTECT
+Collect logs from ESET PROTECT with Elastic Agent.
+GA
+1.8.0
+8.13.0 or higher
+9.0.0 or higher
+ESET Threat Intelligence
+Ingest threat intelligence indicators from ESET Threat Intelligence with Elastic Agent.
+GA
+1.7.0
+8.13.0 or higher
+9.0.0 or higher
+etcd
+Collect metrics from etcd instances with Elastic Agent.
+GA
+1.4.1
+8.13.0 or higher
+9.0.0 or higher
+F5 BIG-IP
+Collect logs from F5 BIG-IP with Elastic Agent.
+GA
+1.27.1
+8.16.5 or higher
+9.0.0 or higher
+Falco
+Collect events and alerts from Falco using Elastic Agent
+GA
+1.3.2
+8.13.3 or higher
+9.0.0 or higher
+File Integrity Monitoring
+The File Integrity Monitoring integration reports filesystem changes in real time.
+GA
+1.16.0
+8.7.1 or higher
+9.0.0 or higher
+FireEye Network Security
+Collect logs from FireEye NX with Elastic Agent.
+GA
+1.26.0
+8.13.0 or higher
+9.0.0 or higher
+First EPSS
+Collect exploit prediction score data from the First EPSS API with Elastic Agent.
+GA
+1.0.0
+8.14.0 or higher
+9.0.0 or higher
+Fleet Server
+Centrally manage Elastic Agents with the Fleet Server integration.
+GA
+1.6.0
+8.12.0 or higher
+9.0.0 or higher
+Forcepoint Web Security
+Forcepoint Web Security
+GA
+1.13.0
+8.13.0 or higher
+9.0.0 or higher
+ForgeRock
+Collect audit logs from ForgeRock with Elastic Agent.
+GA
+1.21.1
+8.13.0 or higher
+9.0.0 or higher
+Fortinet FortiEDR Logs
+Collect logs from Fortinet FortiEDR instances with Elastic Agent.
+GA
+1.19.0
+8.11.0 or higher
+9.0.0 or higher
+Fortinet FortiGate Firewall Logs
+Collect logs from Fortinet FortiGate firewalls with Elastic Agent.
+GA
+1.33.0
+8.11.0 or higher
+9.0.0 or higher
+Fortinet FortiMail
+Collect logs from Fortinet FortiMail instances with Elastic Agent.
+GA
+2.15.0
+8.3.0 or higher
+9.0.0 or higher
+Fortinet FortiManager Logs
+Collect logs from Fortinet FortiManager instances with Elastic Agent.
+GA
+2.16.0
+8.11.0 or higher
+9.0.0 or higher
+Fortinet FortiProxy
+Collect logs from Fortinet FortiProxy with Elastic Agent.
+GA
+1.2.0
+8.12.2 or higher
+9.0.0 or higher
+GCP Metrics Input
+GCP Metrics Input
+Beta
+0.3.0
+8.15.0 or higher
+9.0.0 or higher
+GCP Vertex AI
+Collect GCP Vertex AI metrics and logs with Elastic Agent
+GA
+1.3.0
+8.17.0 or higher
+9.0.0 or higher
+Gigamon
+Collect logs from Gigamon with Elastic Agent.
+GA
+1.7.0
+8.13.0 or higher
+9.0.0 or higher
+GitHub
+Collect logs from GitHub with Elastic Agent.
+GA
+2.8.2
+8.15.0 or higher
+9.0.0 or higher
+GitLab
+Collect logs from GitLab with Elastic Agent.
+GA
+2.3.0
+8.13.0 or higher
+9.0.0 or higher
+GoFlow2 logs
+Collect logs from goflow2 with Elastic Agent.
+Beta
+0.5.0
+8.11.0 or higher
+9.0.0 or higher
+Golang
+This Elastic integration collects metrics from Golang applications.
+GA
+1.8.0
+8.13.0 or higher
+9.0.0 or higher
+Google Cloud Platform
+Collect logs and metrics from Google Cloud Platform with Elastic Agent.
+GA
+2.42.1
+8.13.0 or higher
+9.0.0 or higher
+Google Cloud Platform (GCP) Audit logs
+Collect audit logs from Google Cloud Platform (GCP) with Elastic Agent
+GA
+2.42.1
+8.13.0 or higher
+9.0.0 or higher
+Google Cloud Platform (GCP) Billing metrics
+Collect billing metrics from Google Cloud Platform (GCP) with Elastic Agent
+GA
+2.42.1
+8.13.0 or higher
+9.0.0 or higher
+Google Cloud Platform (GCP) Cloud Run metrics
+Collect Cloud Run metrics from Google Cloud Platform (GCP) with Elastic Agent
+GA
+2.42.1
+8.13.0 or higher
+9.0.0 or higher
+Google Cloud Platform (GCP) CloudSQL metrics
+Collect CloudSQL metrics from Google Cloud Platform (GCP) with Elastic Agent
+GA
+2.42.1
+8.13.0 or higher
+9.0.0 or higher
+Google Cloud Platform (GCP) Compute metrics
+Collect compute metrics from Google Cloud Platform (GCP) with Elastic Agent
+GA
+2.42.1
+8.13.0 or higher
+9.0.0 or higher
+Google Cloud Platform (GCP) Dataproc metrics
+Collect dataproc metrics from Google Cloud Platform (GCP) with Elastic Agent
+GA
+2.42.1
+8.13.0 or higher
+9.0.0 or higher
+Google Cloud Platform (GCP) DNS logs
+Collect DNS logs from Google Cloud Platform (GCP) with Elastic Agent
+GA
+2.42.1
+8.13.0 or higher
+9.0.0 or higher
+Google Cloud Platform (GCP) Firestore metrics
+Collect firestore metrics from Google Cloud Platform (GCP) with Elastic Agent
+GA
+2.42.1
+8.13.0 or higher
+9.0.0 or higher
+Google Cloud Platform (GCP) Firewall logs
+Collect firewall logs from Google Cloud Platform (GCP) with Elastic Agent
+GA
+2.42.1
+8.13.0 or higher
+9.0.0 or higher
+Google Cloud Platform (GCP) GKE metrics
+Collect gke metrics from Google Cloud Platform (GCP) with Elastic Agent
+GA
+2.42.1
+8.13.0 or higher
+9.0.0 or higher
+Google Cloud Platform (GCP) Load Balancing metrics
+Collect Load Balancing metrics from Google Cloud Platform (GCP) with Elastic Agent
+GA
+2.42.1
+8.13.0 or higher
+9.0.0 or higher
+Google Cloud Platform (GCP) PubSub metrics
+Collect pubsub metrics from Google Cloud Platform (GCP) with Elastic Agent
+GA
+2.42.1
+8.13.0 or higher
+9.0.0 or higher
+Google Cloud Platform (GCP) Redis metrics
+Collect Redis metrics from Google Cloud Platform (GCP) with Elastic Agent
+GA
+2.42.1
+8.13.0 or higher
+9.0.0 or higher
+Google Cloud Platform (GCP) Storage metrics
+Collect storage metrics from Google Cloud Platform (GCP) with Elastic Agent
+GA
+2.42.1
+8.13.0 or higher
+9.0.0 or higher
+Google Cloud Platform (GCP) VPC Flow logs
+Collect vpcflow logs from Google Cloud Platform (GCP) with Elastic Agent
+GA
+2.42.1
+8.13.0 or higher
+9.0.0 or higher
+Google Santa
+Collect logs from Google Santa with Elastic Agent.
+GA
+3.24.0
+8.13.0 or higher
+9.0.0 or higher
+Google SecOps
+Collect alerts from Google SecOps with Elastic Agent.
+GA
+1.1.1
+8.18.0 or higher
+9.0.0 or higher
+Google Security Command Center
+Collect logs from Google Security Command Center with Elastic Agent.
+GA
+1.10.1
+8.18.0 or higher
+9.0.0 or higher
+Google Workspace
+Collect logs from Google Workspace with Elastic Agent.
+GA
+2.41.2
+8.18.0 or higher
+9.0.0 or higher
+Hadoop
+Collect metrics from Apache Hadoop with Elastic Agent.
+GA
+1.9.0
+8.13.0 or higher
+9.0.0 or higher
+HAProxy
+Collect logs and metrics from HAProxy servers with Elastic Agent.
+GA
+1.17.0
+8.13.0 or higher
+9.0.0 or higher
+Hashicorp Vault
+Collect logs and metrics from Hashicorp Vault with Elastic Agent.
+GA
+1.28.0
+8.12.0 or higher
+9.0.0 or higher
+Host Traffic Anomalies
+Prebuilt dashboard for Machine Learning module Security: Host.
+GA
+1.0.0
+8.18.0 or higher
+9.0.0 or higher
+HPE Aruba CX
+Collect logs from HPE Aruba CX with Elastic Agent
+Beta
+0.1.0
+8.15.0 or higher
+9.0.0 or higher
+IBM MQ
+Collect logs and metrics from IBM MQ with Elastic Agent.
+GA
+1.6.1
+8.13.0 or higher
+9.0.0 or higher
+IIS
+Collect logs and metrics from Internet Information Services (IIS) servers with Elastic Agent.
+GA
+1.23.0
+8.13.0 or higher
+9.0.0 or higher
+Imperva
+Collect logs from Imperva devices with Elastic Agent.
+GA
+1.6.0
+8.11.0 or higher
+9.0.0 or higher
+Imperva Cloud WAF
+Collect logs from Imperva Cloud WAF with Elastic Agent.
+GA
+1.12.2
+8.16.5 or higher
+9.0.0 or higher
+InfluxDb
+Collect metrics from Influxdb database
+Beta
+0.11.0
+8.13.0 or higher
+9.0.0 or higher
+Infoblox BloxOne DDI
+Collect logs from Infoblox BloxOne DDI with Elastic Agent.
+GA
+1.21.0
+8.13.0 or higher
+9.0.0 or higher
+Infoblox NIOS
+Collect logs from Infoblox NIOS with Elastic Agent.
+GA
+1.29.1
+8.13.0 or higher
+9.0.0 or higher
+Iptables
+Collect logs from Iptables with Elastic Agent.
+GA
+1.21.1
+8.11.0 or higher
+9.0.0 or higher
+Istio
+Collect logs and metrics from the service mesh Istio with Elastic Agent.
+Beta
+0.8.0
+8.11.0 or higher
+9.0.0 or higher
+Jamf Compliance Reporter
+Collect logs from Jamf Compliance Reporter with Elastic Agent.
+GA
+1.16.0
+8.13.0 or higher
+9.0.0 or higher
+Jamf Pro
+Collect logs and inventory data from Jamf Pro with Elastic Agent
+Beta
+0.6.0
+8.15.0 or higher
+9.0.0 or higher
+Jamf Protect
+Receives events from Jamf Protect with Elastic Agent.
+GA
+3.0.2
+8.16.5 or higher
+9.0.0 or higher
+Jolokia Input
+Collects Metrics from Jolokia Agents
+Beta
+0.7.1
+8.13.0 or higher
+9.0.0 or higher
+JumpCloud
+Collect logs from JumpCloud Directory as a Service
+GA
+1.15.0
+8.13.0 or higher
+9.0.0 or higher
+Juniper SRX
+Collect logs from Juniper SRX devices with Elastic Agent.
+GA
+1.25.0
+8.11.0 or higher
+9.0.0 or higher
+Kafka
+Collect logs and metrics from Kafka servers with Elastic Agent.
+GA
+1.18.4
+8.13.0 or higher
+9.0.0 or higher
+Keycloak
+Collect logs from Keycloak with Elastic Agent.
+GA
+1.29.0
+8.13.0 or higher
+9.0.0 or higher
+Kibana
+Collect logs and metrics from Kibana with Elastic Agent.
+GA
+2.8.0
+8.10.1 or higher
+9.0.0 or higher
+Kube-apiserver Metrics
+Collect metrics from Kubernetes API Server with Elastic Agent.
+GA
+1.80.2
+8.15.0 or higher
+9.0.0 or higher
+Kube-controller-manager Metrics
+Collect metrics from Kubernetes Controller Manager with Elastic Agent.
+GA
+1.80.2
+8.15.0 or higher
+9.0.0 or higher
+Kube-proxy Metrics
+Collect metrics from Kubernetes Proxy server with Elastic Agent.
+GA
+1.80.2
+8.15.0 or higher
+9.0.0 or higher
+Kube-scheduler Metrics
+Collect metrics from Kubernetes Scheduler with Elastic Agent.
+GA
+1.80.2
+8.15.0 or higher
+9.0.0 or higher
+Kube-state-metrics
+Collect container metrics from Kubernetes Kube-state-metrics with Elastic Agent.
+GA
+1.80.2
+8.15.0 or higher
+9.0.0 or higher
+Kubelet Metrics
+Collect metrics from Kubernetes Kubelet API with Elastic Agent.
+GA
+1.80.2
+8.15.0 or higher
+9.0.0 or higher
+Kubernetes
+Collect logs and metrics from Kubernetes clusters with Elastic Agent.
+GA
+1.80.2
+8.15.0 or higher
+9.0.0 or higher
+Kubernetes Audit Logs
+Collect audit logs from Kubernetes nodes with Elastic Agent.
+GA
+1.80.2
+8.15.0 or higher
+9.0.0 or higher
+Kubernetes Container Logs
+Collect container related logs from Kubernetes clusters with Elastic Agent.
+GA
+1.80.2
+8.15.0 or higher
+9.0.0 or higher
+Kubernetes Event Metrics
+Collect events related metrics from Kubernetes API server with Elastic Agent.
+GA
+1.80.2
+8.15.0 or higher
+9.0.0 or higher
+Kubernetes OpenTelemetry Assets
+Utilise the pre-built dashboard for OTel-native metrics and events collected from a Kubernetes cluster
+GA
+1.1.0
+8.18.0 or higher
+9.0.0 or higher
+Kubernetes Security Posture Management (KSPM)
+Identify & remediate configuration risks in Kubernetes
+GA
+1.13.1
+8.18.0 or higher
+9.0.0 or higher
+LastPass
+Collect logs from LastPass with Elastic Agent.
+GA
+1.20.0
+8.13.0 or higher
+9.0.0 or higher
+Lateral Movement Detection
+ML package to detect lateral movement based on file transfer activity and Windows RDP events.
+GA
+2.5.0
+8.9.0 or higher
+9.0.0 or higher
+Linux Metrics
+Collect metrics from Linux servers with Elastic Agent.
+Beta
+0.7.1
+8.17.0 or higher
+9.0.0 or higher
+Living off the Land Attack Detection
+ML solution package to detect Living off the Land (LotL) attacks in your environment. Requires a Platinum subscription.
+GA
+2.4.0
+8.9.0 or higher
+9.0.0 or higher
+Logstash
+Collect logs and metrics from Logstash with Elastic Agent.
+GA
+2.7.2
+8.17.0 or higher
+9.0.0 or higher
+Lumos
+An integration with Lumos to ship your Activity logs to your Elastic instance.
+GA
+1.5.0
+8.13.0 or higher
+9.0.0 or higher
+Lyve Cloud
+Collect S3 API audit log from Lyve Cloud with Elastic Agent.
+GA
+1.17.0
+8.13.0 or higher
+9.0.0 or higher
+Maltiverse
+Ingest threat intelligence indicators from Maltiverse feeds with Elastic Agent
+GA
+1.5.0
+8.13.0 or higher
+9.0.0 or higher
+Mandiant Advantage
+Collect Threat Intelligence from products within the Mandiant Advantage platform.
+GA
+1.9.0
+8.13.0 or higher
+9.0.0 or higher
+Mattermost
+Collect logs from Mattermost with Elastic Agent.
+GA
+2.5.0
+8.13.0 or higher
+9.0.0 or higher
+Memcached
+Memcached Integration
+GA
+1.7.0
+8.13.0 or higher
+9.0.0 or higher
+Menlo Security
+Collect logs from Menlo Security products with Elastic Agent
+GA
+1.6.0
+8.13.0 or higher
+9.0.0 or higher
+Microsoft Defender for Cloud
+Collect logs from Microsoft Defender for Cloud with Elastic Agent.
+GA
+2.6.0
+8.13.0 or higher
+9.0.0 or higher
+Microsoft Defender for Endpoint
+Collect logs from Microsoft Defender for Endpoint with Elastic Agent.
+GA
+2.39.0
+8.18.0 or higher
+9.0.0 or higher
+Microsoft DHCP
+Collect logs from Microsoft DHCP with Elastic Agent.
+GA
+1.27.0
+8.11.0 or higher
+9.0.0 or higher
+Microsoft DNS Server
+Collect logs from Microsoft DNS Server with Elastic Agent.
+GA
+1.2.0
+8.13.0 or higher
+9.0.0 or higher
+Microsoft Entra ID
+Collect logs from Microsoft Entra ID (formerly Azure Active Directory) with Elastic Agent.
+GA
+1.27.1
+8.15.1 or higher
+9.0.0 or higher
+Microsoft Entra ID Entity Analytics
+Collect identities from Microsoft Entra ID (formerly Azure Active Directory) with Elastic Agent.
+GA
+1.8.0
+8.15.1 or higher
+9.0.0 or higher
+Microsoft Exchange Online Message Trace
+Microsoft Exchange Online Message Trace Integration
+GA
+1.27.0
+8.13.0 or higher
+9.0.0 or higher
+Microsoft Exchange Server
+Collect logs from Microsoft Exchange Server with Elastic Agent.
+GA
+1.4.0
+8.11.0 or higher
+9.0.0 or higher
+Microsoft Graph Activity Logs
+Microsoft Graph Activity Logs integration
+GA
+1.27.1
+8.15.1 or higher
+9.0.0 or higher
+Microsoft M365 Defender
+Collect logs from Microsoft M365 Defender with Elastic Agent.
+GA
+3.10.0
+8.18.0 or higher
+9.0.0 or higher
+Microsoft Office 365 Metrics
+Collect metrics from Microsoft Office 365 with Elastic Agent.
+Beta
+0.17.0
+8.16.0 or higher
+9.0.0 or higher
+Microsoft Sentinel
+Collect logs from Microsoft Sentinel with Elastic Agent.
+GA
+1.1.1
+8.18.0 or higher
+9.0.0 or higher
+Microsoft SQL Server
+Collect events from Microsoft SQL Server with Elastic Agent
+GA
+2.12.0
+8.13.0 or higher
+9.0.0 or higher
+Mimecast
+Collect logs from Mimecast with Elastic Agent.
+GA
+3.0.0
+8.15.0 or higher
+9.0.0 or higher
+Miniflux RSS reader
+Collect RSS feed content from the Miniflux API with Elastic Agent.
+Beta
+0.2.1
+8.17.4 or higher
+9.0.0 or higher
+MISP
+Ingest threat intelligence indicators from MISP platform with Elastic Agent.
+GA
+1.38.0
+8.13.0 or higher
+9.0.0 or higher
+ModSecurity Audit
+Collect logs from ModSecurity with Elastic Agent
+GA
+1.21.0
+8.11.0 or higher
+9.0.0 or higher
+MongoDB
+Collect logs and metrics from MongoDB instances with Elastic Agent.
+GA
+1.20.0
+8.13.0 or higher
+9.0.0 or higher
+MongoDB Atlas
+This Elastic integration collects logs and metrics from MongoDB Atlas instance.
+GA
+1.1.0
+8.13.0 or higher
+9.0.0 or higher
+MySQL
+Collect logs and metrics from MySQL servers with Elastic Agent.
+GA
+1.26.3
+8.15.0 or higher
+9.0.0 or higher
+MySQL Enterprise
+Collect audit logs from MySQL Enterprise with Elastic Agent.
+GA
+1.16.0
+7.17.0 or higher
+8.0.0 or higher
+9.0.0 or higher
+Nagios XI
+Collect Logs and Metrics from Nagios XI with Elastic Agent.
+GA
+1.6.0
+8.13.0 or higher
+9.0.0 or higher
+NATS
+Collect logs and metrics from NATS servers with Elastic Agent.
+GA
+1.10.0
+8.13.0 or higher
+9.0.0 or higher
+NetFlow Records
+Collect flow records from NetFlow and IPFIX exporters with Elastic Agent.
+GA
+2.23.0
+8.14.0 or higher
+9.0.0 or higher
+Netskope
+Collect logs from Netskope with Elastic Agent.
+GA
+2.0.0
+8.13.0 or higher
+9.0.0 or higher
+Network Beaconing Identification
+Package to identify beaconing activity in your network events.
+GA
+1.3.0
+8.10.1 or higher
+9.0.0 or higher
+Network Packet Capture
+Capture and analyze network traffic from a host with Elastic Agent.
+GA
+1.33.0
+8.6.2 or higher
+9.0.0 or higher
+Nginx
+Collect logs and metrics from Nginx HTTP servers with Elastic Agent.
+GA
+2.1.0
+8.13.0 or higher
+9.0.0 or higher
+Nginx Ingress Controller Logs
+Collect Nginx Ingress Controller logs.
+GA
+1.12.0
+8.14.0 or higher
+9.0.0 or higher
+Nginx Ingress Controller OpenTelemetry Logs
+Collect Nginx Ingress Controller logs using the OpenTelemetry collector.
+Beta
+0.1.1
+8.16.0 or higher
+9.0.0 or higher
+Nozomi Networks
+Collect logs from Nozomi Networks with Elastic Agent.
+Beta
+0.1.0
+8.18.0 or higher
+9.0.0 or higher
+NVIDIA GPU Monitoring
+Monitor NVIDIA GPUs via NVIDIA Data Center GPU Manager
+Beta
+0.3.0
+8.16.0 or higher
+9.0.0 or higher
+Okta
+Collect and parse event logs from Okta API with Elastic Agent.
+GA
+3.10.1
+8.18.0 or higher
+9.0.0 or higher
+Okta Entity Analytics
+Collect Identities from Okta with Elastic Agent.
+GA
+2.5.0
+8.17.0 or higher
+9.0.0 or higher
+OpenAI
+Collect OpenAI usage metrics with Elastic Agent.
+GA
+1.2.0
+8.16.3 or higher
+9.0.0 or higher
+OpenCanary
+This integration collects and parses logs from OpenCanary honeypots.
+Beta
+0.6.0
+8.13.0 or higher
+9.0.0 or higher
+OpenCTI
+Ingest threat intelligence indicators from OpenCTI with Elastic Agent.
+GA
+2.6.1
+8.13.0 or higher
+9.0.0 or higher
+Oracle
+Collect Oracle Audit Log, Performance metrics, Tablespace metrics, Sysmetrics metrics, System statistics metrics, memory metrics from Oracle database.
+GA
+1.29.0
+8.13.0 or higher
+9.0.0 or higher
+Oracle WebLogic
+Collect logs and metrics from Oracle WebLogic with Elastic Agent.
+GA
+1.9.1
+8.13.0 or higher
+9.0.0 or higher
+Osquery Logs
+Collect logs from Osquery with Elastic Agent.
+GA
+1.23.0
+8.11.0 or higher
+9.0.0 or higher
+Osquery Manager
+Deploy Osquery with Elastic Agent, then run and schedule queries in Kibana
+GA
+1.18.0
+8.16.0 or higher
+9.0.0 or higher
+Palo Alto Cortex XDR
+Collect logs from Palo Alto Cortex XDR with Elastic Agent.
+GA
+2.3.1
+8.18.0 or higher
+9.0.0 or higher
+Palo Alto Networks Metrics
+Collect metrics from Palo Alto Networks with Elastic Agent.
+Beta
+0.2.0
+8.15.2 or higher
+9.0.0 or higher
+Palo Alto Next-Gen Firewall
+Collect logs from Palo Alto next-gen firewalls with Elastic Agent.
+GA
+5.3.0
+8.11.0 or higher
+9.0.0 or higher
+Palo Alto Prisma Access
+Collect logs from Palo Alto Prisma Access with Elastic Agent.
+GA
+1.6.0
+8.13.0 or higher
+9.0.0 or higher
+Palo Alto Prisma Cloud
+Collect logs from Prisma Cloud with Elastic Agent.
+GA
+3.3.0
+8.18.0 or higher
+9.0.0 or higher
+pfSense
+Collect logs from pfSense and OPNsense with Elastic Agent.
+GA
+1.23.0
+8.11.0 or higher
+9.0.0 or higher
+PHP-FPM
+This Elastic integration collects metrics from PHP-FPM.
+GA
+1.6.0
+8.13.0 or higher
+9.0.0 or higher
+PingFederate
+Collect logs from PingFederate with Elastic Agent.
+GA
+1.0.2
+8.16.0 or higher
+9.0.0 or higher
+PingOne
+Collect logs from PingOne with Elastic-Agent.
+GA
+1.20.0
+8.13.0 or higher
+9.0.0 or higher
+Pleasant Password Server
+Integration for Pleasant Password Server Syslog Messages
+GA
+1.0.1
+8.13.0 or higher
+9.0.0 or higher
+PostgreSQL
+Collect logs and metrics from PostgreSQL servers with Elastic Agent.
+GA
+1.29.0
+8.13.0 or higher
+9.0.0 or higher
+Prebuilt Security Detection Rules
+Prebuilt detection rules for Elastic Security
+GA
+9.0.7
+9.0.0 or higher
+Privileged Access Detection
+ML package to detect anomalous privileged access activity in Windows, Linux and Okta logs
+Beta
+0.6.0
+8.18.0 or higher
+9.0.0 or higher
+Prometheus
+Collect metrics from Prometheus servers with Elastic Agent.
+GA
+1.24.0
+8.16.0 or higher
+9.0.0 or higher
+Prometheus Input
+Collects metrics from Prometheus exporter.
+Beta
+0.7.1
+8.13.0 or higher
+9.0.0 or higher
+Proofpoint ITM
+Collect logs from Proofpoint ITM using Elastic Agent.
+Beta
+0.2.0
+8.18.0 or higher
+9.0.0 or higher
+Proofpoint On Demand
+Collect logs from Proofpoint On Demand with Elastic Agent.
+GA
+1.6.0
+8.16.3 or higher
+8.17.1 or higher
+9.0.0 or higher
+Proofpoint TAP
+Collect logs from Proofpoint TAP with Elastic Agent.
+GA
+1.27.0
+8.13.0 or higher
+9.0.0 or higher
+Pulse Connect Secure
+Collect logs from Pulse Connect Secure with Elastic Agent.
+GA
+2.6.0
+8.13.0 or higher
+9.0.0 or higher
+QNAP NAS
+Collect logs from QNAP NAS devices with Elastic Agent.
+GA
+1.23.0
+8.11.0 or higher
+9.0.0 or higher
+Qualys VMDR
+Collect data from Qualys VMDR platform with Elastic Agent.
+GA
+6.5.0
+8.18.0 or higher
+9.0.0 or higher
+Qualys Web Application Scanning (WAS)
+Collect data from Qualys Web Application Scanning platform with Elastic Agent or Agentless
+Beta
+0.1.0
+8.18.0 or higher
+9.0.0 or higher
+RabbitMQ Logs and Metrics
+Collect and parse logs from RabbitMQ servers with Elastic Agent.
+GA
+1.19.0
+8.13.0 or higher
+9.0.0 or higher
+Rapid7 InsightVM
+Collect logs from Rapid7 InsightVM with Elastic Agent.
+GA
+1.16.0
+8.13.0 or higher
+9.0.0 or higher
+Rapid7 Threat Command
+Collect threat intelligence from Threat Command API with Elastic Agent.
+GA
+2.5.0
+8.13.0 or higher
+9.0.0 or higher
+Recorded Future
+Ingest threat intelligence and alert data from Recorded Future with Elastic Agent.
+GA
+2.0.2
+8.18.0 or higher
+9.0.0 or higher
+Redis
+Collect logs and metrics from Redis servers with Elastic Agent.
+GA
+1.19.1
+8.13.0 or higher
+9.0.0 or higher
+Redis Enterprise
+Collect metrics from Redis Enterprise Cluster
+Beta
+0.12.0
+8.13.0 or higher
+9.0.0 or higher
+Rubrik RSC Metrics
+Collect Metrics from Rubrik RSC with Elastic Agent.
+Beta
+0.9.1
+8.16.0 or higher
+9.0.0 or higher
+Sailpoint Identity Security Cloud
+Sailpoint identity security cloud provides enterprise identity governance and security capabilities. The integration allows users to extract audit information from their identity security cloud tenant using the ISC's AuditEvent API.
+GA
+1.0.0
+8.16.1 or higher
+9.0.0 or higher
+Salesforce
+Collect logs from Salesforce instances using the Elastic Agent. This integration enables monitoring and analysis of various Salesforce logs, including Login, Logout, Setup Audit Trail, and Apex execution logs. Gain insights into user activity, security events, and application performance.
+GA
+1.3.0
+8.16.0 or higher
+9.0.0 or higher
+Security Posture Management
+Identify & remediate configuration risks in your Cloud infrastructure
+GA
+1.13.1
+8.18.0 or higher
+9.0.0 or higher
+SentinelOne
+Collect logs from SentinelOne with Elastic Agent.
+GA
+1.36.0
+8.18.0 or higher
+9.0.0 or higher
+SentinelOne Cloud Funnel
+Collect logs from SentinelOne Cloud Funnel with Elastic Agent.
+GA
+1.13.1
+8.16.5 or higher
+9.0.0 or higher
+ServiceNow
+Collect logs from ServiceNow with Elastic Agent.
+GA
+1.0.2
+8.16.5 or higher
+9.0.0 or higher
+Slack Logs
+Slack Logs Integration
+GA
+1.25.0
+8.13.0 or higher
+9.0.0 or higher
+Snort
+Collect logs from Snort with Elastic Agent.
+GA
+1.19.0
+8.11.0 or higher
+9.0.0 or higher
+Snyk
+Collect logs from Snyk with Elastic Agent.
+GA
+2.0.0
+8.13.0 or higher
+9.0.0 or higher
+SonicWall Firewall
+Integration for SonicWall firewall logs
+GA
+1.19.0
+8.11.0 or higher
+9.0.0 or higher
+Sophos
+Collect logs from Sophos with Elastic Agent.
+GA
+3.15.0
+8.11.0 or higher
+9.0.0 or higher
+Sophos Central
+This Elastic integration collects logs from Sophos Central with Elastic Agent.
+GA
+1.19.0
+8.13.0 or higher
+9.0.0 or higher
+Splunk
+Collect logs from Splunk with Elastic Agent.
+Beta
+0.4.0
+8.18.0 or higher
+9.0.0 or higher
+Spring Boot
+This Elastic integration collects logs and metrics from Spring Boot integration.
+GA
+1.9.0
+8.13.0 or higher
+9.0.0 or higher
+SpyCloud Enterprise Protection
+Collect data from SpyCloud Enterprise Protection with Elastic Agent.
+GA
+1.4.0
+8.13.0 or higher
+9.0.0 or higher
+SQL Input
+Collects Metrics by querying SQL Databases
+Beta
+0.6.0
+8.13.0 or higher
+9.0.0 or higher
+Squid Proxy
+Collect and parse logs from Squid devices with Elastic Agent.
+GA
+1.2.0
+8.14.1 or higher
+9.0.0 or higher
+STAN
+Collect logs and metrics from STAN servers with Elastic Agent.
+GA
+1.11.0
+8.13.0 or higher
+9.0.0 or higher
+StatsD Input
+StatsD Input Package
+Beta
+0.5.0
+8.13.0 or higher
+9.0.0 or higher
+StormShield SNS
+Stormshield SNS integration.
+GA
+1.3.0
+8.11.4 or higher
+9.0.0 or higher
+Sublime Security
+Collect logs from Sublime Security with Elastic Agent.
+GA
+1.10.0
+8.18.0 or higher
+9.0.0 or higher
+Suricata
+Collect logs from Suricata with Elastic Agent.
+GA
+2.25.0
+8.11.0 or higher
+9.0.0 or higher
+Swimlane Turbine
+Collect Swimlane Turbine Audit logs with Elastic Agent
+Beta
+0.4.0
+8.17.4 or higher
+9.0.0 or higher
+Symantec Endpoint Protection
+Collect logs from Symantec Endpoint Protection with Elastic Agent.
+GA
+2.19.0
+8.13.0 or higher
+9.0.0 or higher
+Symantec Endpoint Security
+Collect logs from Symantec Endpoint Security with Elastic Agent.
+GA
+1.12.2
+8.16.5 or higher
+9.0.0 or higher
+Sysdig
+Collect logs from Sysdig using Elastic Agent.
+GA
+1.0.0
+8.14.1 or higher
+9.0.0 or higher
+Syslog Router
+Route syslog events to integrations with Elastic Agent.
+Beta
+0.2.0
+8.14.3 or higher
+9.0.0 or higher
+Sysmon for Linux
+Collect Sysmon Linux logs with Elastic Agent.
+GA
+1.9.0
+8.11.0 or higher
+9.0.0 or higher
+System
+Collect system logs and metrics from your servers with Elastic Agent.
+GA
+2.3.2
+8.17.0 or higher
+9.0.0 or higher
+System Audit
+Collect various logs & metrics from System Audit modules with Elastic Agent.
+GA
+1.11.0
+8.7.1 or higher
+9.0.0 or higher
+Tanium
+This Elastic integration collects logs from Tanium with Elastic Agent.
+GA
+1.16.2
+8.16.5 or higher
+9.0.0 or higher
+Teleport
+Collect logs from Teleport with Elastic Agent.
+GA
+1.6.0
+8.14.0 or higher
+9.0.0 or higher
+Tenable OT Security
+Tenable OT Security
+Beta
+0.4.0
+8.16.1 or higher
+9.0.0 or higher
+Tenable Security Center
+Collect data from Tenable Security Center with Elastic Agent.
+GA
+1.29.0
+8.13.0 or higher
+9.0.0 or higher
+Tenable Vulnerability Management
+Collect logs from Tenable Vulnerability Management with Elastic Agent.
+GA
+3.10.1
+8.18.0 or higher
+9.0.0 or higher
+Tencent Cloud
+从腾讯云的 COS 中采集审计日志
+Beta
+0.2.0
+8.16.0 or higher
+9.0.0 or higher
+Threat Intelligence Utilities
+Prebuilt Threat Intelligence dashboard for Elastic Security
+GA
+1.7.0
+8.13.0 or higher
+9.0.0 or higher
+Threat Map
+The Threat Map integration includes a dashboard for analyzing network traffic data.
+GA
+1.0.0
+8.14.0 or higher
+9.0.0 or higher
+ThreatConnect
+Collects Indicators from ThreatConnect using the Elastic Agent and saves them as logs inside Elastic
+GA
+1.10.1
+8.13.0 or higher
+9.0.0 or higher
+ThreatQuotient
+Ingest threat intelligence indicators from ThreatQuotient with Elastic Agent.
+GA
+1.35.0
+8.18.0 or higher
+9.0.0 or higher
+Thycotic Secret Server
+Thycotic Secret Server logs
+GA
+1.12.0
+8.13.0 or higher
+9.0.0 or higher
+Tines
+Tines Logs & Time Saved Reports
+GA
+1.15.0
+8.14.0 or higher
+9.0.0 or higher
+Tomcat NetWitness Logs (Deprecated)
+Collect and parse logs from Apache Tomcat servers with Elastic Agent.
+GA
+1.14.0
+8.13.0 or higher
+9.0.0 or higher
+Traefik
+Collect logs from Traefik servers with Elastic Agent.
+GA
+2.6.0
+8.13.0 or higher
+9.0.0 or higher
+Trellix EDR Cloud
+Collect logs from Trellix EDR Cloud with Elastic Agent.
+GA
+1.9.0
+8.16.5 or higher
+9.0.0 or higher
+Trellix ePO Cloud
+Collect logs from Trellix ePO Cloud with Elastic Agent.
+GA
+1.15.0
+8.13.0 or higher
+9.0.0 or higher
+Trend Micro Deep Security
+Collect logs from Trend Micro Deep Security with Elastic Agent.
+GA
+2.8.0
+8.13.0 or higher
+9.0.0 or higher
+Trend Micro Vision One
+Collect logs from Trend Micro Vision One with Elastic Agent.
+GA
+2.2.0
+8.15.0 or higher
+9.0.0 or higher
+TYCHON Agentless
+Collect complete master endpoint datasets including vulnerability and STIG to comply with DISA endpoint requirements and C2C without adding services to your endpoints.
+GA
+1.0.0
+8.14.0 or higher
+9.0.0 or higher
+Universal Profiling Agent
+Fleet-wide, whole-system, continuous profiling with zero instrumentation.
+GA
+8.17.3
+8.17.3 or higher
+9.0.0 or higher
+Universal Profiling Collector
+Fleet-wide, whole-system, continuous profiling with zero instrumentation.
+GA
+8.17.3
+8.17.3 or higher
+9.0.0 or higher
+Universal Profiling Symbolizer
+Fleet-wide, whole-system, continuous profiling with zero instrumentation.
+GA
+8.17.3
+8.17.3 or higher
+9.0.0 or higher
+Varonis
+Collect Varonis syslog alerts using TCP/UDP input.
+Beta
+0.2.0
+8.15.3 or higher
+9.0.0 or higher
+Vectra Detect
+Collect logs from Vectra Detect with Elastic Agent.
+GA
+1.14.0
+8.13.0 or higher
+9.0.0 or higher
+Vectra RUX
+Collect logs from Vectra RUX with Elastic Agent.
+Beta
+0.2.0
+8.18.0 or higher
+9.0.0 or higher
+VMware Carbon Black Cloud
+Collect logs from VMWare Carbon Black Cloud with Elastic Agent.
+GA
+3.1.0
+8.16.5 or higher
+9.0.0 or higher
+VMware Carbon Black EDR
+Collect logs from VMware Carbon Black EDR with Elastic Agent.
+GA
+1.21.0
+8.13.0 or higher
+9.0.0 or higher
+VMware vSphere
+This Elastic integration collects metrics and logs from vSphere/vCenter servers
+GA
+1.19.0
+8.16.2 or higher
+9.0.0 or higher
+WatchGuard Firebox
+Collect logs from WatchGuard Firebox with Elastic Agent.
+GA
+1.3.1
+8.13.0 or higher
+9.0.0 or higher
+WebSphere Application Server
+Collects metrics from IBM WebSphere Application Server with Elastic Agent.
+GA
+1.6.1
+8.13.0 or higher
+9.0.0 or higher
+Windows
+Collect logs and metrics from Windows OS and services with Elastic Agent.
+GA
+3.0.0
+8.14.0 or higher
+9.0.0 or higher
+Wiz
+Collect logs from Wiz with Elastic Agent.
+GA
+3.3.0
+~8.16.6
+~8.17.4
+8.18.0 or higher
+9.0.0 or higher
+Zeek
+Collect logs from Zeek with Elastic Agent.
+GA
+3.0.0
+8.12.0 or higher
+9.0.0 or higher
+Zero Networks
+Zero Networks Logs integration
+GA
+1.18.0
+8.13.0 or higher
+9.0.0 or higher
+ZeroFox
+Collect logs from ZeroFox with Elastic Agent.
+GA
+1.28.0
+8.13.0 or higher
+9.0.0 or higher
+ZooKeeper Metrics
+Collect metrics from ZooKeeper service with Elastic Agent.
+GA
+1.14.0
+8.13.0 or higher
+9.0.0 or higher
+Zoom
+Collect logs from Zoom with Elastic Agent.
+GA
+1.22.0
+8.13.0 or higher
+9.0.0 or higher
+Zscaler Internet Access
+Collect logs from Zscaler Internet Access (ZIA) with Elastic Agent.
+GA
+3.13.0
+8.18.0 or higher
+9.0.0 or higher
+Zscaler Private Access
+Collect logs from Zscaler Private Access (ZPA) with Elastic Agent.
+GA
+1.23.1
+8.13.0 or higher
+9.0.0 or higher
+Previous
+Elastic integrations
+Next
+1Password

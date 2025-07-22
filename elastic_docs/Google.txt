@@ -1,0 +1,18 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Google
+Collect logs from various Google products. Google develops a wide array of products and services, including its renowned search engine, online advertising, cloud computing, e-commerce, and consumer electronics.
+Google Santa
+Google SecOps
+Google Workspace
+Previous
+Golang
+Next
+Google Santa

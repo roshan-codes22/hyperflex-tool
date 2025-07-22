@@ -1,0 +1,17 @@
+Loading
+Elastic Docs
+/
+…
+/
+Ingestion tools
+/
+Elastic integrations
+/
+Kafka
+Collect logs and metrics from Kafka—an open-source distributed event streaming platform.
+Kafka
+Kafka Logs (custom)
+Previous
+JumpCloud
+Next
+Kafka
