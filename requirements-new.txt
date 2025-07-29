@@ -1,0 +1,5 @@
+elasticsearch
+langchain_community
+
+pypdf
+tiktoken

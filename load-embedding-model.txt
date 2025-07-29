@@ -1,0 +1,9 @@
+
+
+#supported model: https://www.elastic.co/docs/explore-analyze/machine-learning/nlp/ml-nlp-model-ref#ml-nlp-model-ref-text-embedding
+
+docker run -it --rm --network host \
+    docker.elastic.co/eland/eland eland_import_hub_model \
+      --url https://hyperflex-project-de8318.es.us-east-1.aws.elastic.cloud:443 --es-api-key=$API_KEY \
+      --hub-model-id sentence-transformers/all-MiniLM-L12-v2 \
+      --task-type text_embedding --insecure
