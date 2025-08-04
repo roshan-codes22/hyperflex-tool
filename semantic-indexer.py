@@ -1,6 +1,6 @@
 from langchain.document_loaders import DirectoryLoader, TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from sources.elasticsearch import load_elasticsearch
+from sources.elasticsearch_client import load_elasticsearch
 from elasticsearch import helpers
 
 
@@ -18,10 +18,11 @@ loader = DirectoryLoader(
 data = loader.load()
 
 text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
-    chunk_size=512, chunk_overlap=256
+    chunk_size=1000, chunk_overlap=200
 )
 
 docs = loader.load_and_split(text_splitter=text_splitter)
+
 
 helpers.bulk(
     client,

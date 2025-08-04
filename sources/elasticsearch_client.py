@@ -5,9 +5,10 @@ from dotenv import load_dotenv
 load_dotenv()
 api_key = os.getenv("API_KEY")
 
+
 def load_elasticsearch(): 
     es = Elasticsearch (
-        "https://hyperflex-project-de8318.es.us-east-1.aws.elastic.cloud:443",
+        "https://2bad39def63f4e83b74866d9fcd13749.us-central1.gcp.cloud.es.io:443",
         api_key=api_key
     )
     return es
